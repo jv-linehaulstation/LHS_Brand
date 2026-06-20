@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #0b0b0b;
+  color: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: #f07820;
+  color: #0b0b0b;
+}
+
+/* Signature 1.5px brushed-metal frame — wrap any block to add premium depth. */
+.frame {
+  padding: 1.5px;
+  border-radius: 5px;
+  background: linear-gradient(135deg, #6b5942, #0a0a0a 45%, #0a0a0a 55%, #5b4a36);
+}
+.frame > * {
+  border-radius: 4px;
+}
+
+/* Blueprint grid wash used behind dark sections. */
+.blueprint {
+  background-image: repeating-linear-gradient(
+      0deg,
+      rgba(176, 176, 176, 0.05) 0 1px,
+      transparent 1px 64px
+    ),
+    repeating-linear-gradient(90deg, rgba(176, 176, 176, 0.05) 0 1px, transparent 1px 64px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-scan {
+    animation: none !important;
+  }
+}
