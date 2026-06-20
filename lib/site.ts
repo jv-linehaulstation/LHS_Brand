@@ -10,4 +10,7 @@ export const site = {
   // Where the two approved CTAs point. Keep both — never "Sign Up" / "Register".
   connectHref: "#contact",
   scheduleHref: "#contact",
+  // Paste your GoHighLevel inbound webhook URL here (or set
+  // NEXT_PUBLIC_GHL_WEBHOOK_URL) to capture lead-form submissions.
+  ghlWebhookUrl: "",
 };
