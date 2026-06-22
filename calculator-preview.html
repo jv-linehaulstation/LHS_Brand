@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LineHaul Station — Calculator sections (Drivers + Carriers)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Michroma&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Caveat:wght@600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0B0B0B; --carbon:#1A1A1A; --panel:#141414; --panel2:#161616;
+    --chrome:#B0B0B0; --body:#D8D8D8; --line:rgba(176,176,176,.15);
+    --head:'Archivo',sans-serif; --label:'Michroma',sans-serif;
+    --serif:'Newsreader',Georgia,serif; --mono:'JetBrains Mono',monospace; --script:'Caveat',cursive;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--ink);color:#fff;font-family:var(--serif);-webkit-font-smoothing:antialiased;}
+  .frame{padding:1.5px;border-radius:6px;background:linear-gradient(135deg,#6b5942,#0a0a0a 45%,#0a0a0a 55%,#5b4a36);}
+  .frame>.inner{background:var(--panel);border-radius:5px;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
+  .eyebrow{font-family:var(--label);font-size:11px;letter-spacing:.24em;text-transform:uppercase;}
+  .h2{font-family:var(--head);font-weight:900;text-transform:uppercase;letter-spacing:-.01em;line-height:1.02;
+      font-size:clamp(28px,4vw,46px);}
+  .mono{font-family:var(--mono);}
+  .label{font-family:var(--label);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--chrome);}
+  input[type=range]{-webkit-appearance:none;appearance:none;height:4px;border-radius:3px;background:#333;outline:none;}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;cursor:pointer;}
+  input[type=range]::-moz-range-thumb{width:18px;height:18px;border:none;border-radius:50%;cursor:pointer;}
+  .pagehead{border-bottom:1px solid var(--line);padding:18px 0;position:sticky;top:0;background:rgba(11,11,11,.86);backdrop-filter:blur(8px);z-index:5;}
+  .badge{font-family:var(--label);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);padding:5px 10px;border-radius:3px;}
+  .card{background:var(--carbon);border:1px solid var(--line);border-radius:5px;}
+  .grid365{display:grid;grid-template-columns:repeat(auto-fill,minmax(7px,1fr));gap:2px;}
+  .cell{aspect-ratio:1;border-radius:1px;background:#222;}
+  .tier{flex:1;text-align:left;border-radius:4px;padding:12px 12px;cursor:pointer;background:var(--carbon);
+    border:1px solid var(--line);color:#fff;font-family:var(--head);font-weight:800;text-transform:uppercase;font-size:14px;}
+  .tier span{display:block;font-family:var(--mono);font-weight:400;font-size:12px;margin-top:3px;}
+  .secnum{font-family:var(--mono);font-size:12px;}
+</style>
+</head>
+<body>
+
+<div class="pagehead"><div class="wrap" style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+  <div style="font-family:var(--head);font-weight:900;letter-spacing:.02em;">LINEHAUL&nbsp;STATION</div>
+  <div class="label">Calculator sections · Drivers + Carriers · static preview</div>
+</div></div>
+
+<!-- ============================ DRIVERS ============================ -->
+<section style="padding:64px 0 28px;" id="drivers">
+  <div class="wrap">
+    <div class="secnum" style="color:#F07820;">/drivers · OneHome</div>
+    <div class="eyebrow" style="color:#F07820;margin-top:18px;">Run your own numbers</div>
+    <h2 class="h2" style="margin-top:10px;">What OneHome puts back in your pocket</h2>
+  </div>
+</section>
+<section style="padding:0 0 72px;">
+  <div class="wrap">
+    <div class="frame"><div class="inner" style="padding:28px;">
+
+      <div class="card" style="background:var(--panel2);padding:26px;">
+        <div class="label">Back in your pocket every year</div>
+        <div id="d-year" style="font-family:var(--head);font-weight:900;font-size:clamp(44px,8vw,72px);line-height:1;color:#F07820;">$17,412</div>
+        <div style="color:var(--body);margin-top:6px;">That's <b id="d-mo" style="color:#fff;">$1,451</b> a month you stop paying for a place you're rarely in.</div>
+        <div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px;border-top:1px solid var(--line);margin-top:16px;padding-top:16px;">
+          <span style="color:var(--chrome);">Invest it 30 years at 7% →</span>
+          <span id="d-long" style="font-family:var(--head);font-weight:900;font-size:28px;">$1.64M</span>
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-top:26px;">
+        <div>
+          <div class="label">Days home per year</div>
+          <div style="display:flex;align-items:baseline;gap:10px;margin-top:6px;">
+            <span id="d-days" style="font-family:var(--head);font-weight:900;font-size:40px;line-height:1;color:#F07820;">60</span>
+            <span class="mono" style="font-size:11px;color:var(--chrome);line-height:1.2;">Days<br>at your Home Hub</span>
+          </div>
+        </div>
+        <div class="mono" style="font-size:12px;color:var(--chrome);border:1px solid var(--line);background:var(--carbon);border-radius:4px;padding:8px 14px;">On the road <b id="d-away" style="color:#fff;">305</b> days a year</div>
+      </div>
+      <input type="range" id="d-dslider" min="0" max="10" value="4" step="1" style="width:100%;margin-top:14px;accent-color:#F07820;">
+      <div class="mono" id="d-ticks" style="display:flex;justify-content:space-between;font-size:10px;color:#6a6a6a;margin-top:6px;"></div>
+
+      <div style="margin-top:26px;">
+        <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:8px;">
+          <span class="label">Your year — one square per day</span>
+          <span class="mono" style="font-size:11px;color:var(--chrome);">
+            <span style="display:inline-block;width:9px;height:9px;background:#F07820;border-radius:2px;vertical-align:middle;"></span> Home
+            &nbsp; <span style="display:inline-block;width:9px;height:9px;background:#222;border-radius:2px;vertical-align:middle;"></span> Paid for, empty
+          </span>
+        </div>
+        <div class="grid365" id="d-grid"></div>
+        <p style="color:var(--chrome);font-size:14px;margin-top:12px;">A traditional lease bills you for every square. OneHome lights up only the ones you use — <b id="d-meterdays" style="color:#fff;">60</b> nights, not 365.</p>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:16px;margin-top:26px;">
+        <span class="label" style="white-space:nowrap;">Your rent / mortgage</span>
+        <input type="range" id="d-rent" min="900" max="3500" value="1800" step="50" style="flex:1;accent-color:#F07820;">
+        <span class="mono" id="d-rentval" style="font-size:13px;color:#fff;white-space:nowrap;">$1,800/mo</span>
+      </div>
+
+      <div class="label" style="margin-top:30px;">Side by side — per month</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:12px;">
+        <div class="card" style="padding:22px;">
+          <div class="label" style="font-size:9px;">A home that sits empty</div>
+          <div style="font-family:var(--head);font-weight:900;font-size:32px;color:#fff;margin-top:4px;"><span id="d-aptmo">$1,800</span><span style="font-size:15px;color:var(--chrome);">/mo</span></div>
+          <div style="color:var(--chrome);font-size:13px;margin-top:2px;" id="d-aptsub">Billed all 12 months — even the 305 you're away</div>
+          <div style="height:1px;background:var(--line);margin:16px 0;"></div>
+          <div class="label" style="font-size:9px;">What each night home costs</div>
+          <div style="font-family:var(--head);font-weight:900;font-size:26px;color:#fff;margin-top:4px;" id="d-aptnight">$360</div>
+          <div style="color:var(--chrome);font-size:12px;">per night you're actually there</div>
+        </div>
+        <div class="card" style="padding:22px;border-top:2px solid #F07820;">
+          <div class="label" style="font-size:9px;color:#F07820;">OneHome membership</div>
+          <div style="font-family:var(--head);font-weight:900;font-size:32px;color:#fff;margin-top:4px;"><span id="d-ohmo">$349</span><span style="font-size:15px;color:var(--chrome);">/mo</span></div>
+          <div style="color:var(--chrome);font-size:13px;margin-top:2px;" id="d-ohsub">Base membership · 60 days/yr · month-to-month</div>
+          <div style="height:1px;background:var(--line);margin:16px 0;"></div>
+          <div class="label" style="font-size:9px;">What each night home costs</div>
+          <div style="font-family:var(--head);font-weight:900;font-size:26px;color:#fff;margin-top:4px;" id="d-ohnight">$70</div>
+          <div style="color:var(--chrome);font-size:12px;">per night, furnished &amp; staffed</div>
+          <div class="badge" id="d-wm" style="background:#F07820;margin-top:14px;display:inline-block;">West Memphis founding rate: $199/mo</div>
+        </div>
+      </div>
+      <p style="color:var(--chrome);font-size:13px;font-style:italic;margin-top:18px;">Base membership shown. Add OneHome services for $295/mo — private storage locker, covered parking, and a permanent mailing address — if you want them.</p>
+
+    </div></div>
+  </div>
+</section>
+
+<div style="height:1px;background:var(--line);"></div>
+
+<!-- ============================ CARRIERS ============================ -->
+<section style="padding:64px 0 28px;" id="carriers">
+  <div class="wrap">
+    <div class="secnum" style="color:#4878A8;">/carriers · FlexSpace</div>
+    <div class="eyebrow" style="color:#4878A8;margin-top:18px;">Run your own numbers</div>
+    <h2 class="h2" style="margin-top:10px;">What FlexSpace actually costs you.</h2>
+  </div>
+</section>
+<section style="padding:0 0 80px;">
+  <div class="wrap">
+    <div class="frame"><div class="inner" style="padding:28px;">
+
+      <div class="label">Choose your access plan</div>
+      <div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;" id="c-tiers">
+        <button class="tier on" data-tier="guest">Guest Pass<span>$59 / day</span></button>
+        <button class="tier" data-tier="prop">Membership<span>$19 / day</span></button>
+        <button class="tier" data-tier="ded">Dedicated Space<span>$395 / mo</span></button>
+      </div>
+
+      <div class="card" style="background:var(--panel2);padding:26px;margin-top:20px;">
+        <div class="label">Your FlexSpace cost</div>
+        <div style="font-family:var(--head);font-weight:900;font-size:clamp(44px,8vw,72px);line-height:1;color:#4878A8;"><span id="c-mo">$3,540</span><span style="font-size:20px;color:var(--chrome);">/mo</span></div>
+        <div style="color:var(--body);margin-top:6px;"><b id="c-yr" style="color:#fff;">$42,480</b> a year · <b id="c-pt" style="color:#fff;">$708</b> per truck / month</div>
+        <div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px;border-top:1px solid var(--line);margin-top:16px;padding-top:16px;">
+          <span style="color:var(--chrome);">To build your own terminal →</span>
+          <span style="font-family:var(--head);font-weight:900;font-size:28px;">~$15M</span>
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:16px;margin-top:24px;">
+        <span class="label" style="white-space:nowrap;">Trucks needing access</span>
+        <input type="range" id="c-trucks" min="1" max="20" value="5" step="1" style="flex:1;accent-color:#4878A8;">
+        <span class="mono" id="c-trucksval" style="font-size:13px;color:#fff;white-space:nowrap;">5 trucks</span>
+      </div>
+      <div id="c-daysrow" style="display:flex;align-items:center;gap:16px;margin-top:18px;">
+        <span class="label" style="white-space:nowrap;">Days per month at a Hub</span>
+        <input type="range" id="c-days" min="1" max="30" value="12" step="1" style="flex:1;accent-color:#4878A8;">
+        <span class="mono" id="c-daysval" style="font-size:13px;color:#fff;white-space:nowrap;">12 days</span>
+      </div>
+
+      <p style="color:var(--chrome);font-size:14px;margin-top:18px;">Guest Pass and Membership bill per day used. Dedicated Space is a flat monthly rate per truck — your spot is always there.</p>
+
+    </div></div>
+    <p style="color:#6a6a6a;font-family:var(--label);font-size:9px;letter-spacing:.2em;text-transform:uppercase;text-align:center;margin-top:34px;">Static preview · these two sections are already live in the Next.js app on /drivers and /carriers</p>
+  </div>
+</section>
+
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id);};
+  var money=function(n){return '$'+Math.round(n).toLocaleString();};
+  var fmtM=function(n){return n>=1e6?'$'+(n/1e6).toFixed(2)+'M':(n>=1e3?'$'+Math.round(n/1e3)+'K':money(n));};
+
+  /* ---- Drivers: OneHome ---- */
+  var stops=[15,30,40,50,60,80,90,100,120,180,365];
+  var ohData={15:{std:99,yr1:79},30:{std:179,yr1:119},40:{std:239,yr1:149},50:{std:299,yr1:189},60:{std:349,yr1:199},80:{std:469,yr1:269},90:{std:499,yr1:299},100:{std:549,yr1:339},120:{std:639,yr1:399},180:{std:949,yr1:599},365:{std:1699,yr1:1199}};
+  var cells=[],grid=$('d-grid');
+  for(var i=0;i<365;i++){var c=document.createElement('div');c.className='cell';grid.appendChild(c);cells.push(c);}
+  stops.forEach(function(s,idx){var t=document.createElement('span');t.textContent=s;t.style.cursor='pointer';t.addEventListener('click',function(){$('d-dslider').value=idx;dRender();});$('d-ticks').appendChild(t);});
+  function dRender(){
+    var days=stops[+$('d-dslider').value], std=ohData[days].std, yr1=ohData[days].yr1, rent=+$('d-rent').value;
+    $('d-days').textContent=days; $('d-away').textContent=365-days; $('d-meterdays').textContent=days;
+    for(var i=0;i<365;i++){cells[i].style.background=i<days?'#F07820':'#222';}
+    $('d-rentval').textContent=money(rent)+'/mo';
+    $('d-aptmo').textContent=money(rent); $('d-aptsub').textContent='Billed all 12 months — even the '+(365-days)+' you’re away';
+    $('d-aptnight').textContent=money(rent*12/days);
+    $('d-ohmo').textContent=money(std); $('d-ohsub').textContent='Base membership · '+days+' days/yr · month-to-month';
+    $('d-ohnight').textContent=money(std*12/days);
+    $('d-wm').textContent='West Memphis founding rate: '+money(yr1)+'/mo';
+    var moSave=Math.max(0,rent-std), yrSave=moSave*12;
+    $('d-year').textContent=money(yrSave); $('d-mo').textContent=money(moSave);
+    $('d-long').textContent=fmtM(yrSave*((Math.pow(1.07,30)-1)/0.07));
+    $('d-ticks').childNodes.forEach&&$('d-ticks').childNodes.forEach(function(t,i){t.style.color=(i===+$('d-dslider').value)?'#F07820':'#6a6a6a';});
+  }
+  $('d-dslider').addEventListener('input',dRender); $('d-rent').addEventListener('input',dRender); dRender();
+
+  /* ---- Carriers: FlexSpace ---- */
+  var rates={guest:59,prop:19,ded:395}, tier='guest';
+  function cRender(){
+    var trucks=+$('c-trucks').value, days=+$('c-days').value, mo;
+    mo=(tier==='ded')?trucks*rates.ded:trucks*days*rates[tier];
+    $('c-trucksval').textContent=trucks+(trucks===1?' truck':' trucks');
+    $('c-daysval').textContent=days+(days===1?' day':' days');
+    $('c-daysrow').style.opacity=(tier==='ded')?'0.4':'1'; $('c-days').disabled=(tier==='ded');
+    $('c-mo').textContent=money(mo); $('c-yr').textContent=money(mo*12); $('c-pt').textContent=money(trucks?mo/trucks:0);
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('#c-tiers .tier'),function(b){
+    b.addEventListener('click',function(){
+      tier=b.getAttribute('data-tier');
+      Array.prototype.forEach.call(document.querySelectorAll('#c-tiers .tier'),function(x){
+        var on=x===b; x.style.borderColor=on?'#4878A8':'rgba(176,176,176,.15)';
+        x.style.borderTopWidth=on?'2px':'1px'; x.style.background=on?'rgba(72,120,168,.12)':'#1A1A1A';
+      });
+      cRender();
+    });
+  });
+  $('c-trucks').addEventListener('input',cRender); $('c-days').addEventListener('input',cRender); cRender();
+})();
+</script>
+</body>
+</html>

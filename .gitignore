@@ -1,0 +1,26 @@
+/node_modules
+/.next
+/out
+/build
+next-env.d.ts
+.DS_Store
+*.pem
+.env*
+npm-debug.log*
+.vercel
+*.tsbuildinfo
+
+# Heavy / video Claude Code skills — keep them local, don't bloat the repo.
+# (The lightweight design + dev skills stay tracked and travel with the repo.)
+.claude/skills/skill-finder/
+.claude/skills/hyperframes*/
+.claude/skills/faceless-explainer/
+.claude/skills/product-launch-video/
+.claude/skills/website-to-video/
+.claude/skills/pr-to-video/
+.claude/skills/remotion-to-hyperframes/
+.claude/skills/embedded-captions/
+.claude/skills/motion-graphics/
+.claude/skills/graphic-overlays/
+.claude/skills/slideshow/
+.claude/skills/general-video/

@@ -1,0 +1,150 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #0b0b0b;
+  color: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: #f07820;
+  color: #0b0b0b;
+}
+
+/* Signature 1.5px brushed-metal frame — wrap any block to add premium depth. */
+.frame {
+  padding: 1.5px;
+  border-radius: 5px;
+  background: linear-gradient(135deg, #6b5942, #0a0a0a 45%, #0a0a0a 55%, #5b4a36);
+}
+.frame > * {
+  border-radius: 4px;
+}
+
+/* Blueprint grid wash used behind dark sections. */
+.blueprint {
+  background-image: repeating-linear-gradient(
+      0deg,
+      rgba(176, 176, 176, 0.05) 0 1px,
+      transparent 1px 64px
+    ),
+    repeating-linear-gradient(90deg, rgba(176, 176, 176, 0.05) 0 1px, transparent 1px 64px);
+}
+
+/* ===== First-load preloader (ported verbatim from the original site) ===== */
+#lhs-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  background: radial-gradient(125% 95% at 50% 38%, #242220 0%, #161514 58%, #0e0d0c 100%);
+  transition: transform 0.66s cubic-bezier(0.7, 0, 0.18, 1);
+  will-change: transform;
+}
+#lhs-loader.done { transform: translateY(-100%); }
+.ld-badge {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  opacity: 0;
+  transform: scale(0.92);
+  animation: ldIn 0.6s 0.08s ease forwards;
+}
+.ld-badge img { display: block; width: 104px; height: auto; }
+.ld-badge::after {
+  content: "";
+  position: absolute;
+  top: -30%;
+  left: -65%;
+  width: 48%;
+  height: 160%;
+  background: linear-gradient(105deg, transparent, rgba(255, 255, 255, 0.55) 50%, transparent);
+  transform: rotate(9deg);
+  animation: ldSweep 1.5s 0.45s ease-in-out;
+}
+@keyframes ldSweep { 0% { left: -65%; } 58% { left: 135%; } 100% { left: 135%; } }
+.ld-word {
+  font-family: var(--font-archivo), sans-serif;
+  font-weight: 800;
+  letter-spacing: 0.34em;
+  font-size: 15px;
+  color: #b0b0b0;
+  text-transform: uppercase;
+  padding-left: 0.34em;
+  opacity: 0;
+  animation: ldIn 0.6s 0.32s ease forwards;
+}
+@keyframes ldIn { to { opacity: 1; transform: none; } }
+.ld-track {
+  position: relative;
+  width: 248px;
+  height: 2px;
+  background: rgba(176, 176, 176, 0.18);
+  border-radius: 2px;
+  opacity: 0;
+  animation: ldIn 0.5s 0.28s ease forwards;
+}
+.ld-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 0;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #fbb04a, #f07820);
+  box-shadow: 0 0 8px rgba(240, 120, 32, 0.5);
+  animation: ldFill 1.2s 0.34s cubic-bezier(0.55, 0, 0.3, 1) forwards;
+}
+@keyframes ldFill { to { width: 100%; } }
+.ld-dot {
+  position: absolute;
+  top: 50%;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #3a3633;
+  transform: translate(-50%, -50%);
+}
+.ld-dot.on {
+  background: #f07820;
+  box-shadow: 0 0 11px 2px rgba(240, 120, 32, 0.75);
+  animation: ldPulse 0.4s ease;
+}
+@keyframes ldPulse {
+  0% { transform: translate(-50%, -50%) scale(0.4); }
+  60% { transform: translate(-50%, -50%) scale(1.5); }
+  100% { transform: translate(-50%, -50%) scale(1); }
+}
+.ld-tag {
+  font-family: var(--font-jetbrains), monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.16em;
+  color: #8a857e;
+  text-transform: uppercase;
+  opacity: 0;
+  animation: ldIn 0.6s 1.15s ease forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-scan {
+    animation: none !important;
+  }
+}
