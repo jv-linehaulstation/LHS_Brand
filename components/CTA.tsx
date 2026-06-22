@@ -23,15 +23,23 @@ export function PrimaryCTA({
   return (
     <a
       href={href}
-      className={`${label} rounded-btn px-[30px] py-[17px] text-ink shadow-[0_12px_28px_rgba(0,0,0,0.4)] transition hover:brightness-110 hover:-translate-y-px`}
+      className={`${label} group relative overflow-hidden rounded-btn px-[30px] py-[17px] text-ink shadow-[0_14px_30px_rgba(0,0,0,0.45)] transition duration-300 hover:-translate-y-0.5 hover:brightness-[1.08]`}
       style={{ background: `linear-gradient(135deg, ${accent}, ${accentDark})` }}
     >
-      {children} <span aria-hidden>→</span>
+      {/* one-pass sheen on hover */}
+      <span
+        aria-hidden
+        className="pointer-events-none absolute inset-y-0 -left-1/3 w-1/3 -skew-x-12 bg-white/25 opacity-0 transition-all duration-500 group-hover:left-[120%] group-hover:opacity-100"
+      />
+      <span className="relative">{children}</span>
+      <span aria-hidden className="relative transition-transform duration-300 group-hover:translate-x-1">
+        →
+      </span>
     </a>
   );
 }
 
-/** Ghost CTA — carbon fill, chrome hairline, accent edge on hover. */
+/** Ghost CTA — carbon fill, chrome hairline, accent edge + tick on hover. */
 export function GhostCTA({
   children = "Schedule a Call",
   href = site.scheduleHref,
@@ -44,9 +52,14 @@ export function GhostCTA({
   return (
     <a
       href={href}
-      className={`${label} group rounded-btn border border-chrome/30 bg-carbon/70 px-[30px] py-[17px] text-white transition hover:border-white`}
+      className={`${label} group rounded-btn border border-chrome/30 bg-carbon/70 px-[30px] py-[17px] text-white transition duration-300 hover:border-[var(--ac)] hover:bg-carbon`}
       style={{ ["--ac" as string]: accent }}
     >
+      <span
+        aria-hidden
+        className="h-1.5 w-1.5 rounded-full transition-transform duration-300 group-hover:scale-125"
+        style={{ background: accent }}
+      />
       {children}
     </a>
   );

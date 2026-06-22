@@ -13,11 +13,14 @@ export default function ParallaxImage({
   alt = "",
   strength = 0.18,
   priority = false,
+  grade = true,
 }: {
   src: string;
   alt?: string;
   strength?: number;
   priority?: boolean;
+  /** Apply the unifying carbon grade (desaturate + contrast) so mixed renders read as one set. */
+  grade?: boolean;
 }) {
   const ref = useRef<HTMLDivElement | null>(null);
 
@@ -51,7 +54,14 @@ export default function ParallaxImage({
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden">
       <div ref={ref} className="absolute -inset-y-[12%] inset-x-0 will-change-transform">
-        <Image src={src} alt={alt} fill priority={priority} className="object-cover" sizes="100vw" />
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          priority={priority}
+          className={`object-cover ${grade ? "img-grade" : ""}`}
+          sizes="100vw"
+        />
       </div>
     </div>
   );

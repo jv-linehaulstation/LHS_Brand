@@ -57,9 +57,10 @@ export default function Section({
       <section
         id={id}
         className={`${base} ${className}`}
-        style={{ background: `linear-gradient(135deg, ${accent}22, #0B0B0B 62%)` }}
+        style={{ background: `linear-gradient(160deg, ${accent}1f, #0B0B0B 58%)` }}
       >
-        <div className="pointer-events-none absolute inset-0 [background-image:repeating-linear-gradient(90deg,rgba(255,255,255,0.04)_0_1px,transparent_1px_60px)]" />
+        <div className="bloom" style={{ ["--bloom" as string]: `${accent}26` }} />
+        <div className="blueprint pointer-events-none absolute inset-0 opacity-30" />
         <div className="relative mx-auto max-w-site">{children}</div>
       </section>
     );

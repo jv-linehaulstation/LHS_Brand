@@ -4,8 +4,9 @@ import { audiences, AUDIENCE_ORDER } from "@/lib/audiences";
 import { site } from "@/lib/site";
 
 /**
- * Sticky top bar. `accent` underlines the active audience tab on sub-pages;
- * `active` marks which route is current. On the homepage no tab is active.
+ * Sticky wayfinding bar. `accent` drives the active lane's underline + index
+ * and the Connect button on sub-pages; `active` marks the current route.
+ * Tabs flex-wrap on small screens (no JS toggle to preserve).
  */
 export default function Nav({
   accent = "#F07820",
@@ -14,56 +15,73 @@ export default function Nav({
   accent?: string;
   active?: string;
 }) {
+  const tabs: { key: string; href: string; label: string }[] = [
+    ...AUDIENCE_ORDER.map((key) => ({
+      key,
+      href: `/${key}`,
+      label: audiences[key].navLabel,
+    })),
+    { key: "leadership", href: "/leadership", label: "Leadership" },
+  ];
+
   return (
-    <header className="sticky top-0 z-50 flex flex-wrap items-center justify-between gap-x-6 gap-y-3 border-b border-chrome/15 bg-ink/90 px-5 py-3 backdrop-blur-md sm:px-7">
-      <Link href="/" className="flex flex-none items-center" aria-label="LineHaul Station home">
-        <Image
-          src="/assets/logo-horz-light.png"
-          alt="LineHaul Station"
-          width={170}
-          height={30}
-          priority
-          className="h-[26px] w-auto"
-        />
-      </Link>
-
-      <nav className="flex flex-wrap gap-x-1">
-        {AUDIENCE_ORDER.map((key) => {
-          const a = audiences[key];
-          const isActive = active === key;
-          return (
-            <Link
-              key={key}
-              href={`/${key}`}
-              className="whitespace-nowrap border-b-2 px-4 py-2.5 font-label text-[10px] uppercase tracking-[0.14em] transition-colors"
-              style={{
-                color: isActive ? "#ffffff" : "#9a9a9a",
-                borderColor: isActive ? accent : "transparent",
-              }}
-            >
-              {a.navLabel}
-            </Link>
-          );
-        })}
+    <header className="sticky top-0 z-50 border-b border-chrome/15 bg-ink/85 backdrop-blur-md">
+      <div className="mx-auto flex max-w-[1400px] flex-wrap items-center justify-between gap-x-4 gap-y-3 px-5 py-3 sm:px-8">
         <Link
-          href="/leadership"
-          className="whitespace-nowrap border-b-2 px-4 py-2.5 font-label text-[10px] uppercase tracking-[0.14em] transition-colors"
-          style={{
-            color: active === "leadership" ? "#ffffff" : "#9a9a9a",
-            borderColor: active === "leadership" ? accent : "transparent",
-          }}
+          href="/"
+          className="flex flex-none items-center gap-3"
+          aria-label="LineHaul Station home"
         >
-          Leadership
+          <Image
+            src="/assets/logo-horz-light.png"
+            alt="LineHaul Station"
+            width={170}
+            height={30}
+            priority
+            className="h-[26px] w-auto"
+          />
         </Link>
-      </nav>
 
-      <a
-        href={site.connectHref}
-        className="flex-none rounded-btn px-5 py-[11px] font-label text-[10px] uppercase tracking-[0.14em] text-ink"
-        style={{ background: `linear-gradient(135deg, ${accent}, ${accent}cc)` }}
-      >
-        Connect With Us
-      </a>
+        <nav className="no-scrollbar order-3 -mx-2 flex w-full flex-nowrap items-center overflow-x-auto sm:order-none sm:mx-0 sm:w-auto sm:flex-wrap sm:overflow-visible">
+          {tabs.map((t, i) => {
+            const isActive = active === t.key;
+            return (
+              <Link
+                key={t.key}
+                href={t.href}
+                aria-current={isActive ? "page" : undefined}
+                className="group relative flex shrink-0 items-center gap-1.5 whitespace-nowrap px-2.5 py-2.5 font-label text-[10px] uppercase tracking-[0.12em] transition-colors lg:px-3"
+                style={{ color: isActive ? "#ffffff" : "#9a9a9a" }}
+              >
+                <span
+                  className="tnum font-mono text-[9px] tabular-nums transition-opacity"
+                  style={{ color: isActive ? accent : "#6a6a6a" }}
+                >
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span className="transition-colors group-hover:text-white">{t.label}</span>
+                <span
+                  className="absolute inset-x-2.5 -bottom-px h-0.5 origin-left transition-transform duration-300 lg:inset-x-3"
+                  style={{
+                    background: accent,
+                    transform: isActive ? "scaleX(1)" : "scaleX(0)",
+                  }}
+                />
+              </Link>
+            );
+          })}
+        </nav>
+
+        <div className="flex flex-none items-center gap-4">
+          <a
+            href={site.connectHref}
+            className="rounded-btn px-5 py-[11px] font-label text-[10px] uppercase tracking-[0.14em] text-ink shadow-[0_8px_20px_rgba(0,0,0,0.35)] transition hover:brightness-110"
+            style={{ background: `linear-gradient(135deg, ${accent}, ${accent}cc)` }}
+          >
+            Connect With Us
+          </a>
+        </div>
+      </div>
     </header>
   );
 }

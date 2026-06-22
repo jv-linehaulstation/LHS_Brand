@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx tsc *)",
+      "Bash(echo \"=== TSC DONE \\(exit $?\\) ===\")",
+      "Bash(curl -s -o /dev/null -w \"HTTP %{http_code}\\\\n\" http://localhost:3000/)",
+      "Bash(node /tmp/shotv.mjs http://localhost:3000/ /tmp/h-nav.png 0 1440)",
+      "Bash(node /tmp/shot.mjs http://localhost:3000/ /tmp/home-mobile.png 390)",
+      "Bash(sips -g pixelHeight /tmp/home-mobile.png)",
+      "Bash(node /tmp/shotv.mjs http://localhost:3000/ /tmp/h-nav2.png 0 1440)",
+      "Bash(node /tmp/shotv.mjs http://localhost:3000/ /tmp/h-nav-mobile.png 0 390)",
+      "Bash(echo \"=== tsc exit $? ===\")",
+      "Bash(git add *)",
+      "Bash(git commit -q -m 'Redesign v2: foundation, chrome, and homepage Live Network Board *)"
+    ]
+  }
+}
