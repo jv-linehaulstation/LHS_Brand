@@ -73,6 +73,29 @@ export type Audience = {
     footnote: string;
   };
 
+  // SIGNATURE BANDS (one per lane — see AudiencePage). All optional.
+  // carriers — "Build vs Belong" cost ledger
+  ledger?: {
+    kicker: string;
+    headline: string;
+    buildLabel: string;
+    flexLabel: string;
+    rows: { label: string; build: string; flex: string }[];
+    note?: string;
+  };
+  // brokers / shippers — relay / chain-of-custody lane diagram
+  lanes?: {
+    kicker: string;
+    headline: string;
+    steps: { label: string; sub: string }[];
+  };
+  // government — the Modern-Day Pony Express timeline
+  timeline?: {
+    kicker: string;
+    headline: string;
+    entries: { year: string; title: string; blurb: string }[];
+  };
+
   // WEST MEMPHIS PROOF
   memphis: {
     kicker: string;
@@ -260,6 +283,20 @@ export const audiences: Record<AudienceKey, Audience> = {
         { title: "On-site support", blurb: "Repair partner, fuel, and services on site, so trucks keep moving without detours." },
       ],
     },
+    ledger: {
+      kicker: "Build vs. Belong",
+      headline: "Build Your Own. Or Belong To The Network.",
+      buildLabel: "Build Your Own Terminal",
+      flexLabel: "Join FlexSpace",
+      rows: [
+        { label: "Upfront capital", build: "≈ $15M", flex: "$0 down" },
+        { label: "Time to first truck", build: "18–24 months", flex: "Same week" },
+        { label: "Typical occupancy", build: "≈ 20% utilized", flex: "Pay per use" },
+        { label: "Staff · security · upkeep", build: "Your payroll", flex: "Included" },
+        { label: "When lanes change", build: "Sell the building", flex: "Scale up or down" },
+      ],
+      note: "96% of carriers run fewer than 20 trucks. FlexSpace is built for exactly that.",
+    },
     featuresEyebrow: "First-Class. Full-Service. Member-Only.",
     featuresTitle: "What You Get",
     features: [
@@ -344,6 +381,17 @@ export const audiences: Record<AudienceKey, Audience> = {
         { title: "Fewer detention surprises", blurb: "On-site service and live status cut the dwell and detention that wreck your margins." },
       ],
     },
+    lanes: {
+      kicker: "Coverage, mapped",
+      headline: "A Relay Network Behind Every Load.",
+      steps: [
+        { label: "Origin", sub: "Pickup secured on the lane" },
+        { label: "Staging", sub: "Gated drop space, 24/7" },
+        { label: "Cross-Dock", sub: "Trailer transfer at the Hub" },
+        { label: "Relay", sub: "Fresh driver, same freight" },
+        { label: "Delivery", sub: "On the promised window" },
+      ],
+    },
     featuresEyebrow: "Network Capabilities",
     featuresTitle: "Built For Freight Flow",
     features: [
@@ -426,6 +474,17 @@ export const audiences: Record<AudienceKey, Audience> = {
         { title: "On-site service", blurb: "Repair, fuel, and amenities keep trucks moving and drivers ready." },
       ],
     },
+    lanes: {
+      kicker: "Chain of custody",
+      headline: "Freight That Never Loses The Thread.",
+      steps: [
+        { label: "Pickup", sub: "Loaded and logged" },
+        { label: "Secure Yard", sub: "Gated, surveilled capacity" },
+        { label: "Cross-Dock", sub: "Staged and transferred" },
+        { label: "Relay", sub: "Moving 24/7 across Hubs" },
+        { label: "Dock Window", sub: "Delivered on schedule" },
+      ],
+    },
     featuresEyebrow: "Service Capabilities",
     featuresTitle: "A Network Built To Deliver",
     features: [
@@ -506,6 +565,16 @@ export const audiences: Record<AudienceKey, Audience> = {
         { title: "Lower national freight cost", blurb: "Shared infrastructure built far below typical public per-space cost." },
         { title: "Drivers home safely", blurb: "Relay legs and safe, serviced Hubs get drivers off the road at night." },
         { title: "American manufacturing", blurb: "Reliable freight infrastructure strengthens domestic supply chains and jobs." },
+      ],
+    },
+    timeline: {
+      kicker: "The Modern-Day Pony Express",
+      headline: "Relay Isn't New. The Scale Is.",
+      entries: [
+        { year: "1860", title: "The Pony Express", blurb: "Riders moved mail coast-to-coast by handing off at relay stations — no single rider, no single point of failure." },
+        { year: "Today", title: "The Bottleneck", blurb: "Truck-parking shortages, congested yards, and exhausted drivers raise cost and risk across the freight system." },
+        { year: "Now", title: "LineHaul Station", blurb: "A privately built national relay: trailers hand off Hub-to-Hub, freight moves 24/7, and drivers get home every day." },
+        { year: "Next", title: "National Resilience", blurb: "Interchange-sited Hubs scaling across key corridors — at roughly $40K per space against a $196K public benchmark." },
       ],
     },
     featuresEyebrow: "Strategic Capabilities",

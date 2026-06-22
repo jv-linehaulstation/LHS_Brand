@@ -11,7 +11,16 @@
       "Bash(node /tmp/shotv.mjs http://localhost:3000/ /tmp/h-nav-mobile.png 0 390)",
       "Bash(echo \"=== tsc exit $? ===\")",
       "Bash(git add *)",
-      "Bash(git commit -q -m 'Redesign v2: foundation, chrome, and homepage Live Network Board *)"
+      "Bash(git commit -q -m 'Redesign v2: foundation, chrome, and homepage Live Network Board *)",
+      "Bash(node /tmp/shot.mjs http://localhost:3000/carriers /tmp/p-carriers.png 1440)",
+      "Bash(node /tmp/shot.mjs http://localhost:3000/brokers /tmp/p-brokers.png 1440)",
+      "Bash(node /tmp/shot.mjs http://localhost:3000/government /tmp/p-gov.png 1440)",
+      "Bash(node /tmp/shot.mjs http://localhost:3000/drivers /tmp/p-drivers.png 1440)",
+      "Bash(node /tmp/shotv.mjs http://localhost:3000/brokers /tmp/v-relay.png 1300 1440)",
+      "Bash(node /tmp/shotv.mjs http://localhost:3000/carriers /tmp/v-ledger.png 1650 1440)",
+      "Bash(node /tmp/shotv.mjs http://localhost:3000/drivers /tmp/v-mosaic.png 2600 1440)",
+      "Bash(node /tmp/shotv.mjs http://localhost:3000/carriers /tmp/v-ledger2.png 2700 1440)",
+      "Bash(node /tmp/shotv.mjs http://localhost:3000/drivers /tmp/v-mosaic2.png 4250 1440)"
     ]
   }
 }

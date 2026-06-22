@@ -6,194 +6,201 @@ import Reveal from "@/components/motion/Reveal";
 import CountUp from "@/components/motion/CountUp";
 import ParallaxImage from "@/components/motion/ParallaxImage";
 import { PrimaryCTA, GhostCTA } from "@/components/CTA";
+import { SectionHead, StatusChip, DataTag } from "@/components/Bits";
+import { BuildVsBelong, RelayDiagram, Timeline } from "@/components/Signatures";
 import LeadForm from "@/components/LeadForm";
 import OneHomeCalculator from "@/components/calculators/OneHomeCalculator";
 import FlexSpaceCalculator from "@/components/calculators/FlexSpaceCalculator";
 import { audiences, AudienceKey } from "@/lib/audiences";
 
-/* small shared bits ------------------------------------------------------- */
-function Eyebrow({ children, color }: { children: React.ReactNode; color: string }) {
-  return (
-    <div className="font-label text-[11px] uppercase tracking-[0.24em]" style={{ color }}>
-      {children}
-    </div>
-  );
-}
-
-function SectionHead({
-  eyebrow,
-  title,
-  accent,
-  align = "left",
-}: {
-  eyebrow: string;
-  title: string;
-  accent: string;
-  align?: "left" | "center";
-}) {
-  return (
-    <Reveal className={align === "center" ? "mx-auto max-w-2xl text-center" : "max-w-2xl"}>
-      <Eyebrow color={accent}>{eyebrow}</Eyebrow>
-      <h2 className="mt-3 text-balance font-display text-[clamp(28px,4.2vw,50px)] font-black uppercase leading-[1.02] tracking-[-0.01em] text-white">
-        {title}
-      </h2>
-    </Reveal>
-  );
-}
-
-/* ------------------------------------------------------------------------- */
 export default function AudiencePage({ audience }: { audience: AudienceKey }) {
   const a = audiences[audience];
+  const ac = a.accent;
   const hasCalc = audience === "drivers" || audience === "carriers";
 
   return (
     <main className="min-h-screen bg-ink">
-      <Nav accent={a.accent} active={a.key} />
+      <Nav accent={ac} active={a.key} />
 
-      {/* ============================ HERO (image) ============================ */}
-      <section className="relative flex min-h-[86vh] items-center overflow-hidden px-5 py-28 sm:px-8">
+      {/* ============================ HERO (image board) ============================ */}
+      <section className="relative flex min-h-[88vh] items-center overflow-hidden px-5 py-28 sm:px-8">
         <ParallaxImage src={a.heroImage} alt={`${a.navLabel} — LineHaul Station`} priority strength={0.22} />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(11,11,11,0.96)_0%,rgba(11,11,11,0.82)_48%,rgba(11,11,11,0.5)_100%)]" />
-        <div className="absolute inset-x-0 top-0 h-px overflow-hidden">
-          <div
-            className="h-[2px] w-full animate-scan opacity-70"
-            style={{ background: `linear-gradient(90deg,transparent,${a.accent},transparent)` }}
-          />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(11,11,11,0.97)_0%,rgba(11,11,11,0.84)_48%,rgba(11,11,11,0.45)_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(11,11,11,0.82),transparent_42%)]" />
+        <div className="blueprint pointer-events-none absolute inset-0 opacity-20" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-[2px] overflow-hidden">
+          <div className="scan-once h-full w-full" style={{ ["--ac" as string]: ac }} />
         </div>
+        <DataTag className="absolute left-5 top-24 hidden sm:left-8 lg:block">
+          LANE · {a.navLabel.toUpperCase()}
+        </DataTag>
+
         <div className="relative mx-auto w-full max-w-site">
-          <div className="max-w-[820px]">
+          <div className="max-w-[860px]">
             <Reveal>
-              <Eyebrow color={a.accent}>{a.eyebrow}</Eyebrow>
+              <StatusChip label="West Memphis Hub — Open Now" coord="I-40 / I-55" accent={ac} />
             </Reveal>
             <Reveal delay={70}>
-              <h1 className="mt-5 text-balance font-display text-[clamp(38px,6vw,80px)] font-black uppercase leading-[0.92] tracking-[-0.015em] text-white">
+              <div className="mt-7 font-label text-[clamp(10px,1.3vw,13px)] uppercase tracking-[0.26em] text-chrome">
+                {a.eyebrow}
+              </div>
+            </Reveal>
+            <Reveal delay={130}>
+              <h1 className="mt-3 text-balance font-display text-[clamp(36px,5.6vw,76px)] font-black uppercase leading-[0.94] tracking-[-0.02em] text-white">
                 {a.heroPunch}
               </h1>
             </Reveal>
-            <Reveal delay={140}>
-              <div className="mt-4 font-script text-[clamp(22px,3vw,36px)] font-semibold" style={{ color: a.accent }}>
+            <Reveal delay={210}>
+              <div className="mt-4 font-script text-[clamp(22px,3vw,38px)] font-semibold" style={{ color: ac }}>
                 {a.sub}
               </div>
             </Reveal>
-            <Reveal delay={210}>
-              <p className="mt-5 max-w-[620px] font-body text-[clamp(16px,1.7vw,20px)] leading-relaxed text-[#d8d8d8]">
+            <Reveal delay={280}>
+              <p className="mt-6 max-w-[620px] text-pretty font-body text-[clamp(16px,1.7vw,20px)] leading-relaxed text-[#dadada]">
                 {a.desc}
               </p>
             </Reveal>
-            <Reveal delay={280}>
+            <Reveal delay={350}>
               <div className="mt-8 flex flex-wrap gap-3.5">
-                <PrimaryCTA accent={a.accent} accentDark={a.accentDark} />
-                <GhostCTA accent={a.accent} />
+                <PrimaryCTA accent={ac} accentDark={a.accentDark} />
+                <GhostCTA accent={ac} />
               </div>
             </Reveal>
-            <Reveal delay={340}>
-              <p className="mt-5 font-mono text-[12px] text-chrome">{a.heroNote}</p>
+            <Reveal delay={410}>
+              <p className="tnum mt-6 font-mono text-[12px] text-chrome">{a.heroNote}</p>
             </Reveal>
           </div>
         </div>
         <a
           href="#problem"
-          className="absolute inset-x-0 bottom-6 mx-auto w-fit font-label text-[10px] uppercase tracking-[0.2em] text-chrome transition-colors hover:text-white"
+          className="absolute inset-x-0 bottom-6 mx-auto flex w-fit items-center gap-2 font-label text-[10px] uppercase tracking-[0.2em] text-chrome transition-colors hover:text-white"
         >
-          ↓ {a.scrollHint}
+          <span className="inline-block animate-bounce">↓</span> {a.scrollHint}
         </a>
       </section>
 
-      {/* ====================== STAT STRIP (carbon) ====================== */}
+      {/* ====================== STAT CONSOLE (carbon) ====================== */}
       <Section variant="carbon" className="py-0">
+        <div className="flex items-center justify-between border-b border-chrome/10 py-4">
+          <DataTag accent={ac} className="font-label !text-[10px] uppercase tracking-[0.2em]">
+            <span className="pulse-dot inline-block h-2 w-2 rounded-full" style={{ background: ac, color: ac }} /> The Numbers
+          </DataTag>
+          <DataTag className="hidden sm:inline-flex">{a.navLabel.toUpperCase()} · LIVE</DataTag>
+        </div>
         <div className="-mx-5 grid grid-cols-2 sm:-mx-8 md:grid-cols-4">
           {a.stats.map((s, i) => (
             <Reveal
               key={i}
               delay={i * 70}
-              className="border-b border-r border-chrome/10 px-6 py-8 md:border-b-0"
+              className="border-b border-r border-chrome/10 px-6 py-9 last:border-r-0 md:border-b-0 [&:nth-child(2)]:border-r-0 md:[&:nth-child(2)]:border-r"
             >
-              <CountUp
-                value={s.big}
-                style={{ color: a.accent }}
-                className="font-display text-[clamp(26px,3.2vw,40px)] font-black leading-none"
-              />
-              <div className="mt-2.5 font-body text-[14px] leading-snug text-chrome">{s.label}</div>
+              <CountUp value={s.big} style={{ color: ac }} className="font-display text-[clamp(28px,3.4vw,44px)] font-black leading-none" />
+              <div className="mt-3 font-body text-[14px] leading-snug text-chrome">{s.label}</div>
             </Reveal>
           ))}
         </div>
       </Section>
 
-      {/* ========================= PROBLEM (ink) ========================= */}
-      <Section variant="ink" id="problem" className="py-[92px]">
-        <div className="grid gap-12 lg:grid-cols-[1fr_1fr] lg:items-center">
-          <Reveal>
-            <Eyebrow color={a.accent}>{a.problem.kicker}</Eyebrow>
-            <h2 className="mt-3 text-balance font-display text-[clamp(28px,4.2vw,50px)] font-black uppercase leading-[1.02] tracking-[-0.01em] text-white">
-              {a.problem.headline}
-            </h2>
-            <p className="mt-5 max-w-[520px] font-body text-[18px] leading-relaxed text-[#d8d8d8]">
-              {a.problem.body}
-            </p>
-          </Reveal>
-          <div className="grid gap-px overflow-hidden rounded-card bg-chrome/10">
-            {a.problem.counters.map((c, i) => (
-              <Reveal
-                key={i}
-                delay={i * 90}
-                className="flex items-baseline gap-5 bg-panel px-7 py-7"
-              >
-                <CountUp
-                  value={c.big}
-                  style={{ color: a.accent }}
-                  className="min-w-[110px] font-display text-[34px] font-black leading-none"
-                />
-                <span className="font-body text-[15px] leading-snug text-chrome">{c.label}</span>
-              </Reveal>
-            ))}
+      {/* ========================= PROBLEM (ink) — editorial split ========================= */}
+      <Section variant="ink" id="problem" className="py-[clamp(72px,10vw,116px)]">
+        <div className="grid gap-x-14 gap-y-10 lg:grid-cols-[1fr_1fr] lg:items-center">
+          <div>
+            <SectionHead index="01" kicker={a.problem.kicker} title={a.problem.headline} accent={ac} />
+            <Reveal delay={120}>
+              <p className="mt-6 max-w-[520px] text-pretty font-body text-[18px] leading-relaxed text-[#dadada]">
+                {a.problem.body}
+              </p>
+            </Reveal>
           </div>
+          <Reveal delay={140} dir="right" className="frame">
+            <div className="bg-panel p-7 sm:p-9">
+              {a.problem.counters.map((c, i) => (
+                <div key={i} className="flex items-baseline gap-6 border-t border-chrome/10 py-5 first:border-t-0 first:pt-0">
+                  <CountUp
+                    value={c.big}
+                    style={{ color: ac }}
+                    className="tnum min-w-[120px] font-display text-[clamp(30px,4vw,42px)] font-black leading-none"
+                  />
+                  <span className="font-body text-[15px] leading-snug text-chrome">{c.label}</span>
+                </div>
+              ))}
+            </div>
+          </Reveal>
         </div>
       </Section>
 
-      {/* ===================== CALCULATOR (panel) ===================== */}
+      {/* ===================== CALCULATOR (panel) — drivers & carriers ===================== */}
       {audience === "drivers" && (
         <Section variant="panel" className="py-2">
-          <OneHomeCalculator accent={a.accent} />
+          <OneHomeCalculator accent={ac} />
         </Section>
       )}
       {audience === "carriers" && (
         <Section variant="panel" className="py-2">
-          <FlexSpaceCalculator accent={a.accent} />
+          <FlexSpaceCalculator accent={ac} />
+        </Section>
+      )}
+
+      {/* ===================== SIGNATURE BAND (blueprint) ===================== */}
+      {a.ledger && (
+        <Section variant="blueprint" className="py-[clamp(72px,10vw,112px)]">
+          <BuildVsBelong data={a.ledger} accent={ac} />
+        </Section>
+      )}
+      {a.lanes && (
+        <Section variant="blueprint" className="py-[clamp(72px,10vw,112px)]">
+          <RelayDiagram data={a.lanes} accent={ac} />
+        </Section>
+      )}
+      {a.timeline && (
+        <Section variant="blueprint" className="py-[clamp(72px,10vw,112px)]">
+          <Timeline data={a.timeline} accent={ac} />
         </Section>
       )}
 
       {/* ===================== ROAD DIVIDER (image) ===================== */}
-      <section className="relative overflow-hidden px-5 py-[120px] text-center sm:px-8">
-        <ParallaxImage src="/assets/photos/road-sunset.jpg" alt="The open road" strength={0.28} />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,11,11,0.62),rgba(11,11,11,0.82))]" />
+      <section className="relative overflow-hidden px-5 py-[clamp(96px,14vw,140px)] text-center sm:px-8">
+        <ParallaxImage src="/assets/photos/road-sunset.jpg" alt="The open road at sunset" strength={0.28} />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,11,11,0.6),rgba(11,11,11,0.84))]" />
         <Reveal className="relative mx-auto max-w-2xl">
-          <Eyebrow color={a.accent}>{a.road.eyebrow}</Eyebrow>
-          <h2 className="mt-3 font-display text-[clamp(30px,5vw,58px)] font-black uppercase leading-none tracking-[-0.01em] text-white">
+          <div className="font-label text-[10px] uppercase tracking-[0.24em]" style={{ color: ac }}>
+            {a.road.eyebrow}
+          </div>
+          <h2 className="mt-4 text-balance font-display text-[clamp(30px,5.2vw,60px)] font-black uppercase leading-[0.96] tracking-[-0.02em] text-white">
             {a.road.headline}
           </h2>
-          <p className="mt-4 font-script text-[clamp(20px,3vw,30px)] font-semibold text-white/90">
+          <p className="mt-4 font-script text-[clamp(20px,3vw,32px)] font-semibold text-white/90">
             {a.road.sub}
           </p>
         </Reveal>
       </section>
 
-      {/* ===================== HOW IT WORKS (blueprint) ===================== */}
-      <Section variant="blueprint" className="py-[92px]">
-        <SectionHead eyebrow={a.how.eyebrow} title={a.how.headline} accent={a.accent} />
-        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      {/* ===================== HOW IT WORKS (carbon) — sequence ===================== */}
+      <Section variant="carbon" className="py-[clamp(72px,9vw,108px)]">
+        <SectionHead index="02" kicker={a.how.eyebrow} title={a.how.headline} accent={ac} />
+        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {a.how.steps.map((s, i) => (
             <Reveal
               key={i}
               delay={i * 80}
-              className="rounded-card border border-chrome/15 bg-panel/80 p-6 backdrop-blur transition-colors hover:bg-panel"
+              className="lift group relative overflow-hidden rounded-card border border-chrome/15 bg-panel p-6"
             >
-              <div className="font-mono text-[13px]" style={{ color: a.accent }}>
+              <span
+                className="pointer-events-none absolute -right-2 -top-5 font-display text-[88px] font-black leading-none opacity-[0.07]"
+                style={{ color: ac }}
+                aria-hidden
+              >
                 {String(i + 1).padStart(2, "0")}
+              </span>
+              <div className="relative">
+                <div className="tnum font-mono text-[12px]" style={{ color: ac }}>
+                  STEP {String(i + 1).padStart(2, "0")}
+                </div>
+                <div className="mt-3 font-display text-[18px] font-extrabold uppercase leading-tight text-white">
+                  {s.title}
+                </div>
+                <p className="mt-2.5 font-body text-[14px] leading-relaxed text-chrome">{s.blurb}</p>
               </div>
-              <div className="mt-3 font-display text-[18px] font-extrabold uppercase leading-tight text-white">
-                {s.title}
-              </div>
-              <p className="mt-2.5 font-body text-[15px] leading-relaxed text-chrome">{s.blurb}</p>
             </Reveal>
           ))}
         </div>
@@ -201,64 +208,80 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
 
       {/* ============ CAPABILITIES / AMENITIES (ink) ============ */}
       {a.amenities ? (
-        <Section variant="ink" className="py-[92px]">
-          <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
-            <SectionHead eyebrow={a.amenities.eyebrow} title={a.amenities.headline} accent={a.accent} />
+        <Section variant="ink" className="py-[clamp(72px,10vw,112px)]">
+          <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
+            <SectionHead index="03" kicker={a.amenities.eyebrow} title={a.amenities.headline} accent={ac} />
             <Reveal delay={120}>
-              <p className="font-body text-[18px] leading-relaxed text-[#d8d8d8]">{a.amenities.intro}</p>
+              <p className="text-pretty font-body text-[18px] leading-relaxed text-[#dadada]">{a.amenities.intro}</p>
             </Reveal>
           </div>
-          <div className="mt-9 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {a.amenities.tiles.map((t, i) => (
-              <Reveal
-                key={i}
-                delay={(i % 4) * 70}
-                className="group relative overflow-hidden rounded-card border border-chrome/15"
-                style={{ borderTopColor: a.accent, borderTopWidth: 2 }}
-              >
-                <div className="relative aspect-[4/3]">
+          {/* resort mosaic — first tile hero, one wide tile for rhythm */}
+          <div className="mt-9 grid auto-rows-[150px] grid-cols-2 gap-3 sm:auto-rows-[175px] md:grid-cols-4">
+            {a.amenities.tiles.map((t, i) => {
+              const span =
+                i === 0
+                  ? "col-span-2 row-span-2"
+                  : i === 5
+                  ? "col-span-2"
+                  : "col-span-1";
+              return (
+                <Reveal
+                  key={i}
+                  delay={(i % 4) * 60}
+                  className={`group relative overflow-hidden rounded-card border border-chrome/15 ${span}`}
+                >
                   <Image
                     src={t.img}
                     alt={t.title}
                     fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    className="img-grade object-cover transition-transform duration-700 group-hover:scale-105"
+                    sizes="(max-width: 768px) 50vw, 25vw"
                   />
-                  <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,11,11,0.05),rgba(11,11,11,0.55)_55%,rgba(11,11,11,0.9))]" />
+                  <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,11,11,0.05),rgba(11,11,11,0.5)_55%,rgba(11,11,11,0.92))]" />
+                  <div
+                    className="absolute inset-x-0 top-0 h-0.5 opacity-70"
+                    style={{ background: `linear-gradient(90deg, ${ac}, transparent)` }}
+                  />
                   <div className="absolute inset-x-0 bottom-0 p-4">
-                    <div className="font-display text-[16px] font-extrabold uppercase leading-tight text-white">
+                    <div className={`font-display font-extrabold uppercase leading-tight text-white ${i === 0 ? "text-[20px]" : "text-[15px]"}`}>
                       {t.title}
                     </div>
                     <p className="mt-1 font-body text-[13px] leading-snug text-[#dcdcdc]">{t.blurb}</p>
                   </div>
-                </div>
-              </Reveal>
-            ))}
+                </Reveal>
+              );
+            })}
           </div>
           <Reveal delay={120}>
-            <p className="mt-7 font-script text-[clamp(22px,3vw,32px)] font-semibold" style={{ color: a.accent }}>
+            <p className="mt-8 font-script text-[clamp(22px,3vw,34px)] font-semibold" style={{ color: ac }}>
               {a.amenities.footnote}
             </p>
           </Reveal>
         </Section>
       ) : (
-        <Section variant="ink" className="py-[92px]">
-          <SectionHead eyebrow={a.featuresEyebrow} title={a.featuresTitle} accent={a.accent} />
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <Section variant="ink" className="py-[clamp(72px,10vw,112px)]">
+          <SectionHead index="03" kicker={a.featuresEyebrow} title={a.featuresTitle} accent={ac} />
+          <div className="mt-10 grid gap-4 lg:grid-cols-2">
             {a.features.map((f, i) => (
               <Reveal
                 key={i}
-                delay={(i % 3) * 80}
-                className="rounded-card border border-chrome/15 bg-panel p-7 transition-colors hover:bg-[#181818]"
-                style={{ borderTopColor: a.accent, borderTopWidth: 2 }}
+                delay={(i % 2) * 80}
+                className="lift group rounded-card border border-chrome/15 bg-panel p-6 sm:p-7"
               >
-                <div className="font-display text-[19px] font-extrabold uppercase tracking-[0.01em] text-white">
-                  {f.title}
+                <div className="flex items-start gap-5">
+                  <span className="tnum mt-1 font-mono text-[14px]" style={{ color: ac }}>
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <div className="flex-1">
+                    <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                      <div className="font-display text-[19px] font-extrabold uppercase tracking-[0.01em] text-white">
+                        {f.title}
+                      </div>
+                      <div className="font-mono text-[11px]" style={{ color: ac }}>{f.tag}</div>
+                    </div>
+                    <p className="mt-3 font-body text-[15px] leading-relaxed text-chrome">{f.blurb}</p>
+                  </div>
                 </div>
-                <div className="mt-2 font-label text-[9px] uppercase tracking-[0.16em]" style={{ color: a.accent }}>
-                  {f.tag}
-                </div>
-                <p className="mt-3.5 font-body text-[15px] leading-relaxed text-chrome">{f.blurb}</p>
               </Reveal>
             ))}
           </div>
@@ -266,20 +289,17 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
       )}
 
       {/* ===================== WEST MEMPHIS (image) ===================== */}
-      <Section variant="image" image={a.memphisImage} accent={a.accent} className="py-[100px]">
+      <Section variant="image" image={a.memphisImage} accent={ac} className="py-[clamp(80px,11vw,120px)]">
         <div className="grid gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
           <Reveal>
-            <Eyebrow color={a.accent}>{a.memphis.kicker}</Eyebrow>
-            <h2 className="mt-3 text-balance font-display text-[clamp(28px,4.4vw,52px)] font-black uppercase leading-[1.04] tracking-[-0.01em] text-white">
-              {a.memphis.headline}
-            </h2>
-            <p className="mt-5 max-w-[560px] font-body text-[18px] leading-relaxed text-[#e2e2e2]">
+            <SectionHead index="04" kicker={a.memphis.kicker} title={a.memphis.headline} accent={ac} />
+            <p className="mt-5 max-w-[560px] text-pretty font-body text-[18px] leading-relaxed text-[#e2e2e2]">
               {a.memphis.body}
             </p>
             <div className="mt-7 grid grid-cols-3 gap-3">
               {a.memphis.stats.map((s, i) => (
                 <Reveal key={i} delay={i * 90} className="rounded-card border border-chrome/20 bg-ink/60 px-4 py-4 backdrop-blur">
-                  <CountUp value={s.big} className="font-display text-[22px] font-black leading-none text-white" />
+                  <CountUp value={s.big} className="tnum font-display text-[clamp(18px,2.2vw,24px)] font-black leading-none text-white" />
                   <div className="mt-1.5 font-mono text-[11px] text-chrome">{s.label}</div>
                 </Reveal>
               ))}
@@ -287,21 +307,16 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
           </Reveal>
           <Reveal delay={160} dir="right" className="frame">
             <div className="bg-ink/85 p-7 backdrop-blur">
-              <div className="font-label text-[10px] uppercase tracking-[0.2em]" style={{ color: a.accent }}>
+              <div className="font-label text-[10px] uppercase tracking-[0.2em]" style={{ color: ac }}>
                 The First Hub
               </div>
               <div className="mt-3 font-display text-[30px] font-black uppercase leading-none text-white">
                 {a.memphis.address}
               </div>
-              <div className="mt-1.5 font-mono text-[13px] text-chrome">{a.memphis.addressSub}</div>
+              <div className="tnum mt-1.5 font-mono text-[13px] text-chrome">{a.memphis.addressSub}</div>
               <div className="mt-5 h-px bg-chrome/15" />
-              <div className="mt-5 flex flex-wrap gap-2.5">
-                <span className="rounded-btn px-3.5 py-2 font-mono text-[12px] text-ink" style={{ background: a.accent }}>
-                  ● Live now
-                </span>
-                <span className="rounded-btn border border-chrome/25 bg-carbon px-3.5 py-2 font-mono text-[12px] text-[#d8d8d8]">
-                  I-40 / I-55
-                </span>
+              <div className="mt-5">
+                <StatusChip label="Live now" coord="35.14°N / 90.18°W" accent={ac} />
               </div>
             </div>
           </Reveal>
@@ -309,10 +324,10 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
       </Section>
 
       {/* ===================== LEAD FORM (gradient) ===================== */}
-      <Section variant="gradient" accent={a.accent} id="contact" className="py-[100px]">
+      <Section variant="gradient" accent={ac} id="contact" className="py-[clamp(80px,11vw,116px)]">
         <LeadForm
           audienceKey={a.key}
-          accent={a.accent}
+          accent={ac}
           accentDark={a.accentDark}
           eyebrow={a.form.eyebrow}
           headline={a.form.headline}
