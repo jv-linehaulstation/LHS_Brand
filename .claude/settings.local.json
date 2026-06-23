@@ -42,7 +42,8 @@
       "Bash(node /tmp/shotv.mjs http://localhost:3000/ /tmp/h2-programs.png 1750 1440)",
       "Bash(node /tmp/shotv.mjs http://localhost:3000/ /tmp/h2-network.png 3550 1440)",
       "Bash(node /tmp/shot.mjs http://localhost:3000/drivers /tmp/d2-full.png 1440)",
-      "Bash(node /tmp/shotv.mjs http://localhost:3000/drivers /tmp/d3-mosaic.png 4400 1440)"
+      "Bash(node /tmp/shotv.mjs http://localhost:3000/drivers /tmp/d3-mosaic.png 4400 1440)",
+      "Bash(git commit -q -m 'NetworkMap: expand to 50+ hub national vision *)"
     ]
   }
 }
