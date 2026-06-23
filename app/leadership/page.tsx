@@ -46,14 +46,17 @@ export default function LeadershipPage() {
     <main className="min-h-screen bg-ink">
       <Nav active="leadership" />
 
-      {/* HERO (image) */}
-      <section className="relative flex min-h-[56vh] items-end overflow-hidden px-5 py-24 sm:px-8">
-        <ParallaxImage src={PHOTOS.buildingExterior} alt="A LineHaul Station Hub building exterior by day" priority strength={0.2} />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(11,11,11,0.96)_0%,rgba(11,11,11,0.8)_50%,rgba(11,11,11,0.5)_100%)]" />
-        <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(11,11,11,0.85),transparent_45%)]" />
+      {/* HERO (image) — full-bleed, bottom-anchored */}
+      <section className="relative flex min-h-[88dvh] items-end overflow-hidden px-5 pb-14 pt-28 sm:px-8">
+        <ParallaxImage src={PHOTOS.buildingExterior} alt="A LineHaul Station Hub building exterior by day" priority strength={0.22} />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(11,11,11,0.96)_0%,rgba(11,11,11,0.74)_52%,rgba(11,11,11,0.42)_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(11,11,11,0.94),transparent_50%)]" />
         <div className="blueprint pointer-events-none absolute inset-0 opacity-20" />
         <div className="pointer-events-none absolute inset-x-0 top-0 h-[2px] overflow-hidden">
           <div className="scan-once h-full w-full" style={{ ["--ac" as string]: FUEL }} />
+        </div>
+        <div className="absolute right-3 top-1/2 hidden -translate-y-1/2 [writing-mode:vertical-rl] rotate-180 font-mono text-[11px] tracking-[0.35em] text-chrome xl:block">
+          LANE · LEADERSHIP
         </div>
         <div className="relative mx-auto w-full max-w-site">
           <Reveal>
@@ -62,20 +65,35 @@ export default function LeadershipPage() {
               <span className="measure h-px w-10 text-fuel opacity-50" aria-hidden />
               <span className="font-label text-[10px] uppercase tracking-[0.2em] text-chrome">Leadership</span>
             </div>
-            <h1 className="mt-4 max-w-3xl text-balance font-display text-[clamp(34px,5.4vw,68px)] font-black uppercase leading-[0.94] tracking-[-0.02em] text-white">
+            <h1 className="mt-5 max-w-[15ch] text-balance font-display text-[clamp(40px,7.4vw,108px)] font-black uppercase leading-[0.88] tracking-[-0.025em] text-white">
               Built by people who&apos;ve done it before.
             </h1>
-            <p className="mt-5 max-w-2xl text-pretty font-body text-[clamp(16px,1.7vw,20px)] leading-relaxed text-[#dadada]">
-              LineHaul Station is led by a founder and a board with decades across
-              transportation, finance, real estate, and logistics — and one shared
-              standard: never compromise on quality.
-            </p>
           </Reveal>
+          <div className="mt-7 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+            <Reveal delay={150}>
+              <p className="max-w-[54ch] text-pretty font-body text-[clamp(18px,1.9vw,22px)] leading-relaxed text-[#dadada]">
+                LineHaul Station is led by a founder and a board with decades across
+                transportation, finance, real estate, and logistics — and one shared
+                standard: never compromise on quality.
+              </p>
+            </Reveal>
+            <Reveal delay={240} className="flex-shrink-0">
+              <DataTag accent={FUEL} className="font-label !text-[10px] uppercase tracking-[0.2em]">
+                1 Founder · 3 Board Advisors
+              </DataTag>
+            </Reveal>
+          </div>
         </div>
+        <a
+          href="#founder"
+          className="absolute inset-x-0 bottom-5 mx-auto flex w-fit items-center gap-2 font-label text-[10px] uppercase tracking-[0.2em] text-chrome transition-colors hover:text-white"
+        >
+          <span className="scroll-nudge inline-block">↓</span> Meet the team
+        </a>
       </section>
 
       {/* FOUNDER (ink) — founder's letter */}
-      <Section variant="ink" className="py-[clamp(72px,10vw,112px)]">
+      <Section variant="ink" id="founder" className="py-[clamp(72px,10vw,112px)]">
         <div className="grid gap-12 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
           <Reveal>
             <div className="frame">
@@ -95,8 +113,8 @@ export default function LeadershipPage() {
           </Reveal>
 
           <Reveal delay={120}>
-            <SectionHead index="01" kicker="Founder & CEO" title="Jeff Swenson" accent={FUEL} />
-            <p className="mt-5 text-pretty font-body text-[18px] leading-relaxed text-[#dadada]">
+            <SectionHead kicker="Founder & CEO" title="Jeff Swenson" accent={FUEL} size="xl" maxW="max-w-full" />
+            <p className="mt-6 max-w-[58ch] text-pretty font-body text-[clamp(18px,1.9vw,21px)] leading-relaxed text-[#dadada]">
               A seasoned entrepreneur, Jeff has held leadership roles in the planning,
               design, sales, and construction of more than <strong className="text-white">$2 billion</strong>{" "}
               of urban residential, commercial, and logistics real estate over the past
@@ -111,7 +129,7 @@ export default function LeadershipPage() {
               <div className="font-display text-[44px] font-black leading-none text-fuel" aria-hidden>
                 &ldquo;
               </div>
-              <blockquote className="-mt-3 font-body text-[19px] italic leading-relaxed text-[#ededed]">
+              <blockquote className="-mt-3 font-body text-[clamp(19px,2.1vw,24px)] italic leading-relaxed text-[#ededed]">
                 Our CEO is a fantastic chef — and he refuses to compromise on quality. The
                 same standard runs through every terminal, every amenity, and every word.
               </blockquote>
@@ -142,7 +160,7 @@ export default function LeadershipPage() {
 
       {/* BOARD ADVISORS (carbon) */}
       <Section variant="carbon" className="py-[clamp(72px,9vw,108px)]">
-        <SectionHead index="02" kicker="Board Advisors" title="Decades Of Freight, Finance & Logistics." accent={FUEL} />
+        <SectionHead kicker="Board Advisors" title="Decades Of Freight, Finance & Logistics." accent={FUEL} size="xl" />
 
         <Reveal delay={100} className="mt-9 frame">
           <div className="relative aspect-[21/9] overflow-hidden rounded-[4px]">
@@ -181,7 +199,7 @@ export default function LeadershipPage() {
                 </div>
               </div>
               <div className="p-6">
-                <p className="font-body text-[15px] leading-relaxed text-chrome">{p.bio}</p>
+                <p className="font-body text-[16px] leading-relaxed text-chrome">{p.bio}</p>
               </div>
             </Reveal>
           ))}
