@@ -26,10 +26,10 @@ export default function Contact({
         <div className="flex justify-center">
           <StatusChip label="West Memphis — Open" coord="35.14°N / 90.18°W" accent={accent} />
         </div>
-        <h2 className="mx-auto mt-7 max-w-4xl text-balance font-display text-[clamp(30px,5.4vw,62px)] font-black uppercase leading-[0.98] tracking-[-0.02em] text-white">
+        <h2 className="mx-auto mt-7 max-w-5xl text-balance font-display text-[clamp(38px,6.5vw,92px)] font-black uppercase leading-[0.9] tracking-[-0.025em] text-white">
           {headline}
         </h2>
-        <p className="mx-auto mt-5 max-w-2xl text-pretty font-body text-[clamp(16px,1.7vw,20px)] leading-relaxed text-[#ededed]">
+        <p className="mx-auto mt-6 max-w-2xl text-pretty font-body text-[clamp(18px,1.8vw,22px)] leading-relaxed text-[#ededed]">
           {body}
         </p>
         <div className="mt-9 flex flex-wrap justify-center gap-3.5">

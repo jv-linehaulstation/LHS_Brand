@@ -60,45 +60,57 @@ export function StatusChip({
  * Section header. A measured rule + index + title. The kicker is OPTIONAL and
  * carried by the rule/index, not by a tracked all-caps eyebrow on every block.
  */
+const HEAD_SIZE = {
+  base: "text-[clamp(34px,5vw,68px)]",
+  xl: "text-[clamp(40px,6.6vw,92px)]",
+  display: "text-[clamp(48px,8.5vw,118px)]",
+} as const;
+
 export function SectionHead({
   index,
   kicker,
   title,
   accent = "#F07820",
   align = "left",
+  size = "base",
   className = "",
+  maxW = "max-w-4xl",
 }: {
   index?: string;
   kicker?: string;
   title: React.ReactNode;
   accent?: string;
   align?: "left" | "center";
+  size?: keyof typeof HEAD_SIZE;
   className?: string;
+  maxW?: string;
 }) {
   return (
-    <Reveal className={`${align === "center" ? "mx-auto max-w-3xl text-center" : "max-w-3xl"} ${className}`}>
+    <Reveal className={`${align === "center" ? `mx-auto ${maxW} text-center` : maxW} ${className}`}>
       {(index || kicker) && (
         <div
-          className={`flex items-center gap-3 ${align === "center" ? "justify-center" : ""}`}
+          className={`mb-5 flex items-center gap-3 ${align === "center" ? "justify-center" : ""}`}
         >
           {index && (
-            <span className="tnum font-mono text-[12px]" style={{ color: accent }}>
+            <span className="tnum font-mono text-[13px]" style={{ color: accent }}>
               {index}
             </span>
           )}
           <span
-            className="measure h-px w-10 opacity-50"
+            className="measure h-px w-12 opacity-60"
             style={{ color: accent }}
             aria-hidden
           />
           {kicker && (
-            <span className="font-label text-[10px] uppercase tracking-[0.2em] text-chrome">
+            <span className="font-label text-[11px] uppercase tracking-[0.22em] text-chrome">
               {kicker}
             </span>
           )}
         </div>
       )}
-      <h2 className="mt-4 text-balance font-display text-[clamp(28px,4.4vw,52px)] font-black uppercase leading-[1.02] tracking-[-0.02em] text-white">
+      <h2
+        className={`text-balance font-display ${HEAD_SIZE[size]} font-black uppercase leading-[0.92] tracking-[-0.025em] text-white`}
+      >
         {title}
       </h2>
     </Reveal>

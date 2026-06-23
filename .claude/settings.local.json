@@ -59,7 +59,19 @@
       "Bash(node .claude/skills/impeccable/scripts/detect.mjs --json app/page.tsx app/globals.css)",
       "Bash(echo \"exit $?\")",
       "Bash(node /tmp/shot.mjs http://localhost:3000/ /tmp/imp-after-mobile.png 390)",
-      "Bash(git commit -q -m 'Impeccable pass \\(homepage\\): colorize, typeset, layout, animate *)"
+      "Bash(git commit -q -m 'Impeccable pass \\(homepage\\): colorize, typeset, layout, animate *)",
+      "Bash(node /tmp/shot.mjs http://localhost:3000/ /tmp/bold-before-home.png 1440)",
+      "Bash(node /tmp/shot.mjs http://localhost:3000/drivers /tmp/bold-before-drivers.png 1440)",
+      "Bash(node /tmp/shot.mjs http://localhost:3000/ /tmp/bold-after-home.png 1440)",
+      "Bash(curl -s -o /dev/null -w \"home %{http_code}\\\\n\" --max-time 8 http://localhost:3000/)",
+      "Bash(pkill -f \"Google Chrome.*headless\")",
+      "Bash(pkill -f \"remote-debugging-port\")",
+      "Bash(pkill -f \"Google Chrome\")",
+      "Bash(node /tmp/shotv.mjs http://localhost:3000/ /tmp/v-test.png 1200 1440)",
+      "Bash(node /tmp/shotv.mjs http://localhost:3000/ /tmp/v-case.png 600 1440)",
+      "Bash(node /tmp/shotv.mjs http://localhost:3000/ /tmp/v-prob.png 2050 1440)",
+      "Bash(node /tmp/shotv.mjs http://localhost:3000/ /tmp/v-bento.png 2950 1440)",
+      "Bash(node /tmp/shotv.mjs http://localhost:3000/ /tmp/v-lane.png 3850 1440)"
     ]
   }
 }
