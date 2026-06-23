@@ -179,6 +179,36 @@ export default function Home() {
         </div>
       </Section>
 
+      {/* ============== THE PROBLEM, BY THE NUMBERS (image) ============== */}
+      <section className="relative overflow-hidden px-5 py-[clamp(72px,10vw,116px)] sm:px-8">
+        <ParallaxImage src={PHOTOS.highwayInterchange} alt="A congested national freight interchange" strength={0.24} />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,11,11,0.9),rgba(11,11,11,0.82)_50%,rgba(11,11,11,0.95))]" />
+        <div className="relative mx-auto max-w-site">
+          <SectionHead kicker="The Problem" title="The Math Of A Broken System." />
+          <div className="mt-10 grid grid-cols-2 gap-x-6 gap-y-9 lg:grid-cols-4">
+            {[
+              { big: "312,962", label: "truck-parking spaces in the entire country" },
+              { big: "1,000,000+", label: "trucks searching for a place to park each night" },
+              { big: "$94.6B", label: "annual cost of congestion to the trucking industry" },
+              { big: "25%", label: "of U.S. transportation emissions come from Class 8 trucks" },
+            ].map((s, i) => (
+              <Reveal key={i} delay={i * 70}>
+                <CountUp value={s.big} style={{ color: "#F07820" }} className="font-display text-[clamp(28px,3.6vw,46px)] font-black leading-none" />
+                <div className="mt-3 font-body text-[14px] leading-snug text-chrome">{s.label}</div>
+              </Reveal>
+            ))}
+          </div>
+          <Reveal delay={120}>
+            <p className="mt-9 max-w-2xl text-pretty font-body text-[17px] leading-relaxed text-[#dadada]">
+              And the people who move the freight are running out: the average driver is{" "}
+              <strong className="font-semibold text-white">54</strong>, only{" "}
+              <strong className="font-semibold text-white">7%</strong> are women, and the
+              shortage deepens every year. Infrastructure is the fix.
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
       {/* ==================== THREE PROGRAMS (panel) ==================== */}
       <Section variant="panel" className="py-[clamp(72px,9vw,104px)]">
         <SectionHead index="02" kicker="One Network · Three Programs" title="Three Ways Into The Network." />

@@ -1,4 +1,5 @@
 import Reveal from "@/components/motion/Reveal";
+import CountUp from "@/components/motion/CountUp";
 import { SectionHead } from "@/components/Bits";
 import type { Audience } from "@/lib/audiences";
 
@@ -95,6 +96,48 @@ export function RelayDiagram({ data, accent }: { data: NonNullable<Audience["lan
           ))}
         </div>
       </Reveal>
+    </>
+  );
+}
+
+/** CARRIERS / GOVERNMENT — SOLO vs RELAY utilization comparison. */
+export function SoloVsRelay({ data, accent }: { data: NonNullable<Audience["relay"]>; accent: string }) {
+  return (
+    <>
+      <SectionHead index="★" kicker={data.kicker} title={data.headline} accent={accent} />
+      <Reveal delay={120} className="mt-9 grid gap-4 md:grid-cols-2">
+        {/* SOLO — the cold baseline */}
+        <div className="rounded-card border border-chrome/15 bg-panel p-7">
+          <div className="font-label text-[10px] uppercase tracking-[0.18em] text-chrome">Solo Driving</div>
+          <div className="mt-5 flex flex-col gap-4">
+            {data.rows.map((r, i) => (
+              <div key={i} className="flex items-baseline justify-between gap-4 border-t border-chrome/10 pt-4 first:border-t-0 first:pt-0">
+                <span className="font-body text-[14px] text-chrome">{r.label}</span>
+                <span className="tnum font-display text-[20px] font-black text-[#b8b8b8]">{r.solo}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+        {/* RELAY — the accent win */}
+        <div className="rounded-card border p-7" style={{ borderColor: `${accent}66`, background: `${accent}12` }}>
+          <div className="font-label text-[10px] uppercase tracking-[0.18em]" style={{ color: accent }}>
+            LineHaul Relay
+          </div>
+          <div className="mt-5 flex flex-col gap-4">
+            {data.rows.map((r, i) => (
+              <div key={i} className="flex items-baseline justify-between gap-4 border-t border-white/10 pt-4 first:border-t-0 first:pt-0">
+                <span className="font-body text-[14px] text-[#dadada]">{r.label}</span>
+                <CountUp value={r.relay} style={{ color: accent }} className="tnum font-display text-[clamp(20px,2.6vw,28px)] font-black leading-none" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </Reveal>
+      {data.note && (
+        <p className="mt-6 font-script text-[clamp(20px,2.8vw,30px)] font-semibold" style={{ color: accent }}>
+          {data.note}
+        </p>
+      )}
     </>
   );
 }

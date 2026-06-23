@@ -136,6 +136,13 @@ export type Audience = {
     headline: string;
     entries: { year: string; title: string; blurb: string }[];
   };
+  // carriers / government — SOLO vs RELAY utilization comparison
+  relay?: {
+    kicker: string;
+    headline: string;
+    rows: { label: string; solo: string; relay: string }[];
+    note?: string;
+  };
 
   // WEST MEMPHIS PROOF
   memphis: {
@@ -329,6 +336,16 @@ export const audiences: Record<AudienceKey, Audience> = {
         { title: "No build, no lease trap", blurb: "No land to buy, no construction, no long lease. Scale up or down as your lanes change." },
         { title: "On-site support", blurb: "Repair partner, fuel, and services on site, so trucks keep moving without detours." },
       ],
+    },
+    relay: {
+      kicker: "Solo vs. Relay",
+      headline: "One Truck. Triple The Miles.",
+      rows: [
+        { label: "Miles per truck / year", solo: "~80,000", relay: "300,000+" },
+        { label: "Asset utilization", solo: "1×", relay: "3–4×" },
+        { label: "Driver home time", solo: "Weeks out", relay: "Home daily" },
+      ],
+      note: "Relay turns one truck into three — and gets your drivers home every night.",
     },
     ledger: {
       kicker: "Build vs. Belong",
@@ -616,6 +633,16 @@ export const audiences: Record<AudienceKey, Audience> = {
         { title: "Drivers home safely", blurb: "Relay legs and safe, serviced Hubs get drivers off the road at night." },
         { title: "American manufacturing", blurb: "Reliable freight infrastructure strengthens domestic supply chains and jobs." },
       ],
+    },
+    relay: {
+      kicker: "Solo vs. Relay",
+      headline: "The Efficiency Of A National Relay.",
+      rows: [
+        { label: "Miles per truck / year", solo: "~80,000", relay: "300,000+" },
+        { label: "Asset utilization", solo: "1×", relay: "3–4×" },
+        { label: "Driver home time", solo: "Weeks out", relay: "Home daily" },
+      ],
+      note: "More freight per truck, ~25% lower cost, and drivers home every night.",
     },
     timeline: {
       kicker: "The Modern-Day Pony Express",

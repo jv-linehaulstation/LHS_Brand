@@ -7,7 +7,7 @@ import CountUp from "@/components/motion/CountUp";
 import ParallaxImage from "@/components/motion/ParallaxImage";
 import { PrimaryCTA, GhostCTA } from "@/components/CTA";
 import { SectionHead, StatusChip, DataTag } from "@/components/Bits";
-import { BuildVsBelong, RelayDiagram, Timeline } from "@/components/Signatures";
+import { BuildVsBelong, RelayDiagram, Timeline, SoloVsRelay } from "@/components/Signatures";
 import RenderingsGallery from "@/components/RenderingsGallery";
 import { RENDER_GROUPS } from "@/lib/renderGroups";
 import LeadForm from "@/components/LeadForm";
@@ -207,6 +207,13 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
           ))}
         </div>
       </Section>
+
+      {/* ============ SOLO vs RELAY (panel) — carriers & government ============ */}
+      {a.relay && (
+        <Section variant="panel" className="py-[clamp(72px,10vw,108px)]">
+          <SoloVsRelay data={a.relay} accent={ac} />
+        </Section>
+      )}
 
       {/* ============ CAPABILITIES / AMENITIES (ink) ============ */}
       {a.amenities ? (
