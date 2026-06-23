@@ -9,6 +9,7 @@ import ParallaxImage from "@/components/motion/ParallaxImage";
 import { PrimaryCTA, GhostCTA } from "@/components/CTA";
 import { SectionHead, StatusChip, DataTag } from "@/components/Bits";
 import NetworkMap from "@/components/NetworkMap";
+import RenderingsGallery from "@/components/RenderingsGallery";
 import { audiences, AUDIENCE_ORDER, PHOTOS } from "@/lib/audiences";
 
 const heroStats = [
@@ -345,6 +346,24 @@ export default function Home() {
           <Reveal delay={120} dir="right">
             <NetworkMap />
           </Reveal>
+        </div>
+      </Section>
+
+      {/* ==================== INSIDE THE NETWORK — GALLERY (ink) ==================== */}
+      <Section variant="ink" id="tour" className="py-[clamp(72px,10vw,116px)]">
+        <SectionHead
+          index="05"
+          kicker="Take The Tour"
+          title="See The Build. Inside The Network."
+        />
+        <Reveal delay={120}>
+          <p className="mt-5 max-w-2xl text-pretty font-body text-[18px] leading-relaxed text-[#dadada]">
+            Every Hub is a first-class facility — the arrival, the Outriders Club, the
+            rooftop Sky Deck, and on-site LH Fleet Services. This is the real build.
+          </p>
+        </Reveal>
+        <div className="mt-9">
+          <RenderingsGallery />
         </div>
       </Section>
 

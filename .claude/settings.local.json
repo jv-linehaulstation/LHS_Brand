@@ -21,7 +21,24 @@
       "Bash(node /tmp/shotv.mjs http://localhost:3000/drivers /tmp/v-mosaic.png 2600 1440)",
       "Bash(node /tmp/shotv.mjs http://localhost:3000/carriers /tmp/v-ledger2.png 2700 1440)",
       "Bash(node /tmp/shotv.mjs http://localhost:3000/drivers /tmp/v-mosaic2.png 4250 1440)",
-      "Bash(git commit -q -m 'Redesign v2: leadership page \\(editorial founder'\\\\''s letter + board\\) *)"
+      "Bash(git commit -q -m 'Redesign v2: leadership page \\(editorial founder'\\\\''s letter + board\\) *)",
+      "Bash(npm run *)",
+      "Bash(node /tmp/shotv.mjs http://localhost:3000/shippers /tmp/v-ship.png 1250 1440)",
+      "Bash(node /tmp/shot.mjs http://localhost:3000/carriers /tmp/p-carriers-mobile.png 390)",
+      "Bash(pkill -f \"next dev\")",
+      "Bash(pkill -f \"next-server\")",
+      "Bash(node /tmp/shotv.mjs http://localhost:3000/shippers /tmp/v-ship2.png 1250 1440)",
+      "Bash(node /tmp/shot.mjs http://localhost:3000/carriers /tmp/p-carriers-mobile2.png 390)",
+      "Bash(node /tmp/shotv.mjs http://localhost:3000/carriers /tmp/v-ledger-mobile.png 5400 390)",
+      "Bash(node /tmp/shotv.mjs http://localhost:3000/carriers /tmp/v-bvb-mobile.png 3950 390)",
+      "Bash(node /tmp/shotv.mjs http://localhost:3000/carriers /tmp/v-bvb-mobile2.png 3500 390)",
+      "Bash(git push *)",
+      "Bash(/opt/homebrew/bin/gh --version)",
+      "Bash(/opt/homebrew/bin/gh auth *)",
+      "Bash(git config *)",
+      "Bash(GIT_COMMITTER_NAME=\"LineHaul Station\" GIT_COMMITTER_EMAIL=\"js@linehaulstation.com\" git rebase main --exec 'GIT_COMMITTER_NAME=\"LineHaul Station\" GIT_COMMITTER_EMAIL=\"js@linehaulstation.com\" git commit --amend --no-edit --reset-author')",
+      "Bash(GIT_COMMITTER_NAME=\"LineHaul Station\" GIT_COMMITTER_EMAIL=\"js@linehaulstation.com\" git rebase --autostash main --exec 'GIT_COMMITTER_NAME=\"LineHaul Station\" GIT_COMMITTER_EMAIL=\"js@linehaulstation.com\" git commit --amend --no-edit --reset-author')",
+      "Bash(git stash *)"
     ]
   }
 }
