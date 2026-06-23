@@ -72,8 +72,9 @@ export default function Reveal({
         ...style,
         opacity: shown ? 1 : 0,
         transform: shown ? "none" : offset,
-        transition: `opacity .7s cubic-bezier(.2,.7,.2,1) ${delay}ms, transform .7s cubic-bezier(.2,.7,.2,1) ${delay}ms`,
-        willChange: "opacity, transform",
+        transition: `opacity .56s cubic-bezier(.2,.7,.2,1) ${delay}ms, transform .56s cubic-bezier(.2,.7,.2,1) ${delay}ms`,
+        // Hold the GPU layer only while animating in; release it once shown.
+        willChange: shown ? "auto" : "opacity, transform",
       }}
     >
       {children}
