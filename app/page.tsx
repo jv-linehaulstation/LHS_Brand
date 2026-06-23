@@ -56,7 +56,7 @@ export default function Home() {
       <Nav />
 
       {/* ============================ HERO — LIVE NETWORK BOARD ============================ */}
-      <section className="relative flex min-h-[92vh] items-center overflow-hidden px-5 py-28 sm:px-8">
+      <section className="relative flex min-h-[88dvh] items-center overflow-hidden px-5 py-24 sm:px-8">
         <ParallaxImage src={PHOTOS.clubAerial} alt="Aerial view of a LineHaul Station Hub and Outriders Club" priority strength={0.22} />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(11,11,11,0.97)_0%,rgba(11,11,11,0.86)_46%,rgba(11,11,11,0.45)_100%)]" />
         <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(11,11,11,0.85),transparent_40%)]" />
@@ -94,20 +94,18 @@ export default function Home() {
               </Reveal>
             </h1>
             <Reveal delay={280}>
-              <div className="mt-4 font-script text-[clamp(24px,3.4vw,42px)] font-semibold text-fuel">
+              <div className="mt-5 font-script text-[clamp(26px,3.6vw,46px)] font-semibold text-fuel">
                 Faster. Better. Cheaper.
               </div>
             </Reveal>
             <Reveal delay={340}>
-              <p className="mt-6 max-w-[640px] text-pretty font-body text-[clamp(16px,1.7vw,21px)] leading-relaxed text-[#dadada]">
-                A national network of member-only, shared-use, full-service Private
-                Terminals — keeping freight rolling around the clock, improving life for
-                drivers, and lowering the total cost of operation. This is{" "}
-                <strong className="font-semibold text-white">Your Terminal Network</strong>.
+              <p className="mt-5 max-w-[560px] text-pretty font-body text-[clamp(17px,1.7vw,20px)] leading-relaxed text-[#dadada]">
+                A national network of member-only, shared-use Private Terminals — your
+                terminal network, without the build.
               </p>
             </Reveal>
-            <Reveal delay={410}>
-              <div className="mt-9 flex flex-wrap gap-3.5">
+            <Reveal delay={400}>
+              <div className="mt-8 flex flex-wrap gap-3.5">
                 <PrimaryCTA />
                 <GhostCTA />
               </div>
@@ -149,8 +147,6 @@ export default function Home() {
         <div className="grid items-center gap-x-14 gap-y-10 lg:grid-cols-[1.22fr_0.78fr]">
           <div>
             <SectionHead
-              index="01"
-              kicker="The Flex-Space Model"
               title={<>Stop Building Terminals. <span className="text-fuel">Start Buying Space.</span></>}
             />
             <Reveal delay={120}>
@@ -211,7 +207,7 @@ export default function Home() {
 
       {/* ==================== THREE PROGRAMS (panel) ==================== */}
       <Section variant="panel" className="py-[clamp(72px,9vw,104px)]">
-        <SectionHead index="02" kicker="One Network · Three Programs" title="Three Ways Into The Network." />
+        <SectionHead title="Three Ways Into The Network." />
         <div className="mt-10 grid gap-4 md:grid-cols-3">
           {programs.map((p, i) => (
             <Reveal
@@ -251,7 +247,6 @@ export default function Home() {
       {/* ==================== FIND YOUR LANE (blueprint) — lane router ==================== */}
       <Section variant="blueprint" className="py-[clamp(72px,10vw,116px)]">
         <SectionHead
-          index="03"
           kicker="Find Your Lane"
           title="One Network. Built For Everyone Who Moves Freight."
         />
@@ -318,11 +313,7 @@ export default function Home() {
 
       {/* ==================== LIVE NETWORK CONSOLE (carbon) ==================== */}
       <Section variant="carbon" className="py-[clamp(72px,10vw,116px)]">
-        <SectionHead
-          index="04"
-          kicker="The Network Is Live"
-          title="An Expanding National Hub Network."
-        />
+        <SectionHead title="An Expanding National Hub Network." />
         <Reveal delay={120}>
           <p className="mt-5 max-w-2xl text-pretty font-body text-[18px] leading-relaxed text-[#dadada]">
             The first Hub is open in West Memphis — one block from the I-40 / I-55
@@ -401,7 +392,6 @@ export default function Home() {
       {/* ==================== INSIDE THE NETWORK — GALLERY (ink) ==================== */}
       <Section variant="ink" id="tour" className="py-[clamp(72px,10vw,116px)]">
         <SectionHead
-          index="05"
           kicker="Take The Tour"
           title="See The Build. Inside The Network."
         />

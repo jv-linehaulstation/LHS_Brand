@@ -45,7 +45,10 @@
       "Bash(node /tmp/shotv.mjs http://localhost:3000/drivers /tmp/d3-mosaic.png 4400 1440)",
       "Bash(git commit -q -m 'NetworkMap: expand to 50+ hub national vision *)",
       "Bash(node /tmp/shotv.mjs http://localhost:3000/government /tmp/g-relay2.png 3350 1440)",
-      "Bash(git commit -q -m 'Content: Problem-by-the-numbers band \\(home\\) + SOLO vs RELAY \\(carriers/gov\\) *)"
+      "Bash(git commit -q -m 'Content: Problem-by-the-numbers band \\(home\\) + SOLO vs RELAY \\(carriers/gov\\) *)",
+      "Bash(rm -rf .next)",
+      "Bash(node /tmp/shotv.mjs http://localhost:3000/ /tmp/before-hero.png 0 1440)",
+      "Bash(git commit -q -m 'Design pass \\(homepage\\): cut eyebrow/index scaffolding, tighten hero *)"
     ]
   }
 }
