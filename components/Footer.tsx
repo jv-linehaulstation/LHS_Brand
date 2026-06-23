@@ -44,6 +44,12 @@ export default function Footer() {
           >
             Leadership
           </Link>
+          <Link
+            href="/join"
+            className="w-fit font-label text-[11px] uppercase tracking-[0.12em] text-fuel transition-colors hover:brightness-125"
+          >
+            Join The Outriders
+          </Link>
         </nav>
 
         <div className="flex flex-col gap-2 font-mono text-[13px] text-[#d8d8d8]">

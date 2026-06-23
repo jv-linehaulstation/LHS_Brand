@@ -62,8 +62,24 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
             </Reveal>
             <Reveal delay={320} className="flex-shrink-0">
               <div className="flex flex-wrap gap-3.5">
-                <PrimaryCTA accent={ac} accentDark={a.accentDark} />
-                <GhostCTA accent={ac} />
+                {audience === "drivers" ? (
+                  <>
+                    <a
+                      href="/join"
+                      className="group inline-flex items-center gap-2.5 rounded-btn px-[30px] py-[17px] font-label text-[12px] uppercase tracking-[0.16em] text-ink shadow-[0_14px_30px_rgba(0,0,0,0.45)] transition duration-300 hover:-translate-y-0.5 hover:brightness-[1.08] active:scale-[0.97]"
+                      style={{ background: `linear-gradient(135deg, ${ac}, ${a.accentDark})` }}
+                    >
+                      Join Free.
+                      <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                    </a>
+                    <GhostCTA accent={ac} />
+                  </>
+                ) : (
+                  <>
+                    <PrimaryCTA accent={ac} accentDark={a.accentDark} />
+                    <GhostCTA accent={ac} />
+                  </>
+                )}
               </div>
               <p className="tnum mt-5 max-w-[34ch] font-mono text-[12px] leading-snug text-chrome">{a.heroNote}</p>
             </Reveal>

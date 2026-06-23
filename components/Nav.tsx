@@ -72,10 +72,21 @@ export default function Nav({
           })}
         </nav>
 
-        <div className="flex flex-none items-center gap-4">
+        <div className="flex flex-none items-center gap-2.5 sm:gap-3.5">
+          <Link
+            href="/join"
+            aria-current={active === "join" ? "page" : undefined}
+            className="hidden rounded-btn border px-4 py-[10px] font-label text-[10px] uppercase tracking-[0.14em] transition-colors hover:text-white sm:inline-flex"
+            style={{
+              borderColor: active === "join" ? accent : "rgba(176,176,176,0.3)",
+              color: active === "join" ? "#ffffff" : "#cfcfcf",
+            }}
+          >
+            Join Free
+          </Link>
           <a
             href={site.connectHref}
-            className="rounded-btn px-5 py-[11px] font-label text-[10px] uppercase tracking-[0.14em] text-ink shadow-[0_8px_20px_rgba(0,0,0,0.35)] transition hover:brightness-110"
+            className="rounded-btn px-5 py-[11px] font-label text-[10px] uppercase tracking-[0.14em] text-ink shadow-[0_8px_20px_rgba(0,0,0,0.35)] transition hover:brightness-110 active:scale-[0.97]"
             style={{ background: `linear-gradient(135deg, ${accent}, ${accent}cc)` }}
           >
             Connect With Us
