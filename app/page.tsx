@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
@@ -20,9 +21,9 @@ const heroStats = [
 ];
 
 const programs = [
-  { name: "FlexSpace", tagline: "It's YOUR Terminal Network.", blurb: "Shared-use terminal access sold in increments — Guest Pass, Proprietary Membership, or Dedicated Space. Carrier-facing.", accent: "#4878A8" },
-  { name: "OneHome", tagline: "Everywhere The Road Takes You.", blurb: "A private, resort-quality community network built exclusively for American truckers. Driver-facing housing program.", accent: "#F07820" },
-  { name: "Outriders Club", tagline: "The Rig Carlton.", blurb: "A 25,000+ sq ft private drivers club — restaurant, fitness, showers, gaming, rooftop sky deck, and more.", accent: "#C8A060" },
+  { name: "FlexSpace", tagline: "It's YOUR Terminal Network.", blurb: "Shared-use terminal access sold in increments — Guest Pass, Proprietary Membership, or Dedicated Space. Carrier-facing.", accent: "#4878A8", img: PHOTOS.fleetFuel },
+  { name: "OneHome", tagline: "Everywhere The Road Takes You.", blurb: "A private, resort-quality community network built exclusively for American truckers. Driver-facing housing program.", accent: "#F07820", img: PHOTOS.skydeckSunset },
+  { name: "Outriders Club", tagline: "The Rig Carlton.", blurb: "A 25,000+ sq ft private drivers club — restaurant, fitness, showers, gaming, rooftop sky deck, and more.", accent: "#C8A060", img: PHOTOS.clubLounge1 },
 ];
 
 const laneBlurb: Record<string, string> = {
@@ -56,7 +57,7 @@ export default function Home() {
 
       {/* ============================ HERO — LIVE NETWORK BOARD ============================ */}
       <section className="relative flex min-h-[92vh] items-center overflow-hidden px-5 py-28 sm:px-8">
-        <ParallaxImage src={PHOTOS.terminalDay} alt="LineHaul Station terminal at West Memphis" priority strength={0.22} />
+        <ParallaxImage src={PHOTOS.clubAerial} alt="Aerial view of a LineHaul Station Hub and Outriders Club" priority strength={0.22} />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(11,11,11,0.97)_0%,rgba(11,11,11,0.86)_46%,rgba(11,11,11,0.45)_100%)]" />
         <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(11,11,11,0.85),transparent_40%)]" />
         <div className="blueprint pointer-events-none absolute inset-0 opacity-25" />
@@ -186,13 +187,22 @@ export default function Home() {
             <Reveal
               key={p.name}
               delay={i * 90}
-              className="lift group relative overflow-hidden rounded-card border border-chrome/15 bg-ink p-7"
+              className="lift group relative flex min-h-[360px] flex-col justify-end overflow-hidden rounded-card border border-chrome/15"
             >
-              <div
-                className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full opacity-25 blur-2xl transition-opacity duration-500 group-hover:opacity-50"
-                style={{ background: p.accent }}
+              <Image
+                src={p.img}
+                alt={`${p.name} — ${p.tagline}`}
+                fill
+                loading="lazy"
+                className="img-grade object-cover transition-transform duration-700 motion-safe:group-hover:scale-105"
+                sizes="(max-width: 768px) 100vw, 33vw"
               />
-              <div className="relative">
+              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,11,11,0.25),rgba(11,11,11,0.62)_52%,rgba(11,11,11,0.95))]" />
+              <div
+                className="absolute inset-x-0 top-0 h-0.5 opacity-70"
+                style={{ background: `linear-gradient(90deg, ${p.accent}, transparent)` }}
+              />
+              <div className="relative p-7">
                 <div className="flex items-center justify-between">
                   <span className="tnum font-mono text-[13px]" style={{ color: p.accent }}>
                     {String(i + 1).padStart(2, "0")}
@@ -201,11 +211,7 @@ export default function Home() {
                 </div>
                 <div className="mt-5 font-display text-[26px] font-black uppercase leading-none text-white">{p.name}</div>
                 <div className="mt-1.5 font-script text-[23px] font-semibold" style={{ color: p.accent }}>{p.tagline}</div>
-                <p className="mt-4 font-body text-[15px] leading-relaxed text-chrome">{p.blurb}</p>
-                <div
-                  className="mt-6 h-0.5 w-full origin-left scale-x-100 opacity-60"
-                  style={{ background: `linear-gradient(90deg, ${p.accent}, transparent)` }}
-                />
+                <p className="mt-4 font-body text-[15px] leading-relaxed text-[#dadada]">{p.blurb}</p>
               </div>
             </Reveal>
           ))}
@@ -295,7 +301,20 @@ export default function Home() {
           </p>
         </Reveal>
 
-        <div className="mt-10 grid gap-7 lg:grid-cols-[0.82fr_1.18fr] lg:items-stretch">
+        <div className="mt-9 grid gap-3 sm:grid-cols-2">
+          {[
+            { src: PHOTOS.highwayInterchange, cap: "Sited on the I-40 / I-55 interchange — ~60,000 trucks a day" },
+            { src: PHOTOS.citySkyline, cap: "Hubs at the freight crossroads of America's largest markets" },
+          ].map((im, i) => (
+            <Reveal key={i} delay={i * 90} className="relative aspect-[16/9] overflow-hidden rounded-card border border-chrome/15">
+              <Image src={im.src} alt={im.cap} fill loading="lazy" className="img-grade object-cover" sizes="(max-width: 640px) 100vw, 50vw" />
+              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,11,11,0.1),rgba(11,11,11,0.85))]" />
+              <div className="absolute inset-x-0 bottom-0 p-4 font-mono text-[12px] leading-snug text-[#e2e2e2]">{im.cap}</div>
+            </Reveal>
+          ))}
+        </div>
+
+        <div className="mt-7 grid gap-7 lg:grid-cols-[0.82fr_1.18fr] lg:items-stretch">
           <div className="flex flex-col gap-5">
             <div className="grid grid-cols-3 gap-3">
               {[

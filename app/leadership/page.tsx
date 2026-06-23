@@ -48,7 +48,7 @@ export default function LeadershipPage() {
 
       {/* HERO (image) */}
       <section className="relative flex min-h-[56vh] items-end overflow-hidden px-5 py-24 sm:px-8">
-        <ParallaxImage src={PHOTOS.buildingFront} alt="LineHaul Station headquarters" priority strength={0.2} />
+        <ParallaxImage src={PHOTOS.buildingExterior} alt="A LineHaul Station Hub building exterior by day" priority strength={0.2} />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(11,11,11,0.96)_0%,rgba(11,11,11,0.8)_50%,rgba(11,11,11,0.5)_100%)]" />
         <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(11,11,11,0.85),transparent_45%)]" />
         <div className="blueprint pointer-events-none absolute inset-0 opacity-20" />
@@ -143,7 +143,27 @@ export default function LeadershipPage() {
       {/* BOARD ADVISORS (carbon) */}
       <Section variant="carbon" className="py-[clamp(72px,9vw,108px)]">
         <SectionHead index="02" kicker="Board Advisors" title="Decades Of Freight, Finance & Logistics." accent={FUEL} />
-        <div className="mt-10 grid gap-5 md:grid-cols-3">
+
+        <Reveal delay={100} className="mt-9 frame">
+          <div className="relative aspect-[21/9] overflow-hidden rounded-[4px]">
+            <Image
+              src={PHOTOS.leadershipGroup}
+              alt="The LineHaul Station leadership team"
+              fill
+              loading="lazy"
+              className="img-grade object-cover object-center"
+              sizes="(max-width: 1180px) 100vw, 1180px"
+            />
+            <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,11,11,0.1),rgba(11,11,11,0.55))]" />
+            <div className="absolute inset-x-0 bottom-0 p-5">
+              <span className="rounded-btn bg-ink/60 px-3 py-1.5 font-mono text-[11px] text-chrome backdrop-blur-sm">
+                The team building America&apos;s freight relay network
+              </span>
+            </div>
+          </div>
+        </Reveal>
+
+        <div className="mt-8 grid gap-5 md:grid-cols-3">
           {advisors.map((p, i) => (
             <Reveal key={p.name} delay={i * 90} className="lift group overflow-hidden rounded-card border border-chrome/15 bg-panel">
               <div className="relative aspect-[5/4] overflow-hidden bg-carbon">

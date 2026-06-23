@@ -38,7 +38,11 @@
       "Bash(git config *)",
       "Bash(GIT_COMMITTER_NAME=\"LineHaul Station\" GIT_COMMITTER_EMAIL=\"js@linehaulstation.com\" git rebase main --exec 'GIT_COMMITTER_NAME=\"LineHaul Station\" GIT_COMMITTER_EMAIL=\"js@linehaulstation.com\" git commit --amend --no-edit --reset-author')",
       "Bash(GIT_COMMITTER_NAME=\"LineHaul Station\" GIT_COMMITTER_EMAIL=\"js@linehaulstation.com\" git rebase --autostash main --exec 'GIT_COMMITTER_NAME=\"LineHaul Station\" GIT_COMMITTER_EMAIL=\"js@linehaulstation.com\" git commit --amend --no-edit --reset-author')",
-      "Bash(git stash *)"
+      "Bash(git stash *)",
+      "Bash(node /tmp/shotv.mjs http://localhost:3000/ /tmp/h2-programs.png 1750 1440)",
+      "Bash(node /tmp/shotv.mjs http://localhost:3000/ /tmp/h2-network.png 3550 1440)",
+      "Bash(node /tmp/shot.mjs http://localhost:3000/drivers /tmp/d2-full.png 1440)",
+      "Bash(node /tmp/shotv.mjs http://localhost:3000/drivers /tmp/d3-mosaic.png 4400 1440)"
     ]
   }
 }

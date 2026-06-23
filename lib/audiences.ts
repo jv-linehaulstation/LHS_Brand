@@ -3,21 +3,59 @@
 // Pages" artifact. Copy is preserved as written by the team; only formatting
 // (curly→straight quotes where needed) is normalized.
 
+// Real LineHaul Station imagery from the company pitch decks.
+const REN = "/assets/deck-library/renderings";
+const PHO = "/assets/deck-library/photos";
 export const PHOTOS = {
-  // Real LineHaul Station building renders (optimized from BUILDING PREVIEWS).
-  buildingFront: "/assets/photos/building-front.jpg",
-  buildingAerial: "/assets/photos/building-aerial.jpg",
-  buildingSide: "/assets/photos/building-side.jpg",
-  building2: "/assets/photos/building-2.jpg",
-  building3: "/assets/photos/building-3.jpg",
-  building4: "/assets/photos/building-4.jpg",
+  // Context / road
   road: "/assets/photos/road-sunset.jpg",
-  // Aliases kept so existing references resolve to the real renders.
-  terminalDay: "/assets/photos/building-front.jpg",
-  terminalDusk: "/assets/photos/building-side.jpg",
-  terminalRendering: "/assets/photos/building-2.jpg",
-  clubLounge: "/assets/photos/building-aerial.jpg",
-  clubShop: "/assets/photos/building-3.jpg",
+  truckSunset: `${PHO}/context-truck-sunset.jpg`,
+  truckSunset2: `${PHO}/context-truck-sunset-2.jpg`,
+  highwayInterchange: `${PHO}/context-highway-interchange.jpg`,
+  citySkyline: `${PHO}/context-city-skyline.jpg`,
+  courthouse: `${PHO}/context-civic-courthouse.jpg`,
+  groundbreaking: `${PHO}/context-groundbreaking-shovel.jpg`,
+  // Building & arrival
+  buildingAerial: `${PHO}/building-terminal-aerial.jpg`,
+  buildingExterior: `${PHO}/building-exterior-day.jpg`,
+  clubEntry: `${REN}/chrome-club-entry.jpg`,
+  clubEntry2: `${REN}/chrome-club-entry-2.jpg`,
+  clubAerial: `${REN}/chrome-club-aerial-view.jpg`,
+  gateHouse: `${REN}/gate-house-entry-drive.jpg`,
+  entryWelcome: `${REN}/entry-drive-welcome.jpg`,
+  obliqueSitePlan: `${REN}/oblique-site-plan.jpg`,
+  // Outriders Club + Sky Deck
+  skydeck: `${REN}/chrome-club-skydeck.jpg`,
+  skydeckEntry: `${REN}/skydeck-entry.jpg`,
+  skydeckFireplace: `${REN}/skydeck-fireplace.jpg`,
+  skydeckSunset: `${PHO}/lifestyle-skydeck-sunset.jpg`,
+  clubPatio: `${REN}/chrome-club-patio.jpg`,
+  cornHole: `${REN}/corn-hole-courts.jpg`,
+  waterFeature: `${REN}/water-feature.jpg`,
+  clubLounge1: `${REN}/chrome-club-lounge-1.jpg`,
+  clubLounge2: `${REN}/chrome-club-lounge-2.jpg`,
+  clubDining: `${PHO}/interior-club-dining.jpg`,
+  clubLoungePhoto: `${PHO}/interior-club-lounge.jpg`,
+  clubShop: `${PHO}/interior-club-shop.jpg`,
+  overdriveLounge: `${PHO}/interior-overdrive-lounge.jpg`,
+  fitness: `${REN}/fitness-studio.jpg`,
+  gamerDen1: `${REN}/gamer-s-den-1.jpg`,
+  gamerDen2: `${REN}/gamer-s-den-2.jpg`,
+  gamerDen3: `${REN}/gamer-s-den-3.jpg`,
+  gearShop: `${REN}/gear-shop.jpg`,
+  laundry: `${REN}/laundry-center.jpg`,
+  barber: `${REN}/vintage-barber-shop.jpg`,
+  // Fleet Services
+  fleetFuel: `${REN}/fleet-services-fuel.jpg`,
+  fleetEntry1: `${REN}/fleet-services-entry-1.jpg`,
+  fleetEntry2: `${REN}/fleet-services-entry-2.jpg`,
+  fleetExit: `${REN}/fleet-services-exit.jpg`,
+  crossDock: `${REN}/cross-dock.jpg`,
+  truckWashEntry: `${REN}/truck-wash-entry.jpg`,
+  truckWashExit: `${REN}/truck-wash-exit.jpg`,
+  // People
+  driverInCab: `${PHO}/people-driver-in-cab.jpg`,
+  leadershipGroup: `${PHO}/people-leadership-group.jpg`,
 };
 
 export type Stat = { big: string; label: string };
@@ -38,6 +76,9 @@ export type Audience = {
   accentDark: string;
   heroImage: string;
   memphisImage: string;
+  roadImage?: string; // full-bleed context image behind the road divider
+  gallery?: string[]; // RENDER_GROUPS keys to show in a "Take the Tour" band
+  galleryTitle?: string;
 
   // HERO
   eyebrow: string;
@@ -150,8 +191,11 @@ export const audiences: Record<AudienceKey, Audience> = {
     navLabel: "Drivers",
     accent: "#F07820",
     accentDark: "#C85A12",
-    heroImage: PHOTOS.terminalDay,
-    memphisImage: PHOTOS.clubLounge,
+    heroImage: PHOTOS.skydeckSunset,
+    memphisImage: PHOTOS.clubAerial,
+    roadImage: PHOTOS.truckSunset,
+    gallery: ["club", "skydeck"],
+    galleryTitle: "Tour The Outriders Club.",
     eyebrow: "OneHome by LineHaul Station",
     heroPunch: "You're home ~60 days a year. You're paying for 365.",
     sub: "Everywhere the road takes you.",
@@ -197,14 +241,14 @@ export const audiences: Record<AudienceKey, Audience> = {
       headline: "Everything home should be",
       intro: "Tap into a 25,000 sq ft private drivers club at every Hub.",
       tiles: [
-        { title: "Member's Grill", blurb: "Hot meals, real cooking — no truck-stop microwave.", img: "/assets/amenities/grill.jpg" },
-        { title: "Sky Deck", blurb: "Open-air lounge to decompress after the haul.", img: "/assets/amenities/sky-deck.jpg" },
-        { title: "Digital Den", blurb: "Fast Wi-Fi, screens, quiet desks for the paperwork.", img: "/assets/amenities/digital-den.jpg" },
-        { title: "Fitness Studio", blurb: "Stay road-strong with real equipment.", img: "/assets/amenities/fitness.jpg" },
-        { title: "Laundry & More", blurb: "Fresh clothes without losing a day.", img: "/assets/amenities/laundry.jpg" },
-        { title: "Gear Shop", blurb: "Parts, supplies, and road essentials on site.", img: "/assets/amenities/gear-shop.jpg" },
-        { title: "Resort Pool & Spa", blurb: "Recover like the miles are worth it.", img: "/assets/amenities/pool-spa.jpg" },
-        { title: "Camp K9", blurb: "Your co-pilot gets cared for too.", img: "/assets/amenities/camp-k9.jpg" },
+        { title: "Member's Grill", blurb: "Hot meals, real cooking — no truck-stop microwave.", img: PHOTOS.clubDining },
+        { title: "Sky Deck", blurb: "Open-air lounge to decompress after the haul.", img: PHOTOS.skydeck },
+        { title: "Digital Den", blurb: "Fast Wi-Fi, screens, quiet desks for the paperwork.", img: PHOTOS.gamerDen1 },
+        { title: "Fitness Studio", blurb: "Stay road-strong with real equipment.", img: PHOTOS.fitness },
+        { title: "Laundry & More", blurb: "Fresh clothes without losing a day.", img: PHOTOS.laundry },
+        { title: "Gear Shop", blurb: "Parts, supplies, and road essentials on site.", img: PHOTOS.gearShop },
+        { title: "Resort Pool & Spa", blurb: "Recover like the miles are worth it.", img: PHOTOS.waterFeature },
+        { title: "Camp K9", blurb: "Your co-pilot gets cared for too.", img: PHOTOS.clubPatio },
       ],
       footnote: "Members call the 25,000 sq ft private drivers club “The Rig Carlton.”",
     },
@@ -244,8 +288,11 @@ export const audiences: Record<AudienceKey, Audience> = {
     navLabel: "Carriers",
     accent: "#4878A8",
     accentDark: "#2E5070",
-    heroImage: PHOTOS.terminalDusk,
-    memphisImage: PHOTOS.terminalDay,
+    heroImage: PHOTOS.fleetEntry1,
+    memphisImage: PHOTOS.buildingAerial,
+    roadImage: PHOTOS.truckSunset2,
+    gallery: ["fleet"],
+    galleryTitle: "Inside LH Fleet Services.",
     eyebrow: "FlexSpace by LineHaul Station",
     heroPunch: "Terminal access without the $15M build.",
     sub: "Built for Today. Designed for Tomorrow.",
@@ -342,8 +389,9 @@ export const audiences: Record<AudienceKey, Audience> = {
     navLabel: "Brokers",
     accent: "#7EC8E3",
     accentDark: "#3E8AB0",
-    heroImage: PHOTOS.terminalRendering,
-    memphisImage: PHOTOS.terminalDusk,
+    heroImage: PHOTOS.highwayInterchange,
+    memphisImage: PHOTOS.crossDock,
+    roadImage: PHOTOS.highwayInterchange,
     eyebrow: "For freight brokers & 3PLs",
     heroPunch: "Cover every load with a network behind you.",
     sub: "Premium terminal access in every key market.",
@@ -435,8 +483,9 @@ export const audiences: Record<AudienceKey, Audience> = {
     navLabel: "Shippers",
     accent: "#18A848",
     accentDark: "#0F7A33",
-    heroImage: PHOTOS.building3,
-    memphisImage: PHOTOS.terminalRendering,
+    heroImage: PHOTOS.buildingAerial,
+    memphisImage: PHOTOS.crossDock,
+    roadImage: PHOTOS.citySkyline,
     eyebrow: "For shippers & supply chains",
     heroPunch: "A supply chain that doesn't stall at the yard.",
     sub: "A national network of Private Terminals.",
@@ -528,8 +577,9 @@ export const audiences: Record<AudienceKey, Audience> = {
     navLabel: "Government",
     accent: "#C8A060",
     accentDark: "#8C6E3A",
-    heroImage: PHOTOS.buildingAerial,
-    memphisImage: PHOTOS.building4,
+    heroImage: PHOTOS.courthouse,
+    memphisImage: PHOTOS.groundbreaking,
+    roadImage: PHOTOS.highwayInterchange,
     eyebrow: "For government & infrastructure",
     heroPunch: "Freight infrastructure that strengthens America.",
     sub: "Freight moves 24/7. Drivers get home daily.",

@@ -8,10 +8,12 @@ import ParallaxImage from "@/components/motion/ParallaxImage";
 import { PrimaryCTA, GhostCTA } from "@/components/CTA";
 import { SectionHead, StatusChip, DataTag } from "@/components/Bits";
 import { BuildVsBelong, RelayDiagram, Timeline } from "@/components/Signatures";
+import RenderingsGallery from "@/components/RenderingsGallery";
+import { RENDER_GROUPS } from "@/lib/renderGroups";
 import LeadForm from "@/components/LeadForm";
 import OneHomeCalculator from "@/components/calculators/OneHomeCalculator";
 import FlexSpaceCalculator from "@/components/calculators/FlexSpaceCalculator";
-import { audiences, AudienceKey } from "@/lib/audiences";
+import { audiences, AudienceKey, PHOTOS } from "@/lib/audiences";
 
 export default function AudiencePage({ audience }: { audience: AudienceKey }) {
   const a = audiences[audience];
@@ -160,7 +162,7 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
 
       {/* ===================== ROAD DIVIDER (image) ===================== */}
       <section className="relative overflow-hidden px-5 py-[clamp(96px,14vw,140px)] text-center sm:px-8">
-        <ParallaxImage src="/assets/photos/road-sunset.jpg" alt="The open road at sunset" strength={0.28} />
+        <ParallaxImage src={a.roadImage ?? PHOTOS.truckSunset} alt={`${a.navLabel} — LineHaul Station`} strength={0.28} />
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,11,11,0.6),rgba(11,11,11,0.84))]" />
         <Reveal className="relative mx-auto max-w-2xl">
           <div className="font-label text-[10px] uppercase tracking-[0.24em]" style={{ color: ac }}>
@@ -284,6 +286,24 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
                 </div>
               </Reveal>
             ))}
+          </div>
+        </Section>
+      )}
+
+      {/* ===================== TAKE THE TOUR — GALLERY (carbon) ===================== */}
+      {a.gallery && a.gallery.length > 0 && (
+        <Section variant="carbon" className="py-[clamp(72px,10vw,112px)]">
+          <SectionHead
+            index="05"
+            kicker="Take the Tour"
+            title={a.galleryTitle ?? "See The Build."}
+            accent={ac}
+          />
+          <div className="mt-9">
+            <RenderingsGallery
+              groups={RENDER_GROUPS.filter((g) => a.gallery!.includes(g.key))}
+              accent={ac}
+            />
           </div>
         </Section>
       )}
