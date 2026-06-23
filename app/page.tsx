@@ -116,7 +116,7 @@ export default function Home() {
           href="#model"
           className="absolute inset-x-0 bottom-6 mx-auto flex w-fit items-center gap-2 font-label text-[10px] uppercase tracking-[0.2em] text-chrome transition-colors hover:text-white"
         >
-          <span className="inline-block animate-bounce">↓</span> See the model
+          <span className="scroll-nudge inline-block">↓</span> See the model
         </a>
       </section>
 
@@ -135,7 +135,7 @@ export default function Home() {
               delay={i * 70}
               className="border-b border-r border-chrome/10 px-6 py-9 last:border-r-0 md:border-b-0 [&:nth-child(2)]:border-r-0 md:[&:nth-child(2)]:border-r"
             >
-              <CountUp value={s.big} style={{ color: "#F07820" }} className="font-display text-[clamp(30px,3.6vw,46px)] font-black leading-none" />
+              <CountUp value={s.big} style={{ color: "#F07820" }} className="tnum font-display text-[clamp(30px,3.6vw,46px)] font-black leading-none" />
               <div className="mt-3 font-body text-[14px] leading-snug text-chrome">{s.label}</div>
             </Reveal>
           ))}
@@ -143,14 +143,14 @@ export default function Home() {
       </Section>
 
       {/* ========================= THE MODEL (ink) — editorial split ========================= */}
-      <Section variant="ink" id="model" className="py-[clamp(72px,10vw,116px)]">
-        <div className="grid items-center gap-x-14 gap-y-10 lg:grid-cols-[1.22fr_0.78fr]">
+      <Section variant="ink" id="model" className="py-[clamp(64px,8vw,96px)]">
+        <div className="grid items-start gap-x-14 gap-y-10 lg:grid-cols-[1.22fr_0.78fr]">
           <div>
             <SectionHead
               title={<>Stop Building Terminals. <span className="text-fuel">Start Buying Space.</span></>}
             />
             <Reveal delay={120}>
-              <p className="mt-6 max-w-[560px] text-pretty font-body text-[19px] leading-relaxed text-[#dadada]">
+              <p className="mt-6 max-w-[58ch] text-pretty font-body text-[18px] leading-relaxed text-[#dadada]">
                 A shared-economy model — like a private club for terminal space. You
                 wouldn&apos;t build a golf course to play a round; you&apos;d join the best club
                 in town. That&apos;s exactly what LineHaul Station does for terminal space:
@@ -189,13 +189,13 @@ export default function Home() {
               { big: "25%", label: "of U.S. transportation emissions come from Class 8 trucks" },
             ].map((s, i) => (
               <Reveal key={i} delay={i * 70}>
-                <CountUp value={s.big} style={{ color: "#F07820" }} className="font-display text-[clamp(28px,3.6vw,46px)] font-black leading-none" />
-                <div className="mt-3 font-body text-[14px] leading-snug text-chrome">{s.label}</div>
+                <CountUp value={s.big} className="tnum font-display text-[clamp(28px,3.6vw,46px)] font-black leading-none text-white" />
+                <div className="mt-3 font-body text-[15px] leading-snug text-chrome">{s.label}</div>
               </Reveal>
             ))}
           </div>
           <Reveal delay={120}>
-            <p className="mt-9 max-w-2xl text-pretty font-body text-[17px] leading-relaxed text-[#dadada]">
+            <p className="mt-9 max-w-[60ch] text-pretty font-body text-[18px] leading-relaxed text-[#dadada]">
               And the people who move the freight are running out: the average driver is{" "}
               <strong className="font-semibold text-white">54</strong>, only{" "}
               <strong className="font-semibold text-white">7%</strong> are women, and the
@@ -206,7 +206,7 @@ export default function Home() {
       </section>
 
       {/* ==================== THREE PROGRAMS (panel) ==================== */}
-      <Section variant="panel" className="py-[clamp(72px,9vw,104px)]">
+      <Section variant="panel" className="py-[clamp(56px,7vw,88px)]">
         <SectionHead title="Three Ways Into The Network." />
         <div className="mt-10 grid gap-4 md:grid-cols-3">
           {programs.map((p, i) => (
@@ -245,7 +245,7 @@ export default function Home() {
       </Section>
 
       {/* ==================== FIND YOUR LANE (blueprint) — lane router ==================== */}
-      <Section variant="blueprint" className="py-[clamp(72px,10vw,116px)]">
+      <Section variant="blueprint" className="py-[clamp(64px,9vw,104px)]">
         <SectionHead
           kicker="Find Your Lane"
           title="One Network. Built For Everyone Who Moves Freight."
@@ -312,7 +312,7 @@ export default function Home() {
       </Section>
 
       {/* ==================== LIVE NETWORK CONSOLE (carbon) ==================== */}
-      <Section variant="carbon" className="py-[clamp(72px,10vw,116px)]">
+      <Section variant="carbon" className="py-[clamp(80px,11vw,128px)]">
         <SectionHead title="An Expanding National Hub Network." />
         <Reveal delay={120}>
           <p className="mt-5 max-w-2xl text-pretty font-body text-[18px] leading-relaxed text-[#dadada]">
@@ -344,7 +344,7 @@ export default function Home() {
                 { big: "6", label: "markets in phase one" },
               ].map((f, i) => (
                 <Reveal key={i} delay={i * 80} className="rounded-card border border-chrome/15 bg-panel px-4 py-5">
-                  <CountUp value={f.big} style={{ color: "#F07820" }} className="font-display text-[clamp(20px,2.4vw,26px)] font-black leading-none" />
+                  <CountUp value={f.big} style={{ color: "#F07820" }} className="tnum font-display text-[clamp(20px,2.4vw,26px)] font-black leading-none" />
                   <div className="mt-2 font-body text-[13px] leading-snug text-chrome">{f.label}</div>
                 </Reveal>
               ))}

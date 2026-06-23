@@ -5,6 +5,16 @@
   sessions, chats, or computers on the account — they may be running other tasks.
 - If you need content from another machine or chat, ask the user to paste/upload it here.
 
+## Working style — proceed autonomously
+- Do NOT ask the user yes/no or multiple-choice questions for routine decisions.
+  Make a sensible, on-brand choice and keep going; explain what you decided afterward.
+- Batch any genuinely necessary questions to the END of a task, not mid-flow.
+- Only pause to confirm BEFORE irreversible / destructive actions: deleting files,
+  `git push --force`, history rewrites, dependency removals, or anything that changes
+  production. For normal edits, refactors, installs, and commits, just do it.
+- Always finish by running `npx tsc --noEmit` (and `npm run build` before any deploy);
+  fix what you break.
+
 ## What this is
 The **LineHaul Station** marketing site, rebuilt on the official LHS Brand System.
 **Next.js 14 (App Router) · React 18 · TypeScript · Tailwind CSS 3.** Deployed on

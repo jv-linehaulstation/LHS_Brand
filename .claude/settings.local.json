@@ -48,7 +48,18 @@
       "Bash(git commit -q -m 'Content: Problem-by-the-numbers band \\(home\\) + SOLO vs RELAY \\(carriers/gov\\) *)",
       "Bash(rm -rf .next)",
       "Bash(node /tmp/shotv.mjs http://localhost:3000/ /tmp/before-hero.png 0 1440)",
-      "Bash(git commit -q -m 'Design pass \\(homepage\\): cut eyebrow/index scaffolding, tighten hero *)"
+      "Bash(git commit -q -m 'Design pass \\(homepage\\): cut eyebrow/index scaffolding, tighten hero *)",
+      "Bash(curl -s -o /dev/null -w \"home %{http_code}\\\\n\" --max-time 30 http://localhost:3000/)",
+      "Bash(lsof -ti:3000 -ti:3001)",
+      "Bash(xargs kill -9)",
+      "Bash(node /tmp/shot.mjs http://localhost:3000/ /tmp/imp-before-desktop.png 1440)",
+      "Bash(node /tmp/shot.mjs http://localhost:3000/ /tmp/imp-before-mobile.png 390)",
+      "Bash(node .claude/skills/impeccable/scripts/detect.mjs --json app/page.tsx app/globals.css components/Bits.tsx components/CTA.tsx components/Section.tsx)",
+      "Bash(echo \"=== exit $? ===\")",
+      "Bash(node .claude/skills/impeccable/scripts/detect.mjs --json app/page.tsx app/globals.css)",
+      "Bash(echo \"exit $?\")",
+      "Bash(node /tmp/shot.mjs http://localhost:3000/ /tmp/imp-after-mobile.png 390)",
+      "Bash(git commit -q -m 'Impeccable pass \\(homepage\\): colorize, typeset, layout, animate *)"
     ]
   }
 }
