@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Image from "next/image";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
@@ -7,42 +6,52 @@ import Section from "@/components/Section";
 import Reveal from "@/components/motion/Reveal";
 import CountUp from "@/components/motion/CountUp";
 import ParallaxImage from "@/components/motion/ParallaxImage";
-import { PrimaryCTA, GhostCTA } from "@/components/CTA";
-import { SectionHead, StatusChip } from "@/components/Bits";
+import BackgroundVideo from "@/components/motion/BackgroundVideo";
+import { PrimaryCTA } from "@/components/CTA";
+import { SectionHead, StatusChip, DataTag } from "@/components/Bits";
 import NetworkMap from "@/components/NetworkMap";
-import RenderingsGallery from "@/components/RenderingsGallery";
+import LaneTabs, { type Lane } from "@/components/LaneTabs";
 import { audiences, AUDIENCE_ORDER, PHOTOS } from "@/lib/audiences";
 
-const leadStat = { big: "96%", label: "of carriers run fewer than 20 trucks — and will never build a terminal." };
-const supportStats = [
-  { big: "$15M", label: "to build a typical 90-space terminal" },
-  { big: "$19", label: "per day in member dues vs $50K+/space/yr" },
-  { big: "1st", label: "Hub open now — West Memphis, AR" },
-];
-
-// OneHome featured large in the bento; FlexSpace + Outriders stack beside it.
-const programs = [
-  { name: "OneHome", tagline: "Everywhere The Road Takes You.", blurb: "A private, resort-quality community network built exclusively for American truckers.", accent: "#F07820", img: PHOTOS.skydeckSunset, big: true },
-  { name: "FlexSpace", tagline: "It's YOUR Terminal Network.", blurb: "Shared-use terminal access sold in increments — Guest Pass, Membership, or Dedicated Space.", accent: "#4878A8", img: PHOTOS.fleetFuel },
-  { name: "Outriders Club", tagline: "The Rig Carlton.", blurb: "A 25,000+ sq ft private drivers club — fitness, showers, gaming, rooftop sky deck, and more.", accent: "#C8A060", img: PHOTOS.clubLounge1 },
-];
+// hero.mp4 lives on GHL storage (~23 MB) — referenced remotely for the cinematic break.
+const CINEMATIC_VIDEO =
+  "https://storage.googleapis.com/msgsndr/vFbdhIphhRpcrSlf4VJF/media/69554d56cb5b716ba310c3dd.mp4";
 
 const laneBlurb: Record<string, string> = {
-  drivers: "OneHome & the Outriders Club — keep more of what you earn on the road.",
-  carriers: "FlexSpace — buy premium terminal space, not buildings.",
-  brokers: "Premium staging, cross-dock, and relay access for the carriers you trust.",
-  shippers: "Secure cross-dock and relay capacity across a national Hub network.",
-  government: "Freight relay infrastructure — the Modern-Day Pony Express.",
+  drivers: "OneHome & the Outriders Club — a private, resort-quality home base so you keep more of what you earn on the road.",
+  carriers: "FlexSpace — buy premium terminal space by the increment, not $15M buildings, in the markets you already run.",
+  brokers: "Premium staging, cross-dock, and relay access in every key market — capacity behind every carrier you trust.",
+  shippers: "Secure cross-dock and relay capacity across a national Hub network that keeps your freight moving 24/7.",
+  government: "Freight relay infrastructure that strengthens America — the Modern-Day Pony Express.",
 };
 
-const modelPoints = [
-  "Pay a refundable participation fee, pay daily dues, and use the network whenever you need it.",
-  "Buy the space you need, where you need it — across a growing national network.",
-  "On-site LH Fleet Services, cross-docking, gated parking, and the Outriders Club at every Hub.",
-  "A superior terminal at a fraction of the cost of owning or leasing.",
+const lanes: Lane[] = AUDIENCE_ORDER.map((key) => {
+  const a = audiences[key];
+  return {
+    key,
+    label: a.navLabel,
+    headline: a.heroPunch,
+    line: laneBlurb[key],
+    sub: a.sub,
+    accent: a.accent,
+    href: `/${key}`,
+    image: a.heroImage,
+  };
+});
+
+const pillars = [
+  { n: "01", t: "Driver Dignity", p: "Get the best drivers home, rested, and respected — every night they're with us." },
+  { n: "02", t: "Real Estate", p: "Owned Hubs and Service Centers — assets that appreciate, not parking lots." },
+  { n: "03", t: "Lower Cost", p: "A national relay that takes cost out of every mile of American freight." },
+  { n: "04", t: "Stewardship", p: "Supply-chain resilience that strengthens American manufacturing and the lanes it depends on." },
 ];
 
-const markets = ["West Memphis, AR", "Dallas–Fort Worth", "Atlanta", "Indianapolis", "Chicago", "Carlisle"];
+const terminalStats = [
+  { big: "1st", label: "Hub open now — West Memphis, AR" },
+  { big: "~1,000", label: "extra-wide spaces per Hub" },
+  { big: "60K", label: "trucks a day at the I-40 / I-55 interchange" },
+  { big: "24/7", label: "gated, surveilled access" },
+];
 
 export default function Home() {
   return (
@@ -58,7 +67,6 @@ export default function Home() {
         <div className="pointer-events-none absolute inset-x-0 top-0 h-[2px] overflow-hidden">
           <div className="scan-once h-full w-full" style={{ ["--ac" as string]: "#F07820" }} />
         </div>
-        {/* editorial vertical edge label */}
         <div className="absolute right-3 top-1/2 hidden -translate-y-1/2 [writing-mode:vertical-rl] rotate-180 font-mono text-[11px] tracking-[0.35em] text-chrome xl:block">
           35.1465°N · 90.1845°W — I-40 / I-55
         </div>
@@ -88,244 +96,195 @@ export default function Home() {
               </p>
             </Reveal>
             <Reveal delay={380} className="flex flex-shrink-0 flex-wrap gap-3.5">
-              <PrimaryCTA />
-              <GhostCTA />
+              <PrimaryCTA>Schedule a Call</PrimaryCTA>
+              <a
+                href="#lanes"
+                className="group inline-flex items-center gap-2.5 rounded-btn border border-chrome/30 bg-carbon/70 px-[30px] py-[17px] font-label text-[12px] uppercase tracking-[0.16em] text-white transition duration-300 hover:border-fuel active:scale-[0.97]"
+              >
+                Find Your Lane
+                <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1 text-fuel">→</span>
+              </a>
             </Reveal>
           </div>
         </div>
-        <a href="#model" className="absolute inset-x-0 bottom-5 mx-auto flex w-fit items-center gap-2 font-label text-[10px] uppercase tracking-[0.2em] text-chrome transition-colors hover:text-white">
-          <span className="scroll-nudge inline-block">↓</span> See the model
+        <a href="#story" className="absolute inset-x-0 bottom-5 mx-auto flex w-fit items-center gap-2 font-label text-[10px] uppercase tracking-[0.2em] text-chrome transition-colors hover:text-white">
+          <span className="scroll-nudge inline-block">↓</span> Who we are
         </a>
       </section>
 
-      {/* ===================== THE CASE — asymmetric giant lead stat (carbon) ===================== */}
-      <Section variant="carbon" className="py-[clamp(56px,8vw,104px)]">
-        <div className="grid gap-x-12 gap-y-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
-          <Reveal>
-            <div className="mb-3 flex items-center gap-2.5 font-label text-[11px] uppercase tracking-[0.22em] text-fuel">
-              <span className="pulse-dot inline-block h-2 w-2 rounded-full bg-fuel" /> The Case
+      {/* ===================== ORIGIN STORY — asymmetric editorial (carbon) ===================== */}
+      <Section variant="carbon" id="story" className="py-[clamp(72px,11vw,140px)]">
+        <div className="grid gap-x-[clamp(28px,5vw,72px)] gap-y-10 lg:grid-cols-[0.42fr_1.58fr] lg:items-start">
+          <Reveal className="lg:sticky lg:top-28">
+            <div className="flex items-center gap-3 font-mono text-[12px] uppercase tracking-[0.28em] text-fuel">
+              <span className="h-px w-7 bg-fuel/60" aria-hidden /> Who We Are
             </div>
-            <CountUp value={leadStat.big} className="tnum block font-display text-[clamp(84px,15vw,184px)] font-black leading-[0.78] text-fuel" />
-            <p className="mt-4 max-w-[34ch] font-body text-[clamp(18px,1.9vw,22px)] leading-snug text-[#dadada]">
-              {leadStat.label}
+            <span className="mt-5 block font-mono text-[11px] uppercase tracking-[0.18em] text-[#8a857e]">
+              Founded · West Memphis, AR
+            </span>
+          </Reveal>
+          <div>
+            <Reveal>
+              <h2 className="text-balance font-display text-[clamp(40px,6vw,86px)] font-black uppercase leading-[0.9] tracking-[-0.02em] text-white">
+                Built By People Who&apos;ve Done It{" "}
+                <span className="outline-head" style={{ ["--ac" as string]: "#F07820" }}>Before.</span>
+              </h2>
+            </Reveal>
+            <Reveal delay={100}>
+              <p className="mt-8 max-w-[30ch] font-body text-[clamp(20px,2.3vw,27px)] font-medium leading-[1.5] text-[#ededed]">
+                LineHaul Station didn&apos;t start with trucks. It started with a question:
+                why does the industry that moves America treat its best drivers the worst?
+              </p>
+            </Reveal>
+            <Reveal delay={160}>
+              <p className="mt-6 max-w-[62ch] font-body text-[clamp(16px,1.5vw,18.5px)] leading-relaxed text-[#d8d8d8]">
+                Founder &amp; CEO <strong className="font-medium text-white">Jeff Swenson</strong> spent
+                35 years and more than <strong className="font-medium text-white">$2 billion</strong> planning,
+                designing, and building urban residential, commercial, and logistics real estate — projects
+                united by one theme: enhancing how people live, work, and play.
+              </p>
+            </Reveal>
+            <Reveal delay={220}>
+              <p className="mt-5 max-w-[62ch] font-body text-[clamp(16px,1.5vw,18.5px)] leading-relaxed text-[#d8d8d8]">
+                He brought that standard to freight. Real terminals. Real amenities. A place a driver is proud
+                to call home base — and a network that lowers the cost of moving freight across the country.
+                The same rule runs through every Hub, every Service Center, and every word we write.
+              </p>
+            </Reveal>
+            <Reveal delay={280}>
+              <figure className="mt-9 border-l-2 border-fuel pl-6">
+                <blockquote className="font-display text-[clamp(19px,2vw,24px)] font-extrabold leading-[1.3] tracking-[-0.01em] text-white">
+                  Treat the industry&apos;s best truck drivers with dignity and respect — and never compromise on quality.
+                </blockquote>
+                <figcaption className="mt-3.5 font-mono text-[12px] uppercase tracking-[0.12em] text-fuel">
+                  — The LineHaul Station ethos
+                </figcaption>
+              </figure>
+            </Reveal>
+          </div>
+        </div>
+      </Section>
+
+      {/* ===================== FIND YOUR LANE — tabbed router (ink) ===================== */}
+      <Section variant="ink" id="lanes" className="py-[clamp(64px,9vw,120px)]">
+        <SectionHead kicker="Find Your Lane" size="xl" title="One Network. Built For Everyone Who Moves Freight." maxW="max-w-5xl" />
+        <div className="mt-11">
+          <LaneTabs lanes={lanes} />
+        </div>
+      </Section>
+
+      {/* ===================== PILLARS / WHY WE DO IT (panel) ===================== */}
+      <Section variant="panel" className="py-[clamp(64px,8vw,108px)]">
+        <SectionHead kicker="Why We Do It" size="xl" title="Infrastructure With A Conscience." maxW="max-w-3xl" />
+        <div className="mt-12 grid gap-px overflow-hidden border border-chrome/12 bg-chrome/12 sm:grid-cols-2 lg:grid-cols-4">
+          {pillars.map((p, i) => (
+            <Reveal
+              key={p.n}
+              delay={i * 80}
+              className="flex min-h-[210px] flex-col justify-end bg-ink p-7 transition-colors duration-300 hover:bg-[#121110]"
+            >
+              <span className="tnum font-mono text-[12px] text-fuel">{p.n}</span>
+              <div className="mt-auto pt-8 font-display text-[clamp(19px,1.6vw,22px)] font-extrabold uppercase tracking-[-0.01em] text-white">
+                {p.t}
+              </div>
+              <p className="mt-2.5 font-body text-[15px] leading-relaxed text-chrome">{p.p}</p>
+            </Reveal>
+          ))}
+        </div>
+      </Section>
+
+      {/* ===================== THE NETWORK — national Hub map (carbon) ===================== */}
+      <Section variant="carbon" id="network" className="py-[clamp(80px,11vw,132px)]">
+        <div className="grid gap-x-12 gap-y-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+          <SectionHead kicker="The Network" size="xl" title="An Expanding National Hub Network." />
+          <Reveal delay={120}>
+            <p className="text-pretty font-body text-[clamp(18px,1.9vw,21px)] leading-relaxed text-[#dadada]">
+              The first Hub is open in West Memphis — one block from the I-40 / I-55 interchange, roughly
+              60,000 trucks a day. Phase-one expansion is underway across key markets toward a national
+              network of Hubs, Private Terminals, and Service Centers.
             </p>
           </Reveal>
-          <div className="grid gap-px overflow-hidden rounded-card bg-chrome/10 sm:grid-cols-3">
-            {supportStats.map((s, i) => (
-              <Reveal key={i} delay={i * 80} className="flex flex-col justify-between bg-panel p-6 sm:p-7">
-                <CountUp value={s.big} style={{ color: "#F07820" }} className="tnum font-display text-[clamp(36px,4.5vw,56px)] font-black leading-none" />
-                <div className="mt-4 font-body text-[14px] leading-snug text-chrome">{s.label}</div>
+        </div>
+        <Reveal dir="left" className="mt-11">
+          <NetworkMap />
+        </Reveal>
+      </Section>
+
+      {/* ===================== FEATURED TERMINALS — full-bleed cards (ink) ===================== */}
+      <Section variant="ink" className="py-[clamp(72px,10vw,128px)]">
+        <div className="flex flex-wrap items-end justify-between gap-5">
+          <SectionHead kicker="Experience" size="xl" title="Featured Terminals." />
+          <Reveal delay={120}>
+            <a
+              href="#network"
+              className="group inline-flex items-center gap-2 border-b border-chrome/30 pb-1.5 font-mono text-[12px] uppercase tracking-[0.14em] text-chrome transition-colors hover:border-fuel hover:text-fuel"
+            >
+              View the Network
+              <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+            </a>
+          </Reveal>
+        </div>
+
+        <div className="mt-11 grid gap-4">
+          {/* hero card — West Memphis */}
+          <TerminalCard
+            img={PHOTOS.buildingAerial}
+            badge="Open Now"
+            live
+            name="West Memphis Hub"
+            loc="West Memphis, AR · I-40 / I-55"
+            big
+          />
+          <div className="grid gap-4 md:grid-cols-2">
+            <TerminalCard img={PHOTOS.gateHouse} badge="Phase One" name="Dallas–Fort Worth" loc="Texas · I-35 Corridor" />
+            <TerminalCard img={PHOTOS.buildingExterior} badge="Phase One" name="Atlanta Hub" loc="Georgia · I-20 / I-75" />
+          </div>
+        </div>
+      </Section>
+
+      {/* ===================== PROOF / STATS BAND (image) ===================== */}
+      <Section variant="image" image={PHOTOS.buildingExterior} className="py-[clamp(80px,12vw,140px)]">
+        <div className="grid gap-x-12 gap-y-10 lg:grid-cols-[1fr_1fr] lg:items-end">
+          <div>
+            <DataTag accent="#F07820" className="font-label !text-[10px] uppercase tracking-[0.2em]">
+              <span className="pulse-dot inline-block h-2 w-2 rounded-full bg-fuel" /> The Proof
+            </DataTag>
+            <h2 className="mt-5 text-balance font-display text-[clamp(38px,6vw,84px)] font-black uppercase leading-[0.9] tracking-[-0.025em] text-white">
+              West Memphis Is Open.
+            </h2>
+            <p className="mt-5 max-w-[44ch] font-body text-[clamp(18px,1.9vw,22px)] leading-relaxed text-[#e2e2e2]">
+              This isn&apos;t a rendering of someday. The first Hub is live at the busiest freight crossroads
+              in America — and the network is growing from here.
+            </p>
+          </div>
+          <div className="grid grid-cols-2 gap-px overflow-hidden rounded-card bg-chrome/12">
+            {terminalStats.map((s, i) => (
+              <Reveal key={i} delay={i * 80} className="bg-ink/75 p-6 backdrop-blur-sm sm:p-7">
+                <CountUp value={s.big} style={{ color: "#F07820" }} className="tnum font-display text-[clamp(32px,4.5vw,54px)] font-black leading-none" />
+                <div className="mt-3 font-body text-[14px] leading-snug text-chrome">{s.label}</div>
               </Reveal>
             ))}
           </div>
         </div>
       </Section>
 
-      {/* ===================== THE MODEL — asymmetric editorial split (ink) ===================== */}
-      <Section variant="ink" id="model" className="py-[clamp(64px,9vw,116px)]">
-        <div className="grid gap-x-14 gap-y-12 lg:grid-cols-[1.35fr_0.65fr] lg:items-start">
-          <div>
-            <SectionHead size="xl" title={<>Stop Building Terminals. <span className="text-fuel">Start Buying Space.</span></>} />
-            <Reveal delay={120}>
-              <p className="mt-7 max-w-[56ch] text-pretty font-body text-[clamp(18px,1.9vw,22px)] leading-relaxed text-[#dadada]">
-                A shared-economy model — like a private club for terminal space. You wouldn&apos;t build a
-                golf course to play a round; you&apos;d join the best club in town. That&apos;s exactly what
-                LineHaul Station does for terminal space: first-class Hubs, Private Terminals, and Service
-                Centers, sold one space at a time.
-              </p>
-            </Reveal>
-          </div>
-          {/* spec sheet offset upward to break the baseline */}
-          <Reveal delay={160} dir="right" className="frame lg:-mt-10">
-            <div className="bg-panel p-7 sm:p-8">
-              <div className="mb-5 flex items-center justify-between font-mono text-[11px] uppercase tracking-[0.12em] text-chrome">
-                <span>Spec Sheet</span>
-                <span className="text-fuel">04</span>
-              </div>
-              {modelPoints.map((pt, i) => (
-                <div key={i} className="flex items-start gap-4 border-t border-chrome/10 py-4">
-                  <span className="tnum mt-0.5 font-mono text-[13px] text-fuel">{String(i + 1).padStart(2, "0")}</span>
-                  <span className="font-body text-[16px] leading-snug text-[#dadada]">{pt}</span>
-                </div>
-              ))}
-            </div>
-          </Reveal>
-        </div>
-      </Section>
-
-      {/* ===================== THE PROBLEM — full-bleed data poster, one giant number ===================== */}
-      <section className="relative overflow-hidden px-5 py-[clamp(80px,12vw,150px)] sm:px-8">
-        <ParallaxImage src={PHOTOS.highwayInterchange} alt="A congested national freight interchange" strength={0.28} />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,11,11,0.92),rgba(11,11,11,0.8)_45%,rgba(11,11,11,0.96))]" />
-        <div className="relative mx-auto max-w-site">
-          <SectionHead kicker="The Problem" size="xl" title="The Math Of A Broken System." />
-          <div className="mt-12 grid gap-x-12 gap-y-10 lg:grid-cols-[1.25fr_0.75fr] lg:items-end">
-            <Reveal>
-              <CountUp value="1,000,000+" className="tnum block font-display text-[clamp(60px,13vw,176px)] font-black leading-[0.78] text-white" />
-              <p className="mt-4 max-w-[36ch] font-body text-[clamp(18px,2vw,24px)] leading-snug text-[#dadada]">
-                trucks searching for a place to park each night — against just 312,962 spaces nationwide.
-              </p>
-            </Reveal>
-            <div className="grid gap-px overflow-hidden rounded-card bg-chrome/10">
-              {[
-                { big: "$94.6B", label: "annual cost of congestion to the trucking industry" },
-                { big: "25%", label: "of U.S. transportation emissions come from Class 8 trucks" },
-                { big: "54", label: "average driver age — only 7% are women, and the shortage deepens" },
-              ].map((s, i) => (
-                <Reveal key={i} delay={i * 80} className="flex items-baseline gap-5 bg-ink/70 px-6 py-5 backdrop-blur-sm">
-                  <CountUp value={s.big} className="tnum min-w-[5ch] font-display text-[clamp(30px,4vw,46px)] font-black leading-none text-white" />
-                  <span className="font-body text-[14px] leading-snug text-chrome">{s.label}</span>
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ===================== THREE PROGRAMS — asymmetric bento (panel) ===================== */}
-      <Section variant="panel" className="py-[clamp(56px,8vw,96px)]">
-        <SectionHead title="Three Ways Into The Network." />
-        <div className="mt-10 grid gap-3 lg:grid-cols-2">
-          {programs.map((p) => (
-            <Reveal
-              key={p.name}
-              className={`lift group relative flex flex-col justify-end overflow-hidden rounded-card border border-chrome/15 ${
-                p.big ? "min-h-[360px] lg:row-span-2 lg:min-h-[560px]" : "min-h-[260px]"
-              }`}
-            >
-              <Image
-                src={p.img}
-                alt={`${p.name} — ${p.tagline}`}
-                fill
-                loading="lazy"
-                className="img-grade object-cover transition-transform duration-700 motion-safe:group-hover:scale-105"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
-              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,11,11,0.2),rgba(11,11,11,0.6)_50%,rgba(11,11,11,0.95))]" />
-              <div className="absolute inset-x-0 top-0 h-0.5 opacity-70" style={{ background: `linear-gradient(90deg, ${p.accent}, transparent)` }} />
-              <div className="relative p-7 sm:p-8">
-                <span className="h-2 w-2 rounded-full" style={{ background: p.accent }} />
-                <div className={`mt-4 font-display font-black uppercase leading-none text-white ${p.big ? "text-[clamp(34px,4vw,52px)]" : "text-[26px]"}`}>
-                  {p.name}
-                </div>
-                <div className={`mt-2 font-script font-semibold ${p.big ? "text-[clamp(24px,2.6vw,32px)]" : "text-[22px]"}`} style={{ color: p.accent }}>
-                  {p.tagline}
-                </div>
-                <p className="mt-4 max-w-[44ch] font-body text-[15px] leading-relaxed text-[#dadada]">{p.blurb}</p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </Section>
-
-      {/* ===================== FIND YOUR LANE — oversized editorial router (blueprint) ===================== */}
-      <Section variant="blueprint" className="py-[clamp(64px,10vw,120px)]">
-        <SectionHead kicker="Find Your Lane" size="xl" title="One Network. Built For Everyone Who Moves Freight." maxW="max-w-5xl" />
-        <div className="mt-12 border-t border-chrome/15">
-          {AUDIENCE_ORDER.map((key, i) => {
-            const a = audiences[key];
-            return (
-              <Reveal key={key} delay={i * 50}>
-                <Link
-                  href={`/${key}`}
-                  className="group grid grid-cols-[auto_1fr_auto] items-center gap-x-5 border-b border-chrome/15 py-6 transition-colors hover:bg-[#161616] sm:gap-x-8 sm:py-7"
-                  style={{ ["--ac" as string]: a.accent }}
-                >
-                  <span className="tnum font-mono text-[clamp(13px,1.4vw,16px)]" style={{ color: a.accent }}>
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <div className="min-w-0">
-                    <span className="font-display text-[clamp(28px,5vw,64px)] font-black uppercase leading-[0.95] text-white transition-colors group-hover:text-white">
-                      {a.navLabel}
-                    </span>
-                    <p className="mt-1.5 max-w-2xl font-body text-[15px] leading-snug text-chrome sm:text-[16px]">{laneBlurb[key]}</p>
-                  </div>
-                  <span
-                    className="font-display text-[clamp(24px,3vw,40px)] transition-transform duration-300 group-hover:translate-x-2"
-                    style={{ color: a.accent }}
-                    aria-hidden
-                  >
-                    →
-                  </span>
-                </Link>
-              </Reveal>
-            );
-          })}
-          <Reveal delay={AUDIENCE_ORDER.length * 50}>
-            <a href="#contact" className="group grid grid-cols-[auto_1fr_auto] items-center gap-x-5 py-6 transition-colors hover:bg-[#161616] sm:gap-x-8 sm:py-7">
-              <span className="font-mono text-[16px] text-fuel">+</span>
-              <div>
-                <span className="font-display text-[clamp(28px,5vw,64px)] font-black uppercase leading-[0.95] text-white">Not Sure?</span>
-                <p className="mt-1.5 max-w-2xl font-body text-[15px] leading-snug text-chrome sm:text-[16px]">
-                  Tell us how you move freight and we&apos;ll point you to the right lane.
-                </p>
-              </div>
-              <span className="font-label text-[11px] uppercase tracking-[0.16em] text-fuel transition-transform duration-300 group-hover:translate-x-1">Connect →</span>
-            </a>
-          </Reveal>
-        </div>
-      </Section>
-
-      {/* ===================== LIVE NETWORK — map-led, mirrored composition (carbon) ===================== */}
-      <Section variant="carbon" className="py-[clamp(80px,11vw,132px)]">
-        <div className="grid gap-x-12 gap-y-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
-          <SectionHead kicker="The Network Is Live" size="xl" title="An Expanding National Hub Network." />
-          <Reveal delay={120}>
-            <p className="text-pretty font-body text-[clamp(18px,1.9vw,21px)] leading-relaxed text-[#dadada]">
-              The first Hub is open in West Memphis — one block from the I-40 / I-55 interchange, roughly
-              60,000 trucks a day. Phase-one expansion is underway across five key markets.
+      {/* ===================== CINEMATIC BREAK — muted video (dark) ===================== */}
+      <section className="relative flex min-h-[64vh] items-center overflow-hidden px-5 py-[clamp(80px,12vw,150px)] sm:px-8">
+        <BackgroundVideo
+          src={CINEMATIC_VIDEO}
+          poster={PHOTOS.clubAerial}
+          className="img-grade absolute inset-0 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,11,11,0.7),rgba(11,11,11,0.82))]" />
+        <div className="relative mx-auto max-w-site text-center">
+          <Reveal>
+            <div className="font-label text-[11px] uppercase tracking-[0.28em] text-fuel">The Modern-Day Pony Express</div>
+            <p className="mx-auto mt-5 max-w-4xl text-balance font-display text-[clamp(30px,5vw,68px)] font-black uppercase leading-[0.95] tracking-[-0.02em] text-white">
+              Built For The People Who Move America.
             </p>
           </Reveal>
         </div>
-
-        {/* map LEFT (mirrors the usual text-left/map-right), directory RIGHT */}
-        <div className="mt-11 grid gap-7 lg:grid-cols-[1.25fr_0.75fr] lg:items-stretch">
-          <Reveal dir="left">
-            <NetworkMap />
-          </Reveal>
-          <div className="flex flex-col gap-5">
-            <div className="grid grid-cols-3 gap-3">
-              {[
-                { big: "~1,000", label: "extra-wide spaces per Hub" },
-                { big: "24/7", label: "gated, surveilled access" },
-                { big: "6", label: "markets in phase one" },
-              ].map((f, i) => (
-                <Reveal key={i} delay={i * 80} className="rounded-card border border-chrome/15 bg-panel px-4 py-5">
-                  <CountUp value={f.big} style={{ color: "#F07820" }} className="tnum font-display text-[clamp(20px,2.4vw,28px)] font-black leading-none" />
-                  <div className="mt-2 font-body text-[13px] leading-snug text-chrome">{f.label}</div>
-                </Reveal>
-              ))}
-            </div>
-            <Reveal delay={120} className="flex-1 rounded-card border border-chrome/15 bg-panel p-5">
-              <div className="mb-3 font-mono text-[11px] uppercase tracking-[0.12em] text-chrome">Hub Directory</div>
-              <div className="flex flex-col">
-                {markets.map((m, i) => (
-                  <div key={m} className="tnum flex items-center justify-between border-t border-chrome/10 py-2.5 font-mono text-[13px] first:border-t-0" style={{ color: i === 0 ? "#F07820" : "#d8d8d8" }}>
-                    <span className="flex items-center gap-2.5">
-                      <span className="h-2 w-2 rounded-full" style={{ background: i === 0 ? "#F07820" : "#7EC8E3" }} />
-                      {m}
-                    </span>
-                    <span className="font-label text-[9px] uppercase tracking-[0.14em]">{i === 0 ? "Open" : "Phase 1"}</span>
-                  </div>
-                ))}
-              </div>
-            </Reveal>
-          </div>
-        </div>
-      </Section>
-
-      {/* ===================== INSIDE THE NETWORK — gallery (ink) ===================== */}
-      <Section variant="ink" id="tour" className="py-[clamp(64px,9vw,116px)]">
-        <SectionHead kicker="Take The Tour" size="xl" title="See The Build. Inside The Network." />
-        <Reveal delay={120}>
-          <p className="mt-6 max-w-[58ch] text-pretty font-body text-[clamp(18px,1.9vw,21px)] leading-relaxed text-[#dadada]">
-            Every Hub is a first-class facility — the arrival, the Outriders Club, the rooftop Sky Deck, and on-site LH Fleet Services.
-          </p>
-        </Reveal>
-        <div className="mt-10">
-          <RenderingsGallery />
-        </div>
-      </Section>
+      </section>
 
       <Contact
         headline="Something BIG Is Coming To Trucking."
@@ -333,5 +292,56 @@ export default function Home() {
       />
       <Footer />
     </main>
+  );
+}
+
+/** Full-bleed terminal card — slow image scale on hover (motion-safe). */
+function TerminalCard({
+  img,
+  badge,
+  name,
+  loc,
+  live = false,
+  big = false,
+}: {
+  img: string;
+  badge: string;
+  name: string;
+  loc: string;
+  live?: boolean;
+  big?: boolean;
+}) {
+  return (
+    <Reveal
+      className={`group relative flex items-end overflow-hidden rounded-card border border-chrome/15 ${
+        big ? "min-h-[clamp(360px,46vw,520px)]" : "min-h-[clamp(300px,38vw,420px)]"
+      }`}
+    >
+      <Image
+        src={img}
+        alt={`${name} — LineHaul Station`}
+        fill
+        loading="lazy"
+        className="img-grade scale-[1.04] object-cover transition-transform duration-[1100ms] ease-[cubic-bezier(.2,.7,.2,1)] motion-safe:group-hover:scale-110"
+        sizes={big ? "100vw" : "(max-width: 768px) 100vw, 50vw"}
+      />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,11,11,0.05)_30%,rgba(11,11,11,0.62)_70%,rgba(11,11,11,0.92))]" />
+      <div className="relative w-full p-[clamp(24px,3vw,40px)]">
+        <span className="inline-flex items-center gap-2 rounded-btn border border-chrome/25 bg-ink/50 px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.14em] text-white backdrop-blur-sm">
+          {live && <span className="h-1.5 w-1.5 rounded-full bg-fuel shadow-[0_0_10px_1px_rgba(240,120,32,0.8)]" aria-hidden />}
+          {badge}
+        </span>
+        <div className={`mt-4 font-display font-black uppercase leading-[0.92] tracking-[-0.02em] text-white ${big ? "text-[clamp(28px,3.4vw,46px)]" : "text-[clamp(24px,2.6vw,34px)]"}`}>
+          {name}
+        </div>
+        <div className="mt-2 font-mono text-[13px] uppercase tracking-[0.1em] text-fuel">{loc}</div>
+        <a
+          href="#network"
+          className="group/more mt-5 inline-block border-b border-white/35 pb-1.5 font-mono text-[12px] uppercase tracking-[0.14em] text-white transition-colors hover:border-fuel hover:text-fuel"
+        >
+          Learn More <span aria-hidden>→</span>
+        </a>
+      </div>
+    </Reveal>
   );
 }
