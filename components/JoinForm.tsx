@@ -10,9 +10,6 @@ import { site } from "@/lib/site";
  * success state. Submit label per brief: "Join Free."
  */
 
-const ACCENT = "#F07820";
-const ACCENT_DARK = "#C85A12";
-
 const MEMBER_TYPES = [
   "Company Driver",
   "Owner Operator",
@@ -32,7 +29,15 @@ const TEXT_FIELDS: Txt[] = [
   { name: "trailerCount", label: "Trailer Count", type: "number", half: true },
 ];
 
-export default function JoinForm() {
+export default function JoinForm({
+  accent = "#F07820",
+  accentDark = "#C85A12",
+}: {
+  accent?: string;
+  accentDark?: string;
+} = {}) {
+  const ACCENT = accent;
+  const ACCENT_DARK = accentDark;
   const [values, setValues] = useState<Record<string, string>>({ memberType: MEMBER_TYPES[0] });
   const [sms, setSms] = useState(false);
   const [terms, setTerms] = useState(false);

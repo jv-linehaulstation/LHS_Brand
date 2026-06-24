@@ -17,7 +17,7 @@ export default function Contact({
   return (
     <section
       id="contact"
-      className="relative overflow-hidden px-5 py-[clamp(72px,9vw,116px)] sm:px-8"
+      className="relative overflow-hidden px-[clamp(20px,6vw,100px)] py-[clamp(72px,9vw,116px)]"
       style={{ background: `linear-gradient(160deg, ${accentDark}, #0B0B0B 72%)` }}
     >
       <div className="bloom" style={{ ["--bloom" as string]: `${accent}33` }} />

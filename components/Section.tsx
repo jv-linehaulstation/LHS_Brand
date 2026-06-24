@@ -1,14 +1,16 @@
 import ParallaxImage from "@/components/motion/ParallaxImage";
 
-type Variant = "ink" | "carbon" | "panel" | "blueprint" | "image" | "gradient";
+type Variant = "ink" | "carbon" | "panel" | "blueprint" | "image" | "gradient" | "light";
 
 /**
- * One wrapper that enforces the background rhythm. Give adjacent sections
- * different `variant`s so no two neighbors look alike (the whole point):
+ * One wrapper that enforces the background rhythm + full-width layout (content
+ * spans the screen with ~100px desktop gutters, matching the homepage). Give
+ * adjacent sections different `variant`s so no two neighbors look alike:
  *   ink       → flat #0B0B0B
  *   carbon    → #111 with a faint top/bottom hairline
  *   panel     → slightly lifted #141414 slab
  *   blueprint → carbon + faint engineering grid
+ *   light     → warm near-white #F4F2EF (callers use carbon text — the B/W beat)
  *   image     → parallax photo + darkened overlay (pass `image`)
  *   gradient  → accent-tinted diagonal wash (pass `accent`)
  */
@@ -29,7 +31,7 @@ export default function Section({
   className?: string;
   id?: string;
 }) {
-  const base = "relative overflow-hidden px-5 sm:px-8";
+  const base = "relative overflow-hidden px-[clamp(20px,6vw,100px)]";
 
   if (variant === "image" && image) {
     return (
@@ -47,7 +49,7 @@ export default function Section({
           className="absolute inset-x-0 top-0 h-[2px]"
           style={{ background: `linear-gradient(90deg, ${accent}, transparent)` }}
         />
-        <div className="relative mx-auto max-w-site">{children}</div>
+        <div className="relative">{children}</div>
       </section>
     );
   }
@@ -61,7 +63,7 @@ export default function Section({
       >
         <div className="bloom" style={{ ["--bloom" as string]: `${accent}26` }} />
         <div className="blueprint pointer-events-none absolute inset-0 opacity-30" />
-        <div className="relative mx-auto max-w-site">{children}</div>
+        <div className="relative">{children}</div>
       </section>
     );
   }
@@ -71,6 +73,8 @@ export default function Section({
       ? "bg-[#101010] border-y border-chrome/10"
       : variant === "panel"
       ? "bg-[#141414] border-y border-chrome/10"
+      : variant === "light"
+      ? "bg-[#F4F2EF] border-y border-[#E2DDD6]"
       : "bg-ink";
 
   return (

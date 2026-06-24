@@ -11,22 +11,33 @@ import { BuildVsBelong, RelayDiagram, Timeline, SoloVsRelay } from "@/components
 import RenderingsGallery from "@/components/RenderingsGallery";
 import { RENDER_GROUPS } from "@/lib/renderGroups";
 import LaneConnector from "@/components/LaneConnector";
-import LeadForm from "@/components/LeadForm";
+import HowItWorks, { type Step } from "@/components/HowItWorks";
+import JoinForm from "@/components/JoinForm";
 import OneHomeCalculator from "@/components/calculators/OneHomeCalculator";
 import FlexSpaceCalculator from "@/components/calculators/FlexSpaceCalculator";
 import { audiences, AudienceKey, PHOTOS } from "@/lib/audiences";
+import { site } from "@/lib/site";
 
 export default function AudiencePage({ audience }: { audience: AudienceKey }) {
   const a = audiences[audience];
   const ac = a.accent;
   const hasCalc = audience === "drivers" || audience === "carriers";
 
+  // Map this lane's "how it works" steps onto the shared pinned HowItWorks module.
+  const HOW_IMAGES = [PHOTOS.buildingExterior, PHOTOS.fleetFuel, PHOTOS.crossDock, PHOTOS.skydeck, PHOTOS.truckSunset];
+  const howSteps: Step[] = a.how.steps.map((st, i) => ({
+    n: String(i + 1).padStart(3, "0"),
+    t: st.title,
+    d: st.blurb,
+    img: HOW_IMAGES[i % HOW_IMAGES.length],
+  }));
+
   return (
     <main className="min-h-screen bg-ink">
       <Nav accent={ac} active={a.key} />
 
       {/* ============================ HERO — full-bleed, bottom-anchored ============================ */}
-      <section className="relative flex min-h-[92dvh] items-end overflow-hidden px-5 pb-14 pt-28 sm:px-8">
+      <section className="relative flex min-h-[92dvh] items-end overflow-hidden px-[clamp(20px,6vw,100px)] pb-14 pt-28">
         <ParallaxImage src={a.heroImage} alt={`${a.navLabel} — LineHaul Station`} priority strength={0.24} />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(11,11,11,0.96)_0%,rgba(11,11,11,0.72)_55%,rgba(11,11,11,0.4)_100%)]" />
         <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(11,11,11,0.94),transparent_52%)]" />
@@ -38,7 +49,7 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
           LANE · {a.navLabel.toUpperCase()}
         </div>
 
-        <div className="relative mx-auto w-full max-w-site">
+        <div className="relative w-full">
           <Reveal>
             <StatusChip label="West Memphis Hub — Open Now" coord="I-40 / I-55" accent={ac} />
           </Reveal>
@@ -102,7 +113,7 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
           </DataTag>
           <DataTag className="hidden sm:inline-flex">{a.navLabel.toUpperCase()} · LIVE</DataTag>
         </div>
-        <div className="-mx-5 grid grid-cols-2 sm:-mx-8 md:grid-cols-4">
+        <div className="grid grid-cols-2 md:grid-cols-4">
           {a.stats.map((s, i) => (
             <Reveal
               key={i}
@@ -116,30 +127,28 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
         </div>
       </Section>
 
-      {/* ========================= PROBLEM (ink) — editorial split ========================= */}
-      <Section variant="ink" id="problem" className="py-[clamp(72px,10vw,124px)]">
+      {/* ========================= PROBLEM (white) — editorial split ========================= */}
+      <Section variant="light" id="problem" className="py-[clamp(72px,10vw,124px)]">
         <div className="grid gap-x-16 gap-y-12 lg:grid-cols-[1.2fr_0.8fr] lg:items-start">
           <div>
-            <SectionHead kicker={a.problem.kicker} title={a.problem.headline} accent={ac} size="xl" />
+            <SectionHead kicker={a.problem.kicker} title={a.problem.headline} accent={ac} size="xl" tone="onLight" />
             <Reveal delay={120}>
-              <p className="mt-7 max-w-[54ch] text-pretty font-body text-[clamp(18px,1.9vw,22px)] leading-relaxed text-[#dadada]">
+              <p className="mt-7 max-w-[54ch] text-pretty font-body text-[clamp(18px,1.9vw,22px)] leading-relaxed text-[#3a3733]">
                 {a.problem.body}
               </p>
             </Reveal>
           </div>
-          <Reveal delay={140} dir="right" className="frame lg:-mt-6">
-            <div className="bg-panel p-7 sm:p-9">
-              {a.problem.counters.map((c, i) => (
-                <div key={i} className="flex items-baseline gap-6 border-t border-chrome/10 py-5 first:border-t-0 first:pt-0">
-                  <CountUp
-                    value={c.big}
-                    style={{ color: ac }}
-                    className="tnum min-w-[120px] font-display text-[clamp(30px,4vw,42px)] font-black leading-none"
-                  />
-                  <span className="font-body text-[15px] leading-snug text-chrome">{c.label}</span>
-                </div>
-              ))}
-            </div>
+          <Reveal delay={140} dir="right" className="rounded-card border border-[#E2DDD6] bg-white p-7 sm:p-9 lg:-mt-6">
+            {a.problem.counters.map((c, i) => (
+              <div key={i} className="flex items-baseline gap-6 border-t border-[#E2DDD6] py-5 first:border-t-0 first:pt-0">
+                <CountUp
+                  value={c.big}
+                  style={{ color: ac }}
+                  className="tnum min-w-[120px] font-display text-[clamp(30px,4vw,42px)] font-black leading-none"
+                />
+                <span className="font-body text-[15px] leading-snug text-[#6a655e]">{c.label}</span>
+              </div>
+            ))}
           </Reveal>
         </div>
       </Section>
@@ -174,7 +183,7 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
       )}
 
       {/* ===================== ROAD DIVIDER (image) ===================== */}
-      <section className="relative overflow-hidden px-5 py-[clamp(96px,14vw,140px)] text-center sm:px-8">
+      <section className="relative overflow-hidden px-[clamp(20px,6vw,100px)] py-[clamp(96px,14vw,140px)] text-center">
         <ParallaxImage src={a.roadImage ?? PHOTOS.truckSunset} alt={`${a.navLabel} — LineHaul Station`} strength={0.28} />
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,11,11,0.6),rgba(11,11,11,0.84))]" />
         <Reveal className="relative mx-auto max-w-4xl">
@@ -190,36 +199,8 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
         </Reveal>
       </section>
 
-      {/* ===================== HOW IT WORKS (carbon) — sequence ===================== */}
-      <Section variant="carbon" className="py-[clamp(72px,9vw,108px)]">
-        <SectionHead kicker={a.how.eyebrow} title={a.how.headline} accent={ac} size="xl" />
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {a.how.steps.map((s, i) => (
-            <Reveal
-              key={i}
-              delay={i * 80}
-              className="lift group relative overflow-hidden rounded-card border border-chrome/15 bg-panel p-6"
-            >
-              <span
-                className="pointer-events-none absolute -right-2 -top-5 font-display text-[88px] font-black leading-none opacity-[0.07]"
-                style={{ color: ac }}
-                aria-hidden
-              >
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <div className="relative">
-                <div className="tnum font-mono text-[12px]" style={{ color: ac }}>
-                  STEP {String(i + 1).padStart(2, "0")}
-                </div>
-                <div className="mt-3 font-display text-[18px] font-extrabold uppercase leading-tight text-white">
-                  {s.title}
-                </div>
-                <p className="mt-2.5 font-body text-[14px] leading-relaxed text-chrome">{s.blurb}</p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </Section>
+      {/* ===================== HOW IT WORKS — pinned scroll-driven (shared) ===================== */}
+      <HowItWorks steps={howSteps} accent={ac} kicker={a.how.eyebrow} title={a.how.headline} />
 
       {/* ============ SOLO vs RELAY (panel) — carriers & government ============ */}
       {a.relay && (
@@ -230,11 +211,11 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
 
       {/* ============ CAPABILITIES / AMENITIES (ink) ============ */}
       {a.amenities ? (
-        <Section variant="ink" className="py-[clamp(72px,10vw,112px)]">
+        <Section variant="light" className="py-[clamp(72px,10vw,112px)]">
           <div className="grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
-            <SectionHead kicker={a.amenities.eyebrow} title={a.amenities.headline} accent={ac} size="xl" />
+            <SectionHead kicker={a.amenities.eyebrow} title={a.amenities.headline} accent={ac} size="xl" tone="onLight" />
             <Reveal delay={120}>
-              <p className="text-pretty font-body text-[clamp(18px,1.9vw,21px)] leading-relaxed text-[#dadada]">{a.amenities.intro}</p>
+              <p className="text-pretty font-body text-[clamp(18px,1.9vw,21px)] leading-relaxed text-[#3a3733]">{a.amenities.intro}</p>
             </Reveal>
           </div>
           {/* resort mosaic — first tile hero, one wide tile for rhythm */}
@@ -281,14 +262,14 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
           </Reveal>
         </Section>
       ) : (
-        <Section variant="ink" className="py-[clamp(72px,10vw,112px)]">
-          <SectionHead kicker={a.featuresEyebrow} title={a.featuresTitle} accent={ac} size="xl" />
+        <Section variant="light" className="py-[clamp(72px,10vw,112px)]">
+          <SectionHead kicker={a.featuresEyebrow} title={a.featuresTitle} accent={ac} size="xl" tone="onLight" />
           <div className="mt-10 grid gap-4 lg:grid-cols-2">
             {a.features.map((f, i) => (
               <Reveal
                 key={i}
                 delay={(i % 2) * 80}
-                className="lift group rounded-card border border-chrome/15 bg-panel p-6 sm:p-7"
+                className="lift group rounded-card border border-[#E2DDD6] bg-white p-6 sm:p-7"
               >
                 <div className="flex items-start gap-5">
                   <span className="tnum mt-1 font-mono text-[14px]" style={{ color: ac }}>
@@ -296,12 +277,12 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
                   </span>
                   <div className="flex-1">
                     <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-                      <div className="font-display text-[19px] font-extrabold uppercase tracking-[0.01em] text-white">
+                      <div className="font-display text-[19px] font-extrabold uppercase tracking-[0.01em] text-ink">
                         {f.title}
                       </div>
                       <div className="font-mono text-[11px]" style={{ color: ac }}>{f.tag}</div>
                     </div>
-                    <p className="mt-3 font-body text-[15px] leading-relaxed text-chrome">{f.blurb}</p>
+                    <p className="mt-3 font-body text-[15px] leading-relaxed text-[#6a655e]">{f.blurb}</p>
                   </div>
                 </div>
               </Reveal>
@@ -368,19 +349,36 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
         <LaneConnector current={a.key} accent={ac} />
       </Section>
 
-      {/* ===================== LEAD FORM (gradient) ===================== */}
+      {/* ===================== LET'S TALK (gradient) — Join form + contact ===================== */}
       <Section variant="gradient" accent={ac} id="contact" className="py-[clamp(80px,11vw,116px)]">
-        <LeadForm
-          audienceKey={a.key}
-          accent={ac}
-          accentDark={a.accentDark}
-          eyebrow={a.form.eyebrow}
-          headline={a.form.headline}
-          body={a.form.body}
-          fields={a.form.fields}
-          consent={a.form.consent}
-          success={a.form.success}
-        />
+        <SectionHead kicker={a.form.eyebrow} title={a.form.headline} accent={ac} size="xl" />
+        <Reveal delay={100}>
+          <p className="mt-5 max-w-[54ch] text-pretty font-body text-[clamp(16px,1.6vw,20px)] leading-relaxed text-[#dadada]">
+            {a.form.body}
+          </p>
+        </Reveal>
+        <div className="mt-10 grid gap-[clamp(28px,4vw,56px)] lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+          <Reveal>
+            <JoinForm accent={ac} accentDark={a.accentDark} />
+          </Reveal>
+          <Reveal delay={120} dir="right" className="lg:pt-4">
+            <div className="font-mono text-[11px] uppercase tracking-[0.2em]" style={{ color: ac }}>Reach Us Direct</div>
+            <div className="mt-5 flex flex-col gap-4 font-mono text-[clamp(15px,1.6vw,18px)] text-white">
+              <a href={site.phoneHref} className="flex items-center gap-3 transition-colors hover:opacity-80">
+                <span className="text-chrome">Phone</span> {site.phone}
+              </a>
+              <a href={site.emailHref} className="flex items-center gap-3 transition-colors hover:opacity-80">
+                <span className="text-chrome">Email</span> {site.email}
+              </a>
+              <div className="flex items-center gap-3">
+                <span className="text-chrome">Web</span> {site.domainLabel}
+              </div>
+              <div className="tnum mt-2 flex items-center gap-3 text-chrome">
+                <span className="h-2 w-2 rounded-full" style={{ background: ac }} aria-hidden /> West Memphis, AR · 35.14°N / 90.18°W
+              </div>
+            </div>
+          </Reveal>
+        </div>
       </Section>
 
       <Footer />

@@ -90,7 +90,7 @@ export default function JoinPage() {
       <Nav accent={ACCENT} active="join" />
 
       {/* ============================ HERO — full-bleed video ============================ */}
-      <section className="relative flex min-h-[92dvh] items-end overflow-hidden px-5 pb-14 pt-28 sm:px-8">
+      <section className="relative flex min-h-[92dvh] items-end overflow-hidden px-[clamp(20px,6vw,100px)] pb-14 pt-28">
         <BackgroundVideo
           src={HERO_VIDEO}
           poster={`${O}/gallery-3.jpg`}
@@ -106,7 +106,7 @@ export default function JoinPage() {
           THE OUTRIDERS CLUB
         </div>
 
-        <div className="relative mx-auto w-full max-w-site">
+        <div className="relative w-full">
           <Reveal>
             <StatusChip label="Outriders Membership — Open" coord="Driver-owned community" accent={ACCENT} />
           </Reveal>

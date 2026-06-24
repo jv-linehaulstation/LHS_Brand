@@ -75,6 +75,7 @@ export function SectionHead({
   size = "base",
   className = "",
   maxW = "max-w-4xl",
+  tone = "onDark",
 }: {
   index?: string;
   kicker?: string;
@@ -84,7 +85,11 @@ export function SectionHead({
   size?: keyof typeof HEAD_SIZE;
   className?: string;
   maxW?: string;
+  /** onLight = carbon text for white sections; onDark (default) = white text. */
+  tone?: "onDark" | "onLight";
 }) {
+  const titleColor = tone === "onLight" ? "text-ink" : "text-white";
+  const kickerColor = tone === "onLight" ? "text-[#6a655e]" : "text-chrome";
   return (
     <Reveal className={`${align === "center" ? `mx-auto ${maxW} text-center` : maxW} ${className}`}>
       {(index || kicker) && (
@@ -102,14 +107,14 @@ export function SectionHead({
             aria-hidden
           />
           {kicker && (
-            <span className="font-label text-[11px] uppercase tracking-[0.22em] text-chrome">
+            <span className={`font-label text-[11px] uppercase tracking-[0.22em] ${kickerColor}`}>
               {kicker}
             </span>
           )}
         </div>
       )}
       <h2
-        className={`text-balance font-display ${HEAD_SIZE[size]} font-black uppercase leading-[0.92] tracking-[-0.025em] text-white`}
+        className={`text-balance font-display ${HEAD_SIZE[size]} font-black uppercase leading-[0.92] tracking-[-0.025em] ${titleColor}`}
       >
         {title}
       </h2>
