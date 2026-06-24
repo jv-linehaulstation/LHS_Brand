@@ -10,6 +10,7 @@ import { SectionHead, StatusChip, DataTag } from "@/components/Bits";
 import { BuildVsBelong, RelayDiagram, Timeline, SoloVsRelay } from "@/components/Signatures";
 import RenderingsGallery from "@/components/RenderingsGallery";
 import { RENDER_GROUPS } from "@/lib/renderGroups";
+import LaneConnector from "@/components/LaneConnector";
 import LeadForm from "@/components/LeadForm";
 import OneHomeCalculator from "@/components/calculators/OneHomeCalculator";
 import FlexSpaceCalculator from "@/components/calculators/FlexSpaceCalculator";
@@ -360,6 +361,11 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
             </div>
           </Reveal>
         </div>
+      </Section>
+
+      {/* ===================== ONE NETWORK — lane connector (blueprint) ===================== */}
+      <Section variant="blueprint" className="py-[clamp(64px,9vw,104px)]">
+        <LaneConnector current={a.key} accent={ac} />
       </Section>
 
       {/* ===================== LEAD FORM (gradient) ===================== */}

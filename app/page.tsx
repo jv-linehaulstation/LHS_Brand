@@ -11,6 +11,7 @@ import { PrimaryCTA } from "@/components/CTA";
 import { SectionHead, StatusChip, DataTag } from "@/components/Bits";
 import NetworkMap from "@/components/NetworkMap";
 import LaneTabs, { type Lane } from "@/components/LaneTabs";
+import Pillars from "@/components/Pillars";
 import { audiences, AUDIENCE_ORDER, PHOTOS } from "@/lib/audiences";
 
 // hero.mp4 lives on GHL storage (~23 MB) — referenced remotely for the cinematic break.
@@ -38,13 +39,6 @@ const lanes: Lane[] = AUDIENCE_ORDER.map((key) => {
     image: a.heroImage,
   };
 });
-
-const pillars = [
-  { n: "01", t: "Driver Dignity", p: "Get the best drivers home, rested, and respected — every night they're with us." },
-  { n: "02", t: "Real Estate", p: "Owned Hubs and Service Centers — assets that appreciate, not parking lots." },
-  { n: "03", t: "Lower Cost", p: "A national relay that takes cost out of every mile of American freight." },
-  { n: "04", t: "Stewardship", p: "Supply-chain resilience that strengthens American manufacturing and the lanes it depends on." },
-];
 
 const terminalStats = [
   { big: "1st", label: "Hub open now — West Memphis, AR" },
@@ -175,22 +169,7 @@ export default function Home() {
 
       {/* ===================== PILLARS / WHY WE DO IT (panel) ===================== */}
       <Section variant="panel" className="py-[clamp(64px,8vw,108px)]">
-        <SectionHead kicker="Why We Do It" size="xl" title="Infrastructure With A Conscience." maxW="max-w-3xl" />
-        <div className="mt-12 grid gap-px overflow-hidden border border-chrome/12 bg-chrome/12 sm:grid-cols-2 lg:grid-cols-4">
-          {pillars.map((p, i) => (
-            <Reveal
-              key={p.n}
-              delay={i * 80}
-              className="flex min-h-[210px] flex-col justify-end bg-ink p-7 transition-colors duration-300 hover:bg-[#121110]"
-            >
-              <span className="tnum font-mono text-[12px] text-fuel">{p.n}</span>
-              <div className="mt-auto pt-8 font-display text-[clamp(19px,1.6vw,22px)] font-extrabold uppercase tracking-[-0.01em] text-white">
-                {p.t}
-              </div>
-              <p className="mt-2.5 font-body text-[15px] leading-relaxed text-chrome">{p.p}</p>
-            </Reveal>
-          ))}
-        </div>
+        <Pillars />
       </Section>
 
       {/* ===================== THE NETWORK — national Hub map (carbon) ===================== */}

@@ -10,6 +10,7 @@ import { SectionHead, StatusChip, DataTag } from "@/components/Bits";
 import JoinForm from "@/components/JoinForm";
 import PhotoGallery, { type Shot } from "@/components/PhotoGallery";
 import FAQ, { type QA } from "@/components/FAQ";
+import LaneConnector from "@/components/LaneConnector";
 
 const ACCENT = "#F07820";
 const ACCENT_DARK = "#C85A12";
@@ -287,6 +288,11 @@ export default function JoinPage() {
         <div className="mt-12">
           <FAQ items={FAQS} accent={ACCENT} />
         </div>
+      </Section>
+
+      {/* ONE NETWORK — lane connector (carbon) */}
+      <Section variant="carbon" className="py-[clamp(64px,9vw,104px)]">
+        <LaneConnector accent={ACCENT} showJoin={false} />
       </Section>
 
       <Contact

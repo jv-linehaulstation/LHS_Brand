@@ -7,6 +7,8 @@ import Contact from "@/components/Contact";
 import Reveal from "@/components/motion/Reveal";
 import ParallaxImage from "@/components/motion/ParallaxImage";
 import { SectionHead, DataTag } from "@/components/Bits";
+import Pillars from "@/components/Pillars";
+import LaneConnector from "@/components/LaneConnector";
 import { PHOTOS } from "@/lib/audiences";
 
 export const metadata: Metadata = {
@@ -204,6 +206,16 @@ export default function LeadershipPage() {
             </Reveal>
           ))}
         </div>
+      </Section>
+
+      {/* WHY WE DO IT — shared brand values (panel) */}
+      <Section variant="panel" className="py-[clamp(64px,8vw,108px)]">
+        <Pillars title={<>The Standard Behind <span className="text-fuel">Every Hub.</span></>} />
+      </Section>
+
+      {/* ONE NETWORK — lane connector (ink) */}
+      <Section variant="ink" className="py-[clamp(64px,9vw,104px)]">
+        <LaneConnector accent={FUEL} />
       </Section>
 
       <Contact
