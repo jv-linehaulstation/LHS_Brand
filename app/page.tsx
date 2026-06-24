@@ -10,36 +10,15 @@ import BackgroundVideo from "@/components/motion/BackgroundVideo";
 import { PrimaryCTA } from "@/components/CTA";
 import { SectionHead, StatusChip, DataTag } from "@/components/Bits";
 import NetworkMap from "@/components/NetworkMap";
-import LaneTabs, { type Lane } from "@/components/LaneTabs";
+import TerminalScrub from "@/components/TerminalScrub";
+import AudienceSlider from "@/components/AudienceSlider";
 import Pillars from "@/components/Pillars";
 import RenderingsGallery from "@/components/RenderingsGallery";
-import { audiences, AUDIENCE_ORDER, PHOTOS } from "@/lib/audiences";
+import { PHOTOS } from "@/lib/audiences";
 
 // hero.mp4 lives on GHL storage (~23 MB) — referenced remotely for the cinematic break.
 const CINEMATIC_VIDEO =
   "https://storage.googleapis.com/msgsndr/vFbdhIphhRpcrSlf4VJF/media/69554d56cb5b716ba310c3dd.mp4";
-
-const laneBlurb: Record<string, string> = {
-  drivers: "OneHome & the Outriders Club — a private, resort-quality home base so you keep more of what you earn on the road.",
-  carriers: "FlexSpace — buy premium terminal space by the increment, not $15M buildings, in the markets you already run.",
-  brokers: "Premium staging, cross-dock, and relay access in every key market — capacity behind every carrier you trust.",
-  shippers: "Secure cross-dock and relay capacity across a national Hub network that keeps your freight moving 24/7.",
-  government: "Freight relay infrastructure that strengthens America — the Modern-Day Pony Express.",
-};
-
-const lanes: Lane[] = AUDIENCE_ORDER.map((key) => {
-  const a = audiences[key];
-  return {
-    key,
-    label: a.navLabel,
-    headline: a.heroPunch,
-    line: laneBlurb[key],
-    sub: a.sub,
-    accent: a.accent,
-    href: `/${key}`,
-    image: a.heroImage,
-  };
-});
 
 const terminalStats = [
   { big: "1st", label: "Hub open now — West Memphis, AR" },
@@ -180,13 +159,13 @@ export default function Home() {
         </div>
       </Section>
 
-      {/* ===================== FIND YOUR LANE — tabbed router (ink) ===================== */}
-      <Section variant="ink" id="lanes" className="py-[clamp(64px,9vw,120px)]">
-        <SectionHead kicker="Find Your Lane" size="xl" title="One Network. Built For Everyone Who Moves Freight." maxW="max-w-5xl" />
-        <div className="mt-11">
-          <LaneTabs lanes={lanes} />
-        </div>
-      </Section>
+      {/* ===================== TERMINAL SCROLL-SCRUB REVEAL (white) — signature #1 ===================== */}
+      <TerminalScrub />
+
+      {/* ===================== FIND YOUR LANE — pinned 5-audience slider (black) — signature #2 ===================== */}
+      <div id="lanes">
+        <AudienceSlider />
+      </div>
 
       {/* ===================== PILLARS / WHY WE DO IT (panel) ===================== */}
       <Section variant="panel" className="py-[clamp(64px,8vw,108px)]">

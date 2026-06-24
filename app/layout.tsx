@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { fontVars } from "@/lib/fonts";
 import Loader from "@/components/Loader";
+import SmoothScroll from "@/components/motion/SmoothScroll";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -22,6 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={fontVars}>
       <body className="bg-ink font-body text-white antialiased">
         <Loader />
+        <SmoothScroll />
         {children}
       </body>
     </html>
