@@ -11,7 +11,7 @@ import NetworkMap from "@/components/NetworkMap";
 import TerminalTabs from "@/components/TerminalTabs";
 import HowItWorks, { type Step } from "@/components/HowItWorks";
 import WideSlider, { type Slide } from "@/components/WideSlider";
-import AudienceShowcase from "@/components/AudienceShowcase";
+import AudienceScroll from "@/components/AudienceScroll";
 import FilterGallery from "@/components/FilterGallery";
 import JoinForm from "@/components/JoinForm";
 import { PHOTOS } from "@/lib/audiences";
@@ -53,9 +53,9 @@ const STATS = [
   { big: "50+", label: "Hubs planned" },
 ];
 
-function Kick({ children, accent = "#F07820" }: { children: React.ReactNode; accent?: string }) {
+function Kick({ children, accent = "#F07820", center = false }: { children: React.ReactNode; accent?: string; center?: boolean }) {
   return (
-    <div className="flex items-center gap-3 font-mono text-[12px] uppercase tracking-[0.28em]" style={{ color: accent }}>
+    <div className={`flex items-center gap-3 font-mono text-[12px] uppercase tracking-[0.28em] ${center ? "justify-center" : ""}`} style={{ color: accent }}>
       <span className="h-px w-7" style={{ background: accent }} aria-hidden /> {children}
     </div>
   );
@@ -66,11 +66,13 @@ export default function Home() {
     <main className="min-h-screen bg-ink">
       <Nav />
 
-      {/* ============ 1. HERO [B] — video, copy higher, cursor scroll cue ============ */}
-      <section className={`relative flex min-h-[100dvh] items-center overflow-hidden ${PAD} pb-20 pt-32`}>
+      {/* ============ 1. HERO [B] — video, copy higher, fade into next ============ */}
+      <section className={`relative flex min-h-[100dvh] items-center overflow-hidden ${PAD} pb-24 pt-32`}>
         <BackgroundVideo src={HERO_VIDEO} poster="/assets/marketing/hero-poster.jpg" className="absolute inset-0 h-full w-full object-cover" />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(11,11,11,0.85),rgba(11,11,11,0.3)_62%)]" />
-        <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(11,11,11,0.7),transparent_45%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(11,11,11,0.65),transparent_45%)]" />
+        {/* bottom fade — blends the hero into the next (black) section, no hard seam */}
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-[linear-gradient(0deg,#0B0B0B,transparent)]" />
         <div className="pointer-events-none absolute inset-x-0 top-0 h-[2px] overflow-hidden">
           <div className="scan-once h-full w-full" style={{ ["--ac" as string]: "#F07820" }} />
         </div>
@@ -100,7 +102,16 @@ export default function Home() {
         <ScrollCursor />
       </section>
 
-      {/* ============ 2. WHO WE ARE [W] — Jeff only ============ */}
+      {/* ============ 2. FIND YOUR LANE [B] — pinned sticky-scroll audiences ============ */}
+      <section id="lanes" className={`bg-ink ${PAD} py-[clamp(70px,11vh,140px)]`}>
+        <Reveal><Kick>Find Your Lane</Kick></Reveal>
+        <Reveal as="h2" className="mt-3 font-display text-[clamp(36px,6vw,92px)] font-black uppercase leading-[0.9] tracking-[-0.025em] text-white">
+          One Network. Every Lane.
+        </Reveal>
+        <AudienceScroll />
+      </section>
+
+      {/* ============ 3. WHO WE ARE [W] — Jeff only ============ */}
       <section className={`${PAD} py-[clamp(70px,11vh,140px)]`} style={{ background: WHITE }}>
         <Reveal><Kick>Who We Are</Kick></Reveal>
         <div className="mt-8 grid gap-[clamp(28px,5vw,72px)] lg:grid-cols-[1.4fr_0.85fr] lg:items-start">
@@ -148,34 +159,22 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ============ 3. WHAT WE BUILT [B] — tab-linked media ============ */}
+      {/* ============ 4. WHAT WE BUILT [B] — tab-linked media ============ */}
       <section className={`bg-ink ${PAD} py-[clamp(70px,11vh,140px)]`}>
         <Reveal><Kick>What We Built</Kick></Reveal>
-        <Reveal as="h2" className="mt-3 font-display text-[clamp(36px,6vw,92px)] font-black uppercase leading-[0.9] tracking-[-0.025em] text-white">
+        <Reveal as="h2" className="mt-3 font-display text-[clamp(40px,6.6vw,104px)] font-black uppercase leading-[0.88] tracking-[-0.025em] text-white">
           A Real Terminal.<br />Not A Parking Lot.
         </Reveal>
         <TerminalTabs />
       </section>
 
-      {/* ============ 4. HOW IT WORKS [B] — pinned scroll-driven ============ */}
+      {/* ============ 5. HOW IT WORKS [B] — pinned scroll-driven ============ */}
       <HowItWorks steps={RELAY_STEPS} />
 
-      {/* ============ 5. THE GALLERY [W] — full-bleed slider + thumbnails ============ */}
-      <section className="pb-[clamp(28px,4vw,52px)] pt-[clamp(70px,11vh,140px)]" style={{ background: WHITE }}>
-        <div className={`mb-8 ${PAD}`}>
-          <Reveal><Kick>The Gallery</Kick></Reveal>
-        </div>
+      {/* ============ 6. THE GALLERY — full-screen slider, thumbnails overlaid (no heading) ============ */}
+      <div className="bg-ink">
         <WideSlider slides={SLIDES} />
-      </section>
-
-      {/* ============ 6. FIND YOUR LANE [B] — desc left / image right ============ */}
-      <section id="lanes" className={`bg-ink ${PAD} py-[clamp(70px,11vh,140px)]`}>
-        <Reveal><Kick>Find Your Lane</Kick></Reveal>
-        <Reveal as="h2" className="mt-3 font-display text-[clamp(36px,6vw,92px)] font-black uppercase leading-[0.9] tracking-[-0.025em] text-white">
-          One Network. Every Lane.
-        </Reveal>
-        <AudienceShowcase />
-      </section>
+      </div>
 
       {/* ============ 7. INSIDE THE HUB [W] — filterable gallery ============ */}
       <section className={`${PAD} py-[clamp(70px,11vh,140px)]`} style={{ background: WHITE }}>
@@ -231,43 +230,40 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ============ 10. LET'S TALK [B] — Join form + contact ============ */}
+      {/* ============ 10. LET'S TALK [B] — centered Join form + 3-col contact ============ */}
       <section id="contact" className={`relative overflow-hidden ${PAD} py-[clamp(80px,12vw,150px)]`}>
         <ParallaxImage src={PHOTOS.truckSunset} alt="A truck on the open road at sunset" strength={0.24} />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(11,11,11,0.9),rgba(11,11,11,0.6))]" />
-        <div className="relative">
-          <Reveal><Kick>Let&apos;s Talk</Kick></Reveal>
-          <Reveal as="h2" className="mt-4 max-w-[20ch] font-display text-[clamp(36px,6vw,92px)] font-black uppercase leading-[0.9] tracking-[-0.025em] text-white">
+        <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(11,11,11,0.92),rgba(11,11,11,0.78))]" />
+        <div className="relative mx-auto max-w-3xl text-center">
+          <Reveal><Kick center>Let&apos;s Talk</Kick></Reveal>
+          <Reveal as="h2" className="mt-4 font-display text-[clamp(36px,6vw,92px)] font-black uppercase leading-[0.9] tracking-[-0.025em] text-white">
             Build The Future Of Freight With Us.
           </Reveal>
           <Reveal delay={100}>
-            <p className="mt-5 max-w-[52ch] font-body text-[clamp(16px,1.6vw,20px)] leading-relaxed text-[#dadada]">
+            <p className="mx-auto mt-5 max-w-[52ch] font-body text-[clamp(16px,1.6vw,20px)] leading-relaxed text-[#dadada]">
               Join the Outriders free, or reach the team direct — wherever you sit in the supply chain.
             </p>
           </Reveal>
-
-          <div className="mt-10 grid gap-[clamp(28px,4vw,56px)] lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
-            <Reveal>
-              <JoinForm />
-            </Reveal>
-            <Reveal delay={120} dir="right" className="lg:pt-4">
-              <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-fuel">Reach Us Direct</div>
-              <div className="mt-5 flex flex-col gap-4 font-mono text-[clamp(15px,1.6vw,18px)] text-white">
-                <a href={site.phoneHref} className="flex items-center gap-3 transition-colors hover:text-fuel">
-                  <span className="text-chrome">Phone</span> {site.phone}
-                </a>
-                <a href={site.emailHref} className="flex items-center gap-3 transition-colors hover:text-fuel">
-                  <span className="text-chrome">Email</span> {site.email}
-                </a>
-                <div className="flex items-center gap-3">
-                  <span className="text-chrome">Web</span> {site.domainLabel}
-                </div>
-                <div className="tnum mt-2 flex items-center gap-3 text-chrome">
-                  <span className="h-2 w-2 rounded-full bg-fuel" aria-hidden /> West Memphis, AR · 35.14°N / 90.18°W
-                </div>
+          <Reveal delay={140} className="mt-10 text-left">
+            <JoinForm />
+          </Reveal>
+          <Reveal delay={180}>
+            <div className="mx-auto mt-12 grid max-w-2xl grid-cols-1 gap-px overflow-hidden rounded-[8px] border border-chrome/15 bg-chrome/10 sm:grid-cols-3">
+              <a href={site.phoneHref} className="group bg-ink/70 p-6 backdrop-blur transition-colors hover:bg-ink/90">
+                <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-fuel">Call</div>
+                <div className="tnum mt-2 font-mono text-[15px] text-white">{site.phone}</div>
+              </a>
+              <a href={site.emailHref} className="group bg-ink/70 p-6 backdrop-blur transition-colors hover:bg-ink/90">
+                <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-fuel">Email</div>
+                <div className="mt-2 break-words font-mono text-[15px] text-white">{site.email}</div>
+              </a>
+              <div className="bg-ink/70 p-6 backdrop-blur">
+                <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-fuel">Visit</div>
+                <div className="mt-2 font-mono text-[15px] text-white">West Memphis, AR</div>
+                <div className="mt-1 font-mono text-[12px] text-chrome">{site.domainLabel}</div>
               </div>
-            </Reveal>
-          </div>
+            </div>
+          </Reveal>
         </div>
       </section>
 

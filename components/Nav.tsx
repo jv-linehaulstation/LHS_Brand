@@ -25,7 +25,7 @@ export default function Nav({
 
   return (
     <header className="sticky top-0 z-50 border-b border-chrome/15 bg-ink/85 backdrop-blur-md">
-      <div className="mx-auto flex max-w-[1400px] flex-wrap items-center justify-between gap-x-4 gap-y-3 px-5 py-3 sm:px-8">
+      <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-3 px-[clamp(20px,6vw,100px)] py-3">
         <Link
           href="/"
           className="flex flex-none items-center gap-3"

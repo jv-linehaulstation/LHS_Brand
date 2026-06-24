@@ -36,6 +36,49 @@ heading is visible. Commit + push.
 - **Closing "Let's Talk":** **remove the CTA buttons.** Instead embed the **Join Free form**
   (reuse `components/JoinForm.tsx` — the same GHL form as `/join`) on one side, with the
   **contact information** (phone, email, domain) beside it. Keep a short heading + one line.
+  *(See R4 — this is refined to a centered layout with 3-column contact.)*
+
+---
+
+## ⭐ R4 deltas (JJ's review of the built page — apply on top; OVERRIDE earlier where conflicting)
+
+- **Shared container width — make it a PATTERN.** The **nav/header bar** and the **footer** must
+  use the **same width + side margins as the content sections** (`px-[clamp(20px,6vw,100px)]`,
+  full width — no narrow centered bar). Nav, sections, and footer all line up to one consistent
+  container. Apply the footer container fix site-wide (it's shared).
+
+- **Hero — add an overlay fade.** Keep the cowboy video + Option-D copy. Add a **bottom gradient
+  fade** so the hero blends smoothly into the next section (no hard seam).
+
+- **NEW section order (top of page):** after the hero, the **next section is "One Network. Every
+  Lane." (the audiences)** — NOT Who We Are. Move **Who We Are (+ Jeff)** to AFTER the audiences
+  section. Maintain black/white alternation with the new order.
+
+- **Audiences = pinned sticky-scroll (same mechanic as "How It Works / Pull In · Recharge · Relay").**
+  Not just titles. **Left = sticky media** (image/video) that **stays put** while you scroll
+  (it may swap to the active lane's image, but stays in the same spot). **Right = content that
+  scrolls** through each audience in turn — **Drivers → Carriers → Brokers → Shippers →
+  Government** — and **each block has: heading, subheading, description, and a CTA** (e.g.
+  "Explore Drivers →"). As you scroll, the left media sticks and the right swaps to the next
+  audience. The titles/copy SCROLL (they do not sit static beside the media). Pin the section and
+  drive the active audience from scroll progress. Reduced-motion / mobile: stack the 5 blocks
+  statically (no pin).
+
+- **Gallery — FULL SCREEN, thumbnails overlaid, no white space.**
+  - **Remove the "The Gallery" heading** above it (kills the white space above).
+  - Make the gallery **full-screen / full-bleed**.
+  - The **thumbnail photo-slider strip is correct, but overlay it ON TOP of the slider image**
+    (along the bottom of the full-screen slide), so there is **no white section/background below**
+    it. Click a thumbnail → that slide shows; active thumb highlighted; keyboard + touch friendly.
+
+- **"A Real Terminal / Not A Parking Lot" + "How It Works" — improve both.** These need a quality
+  pass: use **meaningful, tab/step-linked media** (real building/amenity/fleet renders — NOT the
+  blank chrome-fiber texture), stronger full-width composition, and bigger type. Get the pinned
+  scroll feeling smooth. *(JJ will refine after seeing it — make it clearly better, not just present.)*
+
+- **"Let's Talk" — centered layout.** Center everything in the section: centered heading, the
+  **Join Free form centered**, and the **contact info laid out in three columns** (e.g.
+  **Call · Email · Visit** — phone, email, address/domain). Replaces the side-by-side from R3.
 
 ---
 

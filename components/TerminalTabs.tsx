@@ -33,7 +33,7 @@ export default function TerminalTabs() {
   return (
     <div className="mt-9 grid items-center gap-[clamp(24px,4vw,56px)] lg:grid-cols-[1.1fr_0.9fr]">
       {/* tab-linked media */}
-      <div className="relative aspect-[4/3] overflow-hidden rounded-[8px] border border-chrome/15 bg-carbon">
+      <div className="relative aspect-[3/2] overflow-hidden rounded-[8px] border border-chrome/15 bg-carbon">
         {TABS.map((tab, i) => (
           <div key={tab.t} className="absolute inset-0 transition-opacity duration-700 ease-out" style={{ opacity: i === active ? 1 : 0 }}>
             <Image
@@ -70,7 +70,7 @@ export default function TerminalTabs() {
               style={{ borderColor: on ? "#F07820" : "#3a3633" }}
             >
               <span
-                className="font-display text-[clamp(18px,2vw,26px)] font-extrabold uppercase tracking-[-0.01em] transition-colors duration-300"
+                className="font-display text-[clamp(20px,2.6vw,34px)] font-extrabold uppercase tracking-[-0.01em] transition-colors duration-300"
                 style={{ color: on ? "#ffffff" : "#6a655e" }}
               >
                 {tab.t}

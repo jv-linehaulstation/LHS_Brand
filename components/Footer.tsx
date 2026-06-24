@@ -5,8 +5,8 @@ import { site } from "@/lib/site";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-chrome/15 bg-ink px-5 py-12 sm:px-8">
-      <div className="mx-auto grid max-w-site gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
+    <footer className="border-t border-chrome/15 bg-ink px-[clamp(20px,6vw,100px)] py-12">
+      <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
         <div className="max-w-sm">
           <Image
             src="/assets/logo-horz-light.png"
@@ -66,7 +66,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="mx-auto mt-10 flex max-w-site flex-col gap-2 border-t border-chrome/10 pt-6 font-label text-[9px] uppercase tracking-[0.2em] text-[#6a6a6a] sm:flex-row sm:items-center sm:justify-between">
+      <div className="mt-10 flex flex-col gap-2 border-t border-chrome/10 pt-6 font-label text-[9px] uppercase tracking-[0.2em] text-[#6a6a6a] sm:flex-row sm:items-center sm:justify-between">
         <span>{site.tagline}</span>
         <span>© {new Date().getFullYear()} LineHaul Station, LLC</span>
       </div>

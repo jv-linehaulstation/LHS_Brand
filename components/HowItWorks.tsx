@@ -68,7 +68,7 @@ export default function HowItWorks({
       <div className="flex items-center gap-3 font-mono text-[12px] uppercase tracking-[0.28em]" style={{ color: accent }}>
         <span className="h-px w-7" style={{ background: accent }} aria-hidden /> {kicker}
       </div>
-      <h2 className="mt-3 font-display text-[clamp(32px,4.6vw,68px)] font-black uppercase leading-[0.95] tracking-[-0.02em] text-white">
+      <h2 className="mt-3 font-display text-[clamp(36px,5.5vw,88px)] font-black uppercase leading-[0.92] tracking-[-0.025em] text-white">
         {title}
       </h2>
     </>

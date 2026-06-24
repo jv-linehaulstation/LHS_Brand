@@ -4,11 +4,11 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 /**
- * Full-bleed, full-screen render carousel. Each slide spans the entire viewport
- * width (no gutters), edge-to-edge, with a minimal caption. Drag (native scroll
- * + snap) and a THUMBNAIL STRIP below for navigation (active thumb highlighted,
- * keyboard-accessible) — plus slow auto-advance (paused on hover / interaction /
- * reduced-motion). Touch-friendly (swipe + ≥44px thumbs).
+ * Full-screen, full-bleed render carousel. Each slide spans the entire viewport
+ * width and ~viewport height (no gutters). A thumbnail strip is OVERLAID on the
+ * bottom of the slide (over a scrim) — no white space below: active thumb
+ * highlighted, click/keyboard/touch to jump. Drag (native scroll + snap) + slow
+ * auto-advance (paused on hover / interaction / reduced-motion).
  */
 export type Slide = { src: string; label: string };
 
@@ -52,18 +52,22 @@ export default function WideSlider({ slides, accent = "#F07820" }: { slides: Sli
   }, [paused]);
 
   return (
-    <div onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
-      {/* full-bleed track */}
+    <div
+      className="relative w-full overflow-hidden"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
+      {/* full-screen track */}
       <div
         ref={trackRef}
         className="no-scrollbar flex w-full snap-x snap-mandatory overflow-x-auto"
         style={{ scrollbarWidth: "none" }}
       >
         {slides.map((s, i) => (
-          <figure key={s.src} className="relative h-[clamp(52vh,64vw,82vh)] w-screen flex-none snap-center overflow-hidden bg-carbon">
+          <figure key={s.src} className="relative h-[clamp(560px,90svh,1100px)] w-screen flex-none snap-center overflow-hidden bg-carbon">
             <Image src={s.src} alt={s.label} fill priority={i < 2} className="img-grade object-cover" sizes="100vw" />
-            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,transparent_62%,rgba(11,11,11,0.55))]" />
-            <figcaption className="absolute bottom-6 left-[clamp(20px,6vw,100px)] flex items-center gap-3 font-mono text-[12px] uppercase tracking-[0.14em] text-white">
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[42%] bg-[linear-gradient(180deg,transparent,rgba(11,11,11,0.85))]" />
+            <figcaption className="absolute left-[clamp(20px,6vw,100px)] top-[clamp(20px,5vw,48px)] flex items-center gap-3 font-mono text-[12px] uppercase tracking-[0.14em] text-white">
               <span className="tnum">{String(i + 1).padStart(2, "0")} / {String(slides.length).padStart(2, "0")}</span>
               <span className="h-px w-6" style={{ background: accent }} aria-hidden />
               {s.label}
@@ -72,8 +76,12 @@ export default function WideSlider({ slides, accent = "#F07820" }: { slides: Sli
         ))}
       </div>
 
-      {/* thumbnail strip */}
-      <div className="no-scrollbar mt-3.5 flex gap-2.5 overflow-x-auto px-[clamp(20px,6vw,100px)]" role="tablist" aria-label="Gallery thumbnails">
+      {/* thumbnails OVERLAID on the slide bottom */}
+      <div
+        className="no-scrollbar absolute inset-x-0 bottom-[clamp(16px,3vw,36px)] z-10 flex justify-start gap-2.5 overflow-x-auto px-[clamp(20px,6vw,100px)] sm:justify-center"
+        role="tablist"
+        aria-label="Gallery thumbnails"
+      >
         {slides.map((s, i) => {
           const on = i === idx;
           return (
@@ -84,10 +92,10 @@ export default function WideSlider({ slides, accent = "#F07820" }: { slides: Sli
               aria-selected={on}
               aria-label={s.label}
               onClick={() => goTo(i)}
-              className="relative h-[clamp(48px,7vw,68px)] w-[clamp(64px,9vw,96px)] flex-none overflow-hidden rounded-[5px] outline-none transition-opacity focus-visible:ring-2 focus-visible:ring-fuel"
-              style={{ opacity: on ? 1 : 0.5, boxShadow: on ? `0 0 0 2px ${accent}` : "none" }}
+              className="relative h-[clamp(44px,6vw,62px)] w-[clamp(60px,8vw,88px)] flex-none overflow-hidden rounded-[5px] outline-none transition-all focus-visible:ring-2 focus-visible:ring-fuel"
+              style={{ opacity: on ? 1 : 0.45, boxShadow: on ? `0 0 0 2px ${accent}` : "0 0 0 1px rgba(255,255,255,0.25)" }}
             >
-              <Image src={s.src} alt="" fill loading="lazy" className="img-grade object-cover" sizes="96px" />
+              <Image src={s.src} alt="" fill loading="lazy" className="img-grade object-cover" sizes="88px" />
             </button>
           );
         })}
