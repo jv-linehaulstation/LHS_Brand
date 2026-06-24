@@ -18,7 +18,7 @@ type Lane = { key: string; label: string; sub: string; desc: string[]; img: stri
 
 const LANES: Lane[] = [
   {
-    key: "drivers", label: "Drivers", sub: "OneHome & the Outriders Club", img: PHOTOS.skydeck, accent: audiences.drivers.accent, href: "/drivers",
+    key: "drivers", label: "Drivers", sub: "OneHome & the Outriders Club", img: PHOTOS.driverInCab, accent: audiences.drivers.accent, href: "/drivers",
     desc: [
       "Long-haul shouldn't mean living out of your cab. OneHome gives you a private, resort-quality home base at every Hub — a real bed, a real shower, and a community of pros who get it.",
       "Keep more of what you earn: pay for the nights you're actually there, not 365 days of rent on an apartment you barely see.",
@@ -39,7 +39,7 @@ const LANES: Lane[] = [
     ],
   },
   {
-    key: "shippers", label: "Shippers", sub: "A resilient supply chain", img: PHOTOS.buildingAerial, accent: audiences.shippers.accent, href: "/shippers",
+    key: "shippers", label: "Shippers", sub: "A resilient supply chain", img: PHOTOS.highwayInterchange, accent: audiences.shippers.accent, href: "/shippers",
     desc: [
       "A supply chain shouldn't stall at the yard. A national network of Private Terminals and a 24/7 relay keep your freight moving and your landed cost down.",
       "Secure cross-dock and surveilled capacity at the nation's busiest crossroads — resilience built into every mile.",

@@ -116,95 +116,113 @@ export default function Home() {
         <AudienceScroll />
       </section>
 
-      {/* ============ 3. WHO WE ARE [W] — Jeff centered + board ============ */}
+      {/* ============ 3. WHO WE ARE [W] — 3 columns: narrative · Jeff · board ============ */}
       <section className={`${PAD} py-[clamp(70px,11vh,140px)]`} style={{ background: WHITE }}>
-        <div className="mx-auto max-w-3xl text-center">
-          <Reveal><Kick center>Who We Are</Kick></Reveal>
-          <Reveal as="h2" className="mt-4 font-display text-[clamp(34px,5.4vw,80px)] font-black uppercase leading-[0.92] tracking-[-0.025em]">
-            <span style={{ color: CARBON }}>Built By People Who&apos;ve Done It </span>
-            <span className="outline-head" style={{ ["--ac" as string]: "#F07820" }}>Before.</span>
-          </Reveal>
-          <Reveal delay={80}>
-            <p className="mx-auto mt-6 max-w-[60ch] font-body text-[clamp(16px,1.5vw,19px)] leading-relaxed" style={{ color: "#3a3733" }}>
+        <Reveal><Kick>Who We Are</Kick></Reveal>
+        <Reveal as="h2" className="mt-3 font-display text-[clamp(34px,5.4vw,80px)] font-black uppercase leading-[0.92] tracking-[-0.025em]">
+          <span style={{ color: CARBON }}>Built By People Who&apos;ve Done It </span>
+          <span className="outline-head" style={{ ["--ac" as string]: "#F07820" }}>Before.</span>
+        </Reveal>
+
+        <div className="mt-10 grid gap-[clamp(24px,3.5vw,48px)] lg:grid-cols-3 lg:items-start">
+          {/* Col 1 — narrative */}
+          <Reveal>
+            <p className="max-w-[40ch] font-body text-[clamp(18px,1.7vw,22px)] font-medium leading-[1.5]" style={{ color: CARBON }}>
               LineHaul Station didn&apos;t start with trucks. It started with a question: why does the
               industry that moves America treat its best drivers the worst?
             </p>
+            <p className="mt-5 max-w-[42ch] font-body text-[clamp(15px,1.4vw,17px)] leading-relaxed" style={{ color: "#3a3733" }}>
+              We&apos;re building the answer — real terminals, real amenities, and a national relay that
+              lowers the cost of every mile while getting the best drivers home, rested and respected.
+              The same standard runs through every Hub, Service Center, and word we write.
+            </p>
           </Reveal>
-        </div>
 
-        {/* Jeff — photo + description centered */}
-        <Reveal delay={120} className="mx-auto mt-12 max-w-2xl text-center">
-          <div className="mx-auto relative h-[clamp(140px,18vw,196px)] w-[clamp(140px,18vw,196px)] overflow-hidden rounded-full border-2" style={{ borderColor: LINE_L }}>
-            <Image src="https://static.wixstatic.com/media/84a10c_7dfa17aed1604937b1d1dd98258ee10a~mv2.png/v1/fill/w_640,h_800,al_c,q_90/Bio_JS-23-1.png" alt="Jeff Swenson, Founder & CEO" fill className="object-cover object-top" sizes="200px" />
-          </div>
-          <div className="mt-5 font-display text-[clamp(22px,3vw,32px)] font-black uppercase" style={{ color: CARBON }}>Jeff Swenson</div>
-          <div className="mt-1 font-mono text-[11px] uppercase tracking-[0.18em] text-fuel">Founder &amp; CEO</div>
-          <p className="mx-auto mt-5 max-w-[60ch] font-body text-[clamp(15px,1.4vw,18px)] leading-relaxed" style={{ color: "#3a3733" }}>
-            Jeff spent 35 years and more than $2&nbsp;billion building residential, commercial, and
-            logistics real estate — then brought that standard to freight. The ethos runs through every
-            Hub: <span style={{ color: CARBON }}>treat the industry&apos;s best drivers with dignity and respect, and never compromise on quality.</span>
-          </p>
-          <div className="mt-6 flex flex-wrap justify-center gap-2.5">
-            <a href="https://www.linkedin.com/in/jeff-swenson-2744606" target="_blank" rel="noopener noreferrer" className="rounded-btn border px-4 py-2 font-mono text-[10px] uppercase tracking-[0.12em] transition-colors hover:border-fuel hover:text-fuel" style={{ borderColor: LINE_L, color: CARBON }}>LinkedIn</a>
-            <a href="mailto:js@linehaulstation.com" className="rounded-btn border px-4 py-2 font-mono text-[10px] uppercase tracking-[0.12em] transition-colors hover:border-fuel hover:text-fuel" style={{ borderColor: LINE_L, color: CARBON }}>js@linehaulstation.com</a>
-          </div>
-        </Reveal>
+          {/* Col 2 — Jeff */}
+          <Reveal delay={80} className="overflow-hidden rounded-[8px] border bg-white" style={{ borderColor: LINE_L }}>
+            <div className="relative aspect-[4/5] bg-[#ddd]">
+              <Image src="https://static.wixstatic.com/media/84a10c_7dfa17aed1604937b1d1dd98258ee10a~mv2.png/v1/fill/w_640,h_800,al_c,q_90/Bio_JS-23-1.png" alt="Jeff Swenson, Founder & CEO" fill className="object-cover object-top" sizes="(max-width: 1024px) 100vw, 33vw" />
+            </div>
+            <div className="p-6">
+              <div className="font-display text-[20px] font-black uppercase" style={{ color: CARBON }}>Jeff Swenson</div>
+              <div className="mt-1 font-mono text-[11px] uppercase tracking-[0.12em] text-fuel">Founder &amp; CEO</div>
+              <p className="mt-3 font-body text-[14px] leading-relaxed" style={{ color: "#3a3733" }}>
+                35 years and $2&nbsp;billion of residential, commercial, and logistics real estate — that
+                standard, brought to freight.
+              </p>
+              <div className="mt-4 flex flex-wrap gap-2.5">
+                <a href="https://www.linkedin.com/in/jeff-swenson-2744606" target="_blank" rel="noopener noreferrer" className="rounded-btn border px-3 py-2 font-mono text-[10px] uppercase tracking-[0.12em] transition-colors hover:border-fuel hover:text-fuel" style={{ borderColor: LINE_L, color: CARBON }}>LinkedIn</a>
+                <a href="mailto:js@linehaulstation.com" className="rounded-btn border px-3 py-2 font-mono text-[10px] uppercase tracking-[0.12em] transition-colors hover:border-fuel hover:text-fuel" style={{ borderColor: LINE_L, color: CARBON }}>js@linehaulstation.com</a>
+              </div>
+            </div>
+          </Reveal>
 
-        {/* Board advisors — compact row of three */}
-        <div className="mx-auto mt-14 max-w-4xl">
-          <div className="text-center font-mono text-[11px] uppercase tracking-[0.2em]" style={{ color: "#6a655e" }}>Board Advisors</div>
-          <div className="mt-6 grid gap-4 sm:grid-cols-3">
-            {ADVISORS.map((p, i) => (
-              <Reveal key={p.name} delay={i * 80} className="rounded-card border bg-white p-5 text-center" style={{ borderColor: LINE_L }}>
-                <div className="mx-auto relative h-[84px] w-[84px] overflow-hidden rounded-full">
-                  <Image src={p.img} alt={p.name} fill loading="lazy" className="object-cover" sizes="84px" />
+          {/* Col 3 — Board Advisors (stacked) */}
+          <Reveal delay={140}>
+            <div className="font-mono text-[11px] uppercase tracking-[0.2em]" style={{ color: "#6a655e" }}>Board Advisors</div>
+            <div className="mt-4 flex flex-col">
+              {ADVISORS.map((p) => (
+                <div key={p.name} className="flex items-start gap-4 border-t py-4 first:border-t-0 first:pt-0" style={{ borderColor: LINE_L }}>
+                  <div className="relative h-[56px] w-[56px] flex-none overflow-hidden rounded-full">
+                    <Image src={p.img} alt={p.name} fill loading="lazy" className="object-cover" sizes="56px" />
+                  </div>
+                  <div className="min-w-0">
+                    <div className="font-display text-[15px] font-black uppercase leading-tight" style={{ color: CARBON }}>{p.name}</div>
+                    <div className="mt-0.5 font-mono text-[10px] uppercase tracking-[0.1em] text-fuel">{p.cred}</div>
+                    <p className="mt-1.5 font-body text-[12.5px] leading-snug" style={{ color: "#6a655e" }}>{p.bio}</p>
+                  </div>
                 </div>
-                <div className="mt-3 font-display text-[16px] font-black uppercase" style={{ color: CARBON }}>{p.name}</div>
-                <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.1em] text-fuel">{p.cred}</div>
-                <p className="mt-2.5 font-body text-[13px] leading-relaxed" style={{ color: "#6a655e" }}>{p.bio}</p>
-              </Reveal>
-            ))}
-          </div>
-          <div className="mt-6 text-center">
-            <Link href="/leadership" className="inline-flex items-center gap-2 font-mono text-[12px] uppercase tracking-[0.12em] transition-colors hover:text-fuel" style={{ color: "#6a655e" }}>
+              ))}
+            </div>
+            <Link href="/leadership" className="mt-5 inline-flex items-center gap-2 font-mono text-[12px] uppercase tracking-[0.12em] transition-colors hover:text-fuel" style={{ color: "#6a655e" }}>
               Meet the full team &amp; board <span aria-hidden>→</span>
             </Link>
-          </div>
+          </Reveal>
         </div>
       </section>
 
-      {/* ============ 4. THREE PROGRAMS [B] — restored ============ */}
+      {/* ============ 4. THREE PROGRAMS [B] — 2 cols: content left, cards right ============ */}
       <section className={`bg-ink ${PAD} py-[clamp(70px,11vh,140px)]`}>
-        <Reveal><Kick>One Network · Three Programs</Kick></Reveal>
-        <Reveal as="h2" className="mt-3 font-display text-[clamp(36px,6vw,92px)] font-black uppercase leading-[0.9] tracking-[-0.025em] text-white">
-          Three Ways Into The Network.
-        </Reveal>
-        <div className="mt-10 grid gap-4 md:grid-cols-3">
-          {PROGRAMS.map((p, i) => (
-            <Reveal key={p.name} delay={i * 90}>
-              <Link
-                href={p.href}
-                className="lift group relative flex h-full flex-col overflow-hidden rounded-card border border-chrome/15 bg-[#141414] p-8 transition-colors hover:border-[var(--ac)]"
-                style={{ ["--ac" as string]: p.accent }}
-              >
-                <div className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full opacity-25 blur-2xl transition-opacity duration-500 group-hover:opacity-50" style={{ background: p.accent }} />
-                <div className="relative flex h-full flex-col">
-                  <div className="flex items-center justify-between">
-                    <span className="tnum font-mono text-[13px]" style={{ color: p.accent }}>{String(i + 1).padStart(2, "0")}</span>
-                    <span className="h-2 w-2 rounded-full" style={{ background: p.accent }} />
-                  </div>
-                  <div className="mt-6 font-display text-[clamp(26px,2.6vw,34px)] font-black uppercase leading-none text-white">{p.name}</div>
-                  <div className="mt-2 font-script text-[clamp(22px,2.2vw,26px)] font-semibold" style={{ color: p.accent }}>{p.tagline}</div>
-                  <p className="mt-4 font-body text-[15px] leading-relaxed text-chrome">{p.blurb}</p>
-                  <div className="mt-auto pt-7">
-                    <span className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.16em] text-white">
+        <div className="grid gap-[clamp(28px,4vw,64px)] lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+          {/* content left */}
+          <div className="lg:sticky lg:top-28">
+            <Reveal><Kick>One Network · Three Programs</Kick></Reveal>
+            <Reveal as="h2" className="mt-3 font-display text-[clamp(36px,5vw,80px)] font-black uppercase leading-[0.92] tracking-[-0.025em] text-white">
+              Three Ways Into The Network.
+            </Reveal>
+            <Reveal delay={100}>
+              <p className="mt-6 max-w-[42ch] font-body text-[clamp(16px,1.6vw,20px)] leading-relaxed text-[#dadada]">
+                One shared-use network, three ways in — buy the space, come home to it, and belong to it.
+                Choose the program that fits how you move freight.
+              </p>
+            </Reveal>
+          </div>
+
+          {/* cards stacked right */}
+          <div className="grid gap-4">
+            {PROGRAMS.map((p, i) => (
+              <Reveal key={p.name} delay={i * 90}>
+                <Link
+                  href={p.href}
+                  className="lift group relative flex overflow-hidden rounded-card border border-chrome/15 bg-[#141414] p-7 transition-colors hover:border-[var(--ac)] sm:p-8"
+                  style={{ ["--ac" as string]: p.accent }}
+                >
+                  <div className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full opacity-25 blur-2xl transition-opacity duration-500 group-hover:opacity-50" style={{ background: p.accent }} />
+                  <span className="tnum relative mr-6 font-mono text-[13px]" style={{ color: p.accent }}>{String(i + 1).padStart(2, "0")}</span>
+                  <div className="relative flex-1">
+                    <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                      <div className="font-display text-[clamp(24px,2.6vw,34px)] font-black uppercase leading-none text-white">{p.name}</div>
+                      <div className="font-script text-[clamp(20px,2.2vw,26px)] font-semibold" style={{ color: p.accent }}>{p.tagline}</div>
+                    </div>
+                    <p className="mt-4 max-w-[60ch] font-body text-[15px] leading-relaxed text-chrome">{p.blurb}</p>
+                    <span className="mt-5 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.16em] text-white">
                       Explore <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1" style={{ color: p.accent }}>→</span>
                     </span>
                   </div>
-                </div>
-              </Link>
-            </Reveal>
-          ))}
+                </Link>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -267,42 +285,43 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ============ 9. LET'S TALK [B] — contact info ABOVE, form below (centered) ============ */}
+      {/* ============ 9. LET'S TALK [B] — 2 cols: content + contact left, form right ============ */}
       <section id="contact" className={`relative overflow-hidden ${PAD} py-[clamp(80px,12vw,150px)]`}>
         <ParallaxImage src={PHOTOS.truckSunset} alt="A truck on the open road at sunset" strength={0.24} />
-        <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(11,11,11,0.92),rgba(11,11,11,0.78))]" />
-        <div className="relative mx-auto max-w-3xl text-center">
-          <Reveal><Kick center>Let&apos;s Talk</Kick></Reveal>
-          <Reveal as="h2" className="mt-4 font-display text-[clamp(36px,6vw,92px)] font-black uppercase leading-[0.9] tracking-[-0.025em] text-white">
-            Build The Future Of Freight With Us.
-          </Reveal>
-          <Reveal delay={100}>
-            <p className="mx-auto mt-5 max-w-[52ch] font-body text-[clamp(16px,1.6vw,20px)] leading-relaxed text-[#dadada]">
-              Join the Outriders free, or reach the team direct — wherever you sit in the supply chain.
-            </p>
-          </Reveal>
-
-          {/* contact info ABOVE the form */}
-          <Reveal delay={140}>
-            <div className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-px overflow-hidden rounded-[8px] border border-chrome/15 bg-chrome/10 sm:grid-cols-3">
-              <a href={site.phoneHref} className="bg-ink/70 p-6 backdrop-blur transition-colors hover:bg-ink/90">
-                <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-fuel">Call</div>
-                <div className="tnum mt-2 font-mono text-[15px] text-white">{site.phone}</div>
-              </a>
-              <a href={site.emailHref} className="bg-ink/70 p-6 backdrop-blur transition-colors hover:bg-ink/90">
-                <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-fuel">Email</div>
-                <div className="mt-2 break-words font-mono text-[15px] text-white">{site.email}</div>
-              </a>
-              <div className="bg-ink/70 p-6 backdrop-blur">
-                <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-fuel">Visit</div>
-                <div className="mt-2 font-mono text-[15px] text-white">West Memphis, AR</div>
-                <div className="mt-1 font-mono text-[12px] text-chrome">{site.domainLabel}</div>
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(11,11,11,0.94),rgba(11,11,11,0.7))]" />
+        <div className="relative grid gap-[clamp(28px,4vw,64px)] lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+          {/* content + contact info (left) */}
+          <div className="lg:sticky lg:top-28">
+            <Reveal><Kick>Let&apos;s Talk</Kick></Reveal>
+            <Reveal as="h2" className="mt-4 font-display text-[clamp(34px,5vw,80px)] font-black uppercase leading-[0.92] tracking-[-0.025em] text-white">
+              Build The Future Of Freight With Us.
+            </Reveal>
+            <Reveal delay={100}>
+              <p className="mt-5 max-w-[44ch] font-body text-[clamp(16px,1.6vw,20px)] leading-relaxed text-[#dadada]">
+                Join the Outriders free, or reach the team direct — wherever you sit in the supply chain.
+              </p>
+            </Reveal>
+            <Reveal delay={140}>
+              <div className="mt-9 grid grid-cols-1 gap-px overflow-hidden rounded-[8px] border border-chrome/15 bg-chrome/10 sm:grid-cols-3 lg:grid-cols-1">
+                <a href={site.phoneHref} className="bg-ink/70 p-5 backdrop-blur transition-colors hover:bg-ink/90">
+                  <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-fuel">Call</div>
+                  <div className="tnum mt-2 font-mono text-[15px] text-white">{site.phone}</div>
+                </a>
+                <a href={site.emailHref} className="bg-ink/70 p-5 backdrop-blur transition-colors hover:bg-ink/90">
+                  <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-fuel">Email</div>
+                  <div className="mt-2 break-words font-mono text-[15px] text-white">{site.email}</div>
+                </a>
+                <div className="bg-ink/70 p-5 backdrop-blur">
+                  <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-fuel">Visit</div>
+                  <div className="mt-2 font-mono text-[15px] text-white">West Memphis, AR</div>
+                  <div className="mt-1 font-mono text-[12px] text-chrome">{site.domainLabel}</div>
+                </div>
               </div>
-            </div>
-          </Reveal>
+            </Reveal>
+          </div>
 
-          {/* form below */}
-          <Reveal delay={180} className="mt-10 text-left">
+          {/* form (right) */}
+          <Reveal delay={120} dir="right">
             <JoinForm />
           </Reveal>
         </div>

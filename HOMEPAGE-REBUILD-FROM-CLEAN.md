@@ -126,6 +126,34 @@ Hero → **One Network. Every Lane.** (audiences, sticky-scroll) → **Who We Ar
 
 ---
 
+## ⭐ R6 deltas (JJ's review — apply on top; OVERRIDE earlier where conflicting)
+
+- **"One Network. Every Lane." (audiences) — fix the imagery so it matches each lane.** The
+  current photos don't represent the copy beside them. Use these content-matched assets on the
+  sticky left (swap per active lane):
+  - **Drivers** → `deck-library/photos/people-driver-in-cab.jpg` (a real driver) — or `marketing/driver-proud.jpg`
+  - **Carriers** → `deck-library/renderings/fleet-services-fuel.jpg` (fleet / FlexSpace service)
+  - **Brokers** → `deck-library/renderings/cross-dock.jpg` (freight moving between carriers)
+  - **Shippers** → `deck-library/photos/context-highway-interchange.jpg` (freight to market)
+  - **Government** → `deck-library/photos/context-civic-courthouse.jpg` (or `context-groundbreaking-shovel.jpg`)
+  *(Option for later: a short per-lane summary video cut from the decks — possible, but a separate
+  production; ship the matched stills now.)*
+
+- **Who We Are — revert to a 3-COLUMN layout** (drop the centered-Jeff version):
+  - **Col 1:** the narrative / intro content.
+  - **Col 2:** Jeff's info (photo + Founder & CEO + bio + LinkedIn/email).
+  - **Col 3:** the **Board Advisors** (the three, stacked compact).
+
+- **Three Programs AND Contact ("Let's Talk") — 2-COLUMN layout: content LEFT, boxes RIGHT.**
+  - **Three Programs:** left = section heading + short intro; right = the three program cards
+    (FlexSpace · OneHome · Outriders Club) stacked.
+  - **Contact:** left = heading + contact info (Call · Email · Visit); right = the form (the input
+    "text boxes"). *(Overrides R5's "info on top / centered" — now side-by-side, content left, form right.)*
+  *(Interpreting "One Network · Three Programs" as the Three Programs section. If you meant the
+  audiences section too, say so.)*
+
+---
+
 ## STEP 1 — Revert the homepage to the clean pre-vaulk base
 - Restore **`app/page.tsx`** to its state at commit **`2306b52`**
   ("Homepage visuals: pair every render…") — the last good homepage before the vaulk rebuild:
