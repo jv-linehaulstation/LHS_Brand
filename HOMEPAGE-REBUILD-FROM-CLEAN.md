@@ -79,6 +79,50 @@ heading is visible. Commit + push.
 - **"Let's Talk" — centered layout.** Center everything in the section: centered heading, the
   **Join Free form centered**, and the **contact info laid out in three columns** (e.g.
   **Call · Email · Visit** — phone, email, address/domain). Replaces the side-by-side from R3.
+  *(See R5 — contact info now sits ABOVE the form.)*
+
+---
+
+## ⭐ R5 deltas (JJ's review — apply on top; OVERRIDE earlier where conflicting)
+
+Confirmed GOOD, leave as-is: **Hero**, the **Gallery slider**, **Filter the Tour** (Inside the
+Hub), and the **Network map**.
+
+- **Loader — shrink the 0/100 number by ~80%.** The numeric counter is far too big; reduce it to
+  roughly **one-fifth** of its current size (badge/wordmark unchanged).
+
+- **"One Network. Every Lane." (audiences) — richer + real media + better CTA.**
+  - Add **real images/video** per lane on the sticky left (Drivers→sky deck, Carriers→fleet/fuel,
+    Brokers→cross-dock, Shippers→terminal aerial, Government→civic); the left media should **fill
+    the full height** of the section.
+  - **More description:** each lane's right block = heading + subheading + **1–2 paragraphs** +
+    CTA (not just a title). Write real copy for Drivers, Carriers, Brokers (and Shippers/Government).
+  - **CTA button:** do NOT float it far right — make it a **full-width block button** (dark/black
+    style), aligned under the copy.
+
+- **Who We Are — use the space; add the board small.** Put **Jeff's photo + description centered**.
+  Then add the **3 board advisors as small blocks** (a compact row of three, below/beside).
+  *(Intentionally reverses the earlier "Jeff only" call.)* Pull advisors from `app/leadership/page.tsx`.
+
+- **Remove "A Real Terminal / What We Built" AND "How It Works" — replace with THREE PROGRAMS.**
+  Delete both. Restore the **"Three Programs"** section from commit `0543462`
+  (`/* THREE PROGRAMS (panel) */`), restyled into the current system (full-width, B/W, reveals):
+  - **FlexSpace** — *"It's YOUR Terminal Network."* — Shared-use terminal access sold in increments
+    (Guest Pass · Proprietary Membership · Dedicated Space). Carrier-facing. Accent `#4878A8`. → `/carriers`
+  - **OneHome** — *"Everywhere The Road Takes You."* — A private, resort-quality community network
+    built exclusively for American truckers. Driver-facing. Accent `#F07820`. → `/drivers`
+  - **Outriders Club** — *"The Rig Carlton."* — A 25,000+ sq ft private drivers club: restaurant,
+    fitness, showers, gaming, rooftop sky deck, and more. Accent `#C8A060`.
+  Place it where What We Built / How It Works were (after Who We Are).
+
+- **Contact "Let's Talk" — info ABOVE the form.** Put the contact info (**Call · Email · Visit**,
+  three columns) **on top, before the form**; the form sits below. Keep centered.
+
+### Resulting homepage order (after R5)
+Hero → **One Network. Every Lane.** (audiences, sticky-scroll) → **Who We Are** (Jeff centered +
+3 board blocks) → **Three Programs** (FlexSpace · OneHome · Outriders Club) → **Gallery**
+(full-screen, thumbs overlaid) → **Inside the Hub** (Filter the Tour) → **The Network** (map) →
+**By the Numbers** → **Let's Talk** (contact info on top, form below). Keep black/white alternation.
 
 ---
 

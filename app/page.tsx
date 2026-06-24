@@ -8,8 +8,6 @@ import ParallaxImage from "@/components/motion/ParallaxImage";
 import BackgroundVideo from "@/components/motion/BackgroundVideo";
 import ScrollCursor from "@/components/motion/ScrollCursor";
 import NetworkMap from "@/components/NetworkMap";
-import TerminalTabs from "@/components/TerminalTabs";
-import HowItWorks, { type Step } from "@/components/HowItWorks";
 import WideSlider, { type Slide } from "@/components/WideSlider";
 import AudienceScroll from "@/components/AudienceScroll";
 import FilterGallery from "@/components/FilterGallery";
@@ -40,10 +38,18 @@ const SLIDES: Slide[] = [
   { src: "/assets/building-seq/07.jpg", label: "Aerial · The Hub" },
 ];
 
-const RELAY_STEPS: Step[] = [
-  { n: "001", t: "Pull In", d: "Secure, gated entry right off the interstate — no fighting for a spot at 11pm.", img: "/assets/building-seq/01.jpg" },
-  { n: "002", t: "Recharge At The Service Center", d: "Rest, eat, train, fuel, and service the truck. A home base you're proud of.", img: PHOTOS.fleetFuel },
-  { n: "003", t: "Relay Out", d: "Hand off the load and head home. The freight keeps moving; you don't have to.", img: PHOTOS.truckSunset },
+// THREE PROGRAMS — restored from 0543462, restyled into the current system.
+const PROGRAMS = [
+  { name: "FlexSpace", tagline: "It's YOUR Terminal Network.", blurb: "Shared-use terminal access sold in increments — Guest Pass, Proprietary Membership, or Dedicated Space. Carrier-facing.", accent: "#4878A8", href: "/carriers" },
+  { name: "OneHome", tagline: "Everywhere The Road Takes You.", blurb: "A private, resort-quality community network built exclusively for America's truckers. Driver-facing.", accent: "#F07820", href: "/drivers" },
+  { name: "Outriders Club", tagline: "The Rig Carlton.", blurb: "A 25,000+ sq ft private drivers club — restaurant, fitness, showers, gaming, rooftop sky deck, and more.", accent: "#C8A060", href: "/join" },
+];
+
+// Board advisors (pulled from /leadership) — shown small on the home page.
+const ADVISORS = [
+  { name: "John Larkin", cred: "Transportation Investment Banking", bio: "35+ years — Stifel, Clarendon Capital, Venture 53. Harvard MBA.", img: "https://static.wixstatic.com/media/84a10c_19734b4587b14454b1bb56e55e424a49~mv2.jpg/v1/fill/w_240,h_240,al_c,q_85/Bio_LARKIN1.jpg" },
+  { name: "John Wilbur", cred: "Equipment & Capital Markets", bio: "CEO of Fleet Equipment, the largest U.S. Hyundai trailer dealer. Ex–Goldman Sachs & Citicorp.", img: "https://static.wixstatic.com/media/84a10c_e404ec8d771f43ff9413ef9bb6f20419~mv2.png/v1/fill/w_240,h_240,al_c,q_85/Wilbur_HEADSHOT.png" },
+  { name: "Craig Hughes", cred: "Transportation Operations", bio: "40-year veteran. Founder & Chairman of Total Transit; founder of Veyo.", img: "https://static.wixstatic.com/media/84a10c_f2fb54a6c15643b4b6ea3577a56eb4f9~mv2.png/v1/fill/w_240,h_240,al_c,q_85/Hughes_HEADSHOT.png" },
 ];
 
 const STATS = [
@@ -71,7 +77,6 @@ export default function Home() {
         <BackgroundVideo src={HERO_VIDEO} poster="/assets/marketing/hero-poster.jpg" className="absolute inset-0 h-full w-full object-cover" />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(11,11,11,0.85),rgba(11,11,11,0.3)_62%)]" />
         <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(11,11,11,0.65),transparent_45%)]" />
-        {/* bottom fade — blends the hero into the next (black) section, no hard seam */}
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-[linear-gradient(0deg,#0B0B0B,transparent)]" />
         <div className="pointer-events-none absolute inset-x-0 top-0 h-[2px] overflow-hidden">
           <div className="scan-once h-full w-full" style={{ ["--ac" as string]: "#F07820" }} />
@@ -111,72 +116,104 @@ export default function Home() {
         <AudienceScroll />
       </section>
 
-      {/* ============ 3. WHO WE ARE [W] — Jeff only ============ */}
+      {/* ============ 3. WHO WE ARE [W] — Jeff centered + board ============ */}
       <section className={`${PAD} py-[clamp(70px,11vh,140px)]`} style={{ background: WHITE }}>
-        <Reveal><Kick>Who We Are</Kick></Reveal>
-        <div className="mt-8 grid gap-[clamp(28px,5vw,72px)] lg:grid-cols-[1.4fr_0.85fr] lg:items-start">
-          <div>
-            <Reveal as="h2" className="font-display text-[clamp(36px,6vw,92px)] font-black uppercase leading-[0.9] tracking-[-0.025em]">
-              <span style={{ color: CARBON }}>Built By People Who&apos;ve Done It </span>
-              <span className="outline-head" style={{ ["--ac" as string]: "#F07820" }}>Before.</span>
-            </Reveal>
-            <Reveal delay={80}>
-              <p className="mt-6 max-w-[34ch] font-body text-[clamp(19px,2.1vw,28px)] font-medium leading-[1.5]" style={{ color: CARBON }}>
-                LineHaul Station didn&apos;t start with trucks. It started with a question: why does the
-                industry that moves America treat its best drivers the worst?
-              </p>
-            </Reveal>
-            <Reveal delay={140}>
-              <p className="mt-5 max-w-[64ch] font-body text-[clamp(15px,1.4vw,18px)] leading-relaxed" style={{ color: "#3a3733" }}>
-                Founder &amp; CEO Jeff Swenson spent 35 years and more than $2&nbsp;billion building
-                residential, commercial, and logistics real estate — then brought that standard to freight.
-                Real terminals. Real amenities. A home base drivers are proud of.
-              </p>
-            </Reveal>
-            <Reveal delay={180}>
-              <Link href="/leadership" className="mt-7 inline-flex items-center gap-2 font-mono text-[12px] uppercase tracking-[0.12em] transition-colors hover:text-fuel" style={{ color: "#6a655e" }}>
-                Meet the full team &amp; board <span aria-hidden>→</span>
-              </Link>
-            </Reveal>
-          </div>
-
-          <Reveal dir="right" className="overflow-hidden rounded-[8px] border bg-white lg:max-w-[420px] lg:justify-self-end" style={{ borderColor: LINE_L }}>
-            <div className="relative aspect-[4/5] bg-[#ddd]">
-              <Image src="https://static.wixstatic.com/media/84a10c_7dfa17aed1604937b1d1dd98258ee10a~mv2.png/v1/fill/w_640,h_800,al_c,q_90/Bio_JS-23-1.png" alt="Jeff Swenson, Founder & CEO" fill className="object-cover object-top" sizes="(max-width: 1024px) 100vw, 420px" />
-            </div>
-            <div className="p-6">
-              <div className="font-display text-[22px] font-black uppercase" style={{ color: CARBON }}>Jeff Swenson</div>
-              <div className="mt-1 font-mono text-[11px] uppercase tracking-[0.12em] text-fuel">Founder &amp; CEO</div>
-              <p className="mt-3 font-body text-[14px] italic leading-relaxed" style={{ color: "#4a463f" }}>
-                &ldquo;Treat the industry&apos;s best truck drivers with dignity and respect — and never compromise on quality.&rdquo;
-              </p>
-              <div className="mt-4 flex flex-wrap gap-2.5">
-                <a href="https://www.linkedin.com/in/jeff-swenson-2744606" target="_blank" rel="noopener noreferrer" className="rounded-btn border px-3 py-2 font-mono text-[10px] uppercase tracking-[0.12em] transition-colors hover:border-fuel hover:text-fuel" style={{ borderColor: LINE_L, color: CARBON }}>LinkedIn</a>
-                <a href="mailto:js@linehaulstation.com" className="rounded-btn border px-3 py-2 font-mono text-[10px] uppercase tracking-[0.12em] transition-colors hover:border-fuel hover:text-fuel" style={{ borderColor: LINE_L, color: CARBON }}>js@linehaulstation.com</a>
-              </div>
-            </div>
+        <div className="mx-auto max-w-3xl text-center">
+          <Reveal><Kick center>Who We Are</Kick></Reveal>
+          <Reveal as="h2" className="mt-4 font-display text-[clamp(34px,5.4vw,80px)] font-black uppercase leading-[0.92] tracking-[-0.025em]">
+            <span style={{ color: CARBON }}>Built By People Who&apos;ve Done It </span>
+            <span className="outline-head" style={{ ["--ac" as string]: "#F07820" }}>Before.</span>
           </Reveal>
+          <Reveal delay={80}>
+            <p className="mx-auto mt-6 max-w-[60ch] font-body text-[clamp(16px,1.5vw,19px)] leading-relaxed" style={{ color: "#3a3733" }}>
+              LineHaul Station didn&apos;t start with trucks. It started with a question: why does the
+              industry that moves America treat its best drivers the worst?
+            </p>
+          </Reveal>
+        </div>
+
+        {/* Jeff — photo + description centered */}
+        <Reveal delay={120} className="mx-auto mt-12 max-w-2xl text-center">
+          <div className="mx-auto relative h-[clamp(140px,18vw,196px)] w-[clamp(140px,18vw,196px)] overflow-hidden rounded-full border-2" style={{ borderColor: LINE_L }}>
+            <Image src="https://static.wixstatic.com/media/84a10c_7dfa17aed1604937b1d1dd98258ee10a~mv2.png/v1/fill/w_640,h_800,al_c,q_90/Bio_JS-23-1.png" alt="Jeff Swenson, Founder & CEO" fill className="object-cover object-top" sizes="200px" />
+          </div>
+          <div className="mt-5 font-display text-[clamp(22px,3vw,32px)] font-black uppercase" style={{ color: CARBON }}>Jeff Swenson</div>
+          <div className="mt-1 font-mono text-[11px] uppercase tracking-[0.18em] text-fuel">Founder &amp; CEO</div>
+          <p className="mx-auto mt-5 max-w-[60ch] font-body text-[clamp(15px,1.4vw,18px)] leading-relaxed" style={{ color: "#3a3733" }}>
+            Jeff spent 35 years and more than $2&nbsp;billion building residential, commercial, and
+            logistics real estate — then brought that standard to freight. The ethos runs through every
+            Hub: <span style={{ color: CARBON }}>treat the industry&apos;s best drivers with dignity and respect, and never compromise on quality.</span>
+          </p>
+          <div className="mt-6 flex flex-wrap justify-center gap-2.5">
+            <a href="https://www.linkedin.com/in/jeff-swenson-2744606" target="_blank" rel="noopener noreferrer" className="rounded-btn border px-4 py-2 font-mono text-[10px] uppercase tracking-[0.12em] transition-colors hover:border-fuel hover:text-fuel" style={{ borderColor: LINE_L, color: CARBON }}>LinkedIn</a>
+            <a href="mailto:js@linehaulstation.com" className="rounded-btn border px-4 py-2 font-mono text-[10px] uppercase tracking-[0.12em] transition-colors hover:border-fuel hover:text-fuel" style={{ borderColor: LINE_L, color: CARBON }}>js@linehaulstation.com</a>
+          </div>
+        </Reveal>
+
+        {/* Board advisors — compact row of three */}
+        <div className="mx-auto mt-14 max-w-4xl">
+          <div className="text-center font-mono text-[11px] uppercase tracking-[0.2em]" style={{ color: "#6a655e" }}>Board Advisors</div>
+          <div className="mt-6 grid gap-4 sm:grid-cols-3">
+            {ADVISORS.map((p, i) => (
+              <Reveal key={p.name} delay={i * 80} className="rounded-card border bg-white p-5 text-center" style={{ borderColor: LINE_L }}>
+                <div className="mx-auto relative h-[84px] w-[84px] overflow-hidden rounded-full">
+                  <Image src={p.img} alt={p.name} fill loading="lazy" className="object-cover" sizes="84px" />
+                </div>
+                <div className="mt-3 font-display text-[16px] font-black uppercase" style={{ color: CARBON }}>{p.name}</div>
+                <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.1em] text-fuel">{p.cred}</div>
+                <p className="mt-2.5 font-body text-[13px] leading-relaxed" style={{ color: "#6a655e" }}>{p.bio}</p>
+              </Reveal>
+            ))}
+          </div>
+          <div className="mt-6 text-center">
+            <Link href="/leadership" className="inline-flex items-center gap-2 font-mono text-[12px] uppercase tracking-[0.12em] transition-colors hover:text-fuel" style={{ color: "#6a655e" }}>
+              Meet the full team &amp; board <span aria-hidden>→</span>
+            </Link>
+          </div>
         </div>
       </section>
 
-      {/* ============ 4. WHAT WE BUILT [B] — tab-linked media ============ */}
+      {/* ============ 4. THREE PROGRAMS [B] — restored ============ */}
       <section className={`bg-ink ${PAD} py-[clamp(70px,11vh,140px)]`}>
-        <Reveal><Kick>What We Built</Kick></Reveal>
-        <Reveal as="h2" className="mt-3 font-display text-[clamp(40px,6.6vw,104px)] font-black uppercase leading-[0.88] tracking-[-0.025em] text-white">
-          A Real Terminal.<br />Not A Parking Lot.
+        <Reveal><Kick>One Network · Three Programs</Kick></Reveal>
+        <Reveal as="h2" className="mt-3 font-display text-[clamp(36px,6vw,92px)] font-black uppercase leading-[0.9] tracking-[-0.025em] text-white">
+          Three Ways Into The Network.
         </Reveal>
-        <TerminalTabs />
+        <div className="mt-10 grid gap-4 md:grid-cols-3">
+          {PROGRAMS.map((p, i) => (
+            <Reveal key={p.name} delay={i * 90}>
+              <Link
+                href={p.href}
+                className="lift group relative flex h-full flex-col overflow-hidden rounded-card border border-chrome/15 bg-[#141414] p-8 transition-colors hover:border-[var(--ac)]"
+                style={{ ["--ac" as string]: p.accent }}
+              >
+                <div className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full opacity-25 blur-2xl transition-opacity duration-500 group-hover:opacity-50" style={{ background: p.accent }} />
+                <div className="relative flex h-full flex-col">
+                  <div className="flex items-center justify-between">
+                    <span className="tnum font-mono text-[13px]" style={{ color: p.accent }}>{String(i + 1).padStart(2, "0")}</span>
+                    <span className="h-2 w-2 rounded-full" style={{ background: p.accent }} />
+                  </div>
+                  <div className="mt-6 font-display text-[clamp(26px,2.6vw,34px)] font-black uppercase leading-none text-white">{p.name}</div>
+                  <div className="mt-2 font-script text-[clamp(22px,2.2vw,26px)] font-semibold" style={{ color: p.accent }}>{p.tagline}</div>
+                  <p className="mt-4 font-body text-[15px] leading-relaxed text-chrome">{p.blurb}</p>
+                  <div className="mt-auto pt-7">
+                    <span className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.16em] text-white">
+                      Explore <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1" style={{ color: p.accent }}>→</span>
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            </Reveal>
+          ))}
+        </div>
       </section>
 
-      {/* ============ 5. HOW IT WORKS [B] — pinned scroll-driven ============ */}
-      <HowItWorks steps={RELAY_STEPS} />
-
-      {/* ============ 6. THE GALLERY — full-screen slider, thumbnails overlaid (no heading) ============ */}
+      {/* ============ 5. THE GALLERY — full-screen slider, thumbnails overlaid (no heading) ============ */}
       <div className="bg-ink">
         <WideSlider slides={SLIDES} />
       </div>
 
-      {/* ============ 7. INSIDE THE HUB [W] — filterable gallery ============ */}
+      {/* ============ 6. INSIDE THE HUB [W] — filterable gallery ============ */}
       <section className={`${PAD} py-[clamp(70px,11vh,140px)]`} style={{ background: WHITE }}>
         <Reveal><Kick>Inside The Hub</Kick></Reveal>
         <Reveal as="h2" className="mt-3 font-display text-[clamp(36px,6vw,92px)] font-black uppercase leading-[0.9] tracking-[-0.025em]">
@@ -185,7 +222,7 @@ export default function Home() {
         <FilterGallery />
       </section>
 
-      {/* ============ 8. THE NETWORK [B] — map kept ============ */}
+      {/* ============ 7. THE NETWORK [B] — map kept ============ */}
       <section id="network" className={`bg-ink ${PAD} py-[clamp(80px,11vw,132px)]`}>
         <div className="grid gap-x-12 gap-y-10 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
           <div>
@@ -217,7 +254,7 @@ export default function Home() {
         </Reveal>
       </section>
 
-      {/* ============ 9. BY THE NUMBERS [W] — roomy stats ============ */}
+      {/* ============ 8. BY THE NUMBERS [W] — roomy stats ============ */}
       <section className={`${PAD} py-[clamp(70px,11vh,140px)]`} style={{ background: WHITE }}>
         <Reveal><Kick>By The Numbers</Kick></Reveal>
         <div className="mt-10 grid grid-cols-1 gap-px overflow-hidden rounded-[8px] border sm:grid-cols-2 lg:grid-cols-4" style={{ background: LINE_L, borderColor: LINE_L }}>
@@ -230,7 +267,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ============ 10. LET'S TALK [B] — centered Join form + 3-col contact ============ */}
+      {/* ============ 9. LET'S TALK [B] — contact info ABOVE, form below (centered) ============ */}
       <section id="contact" className={`relative overflow-hidden ${PAD} py-[clamp(80px,12vw,150px)]`}>
         <ParallaxImage src={PHOTOS.truckSunset} alt="A truck on the open road at sunset" strength={0.24} />
         <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(11,11,11,0.92),rgba(11,11,11,0.78))]" />
@@ -244,16 +281,15 @@ export default function Home() {
               Join the Outriders free, or reach the team direct — wherever you sit in the supply chain.
             </p>
           </Reveal>
-          <Reveal delay={140} className="mt-10 text-left">
-            <JoinForm />
-          </Reveal>
-          <Reveal delay={180}>
-            <div className="mx-auto mt-12 grid max-w-2xl grid-cols-1 gap-px overflow-hidden rounded-[8px] border border-chrome/15 bg-chrome/10 sm:grid-cols-3">
-              <a href={site.phoneHref} className="group bg-ink/70 p-6 backdrop-blur transition-colors hover:bg-ink/90">
+
+          {/* contact info ABOVE the form */}
+          <Reveal delay={140}>
+            <div className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-px overflow-hidden rounded-[8px] border border-chrome/15 bg-chrome/10 sm:grid-cols-3">
+              <a href={site.phoneHref} className="bg-ink/70 p-6 backdrop-blur transition-colors hover:bg-ink/90">
                 <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-fuel">Call</div>
                 <div className="tnum mt-2 font-mono text-[15px] text-white">{site.phone}</div>
               </a>
-              <a href={site.emailHref} className="group bg-ink/70 p-6 backdrop-blur transition-colors hover:bg-ink/90">
+              <a href={site.emailHref} className="bg-ink/70 p-6 backdrop-blur transition-colors hover:bg-ink/90">
                 <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-fuel">Email</div>
                 <div className="mt-2 break-words font-mono text-[15px] text-white">{site.email}</div>
               </a>
@@ -263,6 +299,11 @@ export default function Home() {
                 <div className="mt-1 font-mono text-[12px] text-chrome">{site.domainLabel}</div>
               </div>
             </div>
+          </Reveal>
+
+          {/* form below */}
+          <Reveal delay={180} className="mt-10 text-left">
+            <JoinForm />
           </Reveal>
         </div>
       </section>

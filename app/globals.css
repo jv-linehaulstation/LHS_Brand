@@ -243,9 +243,10 @@ body {
 .ld-num {
   font-family: var(--font-archivo), sans-serif;
   font-weight: 900;
-  font-size: clamp(54px, 13vw, 150px);
+  /* R5: ~one-fifth of the previous size (badge/wordmark unchanged). */
+  font-size: clamp(18px, 2.6vw, 34px);
   line-height: 0.9;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
   color: #fff;
 }
 .ld-num b { color: #f07820; font-weight: 900; }
