@@ -124,36 +124,41 @@ export default function Home() {
           <span className="outline-head" style={{ ["--ac" as string]: "#F07820" }}>Before.</span>
         </Reveal>
 
-        <div className="mt-10 grid gap-[clamp(24px,3.5vw,48px)] lg:grid-cols-3 lg:items-start">
+        <div className="mt-10 grid gap-[clamp(24px,3.5vw,56px)] lg:grid-cols-3 lg:items-start">
           {/* Col 1 — narrative */}
           <Reveal>
-            <p className="max-w-[40ch] font-body text-[clamp(18px,1.7vw,22px)] font-medium leading-[1.5]" style={{ color: CARBON }}>
+            <div className="font-mono text-[11px] uppercase tracking-[0.2em]" style={{ color: "#6a655e" }}>The Story</div>
+            <p className="mt-4 font-body text-[clamp(17px,1.6vw,21px)] font-medium leading-[1.5]" style={{ color: CARBON }}>
               LineHaul Station didn&apos;t start with trucks. It started with a question: why does the
               industry that moves America treat its best drivers the worst?
             </p>
-            <p className="mt-5 max-w-[42ch] font-body text-[clamp(15px,1.4vw,17px)] leading-relaxed" style={{ color: "#3a3733" }}>
+            <p className="mt-5 font-body text-[clamp(14px,1.35vw,16px)] leading-relaxed" style={{ color: "#3a3733" }}>
               We&apos;re building the answer — real terminals, real amenities, and a national relay that
               lowers the cost of every mile while getting the best drivers home, rested and respected.
               The same standard runs through every Hub, Service Center, and word we write.
             </p>
           </Reveal>
 
-          {/* Col 2 — Jeff */}
-          <Reveal delay={80} className="overflow-hidden rounded-[8px] border bg-white" style={{ borderColor: LINE_L }}>
-            <div className="relative aspect-[4/5] bg-[#ddd]">
-              <Image src="https://static.wixstatic.com/media/84a10c_7dfa17aed1604937b1d1dd98258ee10a~mv2.png/v1/fill/w_640,h_800,al_c,q_90/Bio_JS-23-1.png" alt="Jeff Swenson, Founder & CEO" fill className="object-cover object-top" sizes="(max-width: 1024px) 100vw, 33vw" />
-            </div>
-            <div className="p-6">
-              <div className="font-display text-[20px] font-black uppercase" style={{ color: CARBON }}>Jeff Swenson</div>
-              <div className="mt-1 font-mono text-[11px] uppercase tracking-[0.12em] text-fuel">Founder &amp; CEO</div>
-              <p className="mt-3 font-body text-[14px] leading-relaxed" style={{ color: "#3a3733" }}>
-                35 years and $2&nbsp;billion of residential, commercial, and logistics real estate — that
-                standard, brought to freight.
-              </p>
-              <div className="mt-4 flex flex-wrap gap-2.5">
-                <a href="https://www.linkedin.com/in/jeff-swenson-2744606" target="_blank" rel="noopener noreferrer" className="rounded-btn border px-3 py-2 font-mono text-[10px] uppercase tracking-[0.12em] transition-colors hover:border-fuel hover:text-fuel" style={{ borderColor: LINE_L, color: CARBON }}>LinkedIn</a>
-                <a href="mailto:js@linehaulstation.com" className="rounded-btn border px-3 py-2 font-mono text-[10px] uppercase tracking-[0.12em] transition-colors hover:border-fuel hover:text-fuel" style={{ borderColor: LINE_L, color: CARBON }}>js@linehaulstation.com</a>
+          {/* Col 2 — Jeff (smaller headshot) */}
+          <Reveal delay={80}>
+            <div className="font-mono text-[11px] uppercase tracking-[0.2em]" style={{ color: "#6a655e" }}>Founder</div>
+            <div className="mt-4 flex items-center gap-4">
+              <div className="relative h-[clamp(76px,8vw,104px)] w-[clamp(76px,8vw,104px)] flex-none overflow-hidden rounded-full border-2" style={{ borderColor: LINE_L }}>
+                <Image src="https://static.wixstatic.com/media/84a10c_7dfa17aed1604937b1d1dd98258ee10a~mv2.png/v1/fill/w_640,h_800,al_c,q_90/Bio_JS-23-1.png" alt="Jeff Swenson, Founder & CEO" fill className="object-cover object-top" sizes="120px" />
               </div>
+              <div className="min-w-0">
+                <div className="font-display text-[clamp(18px,2vw,22px)] font-black uppercase leading-tight" style={{ color: CARBON }}>Jeff Swenson</div>
+                <div className="mt-1 font-mono text-[11px] uppercase tracking-[0.12em] text-fuel">Founder &amp; CEO</div>
+              </div>
+            </div>
+            <p className="mt-5 font-body text-[clamp(14px,1.35vw,16px)] leading-relaxed" style={{ color: "#3a3733" }}>
+              Jeff spent 35 years and more than $2&nbsp;billion building residential, commercial, and
+              logistics real estate — then brought that standard to freight: treat the industry&apos;s best
+              drivers with dignity and respect, and never compromise on quality.
+            </p>
+            <div className="mt-4 flex flex-wrap gap-2.5">
+              <a href="https://www.linkedin.com/in/jeff-swenson-2744606" target="_blank" rel="noopener noreferrer" className="rounded-btn border px-3 py-2 font-mono text-[10px] uppercase tracking-[0.12em] transition-colors hover:border-fuel hover:text-fuel" style={{ borderColor: LINE_L, color: CARBON }}>LinkedIn</a>
+              <a href="mailto:js@linehaulstation.com" className="rounded-btn border px-3 py-2 font-mono text-[10px] uppercase tracking-[0.12em] transition-colors hover:border-fuel hover:text-fuel" style={{ borderColor: LINE_L, color: CARBON }}>js@linehaulstation.com</a>
             </div>
           </Reveal>
 
