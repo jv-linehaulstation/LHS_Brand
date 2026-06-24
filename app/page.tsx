@@ -118,21 +118,19 @@ export default function Home() {
 
       {/* ============ 3. WHO WE ARE [W] — 3 columns: narrative · Jeff · board ============ */}
       <section className={`${PAD} py-[clamp(70px,11vh,140px)]`} style={{ background: WHITE }}>
-        <Reveal><Kick>Who We Are</Kick></Reveal>
-        <Reveal as="h2" className="mt-3 font-display text-[clamp(34px,5.4vw,80px)] font-black uppercase leading-[0.92] tracking-[-0.025em]">
-          <span style={{ color: CARBON }}>Built By People Who&apos;ve Done It </span>
-          <span className="outline-head" style={{ ["--ac" as string]: "#F07820" }}>Before.</span>
-        </Reveal>
-
-        <div className="mt-10 grid gap-[clamp(24px,3.5vw,56px)] lg:grid-cols-3 lg:items-start">
-          {/* Col 1 — narrative */}
+        <div className="grid gap-[clamp(24px,3.5vw,56px)] lg:grid-cols-3 lg:items-start">
+          {/* Col 1 — ALL story content: eyebrow + headline + both paragraphs */}
           <Reveal>
-            <div className="font-mono text-[11px] uppercase tracking-[0.2em]" style={{ color: "#6a655e" }}>The Story</div>
-            <p className="mt-4 font-body text-[clamp(17px,1.6vw,21px)] font-medium leading-[1.5]" style={{ color: CARBON }}>
+            <Kick>The Story</Kick>
+            <h2 className="mt-4 font-display text-[clamp(30px,3.4vw,52px)] font-black uppercase leading-[0.95] tracking-[-0.02em]">
+              <span style={{ color: CARBON }}>Built By People Who&apos;ve Done It </span>
+              <span className="outline-head" style={{ ["--ac" as string]: "#F07820" }}>Before.</span>
+            </h2>
+            <p className="mt-5 font-body text-[clamp(16px,1.5vw,19px)] font-medium leading-[1.5]" style={{ color: CARBON }}>
               LineHaul Station didn&apos;t start with trucks. It started with a question: why does the
               industry that moves America treat its best drivers the worst?
             </p>
-            <p className="mt-5 font-body text-[clamp(14px,1.35vw,16px)] leading-relaxed" style={{ color: "#3a3733" }}>
+            <p className="mt-4 font-body text-[clamp(14px,1.35vw,16px)] leading-relaxed" style={{ color: "#3a3733" }}>
               We&apos;re building the answer — real terminals, real amenities, and a national relay that
               lowers the cost of every mile while getting the best drivers home, rested and respected.
               The same standard runs through every Hub, Service Center, and word we write.
