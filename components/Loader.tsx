@@ -83,11 +83,12 @@ export default function Loader() {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src="/assets/lhs-badge.png" alt="LineHaul Station" />
       </div>
-      <div className="ld-word">LineHaul Station</div>
+      {/* Focal: the bold 0/100 counter. Badge + wordmark are secondary. */}
       <div className="ld-num" aria-hidden="true">
         {count}
         <b>/100</b>
       </div>
+      <div className="ld-word">LineHaul Station</div>
       <div className="ld-track">
         <div className="ld-fill" />
         <span className="ld-dot" style={{ left: "0%" }} />

@@ -34,10 +34,10 @@ export default function Nav({
           <Image
             src="/assets/logo-horz-light.png"
             alt="LineHaul Station"
-            width={170}
-            height={30}
+            width={210}
+            height={37}
             priority
-            className="h-[26px] w-auto"
+            className="h-[36px] w-auto"
           />
         </Link>
 

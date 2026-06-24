@@ -8,6 +8,11 @@ type Dir = "up" | "left" | "right" | "none";
  * Scroll-entrance wrapper. Fades + slides children in the first time they enter
  * the viewport. `delay` (ms) staggers siblings. Respects prefers-reduced-motion
  * (renders fully visible, no transform).
+ *
+ * BULLETPROOF (never leave content hidden — the #1 past bug): reveals on mount
+ * if the element is already in/near the viewport, runs a 1200ms failsafe that
+ * forces visible no matter what, uses a low threshold + negative rootMargin, and
+ * works with Lenis smooth-scroll (IntersectionObserver tracks native scroll).
  */
 export default function Reveal({
   children,
@@ -30,13 +35,20 @@ export default function Reveal({
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    if (
-      typeof window !== "undefined" &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    ) {
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       setShown(true);
       return;
     }
+
+    // Already in / near the viewport on mount → show immediately (no waiting on
+    // an observer that may not fire for above-the-fold content).
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight * 0.92 && rect.bottom > 0) {
+      setShown(true);
+      return;
+    }
+
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
@@ -46,10 +58,18 @@ export default function Reveal({
           }
         });
       },
-      { threshold: 0.16, rootMargin: "0px 0px -8% 0px" }
+      { threshold: 0.01, rootMargin: "0px 0px -10% 0px" }
     );
     io.observe(el);
-    return () => io.disconnect();
+
+    // Failsafe: nothing stays hidden. If the observer never fires (edge cases
+    // with smooth-scroll / fast loads), force-reveal after 1200ms.
+    const failsafe = window.setTimeout(() => setShown(true), 1200);
+
+    return () => {
+      io.disconnect();
+      window.clearTimeout(failsafe);
+    };
   }, []);
 
   const offset =
