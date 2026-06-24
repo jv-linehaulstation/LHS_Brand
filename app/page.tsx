@@ -12,6 +12,7 @@ import { SectionHead, StatusChip, DataTag } from "@/components/Bits";
 import NetworkMap from "@/components/NetworkMap";
 import LaneTabs, { type Lane } from "@/components/LaneTabs";
 import Pillars from "@/components/Pillars";
+import RenderingsGallery from "@/components/RenderingsGallery";
 import { audiences, AUDIENCE_ORDER, PHOTOS } from "@/lib/audiences";
 
 // hero.mp4 lives on GHL storage (~23 MB) — referenced remotely for the cinematic break.
@@ -124,29 +125,49 @@ export default function Home() {
                 <span className="outline-head" style={{ ["--ac" as string]: "#F07820" }}>Before.</span>
               </h2>
             </Reveal>
-            <Reveal delay={100}>
-              <p className="mt-8 max-w-[30ch] font-body text-[clamp(20px,2.3vw,27px)] font-medium leading-[1.5] text-[#ededed]">
-                LineHaul Station didn&apos;t start with trucks. It started with a question:
-                why does the industry that moves America treat its best drivers the worst?
-              </p>
-            </Reveal>
-            <Reveal delay={160}>
-              <p className="mt-6 max-w-[62ch] font-body text-[clamp(16px,1.5vw,18.5px)] leading-relaxed text-[#d8d8d8]">
-                Founder &amp; CEO <strong className="font-medium text-white">Jeff Swenson</strong> spent
-                35 years and more than <strong className="font-medium text-white">$2 billion</strong> planning,
-                designing, and building urban residential, commercial, and logistics real estate — projects
-                united by one theme: enhancing how people live, work, and play.
-              </p>
-            </Reveal>
-            <Reveal delay={220}>
-              <p className="mt-5 max-w-[62ch] font-body text-[clamp(16px,1.5vw,18.5px)] leading-relaxed text-[#d8d8d8]">
-                He brought that standard to freight. Real terminals. Real amenities. A place a driver is proud
-                to call home base — and a network that lowers the cost of moving freight across the country.
-                The same rule runs through every Hub, every Service Center, and every word we write.
-              </p>
-            </Reveal>
-            <Reveal delay={280}>
-              <figure className="mt-9 border-l-2 border-fuel pl-6">
+            <div className="mt-9 grid gap-x-12 gap-y-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
+              <div>
+                <Reveal delay={100}>
+                  <p className="max-w-[34ch] font-body text-[clamp(20px,2.3vw,27px)] font-medium leading-[1.45] text-[#ededed]">
+                    LineHaul Station didn&apos;t start with trucks — it started with a question: why does the
+                    industry that moves America treat its best drivers the worst?
+                  </p>
+                </Reveal>
+                <Reveal delay={160}>
+                  <p className="mt-6 max-w-[44ch] font-body text-[clamp(16px,1.5vw,18.5px)] leading-relaxed text-[#d8d8d8]">
+                    Founder &amp; CEO <strong className="font-medium text-white">Jeff Swenson</strong> spent
+                    35 years and <strong className="font-medium text-white">$2 billion</strong> building
+                    residential, commercial, and logistics real estate. He brought that standard to freight:
+                    real terminals, real amenities, a home base a driver is proud of — and a network that
+                    lowers the cost of every mile.
+                  </p>
+                </Reveal>
+              </div>
+
+              {/* human, on-brand — pairs the prose with a real render */}
+              <Reveal delay={140} dir="right" className="frame lg:sticky lg:top-28">
+                <div className="relative aspect-[4/5] overflow-hidden rounded-[4px] bg-carbon">
+                  <Image
+                    src={PHOTOS.driverInCab}
+                    alt="A LineHaul Station driver in the cab"
+                    fill
+                    loading="lazy"
+                    className="img-grade object-cover"
+                    sizes="(max-width: 1024px) 100vw, 40vw"
+                  />
+                  <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_45%,rgba(11,11,11,0.82))]" />
+                  <div className="absolute inset-x-0 bottom-0 p-6">
+                    <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-fuel">The People We Build For</div>
+                    <div className="mt-1.5 font-display text-[20px] font-black uppercase leading-none text-white">
+                      America&apos;s Best Drivers.
+                    </div>
+                  </div>
+                </div>
+              </Reveal>
+            </div>
+
+            <Reveal delay={200}>
+              <figure className="mt-10 border-l-2 border-fuel pl-6">
                 <blockquote className="font-display text-[clamp(19px,2vw,24px)] font-extrabold leading-[1.3] tracking-[-0.01em] text-white">
                   Treat the industry&apos;s best truck drivers with dignity and respect — and never compromise on quality.
                 </blockquote>
@@ -172,16 +193,54 @@ export default function Home() {
         <Pillars />
       </Section>
 
+      {/* ===================== INSIDE A HUB — amenities renderings gallery (ink) ===================== */}
+      <Section variant="ink" id="tour" className="py-[clamp(64px,9vw,116px)]">
+        <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
+          <SectionHead kicker="Take the Tour" size="xl" title="Inside A Hub." />
+          <Reveal delay={120}>
+            <p className="text-pretty font-body text-[clamp(17px,1.8vw,21px)] leading-relaxed text-[#dadada]">
+              The Outriders Club, the rooftop Sky Deck, fitness, gaming, the gear shop, and on-site
+              LH Fleet Services. The amenities sell themselves — take the tour.
+            </p>
+          </Reveal>
+        </div>
+        <div className="mt-10">
+          <RenderingsGallery />
+        </div>
+      </Section>
+
       {/* ===================== THE NETWORK — national Hub map (carbon) ===================== */}
       <Section variant="carbon" id="network" className="py-[clamp(80px,11vw,132px)]">
-        <div className="grid gap-x-12 gap-y-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
-          <SectionHead kicker="The Network" size="xl" title="An Expanding National Hub Network." />
-          <Reveal delay={120}>
-            <p className="text-pretty font-body text-[clamp(18px,1.9vw,21px)] leading-relaxed text-[#dadada]">
-              The first Hub is open in West Memphis — one block from the I-40 / I-55 interchange, roughly
-              60,000 trucks a day. Phase-one expansion is underway across key markets toward a national
-              network of Hubs, Private Terminals, and Service Centers.
-            </p>
+        <div className="grid gap-x-12 gap-y-10 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
+          <div>
+            <SectionHead kicker="The Network" size="xl" title="An Expanding National Hub Network." />
+            <Reveal delay={120}>
+              <p className="mt-6 max-w-[44ch] text-pretty font-body text-[clamp(18px,1.9vw,21px)] leading-relaxed text-[#dadada]">
+                The first Hub is open in West Memphis — one block off the I-40 / I-55 interchange.
+                Phase-one expansion is underway toward a national network of Hubs, Private Terminals,
+                and Service Centers.
+              </p>
+            </Reveal>
+          </div>
+          {/* real-world context — the map sits in real geography, not on black */}
+          <Reveal delay={140} dir="right" className="frame">
+            <div className="relative aspect-[16/10] overflow-hidden rounded-[4px] bg-carbon">
+              <Image
+                src={PHOTOS.highwayInterchange}
+                alt="A national freight interchange"
+                fill
+                loading="lazy"
+                className="img-grade object-cover transition-transform duration-700 motion-safe:group-hover:scale-105"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+              <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_50%,rgba(11,11,11,0.8))]" />
+              <div className="absolute inset-x-0 bottom-0 flex items-center gap-3 p-5">
+                <span className="h-2 w-2 rounded-full bg-fuel shadow-[0_0_10px_1px_rgba(240,120,32,0.8)]" aria-hidden />
+                <span className="tnum font-mono text-[12px] uppercase tracking-[0.12em] text-white">
+                  I-40 / I-55 · ~60,000 trucks a day
+                </span>
+              </div>
+            </div>
           </Reveal>
         </div>
         <Reveal dir="left" className="mt-11">
@@ -222,7 +281,7 @@ export default function Home() {
       </Section>
 
       {/* ===================== PROOF / STATS BAND (image) ===================== */}
-      <Section variant="image" image={PHOTOS.buildingExterior} className="py-[clamp(80px,12vw,140px)]">
+      <Section variant="image" image={PHOTOS.entryWelcome} className="py-[clamp(80px,12vw,140px)]">
         <div className="grid gap-x-12 gap-y-10 lg:grid-cols-[1fr_1fr] lg:items-end">
           <div>
             <DataTag accent="#F07820" className="font-label !text-[10px] uppercase tracking-[0.2em]">
