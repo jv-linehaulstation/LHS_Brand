@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 /**
  * First-load preloader — ported verbatim from the original LineHaul Station site.
@@ -14,6 +14,8 @@ import { useEffect } from "react";
  * reveal is done imperatively, exactly like the original script.
  */
 export default function Loader() {
+  const [count, setCount] = useState(0);
+
   useEffect(() => {
     const loader = document.getElementById("lhs-loader");
     if (!loader) return;
@@ -24,6 +26,17 @@ export default function Loader() {
     }
 
     document.documentElement.style.overflow = "hidden"; // no scroll behind loader
+
+    // 0 → 100 numeric counter, reaching 100 ~1.4s in (before the min reveal time).
+    const countId = window.setInterval(() => {
+      setCount((v) => {
+        if (v >= 100) {
+          window.clearInterval(countId);
+          return 100;
+        }
+        return Math.min(100, v + Math.round(2 + Math.random() * 6));
+      });
+    }, 55);
 
     // hub dots light up in sequence — the network coming online
     const dots = loader.querySelectorAll<HTMLElement>(".ld-dot");
@@ -58,6 +71,7 @@ export default function Loader() {
     return () => {
       window.removeEventListener("load", onReady);
       window.clearTimeout(cap);
+      window.clearInterval(countId);
       dotTimers.forEach((t) => window.clearTimeout(t));
       document.documentElement.style.overflow = "";
     };
@@ -70,6 +84,10 @@ export default function Loader() {
         <img src="/assets/lhs-badge.png" alt="LineHaul Station" />
       </div>
       <div className="ld-word">LineHaul Station</div>
+      <div className="ld-num" aria-hidden="true">
+        {count}
+        <b>/100</b>
+      </div>
       <div className="ld-track">
         <div className="ld-fill" />
         <span className="ld-dot" style={{ left: "0%" }} />

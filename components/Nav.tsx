@@ -15,14 +15,13 @@ export default function Nav({
   accent?: string;
   active?: string;
 }) {
-  const tabs: { key: string; href: string; label: string }[] = [
-    ...AUDIENCE_ORDER.map((key) => ({
-      key,
-      href: `/${key}`,
-      label: audiences[key].navLabel,
-    })),
-    { key: "leadership", href: "/leadership", label: "Leadership" },
-  ];
+  // R1: audience lanes only — no index numbers, and Leadership is dropped from
+  // the nav (the /leadership page stays reachable directly).
+  const tabs: { key: string; href: string; label: string }[] = AUDIENCE_ORDER.map((key) => ({
+    key,
+    href: `/${key}`,
+    label: audiences[key].navLabel,
+  }));
 
   return (
     <header className="sticky top-0 z-50 border-b border-chrome/15 bg-ink/85 backdrop-blur-md">
@@ -43,25 +42,19 @@ export default function Nav({
         </Link>
 
         <nav className="no-scrollbar order-3 -mx-2 flex w-full flex-nowrap items-center overflow-x-auto sm:order-none sm:mx-0 sm:w-auto sm:flex-wrap sm:overflow-visible">
-          {tabs.map((t, i) => {
+          {tabs.map((t) => {
             const isActive = active === t.key;
             return (
               <Link
                 key={t.key}
                 href={t.href}
                 aria-current={isActive ? "page" : undefined}
-                className="group relative flex shrink-0 items-center gap-1.5 whitespace-nowrap px-2.5 py-2.5 font-label text-[10px] uppercase tracking-[0.12em] transition-colors lg:px-3"
+                className="group relative flex shrink-0 items-center whitespace-nowrap px-3 py-2.5 font-label text-[11px] uppercase tracking-[0.14em] transition-colors lg:px-3.5"
                 style={{ color: isActive ? "#ffffff" : "#9a9a9a" }}
               >
-                <span
-                  className="tnum font-mono text-[9px] tabular-nums transition-opacity"
-                  style={{ color: isActive ? accent : "#6a6a6a" }}
-                >
-                  {String(i + 1).padStart(2, "0")}
-                </span>
                 <span className="transition-colors group-hover:text-white">{t.label}</span>
                 <span
-                  className="absolute inset-x-2.5 -bottom-px h-0.5 origin-left transition-transform duration-300 lg:inset-x-3"
+                  className="absolute inset-x-3 -bottom-px h-0.5 origin-left transition-transform duration-300 lg:inset-x-3.5"
                   style={{
                     background: accent,
                     transform: isActive ? "scaleX(1)" : "scaleX(0)",

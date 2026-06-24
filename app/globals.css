@@ -154,6 +154,12 @@ body {
   to { opacity: 1; }
 }
 
+/* Filterable grid — cells fade + scale in when a filter expands the set. */
+@keyframes cellIn {
+  from { opacity: 0; transform: scale(0.94); }
+  to { opacity: 1; transform: none; }
+}
+
 /* Scroll-affordance hint — a smooth ease-in-out nudge (never bounce/elastic). */
 @keyframes scrollNudge {
   0%, 100% { transform: translateY(0); opacity: 0.7; }
@@ -178,6 +184,65 @@ body {
   .scroll-nudge { animation: none; }
   .lift:hover { transform: none; }
   .uline::after { transition: none; }
+}
+
+/* ===================================================================
+   Homepage R1 (vaulk rebuild) — clip reveals, scroll affordance, B/W
+   =================================================================== */
+
+/* Clip/mask reveal — headline draws up from a clipped edge (vaulk feel). */
+.clipr {
+  clip-path: inset(0 0 100% 0);
+  opacity: 0;
+  transform: translateY(16px);
+  transition: clip-path 0.9s cubic-bezier(0.2, 0.7, 0.2, 1), opacity 0.9s, transform 0.9s;
+}
+.clipr.in {
+  clip-path: inset(0 0 -4% 0);
+  opacity: 1;
+  transform: none;
+}
+
+/* Hero "scroll to explore" mouse indicator (the vaulk wheel-dot). */
+.scroll-mouse {
+  position: relative;
+  width: 26px;
+  height: 42px;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  border-radius: 14px;
+}
+.scroll-mouse::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 8px;
+  width: 4px;
+  height: 8px;
+  border-radius: 3px;
+  background: #f07820;
+  transform: translateX(-50%);
+  animation: wheelNudge 1.6s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+@keyframes wheelNudge {
+  0% { opacity: 0; transform: translate(-50%, 0); }
+  30%, 70% { opacity: 1; }
+  100% { opacity: 0; transform: translate(-50%, 12px); }
+}
+
+/* 0→100 numeric counter on the preloader. */
+.ld-num {
+  font-family: var(--font-archivo), sans-serif;
+  font-weight: 900;
+  font-size: clamp(54px, 13vw, 150px);
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  color: #fff;
+}
+.ld-num b { color: #f07820; font-weight: 900; }
+
+@media (prefers-reduced-motion: reduce) {
+  .clipr { clip-path: none; opacity: 1; transform: none; transition: none; }
+  .scroll-mouse::after { animation: none; }
 }
 
 /* ===== First-load preloader (ported verbatim from the original site) ===== */
