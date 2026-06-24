@@ -9,6 +9,36 @@ heading is visible. Commit + push.
 
 ---
 
+## ⭐ R3 deltas (JJ's review — apply on top; these OVERRIDE Step 2 where they conflict)
+
+- **Global layout — FULL WIDTH.** Content sections must occupy the full screen width with only
+  ~100px left/right margins on desktop, **not** the narrow centered `max-w-site` column.
+  Use `px-[clamp(20px,6vw,100px)]` and drop the centered max-width on content containers (keep
+  text line-lengths readable with per-block `max-w-*` where needed). Hero, the gallery slider,
+  and the pinned "How It Works" stay fully edge-to-edge.
+- **Hero heading (LOCKED — Option D, from the Drivers deck):**
+  - Eyebrow/kicker: **We Hear You. Loud & Clear.**
+  - Headline (`<h1>`): **Change Is Coming.**
+  - Subhead: **A modern freight relay network built to get America's best drivers home — rested, respected, and proud of where they park.**
+  - CTAs: **Schedule a Call** + **Find Your Lane.**
+  Keep the cowboy/sunset video, the higher text position, and the cursor-following scroll cue.
+- **The Gallery:** **remove the big "Every Angle…" heading** (a small kicker is fine).
+  Replace the prev/next **arrows** with a **thumbnail strip below the slider** — small square
+  images; clicking one shows that slide (active thumb highlighted; keyboard-accessible).
+  **Remove the empty white space below** the slider (trim the trailing padding).
+- **NEW — "How It Works" section (pinned, scroll-driven steps)** — the Vaulk/Vogue effect JJ
+  wants: a **video/media pinned on the LEFT**; on the right, numbered steps advance **as you
+  scroll** — **001** (step one) → scroll (visible scroll-movement transition) → **002** → scroll
+  → **003**. Pin the section; drive the active step from scroll progress. Steps = the relay:
+  **001 Pull In · 002 Recharge at the Service Center · 003 Relay Out.** The left media can change
+  per active step (e.g. building-seq aerial/exterior → fleet/fuel → road/relay). Reduced-motion:
+  stack the steps statically, no pin. Place it right after "A Real Terminal / What We Built."
+- **Closing "Let's Talk":** **remove the CTA buttons.** Instead embed the **Join Free form**
+  (reuse `components/JoinForm.tsx` — the same GHL form as `/join`) on one side, with the
+  **contact information** (phone, email, domain) beside it. Keep a short heading + one line.
+
+---
+
 ## STEP 1 — Revert the homepage to the clean pre-vaulk base
 - Restore **`app/page.tsx`** to its state at commit **`2306b52`**
   ("Homepage visuals: pair every render…") — the last good homepage before the vaulk rebuild:
