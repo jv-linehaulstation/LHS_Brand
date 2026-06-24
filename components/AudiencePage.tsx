@@ -117,7 +117,7 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
           {a.stats.map((s, i) => (
             <Reveal
               key={i}
-              delay={i * 70}
+              delay={i * 80}
               className="border-b border-r border-chrome/10 px-6 py-9 last:border-r-0 md:border-b-0 [&:nth-child(2)]:border-r-0 md:[&:nth-child(2)]:border-r"
             >
               <CountUp value={s.big} style={{ color: ac }} className="tnum font-display text-[clamp(32px,4vw,56px)] font-black leading-none" />
@@ -128,7 +128,7 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
       </Section>
 
       {/* ========================= PROBLEM (white) — editorial split ========================= */}
-      <Section variant="light" id="problem" className="py-[clamp(72px,10vw,124px)]">
+      <Section variant="light" id="problem" className="py-[clamp(70px,11vh,140px)]">
         <div className="grid gap-x-16 gap-y-12 lg:grid-cols-[1.2fr_0.8fr] lg:items-start">
           <div>
             <SectionHead kicker={a.problem.kicker} title={a.problem.headline} accent={ac} size="xl" tone="onLight" />
@@ -167,17 +167,17 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
 
       {/* ===================== SIGNATURE BAND (blueprint) ===================== */}
       {a.ledger && (
-        <Section variant="blueprint" className="py-[clamp(72px,10vw,112px)]">
+        <Section variant="blueprint" className="py-[clamp(70px,11vh,140px)]">
           <BuildVsBelong data={a.ledger} accent={ac} />
         </Section>
       )}
       {a.lanes && (
-        <Section variant="blueprint" className="py-[clamp(72px,10vw,112px)]">
+        <Section variant="blueprint" className="py-[clamp(70px,11vh,140px)]">
           <RelayDiagram data={a.lanes} accent={ac} />
         </Section>
       )}
       {a.timeline && (
-        <Section variant="blueprint" className="py-[clamp(72px,10vw,112px)]">
+        <Section variant="blueprint" className="py-[clamp(70px,11vh,140px)]">
           <Timeline data={a.timeline} accent={ac} />
         </Section>
       )}
@@ -204,14 +204,14 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
 
       {/* ============ SOLO vs RELAY (panel) — carriers & government ============ */}
       {a.relay && (
-        <Section variant="panel" className="py-[clamp(72px,10vw,108px)]">
+        <Section variant="panel" className="py-[clamp(70px,11vh,140px)]">
           <SoloVsRelay data={a.relay} accent={ac} />
         </Section>
       )}
 
       {/* ============ CAPABILITIES / AMENITIES (ink) ============ */}
       {a.amenities ? (
-        <Section variant="light" className="py-[clamp(72px,10vw,112px)]">
+        <Section variant="light" className="py-[clamp(70px,11vh,140px)]">
           <div className="grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
             <SectionHead kicker={a.amenities.eyebrow} title={a.amenities.headline} accent={ac} size="xl" tone="onLight" />
             <Reveal delay={120}>
@@ -262,7 +262,7 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
           </Reveal>
         </Section>
       ) : (
-        <Section variant="light" className="py-[clamp(72px,10vw,112px)]">
+        <Section variant="light" className="py-[clamp(70px,11vh,140px)]">
           <SectionHead kicker={a.featuresEyebrow} title={a.featuresTitle} accent={ac} size="xl" tone="onLight" />
           <div className="mt-10 grid gap-4 lg:grid-cols-2">
             {a.features.map((f, i) => (
@@ -293,7 +293,7 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
 
       {/* ===================== TAKE THE TOUR — GALLERY (carbon) ===================== */}
       {a.gallery && a.gallery.length > 0 && (
-        <Section variant="carbon" className="py-[clamp(72px,10vw,112px)]">
+        <Section variant="carbon" className="py-[clamp(70px,11vh,140px)]">
           <SectionHead
             kicker="Take the Tour"
             title={a.galleryTitle ?? "See The Build."}
@@ -310,7 +310,7 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
       )}
 
       {/* ===================== WEST MEMPHIS (image) ===================== */}
-      <Section variant="image" image={a.memphisImage} accent={ac} className="py-[clamp(80px,11vw,120px)]">
+      <Section variant="image" image={a.memphisImage} accent={ac} className="py-[clamp(70px,11vh,140px)]">
         <div className="grid gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
           <Reveal>
             <SectionHead kicker={a.memphis.kicker} title={a.memphis.headline} accent={ac} size="xl" />
@@ -319,7 +319,7 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
             </p>
             <div className="mt-7 grid grid-cols-3 gap-3">
               {a.memphis.stats.map((s, i) => (
-                <Reveal key={i} delay={i * 90} className="rounded-card border border-chrome/20 bg-ink/60 px-4 py-4 backdrop-blur">
+                <Reveal key={i} delay={i * 80} className="rounded-card border border-chrome/20 bg-ink/60 px-4 py-4 backdrop-blur">
                   <CountUp value={s.big} className="tnum font-display text-[clamp(18px,2.2vw,24px)] font-black leading-none text-white" />
                   <div className="mt-1.5 font-mono text-[11px] text-chrome">{s.label}</div>
                 </Reveal>
@@ -345,38 +345,43 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
       </Section>
 
       {/* ===================== ONE NETWORK — lane connector (blueprint) ===================== */}
-      <Section variant="blueprint" className="py-[clamp(64px,9vw,104px)]">
+      <Section variant="blueprint" className="py-[clamp(70px,11vh,140px)]">
         <LaneConnector current={a.key} accent={ac} />
       </Section>
 
-      {/* ===================== LET'S TALK (gradient) — Join form + contact ===================== */}
-      <Section variant="gradient" accent={ac} id="contact" className="py-[clamp(80px,11vw,116px)]">
-        <SectionHead kicker={a.form.eyebrow} title={a.form.headline} accent={ac} size="xl" />
-        <Reveal delay={100}>
-          <p className="mt-5 max-w-[54ch] text-pretty font-body text-[clamp(16px,1.6vw,20px)] leading-relaxed text-[#dadada]">
-            {a.form.body}
-          </p>
-        </Reveal>
-        <div className="mt-10 grid gap-[clamp(28px,4vw,56px)] lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
-          <Reveal>
+      {/* ===================== LET'S TALK (gradient) — content + contact left, form right ===================== */}
+      <Section variant="gradient" accent={ac} id="contact" className="py-[clamp(70px,11vh,140px)]">
+        <div className="grid gap-[clamp(28px,4vw,64px)] lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+          {/* content + contact info (left) */}
+          <div className="lg:sticky lg:top-28">
+            <SectionHead kicker={a.form.eyebrow} title={a.form.headline} accent={ac} size="xl" maxW="max-w-full" />
+            <Reveal delay={100}>
+              <p className="mt-5 max-w-[44ch] text-pretty font-body text-[clamp(16px,1.6vw,20px)] leading-relaxed text-[#dadada]">
+                {a.form.body}
+              </p>
+            </Reveal>
+            <Reveal delay={140}>
+              <div className="mt-9 grid grid-cols-1 gap-px overflow-hidden rounded-[8px] border border-chrome/15 bg-chrome/10 sm:grid-cols-3 lg:grid-cols-1">
+                <a href={site.phoneHref} className="bg-ink/70 p-5 backdrop-blur transition-colors hover:bg-ink/90">
+                  <div className="font-mono text-[11px] uppercase tracking-[0.2em]" style={{ color: ac }}>Call</div>
+                  <div className="tnum mt-2 font-mono text-[15px] text-white">{site.phone}</div>
+                </a>
+                <a href={site.emailHref} className="bg-ink/70 p-5 backdrop-blur transition-colors hover:bg-ink/90">
+                  <div className="font-mono text-[11px] uppercase tracking-[0.2em]" style={{ color: ac }}>Email</div>
+                  <div className="mt-2 break-words font-mono text-[15px] text-white">{site.email}</div>
+                </a>
+                <div className="bg-ink/70 p-5 backdrop-blur">
+                  <div className="font-mono text-[11px] uppercase tracking-[0.2em]" style={{ color: ac }}>Visit</div>
+                  <div className="mt-2 font-mono text-[15px] text-white">West Memphis, AR</div>
+                  <div className="mt-1 font-mono text-[12px] text-chrome">{site.domainLabel}</div>
+                </div>
+              </div>
+            </Reveal>
+          </div>
+
+          {/* form (right) */}
+          <Reveal delay={120} dir="right">
             <JoinForm accent={ac} accentDark={a.accentDark} />
-          </Reveal>
-          <Reveal delay={120} dir="right" className="lg:pt-4">
-            <div className="font-mono text-[11px] uppercase tracking-[0.2em]" style={{ color: ac }}>Reach Us Direct</div>
-            <div className="mt-5 flex flex-col gap-4 font-mono text-[clamp(15px,1.6vw,18px)] text-white">
-              <a href={site.phoneHref} className="flex items-center gap-3 transition-colors hover:opacity-80">
-                <span className="text-chrome">Phone</span> {site.phone}
-              </a>
-              <a href={site.emailHref} className="flex items-center gap-3 transition-colors hover:opacity-80">
-                <span className="text-chrome">Email</span> {site.email}
-              </a>
-              <div className="flex items-center gap-3">
-                <span className="text-chrome">Web</span> {site.domainLabel}
-              </div>
-              <div className="tnum mt-2 flex items-center gap-3 text-chrome">
-                <span className="h-2 w-2 rounded-full" style={{ background: ac }} aria-hidden /> West Memphis, AR · 35.14°N / 90.18°W
-              </div>
-            </div>
           </Reveal>
         </div>
       </Section>

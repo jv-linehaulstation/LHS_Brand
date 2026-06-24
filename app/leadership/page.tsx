@@ -95,7 +95,7 @@ export default function LeadershipPage() {
       </section>
 
       {/* FOUNDER (ink) — founder's letter */}
-      <Section variant="ink" id="founder" className="py-[clamp(72px,10vw,112px)]">
+      <Section variant="ink" id="founder" className="py-[clamp(70px,11vh,140px)]">
         <div className="grid gap-12 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
           <Reveal>
             <div className="frame">
@@ -161,7 +161,7 @@ export default function LeadershipPage() {
       </Section>
 
       {/* BOARD ADVISORS (carbon) */}
-      <Section variant="carbon" className="py-[clamp(72px,9vw,108px)]">
+      <Section variant="carbon" className="py-[clamp(70px,11vh,140px)]">
         <SectionHead kicker="Board Advisors" title="Decades Of Freight, Finance & Logistics." accent={FUEL} size="xl" />
 
         <Reveal delay={100} className="mt-9 frame">
@@ -185,7 +185,7 @@ export default function LeadershipPage() {
 
         <div className="mt-8 grid gap-5 md:grid-cols-3">
           {advisors.map((p, i) => (
-            <Reveal key={p.name} delay={i * 90} className="lift group overflow-hidden rounded-card border border-chrome/15 bg-panel">
+            <Reveal key={p.name} delay={i * 80} className="lift group overflow-hidden rounded-card border border-chrome/15 bg-panel">
               <div className="relative aspect-[5/4] overflow-hidden bg-carbon">
                 <Image
                   src={p.img}
@@ -209,12 +209,12 @@ export default function LeadershipPage() {
       </Section>
 
       {/* WHY WE DO IT — shared brand values (panel) */}
-      <Section variant="panel" className="py-[clamp(64px,8vw,108px)]">
+      <Section variant="panel" className="py-[clamp(70px,11vh,140px)]">
         <Pillars title={<>The Standard Behind <span className="text-fuel">Every Hub.</span></>} />
       </Section>
 
       {/* ONE NETWORK — lane connector (ink) */}
-      <Section variant="ink" className="py-[clamp(64px,9vw,104px)]">
+      <Section variant="ink" className="py-[clamp(70px,11vh,140px)]">
         <LaneConnector accent={FUEL} />
       </Section>
 

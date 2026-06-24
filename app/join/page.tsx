@@ -164,7 +164,7 @@ export default function JoinPage() {
       </section>
 
       {/* ====================== WHY JOIN / STORY (carbon) ====================== */}
-      <Section variant="carbon" id="why" className="py-[clamp(72px,10vw,124px)]">
+      <Section variant="carbon" id="why" className="py-[clamp(70px,11vh,140px)]">
         <div className="grid gap-x-14 gap-y-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
           <div>
             <SectionHead
@@ -218,7 +218,7 @@ export default function JoinPage() {
       </Section>
 
       {/* ====================== GALLERY (ink) ====================== */}
-      <Section variant="ink" className="py-[clamp(72px,10vw,116px)]">
+      <Section variant="ink" className="py-[clamp(70px,11vh,140px)]">
         <div className="grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
           <SectionHead kicker="Inside The Club" title="A First-Class Place To Belong." accent={ACCENT} size="xl" />
           <Reveal delay={120}>
@@ -235,7 +235,7 @@ export default function JoinPage() {
       </Section>
 
       {/* ====================== THE FORM (panel) ====================== */}
-      <Section variant="panel" id="join-form" className="py-[clamp(72px,10vw,120px)]">
+      <Section variant="panel" id="join-form" className="py-[clamp(70px,11vh,140px)]">
         <div className="grid gap-x-14 gap-y-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
           <div className="lg:sticky lg:top-24">
             <SectionHead
@@ -283,7 +283,7 @@ export default function JoinPage() {
       </Section>
 
       {/* ====================== FAQ (blueprint) ====================== */}
-      <Section variant="blueprint" className="py-[clamp(72px,10vw,116px)]">
+      <Section variant="blueprint" className="py-[clamp(70px,11vh,140px)]">
         <SectionHead kicker="Questions" title="Everything You Need To Know." accent={ACCENT} size="xl" align="center" />
         <div className="mt-12">
           <FAQ items={FAQS} accent={ACCENT} />
@@ -291,7 +291,7 @@ export default function JoinPage() {
       </Section>
 
       {/* ONE NETWORK — lane connector (carbon) */}
-      <Section variant="carbon" className="py-[clamp(64px,9vw,104px)]">
+      <Section variant="carbon" className="py-[clamp(70px,11vh,140px)]">
         <LaneConnector accent={ACCENT} showJoin={false} />
       </Section>
 

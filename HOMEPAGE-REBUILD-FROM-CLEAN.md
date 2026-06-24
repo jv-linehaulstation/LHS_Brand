@@ -139,10 +139,20 @@ Hero → **One Network. Every Lane.** (audiences, sticky-scroll) → **Who We Ar
   *(Option for later: a short per-lane summary video cut from the decks — possible, but a separate
   production; ship the matched stills now.)*
 
-- **Who We Are — revert to a 3-COLUMN layout** (drop the centered-Jeff version):
-  - **Col 1:** the narrative / intro content.
-  - **Col 2:** Jeff's info (photo + Founder & CEO + bio + LinkedIn/email).
+- **Who We Are — 3-COLUMN layout** (drop the centered-Jeff version):
+  - **Col 1:** ALL of this content lives in column 1 — the headline **"Built By People Who've
+    Done It Before."**, the **"The Story"** eyebrow, AND both description paragraphs:
+    > LineHaul Station didn't start with trucks. It started with a question: why does the
+    > industry that moves America treat its best drivers the worst?
+    >
+    > We're building the answer — real terminals, real amenities, and a national relay that
+    > lowers the cost of every mile while getting the best drivers home, rested and respected.
+    > The same standard runs through every Hub, Service Center, and word we write.
+  - **Col 2:** Jeff's info (photo + Founder & CEO + bio + LinkedIn/email). **Make Jeff's photo
+    smaller / proportionate** — it's currently too big and unbalances the row; size it to sit in
+    line with the other two columns (a compact headshot, not a tall hero image).
   - **Col 3:** the **Board Advisors** (the three, stacked compact).
+  - The three columns should read as balanced, equal-weight blocks.
 
 - **Three Programs AND Contact ("Let's Talk") — 2-COLUMN layout: content LEFT, boxes RIGHT.**
   - **Three Programs:** left = section heading + short intro; right = the three program cards
@@ -151,6 +161,25 @@ Hero → **One Network. Every Lane.** (audiences, sticky-scroll) → **Who We Ar
     "text boxes"). *(Overrides R5's "info on top / centered" — now side-by-side, content left, form right.)*
   *(Interpreting "One Network · Three Programs" as the Three Programs section. If you meant the
   audiences section too, say so.)*
+
+---
+
+## ⭐ R7 deltas (JJ's review — apply on top)
+
+- **Who We Are — heading size.** Increase the **"Built By People Who've Done It Before."** heading
+  to **match the other section headings** (the big display `<h2>` — `clamp(34px,5.6vw,84px)`,
+  font-black, uppercase). Right now it reads smaller than the rest.
+
+- **Who We Are — Jeff's photo.** Make it a **square (1:1)** image and **increase its size**, but
+  **don't let it fill the whole column** — a contained, centered square headshot (≈ 220–280px),
+  with breathing room around it so Col 2 stays balanced with Cols 1 and 3.
+
+- **Homepage polish pass — use the design skills.** Apply **`impeccable`** (typeset / layout /
+  animate), **`frontend-design`**, and **`ui-ux-pro-max`** to improve the **animation and spacing**
+  across the whole homepage: consistent vertical rhythm and section padding, balanced grids and
+  gutters, unified easing/timing on reveals and hovers, and tightened typographic spacing. Keep it
+  reduced-motion safe and on-brand (no new colors/fonts). This is a refinement pass — don't change
+  the structure or content, just make it feel polished and cohesive.
 
 ---
 

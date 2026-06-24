@@ -6,10 +6,21 @@ the rebuilt homepage's design language** — and make every page fully responsiv
 Work autonomously per CLAUDE.md on `redesign-v2`. End with `npx tsc --noEmit` + `npm run build`
 + a real-browser pass at **mobile (~390px), tablet (~768px), desktop (~1440px)**, then push.
 
-**Design source of truth = the rebuilt homepage** and its shared pieces (`Nav`, `Section`,
-`ClipReveal`/`Reveal` (the FIXED bulletproof reveal), `WideSlider` w/ thumbnail nav,
-`FilterGallery`, the pinned "How It Works", `BackgroundVideo`, `CountUp`, design tokens).
-**Reuse these components — don't fork new ones.** Cohesion over per-page novelty.
+**Design source of truth = the FINAL homepage** as specified in `HOMEPAGE-REBUILD-FROM-CLEAN.md`
+(all of R1–R7) and its shared pieces (`Nav`, `Section`, `ClipReveal`/`Reveal` (the FIXED
+bulletproof reveal), `WideSlider` w/ thumbnail nav, `FilterGallery`, sticky-scroll modules,
+`BackgroundVideo`, `JoinForm`, `CountUp`, design tokens). **Reuse these components — don't fork
+new ones.** Mirror the homepage's look, motion, and spacing exactly. Cohesion over per-page novelty.
+
+**Carry these homepage decisions onto every page (from the later rounds):**
+- **Shared container width pattern** — nav, footer, and all sections use the same full-width
+  container with ~100px desktop side margins (`px-[clamp(20px,6vw,100px)]`). Footer + nav are
+  shared, so fixing them aligns every page.
+- **Bulletproof reveals + loader** are global (already fixed) — confirm headings show on each page.
+- **Contact sections** match the homepage: **content left, form (JoinForm) right** (2-col), with
+  Call · Email · Visit; content-matched imagery (no generic photos that don't fit the copy).
+- **Polish pass** — after aligning each page, run the same **`impeccable` + `frontend-design` +
+  `ui-ux-pro-max`** animation + spacing pass used on the homepage (structure/content unchanged).
 
 ---
 
