@@ -122,7 +122,7 @@ export default function Home() {
           {/* Col 1 — ALL story content: eyebrow + headline + both paragraphs */}
           <Reveal>
             <Kick>The Story</Kick>
-            <h2 className="mt-4 font-display text-[clamp(30px,3.4vw,52px)] font-black uppercase leading-[0.95] tracking-[-0.02em]">
+            <h2 className="mt-4 text-balance font-display text-[clamp(34px,5.6vw,84px)] font-black uppercase leading-[0.9] tracking-[-0.025em]">
               <span style={{ color: CARBON }}>Built By People Who&apos;ve Done It </span>
               <span className="outline-head" style={{ ["--ac" as string]: "#F07820" }}>Before.</span>
             </h2>
@@ -137,19 +137,15 @@ export default function Home() {
             </p>
           </Reveal>
 
-          {/* Col 2 — Jeff (smaller headshot) */}
+          {/* Col 2 — Jeff (contained square headshot) */}
           <Reveal delay={80}>
             <div className="font-mono text-[11px] uppercase tracking-[0.2em]" style={{ color: "#6a655e" }}>Founder</div>
-            <div className="mt-4 flex items-center gap-4">
-              <div className="relative h-[clamp(76px,8vw,104px)] w-[clamp(76px,8vw,104px)] flex-none overflow-hidden rounded-full border-2" style={{ borderColor: LINE_L }}>
-                <Image src="https://static.wixstatic.com/media/84a10c_7dfa17aed1604937b1d1dd98258ee10a~mv2.png/v1/fill/w_640,h_800,al_c,q_90/Bio_JS-23-1.png" alt="Jeff Swenson, Founder & CEO" fill className="object-cover object-top" sizes="120px" />
-              </div>
-              <div className="min-w-0">
-                <div className="font-display text-[clamp(18px,2vw,22px)] font-black uppercase leading-tight" style={{ color: CARBON }}>Jeff Swenson</div>
-                <div className="mt-1 font-mono text-[11px] uppercase tracking-[0.12em] text-fuel">Founder &amp; CEO</div>
-              </div>
+            <div className="relative mt-5 aspect-square w-full max-w-[280px] overflow-hidden rounded-[10px] border" style={{ borderColor: LINE_L }}>
+              <Image src="https://static.wixstatic.com/media/84a10c_7dfa17aed1604937b1d1dd98258ee10a~mv2.png/v1/fill/w_640,h_800,al_c,q_90/Bio_JS-23-1.png" alt="Jeff Swenson, Founder & CEO" fill className="object-cover object-top" sizes="280px" />
             </div>
-            <p className="mt-5 font-body text-[clamp(14px,1.35vw,16px)] leading-relaxed" style={{ color: "#3a3733" }}>
+            <div className="mt-5 font-display text-[clamp(20px,2.2vw,26px)] font-black uppercase leading-tight" style={{ color: CARBON }}>Jeff Swenson</div>
+            <div className="mt-1 font-mono text-[11px] uppercase tracking-[0.12em] text-fuel">Founder &amp; CEO</div>
+            <p className="mt-4 max-w-[42ch] font-body text-[clamp(14px,1.35vw,16px)] leading-relaxed" style={{ color: "#3a3733" }}>
               Jeff spent 35 years and more than $2&nbsp;billion building residential, commercial, and
               logistics real estate — then brought that standard to freight: treat the industry&apos;s best
               drivers with dignity and respect, and never compromise on quality.
@@ -204,7 +200,7 @@ export default function Home() {
           {/* cards stacked right */}
           <div className="grid gap-4">
             {PROGRAMS.map((p, i) => (
-              <Reveal key={p.name} delay={i * 90}>
+              <Reveal key={p.name} delay={i * 80}>
                 <Link
                   href={p.href}
                   className="lift group relative flex overflow-hidden rounded-card border border-chrome/15 bg-[#141414] p-7 transition-colors hover:border-[var(--ac)] sm:p-8"
@@ -244,7 +240,7 @@ export default function Home() {
       </section>
 
       {/* ============ 7. THE NETWORK [B] — map kept ============ */}
-      <section id="network" className={`bg-ink ${PAD} py-[clamp(80px,11vw,132px)]`}>
+      <section id="network" className={`bg-ink ${PAD} py-[clamp(70px,11vh,140px)]`}>
         <div className="grid gap-x-12 gap-y-10 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
           <div>
             <Reveal><Kick>The Network</Kick></Reveal>
@@ -289,7 +285,7 @@ export default function Home() {
       </section>
 
       {/* ============ 9. LET'S TALK [B] — 2 cols: content + contact left, form right ============ */}
-      <section id="contact" className={`relative overflow-hidden ${PAD} py-[clamp(80px,12vw,150px)]`}>
+      <section id="contact" className={`relative overflow-hidden ${PAD} py-[clamp(70px,11vh,140px)]`}>
         <ParallaxImage src={PHOTOS.truckSunset} alt="A truck on the open road at sunset" strength={0.24} />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(11,11,11,0.94),rgba(11,11,11,0.7))]" />
         <div className="relative grid gap-[clamp(28px,4vw,64px)] lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
