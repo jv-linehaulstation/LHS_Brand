@@ -363,16 +363,11 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
   const servicesSection = a.outriders && (
     <Section variant="ink" className="py-[clamp(70px,11vh,140px)]">
       <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
-        <div>
-          <Reveal>
-            <CoinImage src="/assets/coin-outriders.png" alt="Outriders Club challenge coin" size={76} glow={`${ac}40`} className="mb-5" />
-          </Reveal>
-          <SectionHead
-            title={<><span className="text-chrome">★</span> {a.outriders.services.headline} <span className="text-chrome">★</span></>}
-            accent={ac}
-            size="xl"
-          />
-        </div>
+        <SectionHead
+          title={<><span style={{ color: ac }}>★</span> {a.outriders.services.headline} <span style={{ color: ac }}>★</span></>}
+          accent={ac}
+          size="xl"
+        />
         <Reveal delay={120}>
           <p className="text-pretty font-body text-[clamp(17px,1.8vw,20px)] leading-relaxed text-[#dadada]">{a.outriders.services.intro}</p>
         </Reveal>
@@ -428,6 +423,9 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
       <Reveal>
         <div className="font-label text-[11px] uppercase tracking-[0.24em]" style={{ color: ac }}>Three ways to get Space</div>
         <h2 className="mt-3 font-display text-[clamp(48px,9vw,120px)] font-black uppercase leading-[0.86] tracking-[-0.03em] text-white">{a.outriders.join.waysTitle}</h2>
+        <p className="mt-5 max-w-[52ch] font-body text-[clamp(16px,1.7vw,20px)] leading-relaxed text-[#dadada]">
+          Space is your place in the network — secure parking, trailer drop, and terminal access at every LineHaul Station Hub. Here are the three ways to get it.
+        </p>
       </Reveal>
       <div className="mt-10 grid gap-4 md:grid-cols-3">
         {a.outriders.join.ways.map((w, i) => (
