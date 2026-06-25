@@ -67,7 +67,7 @@ export default function OneHomeCalculator({ accent = "#F07820" }: { accent?: str
         </h2>
       </div>
 
-      <div className="frame">
+      <div className="chrome-frame">
         <div className="bg-panel p-6 sm:p-9">
           {/* RESULT */}
           <div className="rounded-card border border-chrome/15 bg-ink2 p-6 sm:p-8">

@@ -6,7 +6,7 @@ import Contact from "@/components/Contact";
 import Section from "@/components/Section";
 import Reveal from "@/components/motion/Reveal";
 import BackgroundVideo from "@/components/motion/BackgroundVideo";
-import { SectionHead, StatusChip, DataTag } from "@/components/Bits";
+import { SectionHead, StatusChip, DataTag, ChromeFrame } from "@/components/Bits";
 import JoinForm from "@/components/JoinForm";
 import PhotoGallery, { type Shot } from "@/components/PhotoGallery";
 import FAQ, { type QA } from "@/components/FAQ";
@@ -108,7 +108,7 @@ export default function JoinPage() {
 
         <div className="relative w-full">
           <Reveal>
-            <StatusChip label="Outriders Membership — Open" coord="Driver-owned community" accent={ACCENT} />
+            <StatusChip chrome label="Outriders Membership — Open" coord="Driver-owned community" accent={ACCENT} />
           </Reveal>
           <Reveal delay={70}>
             <div className="mt-7 font-label text-[clamp(10px,1.3vw,14px)] uppercase tracking-[0.28em] text-chrome">
@@ -198,8 +198,8 @@ export default function JoinPage() {
           </div>
 
           {/* story video, offset for rhythm */}
-          <Reveal delay={160} dir="right" className="frame lg:-mt-8">
-            <div className="relative aspect-[4/5] overflow-hidden rounded-[4px] bg-carbon">
+          <Reveal delay={160} dir="right" className="chrome-frame glint lg:-mt-8">
+            <div className="relative aspect-[4/5] overflow-hidden bg-carbon">
               <BackgroundVideo
                 src={`${O}/story.mp4`}
                 poster={`${O}/gallery-2.jpg`}
@@ -251,8 +251,8 @@ export default function JoinPage() {
                 we&apos;ll get you set up with the club, the app, and first-Hub news.
               </p>
             </Reveal>
-            <Reveal delay={200} className="mt-8 frame inline-block">
-              <div className="relative overflow-hidden rounded-[4px] bg-carbon">
+            <Reveal delay={200} className="mt-8 chrome-frame inline-block">
+              <div className="relative overflow-hidden bg-carbon">
                 <Image
                   src={`${O}/form-art.png`}
                   alt="The Outriders Club — LineHaul Station"

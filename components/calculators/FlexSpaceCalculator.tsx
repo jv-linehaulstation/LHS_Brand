@@ -45,7 +45,7 @@ export default function FlexSpaceCalculator({ accent = "#4878A8" }: { accent?: s
         </h2>
       </div>
 
-      <div className="frame">
+      <div className="chrome-frame">
         <div className="bg-panel p-6 sm:p-9">
           {/* TIER SELECT */}
           <div className="font-label text-[10px] uppercase tracking-[0.2em] text-chrome">

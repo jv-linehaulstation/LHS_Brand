@@ -105,7 +105,7 @@ export default function LeadForm({
         </p>
       </div>
 
-      <form onSubmit={submit} className="mt-8 frame">
+      <form onSubmit={submit} className="mt-8 chrome-frame">
         <div className="bg-ink/80 p-6 backdrop-blur sm:p-8">
           <div className="grid gap-4 sm:grid-cols-2">
             {fields.map((f) => (

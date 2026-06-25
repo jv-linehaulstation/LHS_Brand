@@ -6,7 +6,7 @@ import Reveal from "@/components/motion/Reveal";
 import CountUp from "@/components/motion/CountUp";
 import ParallaxImage from "@/components/motion/ParallaxImage";
 import { PrimaryCTA, GhostCTA } from "@/components/CTA";
-import { SectionHead, StatusChip, DataTag, CoinImage } from "@/components/Bits";
+import { SectionHead, StatusChip, DataTag, CoinImage, ChromeFrame } from "@/components/Bits";
 import { BuildVsBelong, RelayDiagram, Timeline, SoloVsRelay } from "@/components/Signatures";
 import RenderingsGallery from "@/components/RenderingsGallery";
 import { RENDER_GROUPS } from "@/lib/renderGroups";
@@ -69,7 +69,7 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
             </Reveal>
           )}
           <Reveal>
-            <StatusChip label="West Memphis Hub — Open Now" coord="I-40 / I-55" accent={ac} />
+            <StatusChip chrome label="West Memphis Hub — Open Now" coord="I-40 / I-55" accent={ac} />
           </Reveal>
           <Reveal delay={70}>
             <div className="mt-7 font-label text-[clamp(10px,1.3vw,14px)] uppercase tracking-[0.28em] text-chrome">
@@ -344,7 +344,7 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
               ))}
             </div>
           </Reveal>
-          <Reveal delay={160} dir="right" className="frame">
+          <Reveal delay={160} dir="right" className="chrome-frame glint">
             <div className="bg-ink/85 p-7 backdrop-blur">
               <div className="font-label text-[10px] uppercase tracking-[0.2em]" style={{ color: ac }}>
                 The First Hub
@@ -353,9 +353,9 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
                 {a.memphis.address}
               </div>
               <div className="tnum mt-1.5 font-mono text-[13px] text-chrome">{a.memphis.addressSub}</div>
-              <div className="mt-5 h-px bg-chrome/15" />
+              <div className="chrome-rule mt-5" />
               <div className="mt-5">
-                <StatusChip label="Live now" coord="35.14°N / 90.18°W" accent={ac} />
+                <StatusChip chrome label="Live now" coord="35.14°N / 90.18°W" accent={ac} />
               </div>
             </div>
           </Reveal>
@@ -379,21 +379,23 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
               </p>
             </Reveal>
             <Reveal delay={140}>
-              <div className="mt-9 grid grid-cols-1 gap-px overflow-hidden rounded-[8px] border border-chrome/15 bg-chrome/10 sm:grid-cols-3 lg:grid-cols-1">
-                <a href={site.phoneHref} className="bg-ink/70 p-5 backdrop-blur transition-colors hover:bg-ink/90">
-                  <div className="font-mono text-[11px] uppercase tracking-[0.2em]" style={{ color: ac }}>Call</div>
-                  <div className="tnum mt-2 font-mono text-[15px] text-white">{site.phone}</div>
-                </a>
-                <a href={site.emailHref} className="bg-ink/70 p-5 backdrop-blur transition-colors hover:bg-ink/90">
-                  <div className="font-mono text-[11px] uppercase tracking-[0.2em]" style={{ color: ac }}>Email</div>
-                  <div className="mt-2 break-words font-mono text-[15px] text-white">{site.email}</div>
-                </a>
-                <div className="bg-ink/70 p-5 backdrop-blur">
-                  <div className="font-mono text-[11px] uppercase tracking-[0.2em]" style={{ color: ac }}>Visit</div>
-                  <div className="mt-2 font-mono text-[15px] text-white">West Memphis, AR</div>
-                  <div className="mt-1 font-mono text-[12px] text-chrome">{site.domainLabel}</div>
+              <ChromeFrame className="mt-9">
+                <div className="grid grid-cols-1 gap-px overflow-hidden bg-chrome/10 sm:grid-cols-3 lg:grid-cols-1">
+                  <a href={site.phoneHref} className="bg-ink/80 p-5 backdrop-blur transition-colors hover:bg-ink/95">
+                    <div className="font-mono text-[11px] uppercase tracking-[0.2em]" style={{ color: ac }}>Call</div>
+                    <div className="tnum mt-2 font-mono text-[15px] text-white">{site.phone}</div>
+                  </a>
+                  <a href={site.emailHref} className="bg-ink/80 p-5 backdrop-blur transition-colors hover:bg-ink/95">
+                    <div className="font-mono text-[11px] uppercase tracking-[0.2em]" style={{ color: ac }}>Email</div>
+                    <div className="mt-2 break-words font-mono text-[15px] text-white">{site.email}</div>
+                  </a>
+                  <div className="bg-ink/80 p-5 backdrop-blur">
+                    <div className="font-mono text-[11px] uppercase tracking-[0.2em]" style={{ color: ac }}>Visit</div>
+                    <div className="mt-2 font-mono text-[15px] text-white">West Memphis, AR</div>
+                    <div className="mt-1 font-mono text-[12px] text-chrome">{site.domainLabel}</div>
+                  </div>
                 </div>
-              </div>
+              </ChromeFrame>
             </Reveal>
           </div>
 

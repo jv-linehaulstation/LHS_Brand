@@ -6,7 +6,7 @@ import Section from "@/components/Section";
 import Contact from "@/components/Contact";
 import Reveal from "@/components/motion/Reveal";
 import ParallaxImage from "@/components/motion/ParallaxImage";
-import { SectionHead, DataTag } from "@/components/Bits";
+import { SectionHead, DataTag, ChromeFrame } from "@/components/Bits";
 import Pillars from "@/components/Pillars";
 import LaneConnector from "@/components/LaneConnector";
 import { PHOTOS } from "@/lib/audiences";
@@ -98,7 +98,7 @@ export default function LeadershipPage() {
       <Section variant="ink" id="founder" className="py-[clamp(70px,11vh,140px)]">
         <div className="grid gap-12 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
           <Reveal>
-            <div className="frame">
+            <ChromeFrame variant="dual" glint>
               <div className="relative aspect-[4/5] overflow-hidden bg-carbon">
                 <Image
                   src="https://static.wixstatic.com/media/84a10c_7dfa17aed1604937b1d1dd98258ee10a~mv2.png/v1/fill/w_640,h_800,al_c,q_90/Bio_JS-23-1.png"
@@ -111,7 +111,7 @@ export default function LeadershipPage() {
                   <DataTag accent={FUEL}>FOUNDER · CEO</DataTag>
                 </div>
               </div>
-            </div>
+            </ChromeFrame>
           </Reveal>
 
           <Reveal delay={120}>
@@ -164,8 +164,8 @@ export default function LeadershipPage() {
       <Section variant="carbon" className="py-[clamp(70px,11vh,140px)]">
         <SectionHead kicker="Board Advisors" title="Decades Of Freight, Finance & Logistics." accent={FUEL} size="xl" />
 
-        <Reveal delay={100} className="mt-9 frame">
-          <div className="relative aspect-[21/9] overflow-hidden rounded-[4px]">
+        <Reveal delay={100} className="mt-9 chrome-frame glint">
+          <div className="relative aspect-[21/9] overflow-hidden">
             <Image
               src={PHOTOS.leadershipGroup}
               alt="The LineHaul Station leadership team"
@@ -176,8 +176,10 @@ export default function LeadershipPage() {
             />
             <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,11,11,0.1),rgba(11,11,11,0.55))]" />
             <div className="absolute inset-x-0 bottom-0 p-5">
-              <span className="rounded-btn bg-ink/60 px-3 py-1.5 font-mono text-[11px] text-chrome backdrop-blur-sm">
-                The team building America&apos;s freight relay network
+              <span className="chrome-pill">
+                <span className="font-mono !text-[11px] text-chrome">
+                  The team building America&apos;s freight relay network
+                </span>
               </span>
             </div>
           </div>
@@ -185,24 +187,28 @@ export default function LeadershipPage() {
 
         <div className="mt-8 grid gap-5 md:grid-cols-3">
           {advisors.map((p, i) => (
-            <Reveal key={p.name} delay={i * 80} className="lift group overflow-hidden rounded-card border border-chrome/15 bg-panel">
-              <div className="relative aspect-[5/4] overflow-hidden bg-carbon">
-                <Image
-                  src={p.img}
-                  alt={p.name}
-                  fill
-                  className="img-grade object-cover object-center transition-transform duration-700 group-hover:scale-105"
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                />
-                <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_45%,rgba(11,11,11,0.85))]" />
-                <div className="absolute inset-x-0 bottom-0 p-5">
-                  <div className="font-display text-[20px] font-black uppercase leading-none text-white">{p.name}</div>
-                  <div className="mt-1.5 font-mono text-[11px] text-fuel">{p.cred}</div>
+            <Reveal key={p.name} delay={i * 80} className="lift">
+              <ChromeFrame className="h-full">
+                <div className="group h-full overflow-hidden bg-panel">
+                  <div className="relative aspect-[5/4] overflow-hidden bg-carbon">
+                    <Image
+                      src={p.img}
+                      alt={p.name}
+                      fill
+                      className="img-grade object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                    />
+                    <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_45%,rgba(11,11,11,0.85))]" />
+                    <div className="absolute inset-x-0 bottom-0 p-5">
+                      <div className="font-display text-[20px] font-black uppercase leading-none text-white">{p.name}</div>
+                      <div className="mt-1.5 font-mono text-[11px] text-fuel">{p.cred}</div>
+                    </div>
+                  </div>
+                  <div className="p-6">
+                    <p className="font-body text-[16px] leading-relaxed text-chrome">{p.bio}</p>
+                  </div>
                 </div>
-              </div>
-              <div className="p-6">
-                <p className="font-body text-[16px] leading-relaxed text-chrome">{p.bio}</p>
-              </div>
+              </ChromeFrame>
             </Reveal>
           ))}
         </div>
