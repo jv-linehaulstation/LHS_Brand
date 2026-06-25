@@ -123,8 +123,8 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
         </a>
       </section>
 
-      {/* ====================== STAT CONSOLE (carbon) ====================== */}
-      <Section variant="carbon" className="py-0">
+      {/* ====================== STAT CONSOLE (ink) ====================== */}
+      <Section variant="ink" className="py-0">
         <div className="flex items-center justify-between border-b border-chrome/10 py-4">
           <DataTag accent={ac} className="font-label !text-[10px] uppercase tracking-[0.2em]">
             <span className="pulse-dot inline-block h-2 w-2 rounded-full" style={{ background: ac, color: ac }} /> The Numbers
@@ -173,12 +173,12 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
 
       {/* ===================== CALCULATOR (panel) — drivers & carriers ===================== */}
       {audience === "drivers" && (
-        <Section variant="panel" className="py-2">
+        <Section variant="ink" className="py-2">
           <OneHomeCalculator accent={ac} />
         </Section>
       )}
       {audience === "carriers" && (
-        <Section variant="panel" className="py-2">
+        <Section variant="ink" className="py-2">
           <FlexSpaceCalculator accent={ac} />
         </Section>
       )}
@@ -220,9 +220,9 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
       {/* ===================== HOW IT WORKS — pinned scroll-driven (shared) ===================== */}
       <HowItWorks steps={howSteps} accent={ac} kicker={a.how.eyebrow} title={a.how.headline} />
 
-      {/* ============ SOLO vs RELAY (panel) — carriers & government ============ */}
+      {/* ============ SOLO vs RELAY (blueprint) — carriers & government ============ */}
       {a.relay && (
-        <Section variant="panel" className="py-[clamp(70px,11vh,140px)]">
+        <Section variant="blueprint" className="py-[clamp(70px,11vh,140px)]">
           <SoloVsRelay data={a.relay} accent={ac} />
         </Section>
       )}
@@ -318,9 +318,9 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
         </Section>
       )}
 
-      {/* ===================== TAKE THE TOUR — GALLERY (carbon) ===================== */}
+      {/* ===================== TAKE THE TOUR — GALLERY (ink) ===================== */}
       {a.gallery && a.gallery.length > 0 && (
-        <Section variant="carbon" className="py-[clamp(70px,11vh,140px)]">
+        <Section variant="ink" className="py-[clamp(70px,11vh,140px)]">
           <SectionHead
             kicker="Take the Tour"
             title={a.galleryTitle ?? "See The Build."}

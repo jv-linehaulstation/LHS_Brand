@@ -94,8 +94,8 @@ export default function LeadershipPage() {
         </a>
       </section>
 
-      {/* FOUNDER (ink) — founder's letter */}
-      <Section variant="ink" id="founder" className="py-[clamp(70px,11vh,140px)]">
+      {/* FOUNDER (light) — founder's letter, white beat like the homepage Who-We-Are */}
+      <Section variant="light" id="founder" className="py-[clamp(70px,11vh,140px)]">
         <div className="grid gap-12 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
           <Reveal>
             <ChromeFrame variant="dual" glint>
@@ -115,10 +115,10 @@ export default function LeadershipPage() {
           </Reveal>
 
           <Reveal delay={120}>
-            <SectionHead kicker="Founder & CEO" title="Jeff Swenson" accent={FUEL} size="xl" maxW="max-w-full" />
-            <p className="mt-6 max-w-[58ch] text-pretty font-body text-[clamp(18px,1.9vw,21px)] leading-relaxed text-[#dadada]">
+            <SectionHead kicker="Founder & CEO" title="Jeff Swenson" accent={FUEL} size="xl" maxW="max-w-full" tone="onLight" />
+            <p className="mt-6 max-w-[58ch] text-pretty font-body text-[clamp(18px,1.9vw,21px)] leading-relaxed text-[#3a3733]">
               A seasoned entrepreneur, Jeff has held leadership roles in the planning,
-              design, sales, and construction of more than <strong className="text-white">$2 billion</strong>{" "}
+              design, sales, and construction of more than <strong className="text-ink">$2 billion</strong>{" "}
               of urban residential, commercial, and logistics real estate over the past
               35 years — projects united by one theme: enhancing how people and companies
               live, work, and play. He is the editorial standard behind the brand voice:
@@ -127,11 +127,11 @@ export default function LeadershipPage() {
             </p>
 
             {/* Pull-quote (full panel, no side stripe) */}
-            <figure className="mt-7 rounded-card border border-chrome/15 bg-panel p-7">
+            <figure className="mt-7 rounded-card border border-[#E2DDD6] bg-white p-7">
               <div className="font-display text-[44px] font-black leading-none text-fuel" aria-hidden>
                 &ldquo;
               </div>
-              <blockquote className="-mt-3 font-body text-[clamp(19px,2.1vw,24px)] italic leading-relaxed text-[#ededed]">
+              <blockquote className="-mt-3 font-body text-[clamp(19px,2.1vw,24px)] italic leading-relaxed text-[#2a2724]">
                 Our CEO is a fantastic chef — and he refuses to compromise on quality. The
                 same standard runs through every terminal, every amenity, and every word.
               </blockquote>
@@ -145,13 +145,13 @@ export default function LeadershipPage() {
                 href="https://www.linkedin.com/in/jeff-swenson-2744606"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-btn border border-chrome/30 bg-carbon px-5 py-3 font-label text-[10px] uppercase tracking-[0.16em] text-white transition-colors hover:border-fuel hover:text-fuel"
+                className="rounded-btn border border-[#E2DDD6] px-5 py-3 font-label text-[10px] uppercase tracking-[0.16em] text-ink transition-colors hover:border-fuel hover:text-fuel"
               >
                 LinkedIn
               </a>
               <a
                 href="mailto:js@linehaulstation.com"
-                className="rounded-btn border border-chrome/30 bg-carbon px-5 py-3 font-label text-[10px] uppercase tracking-[0.16em] text-white transition-colors hover:border-fuel hover:text-fuel"
+                className="rounded-btn border border-[#E2DDD6] px-5 py-3 font-label text-[10px] uppercase tracking-[0.16em] text-ink transition-colors hover:border-fuel hover:text-fuel"
               >
                 js@linehaulstation.com
               </a>
@@ -160,8 +160,8 @@ export default function LeadershipPage() {
         </div>
       </Section>
 
-      {/* BOARD ADVISORS (carbon) */}
-      <Section variant="carbon" className="py-[clamp(70px,11vh,140px)]">
+      {/* BOARD ADVISORS (ink) */}
+      <Section variant="ink" className="py-[clamp(70px,11vh,140px)]">
         <SectionHead kicker="Board Advisors" title="Decades Of Freight, Finance & Logistics." accent={FUEL} size="xl" />
 
         <Reveal delay={100} className="mt-9 chrome-frame glint">
@@ -214,8 +214,8 @@ export default function LeadershipPage() {
         </div>
       </Section>
 
-      {/* WHY WE DO IT — shared brand values (panel) */}
-      <Section variant="panel" className="py-[clamp(70px,11vh,140px)]">
+      {/* WHY WE DO IT — shared brand values (blueprint) */}
+      <Section variant="blueprint" className="py-[clamp(70px,11vh,140px)]">
         <Pillars title={<>The Standard Behind <span className="text-fuel">Every Hub.</span></>} />
       </Section>
 

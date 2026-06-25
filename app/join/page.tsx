@@ -163,8 +163,8 @@ export default function JoinPage() {
         </a>
       </section>
 
-      {/* ====================== WHY JOIN / STORY (carbon) ====================== */}
-      <Section variant="carbon" id="why" className="py-[clamp(70px,11vh,140px)]">
+      {/* ====================== WHY JOIN / STORY (light) — white editorial beat ====================== */}
+      <Section variant="light" id="why" className="py-[clamp(70px,11vh,140px)]">
         <div className="grid gap-x-14 gap-y-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
           <div>
             <SectionHead
@@ -173,23 +173,24 @@ export default function JoinPage() {
               accent={ACCENT}
               size="xl"
               maxW="max-w-full"
+              tone="onLight"
             />
             <Reveal delay={120}>
-              <p className="mt-7 max-w-[54ch] text-pretty font-body text-[clamp(18px,1.9vw,22px)] leading-relaxed text-[#dadada]">
+              <p className="mt-7 max-w-[54ch] text-pretty font-body text-[clamp(18px,1.9vw,22px)] leading-relaxed text-[#3a3733]">
                 The Outriders Club is both a physical drivers&apos; club at every LineHaul
                 Station Hub and an exclusive membership. On-site you&apos;ll find a restaurant,
                 fitness center, showers, gaming, and outdoor patios — plus the driver app,
                 apparel shop, exclusive discount codes, and special events.
               </p>
             </Reveal>
-            <div className="mt-9 space-y-px overflow-hidden rounded-card border border-chrome/12 bg-chrome/10">
+            <div className="mt-9 space-y-px overflow-hidden rounded-card border border-[#E2DDD6] bg-[#E2DDD6]">
               {VALUES.map((v, i) => (
-                <Reveal key={v.n} delay={140 + i * 80} className="bg-panel p-6 sm:p-7">
+                <Reveal key={v.n} delay={140 + i * 80} className="bg-white p-6 sm:p-7">
                   <div className="flex items-baseline gap-5">
                     <span className="tnum font-mono text-[13px]" style={{ color: ACCENT }}>{v.n}</span>
                     <div>
-                      <div className="font-display text-[19px] font-extrabold uppercase leading-tight text-white">{v.t}</div>
-                      <p className="mt-2 font-body text-[15px] leading-relaxed text-chrome">{v.p}</p>
+                      <div className="font-display text-[19px] font-extrabold uppercase leading-tight text-ink">{v.t}</div>
+                      <p className="mt-2 font-body text-[15px] leading-relaxed text-[#6a655e]">{v.p}</p>
                     </div>
                   </div>
                 </Reveal>
@@ -234,8 +235,8 @@ export default function JoinPage() {
         </div>
       </Section>
 
-      {/* ====================== THE FORM (panel) ====================== */}
-      <Section variant="panel" id="join-form" className="py-[clamp(70px,11vh,140px)]">
+      {/* ====================== THE FORM (blueprint) ====================== */}
+      <Section variant="blueprint" id="join-form" className="py-[clamp(70px,11vh,140px)]">
         <div className="grid gap-x-14 gap-y-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
           <div className="lg:sticky lg:top-24">
             <SectionHead
@@ -282,16 +283,16 @@ export default function JoinPage() {
         </div>
       </Section>
 
-      {/* ====================== FAQ (blueprint) ====================== */}
-      <Section variant="blueprint" className="py-[clamp(70px,11vh,140px)]">
+      {/* ====================== FAQ (ink) ====================== */}
+      <Section variant="ink" className="py-[clamp(70px,11vh,140px)]">
         <SectionHead kicker="Questions" title="Everything You Need To Know." accent={ACCENT} size="xl" align="center" />
         <div className="mt-12">
           <FAQ items={FAQS} accent={ACCENT} />
         </div>
       </Section>
 
-      {/* ONE NETWORK — lane connector (carbon) */}
-      <Section variant="carbon" className="py-[clamp(70px,11vh,140px)]">
+      {/* ONE NETWORK — lane connector (blueprint) */}
+      <Section variant="blueprint" className="py-[clamp(70px,11vh,140px)]">
         <LaneConnector accent={ACCENT} showJoin={false} />
       </Section>
 

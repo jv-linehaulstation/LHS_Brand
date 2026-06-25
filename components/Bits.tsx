@@ -160,7 +160,8 @@ export function Coin({
  */
 const HEAD_SIZE = {
   base: "text-[clamp(34px,5vw,68px)]",
-  xl: "text-[clamp(40px,6.6vw,92px)]",
+  // Matches the homepage section <h2> scale so inner pages read as the same site.
+  xl: "text-[clamp(34px,5.6vw,84px)]",
   display: "text-[clamp(48px,8.5vw,118px)]",
 } as const;
 

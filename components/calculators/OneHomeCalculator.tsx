@@ -57,7 +57,7 @@ export default function OneHomeCalculator({ accent = "#F07820" }: { accent?: str
   );
 
   return (
-    <section id="calculator" className="mx-auto max-w-site px-5 py-[84px] sm:px-8">
+    <section id="calculator" className="py-[84px]">
       <div className="mb-10">
         <div className="font-label text-[11px] uppercase tracking-[0.24em] text-steel">
           Run Your Own Numbers
