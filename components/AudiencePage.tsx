@@ -40,156 +40,155 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
     img: HOW_IMAGES[i % HOW_IMAGES.length],
   }));
 
-  return (
-    <main className="min-h-screen bg-ink">
-      <Nav accent={ac} active={a.key} />
+  /* ============================ HERO — full-bleed, bottom-anchored ============================ */
+  const hero = (
+    <section className="relative flex min-h-[92dvh] items-end overflow-hidden px-[clamp(20px,6vw,100px)] pb-14 pt-28">
+      <ParallaxImage src={a.heroImage} alt={`${a.navLabel} — LineHaul Station`} priority strength={0.24} />
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(11,11,11,0.96)_0%,rgba(11,11,11,0.72)_55%,rgba(11,11,11,0.4)_100%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(11,11,11,0.94),transparent_52%)]" />
+      <div className="blueprint pointer-events-none absolute inset-0 opacity-20" />
+      {/* bottom fade into the dark section below — matches the homepage hero */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-[linear-gradient(0deg,#0B0B0B,transparent)]" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-[2px] overflow-hidden">
+        <div className="scan-once h-full w-full" style={{ ["--ac" as string]: ac }} />
+      </div>
+      <div className="absolute right-3 top-1/2 hidden -translate-y-1/2 [writing-mode:vertical-rl] rotate-180 font-mono text-[11px] tracking-[0.35em] text-chrome xl:block">
+        LANE · {a.navLabel.toUpperCase()}
+      </div>
 
-      {/* ============================ HERO — full-bleed, bottom-anchored ============================ */}
-      <section className="relative flex min-h-[92dvh] items-end overflow-hidden px-[clamp(20px,6vw,100px)] pb-14 pt-28">
-        <ParallaxImage src={a.heroImage} alt={`${a.navLabel} — LineHaul Station`} priority strength={0.24} />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(11,11,11,0.96)_0%,rgba(11,11,11,0.72)_55%,rgba(11,11,11,0.4)_100%)]" />
-        <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(11,11,11,0.94),transparent_52%)]" />
-        <div className="blueprint pointer-events-none absolute inset-0 opacity-20" />
-        {/* bottom fade into the dark post-hero section — matches the homepage hero */}
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-[linear-gradient(0deg,#0B0B0B,transparent)]" />
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-[2px] overflow-hidden">
-          <div className="scan-once h-full w-full" style={{ ["--ac" as string]: ac }} />
-        </div>
-        <div className="absolute right-3 top-1/2 hidden -translate-y-1/2 [writing-mode:vertical-rl] rotate-180 font-mono text-[11px] tracking-[0.35em] text-chrome xl:block">
-          LANE · {a.navLabel.toUpperCase()}
-        </div>
-
-        <div className="relative w-full">
-          {programCoin && (
-            <Reveal className="mb-6">
-              <CoinImage
-                src={programCoin}
-                alt={`${audience === "drivers" ? "OneHome" : "FlexSpace"} challenge coin`}
-                size={112}
-                glow={`${ac}55`}
-              />
-            </Reveal>
-          )}
-          <Reveal>
-            <StatusChip chrome label="West Memphis Hub — Open Now" coord="I-40 / I-55" accent={ac} />
+      <div className="relative w-full">
+        {programCoin && (
+          <Reveal className="mb-6">
+            <CoinImage
+              src={programCoin}
+              alt={`${audience === "drivers" ? "OneHome" : "FlexSpace"} challenge coin`}
+              size={112}
+              glow={`${ac}55`}
+            />
           </Reveal>
-          <Reveal delay={70}>
-            <div className="mt-7 font-label text-[clamp(10px,1.3vw,14px)] uppercase tracking-[0.28em] text-chrome">
-              {a.eyebrow}
-            </div>
-          </Reveal>
-          <Reveal delay={130}>
-            <h1 className="mt-3 max-w-[16ch] text-balance font-display text-[clamp(36px,6.4vw,92px)] font-black uppercase leading-[0.9] tracking-[-0.025em] text-white">
-              {a.heroPunch}
-            </h1>
-          </Reveal>
-          <div className="mt-7 flex flex-col gap-7 lg:flex-row lg:items-end lg:justify-between">
-            <Reveal delay={230}>
-              <div className="font-script text-[clamp(24px,3.4vw,44px)] font-semibold" style={{ color: ac }}>
-                {a.sub}
-              </div>
-              <p className="mt-3 max-w-[52ch] text-pretty font-body text-[clamp(17px,1.8vw,21px)] leading-relaxed text-[#dadada]">
-                {a.desc}
-              </p>
-            </Reveal>
-            <Reveal delay={320} className="flex-shrink-0">
-              <div className="flex flex-wrap gap-3.5">
-                {audience === "drivers" ? (
-                  <>
-                    <a
-                      href="/join"
-                      className="group inline-flex items-center gap-2.5 rounded-btn px-[30px] py-[17px] font-label text-[12px] uppercase tracking-[0.16em] text-ink shadow-[0_14px_30px_rgba(0,0,0,0.45)] transition duration-300 hover:-translate-y-0.5 hover:brightness-[1.08] active:scale-[0.97]"
-                      style={{ background: `linear-gradient(135deg, ${ac}, ${a.accentDark})` }}
-                    >
-                      Join Free.
-                      <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">→</span>
-                    </a>
-                    <GhostCTA accent={ac} />
-                  </>
-                ) : (
-                  <>
-                    <PrimaryCTA accent={ac} accentDark={a.accentDark} />
-                    <GhostCTA accent={ac} />
-                  </>
-                )}
-              </div>
-              <p className="tnum mt-5 max-w-[34ch] font-mono text-[12px] leading-snug text-chrome">{a.heroNote}</p>
-            </Reveal>
+        )}
+        <Reveal>
+          <StatusChip chrome label="West Memphis Hub — Open Now" coord="I-40 / I-55" accent={ac} />
+        </Reveal>
+        <Reveal delay={70}>
+          <div className="mt-7 font-label text-[clamp(10px,1.3vw,14px)] uppercase tracking-[0.28em] text-chrome">
+            {a.eyebrow}
           </div>
+        </Reveal>
+        <Reveal delay={130}>
+          <h1 className="mt-3 max-w-[16ch] text-balance font-display text-[clamp(36px,6.4vw,92px)] font-black uppercase leading-[0.9] tracking-[-0.025em] text-white">
+            {a.heroPunch}
+          </h1>
+        </Reveal>
+        <div className="mt-7 flex flex-col gap-7 lg:flex-row lg:items-end lg:justify-between">
+          <Reveal delay={230}>
+            <div className="font-script text-[clamp(24px,3.4vw,44px)] font-semibold" style={{ color: ac }}>
+              {a.sub}
+            </div>
+            <p className="mt-3 max-w-[52ch] text-pretty font-body text-[clamp(17px,1.8vw,21px)] leading-relaxed text-[#dadada]">
+              {a.desc}
+            </p>
+          </Reveal>
+          <Reveal delay={320} className="flex-shrink-0">
+            <div className="flex flex-wrap gap-3.5">
+              {audience === "drivers" ? (
+                <>
+                  <a
+                    href="/join"
+                    className="group inline-flex items-center gap-2.5 rounded-btn px-[30px] py-[17px] font-label text-[12px] uppercase tracking-[0.16em] text-ink shadow-[0_14px_30px_rgba(0,0,0,0.45)] transition duration-300 hover:-translate-y-0.5 hover:brightness-[1.08] active:scale-[0.97]"
+                    style={{ background: `linear-gradient(135deg, ${ac}, ${a.accentDark})` }}
+                  >
+                    Join Free.
+                    <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                  </a>
+                  <GhostCTA accent={ac} />
+                </>
+              ) : (
+                <>
+                  <PrimaryCTA accent={ac} accentDark={a.accentDark} />
+                  <GhostCTA accent={ac} />
+                </>
+              )}
+            </div>
+            <p className="tnum mt-5 max-w-[34ch] font-mono text-[12px] leading-snug text-chrome">{a.heroNote}</p>
+          </Reveal>
         </div>
-        <a
-          href="#problem"
-          className="absolute inset-x-0 bottom-5 mx-auto flex w-fit items-center gap-2 font-label text-[10px] uppercase tracking-[0.2em] text-chrome transition-colors hover:text-white"
-        >
-          <span className="scroll-nudge inline-block">↓</span> {a.scrollHint}
-        </a>
-      </section>
+      </div>
+      <a
+        href={a.outriders ? "#welcome" : "#problem"}
+        className="absolute inset-x-0 bottom-5 mx-auto flex w-fit items-center gap-2 font-label text-[10px] uppercase tracking-[0.2em] text-chrome transition-colors hover:text-white"
+      >
+        <span className="scroll-nudge inline-block">↓</span> {a.scrollHint}
+      </a>
+    </section>
+  );
 
-      {/* ============ POST-HERO (ink) — hero fade → calculator + counters (drivers/carriers)
-           or a quiet stats beat (others); the same "hero → dark numbers" beat everywhere ============ */}
-      {hasCalc ? (
-        <Section variant="ink" className="py-[clamp(44px,7vh,96px)]">
-          <div className="grid gap-[clamp(28px,4vw,56px)] lg:grid-cols-[1.32fr_0.68fr] lg:items-start">
-            {/* left — the calculator */}
-            <div>
-              {audience === "drivers" ? <OneHomeCalculator accent={ac} /> : <FlexSpaceCalculator accent={ac} />}
-            </div>
-            {/* right — the counter numbers (the former stat console) */}
-            <div className="lg:sticky lg:top-28">
-              <DataTag accent={ac} className="font-label !text-[10px] uppercase tracking-[0.2em]">
-                <span className="pulse-dot inline-block h-2 w-2 rounded-full" style={{ background: ac, color: ac }} /> The Numbers
-              </DataTag>
-              <div className="mt-6 grid grid-cols-2 gap-px overflow-hidden rounded-[8px] border border-chrome/12 bg-chrome/10 lg:grid-cols-1">
-                {a.stats.map((s, i) => (
-                  <Reveal key={i} delay={i * 80} className="bg-ink px-5 py-6">
-                    <CountUp value={s.big} style={{ color: ac }} className="tnum font-display text-[clamp(28px,3.4vw,44px)] font-black leading-none" />
-                    <div className="mt-2 font-body text-[13px] leading-snug text-chrome">{s.label}</div>
-                  </Reveal>
-                ))}
-              </div>
-            </div>
-          </div>
-        </Section>
-      ) : (
-        <Section variant="ink" className="py-[clamp(44px,7vh,96px)]">
-          <div className="grid grid-cols-2 gap-px overflow-hidden rounded-[8px] border border-chrome/12 bg-chrome/10 lg:grid-cols-4">
+  /* ============ NUMBERS (ink) — calculator + counters (drivers/carriers) or a quiet stats beat ============ */
+  const numbersBlock = hasCalc ? (
+    <Section variant="ink" className="py-[clamp(44px,7vh,96px)]">
+      <div className="grid gap-[clamp(28px,4vw,56px)] lg:grid-cols-[1.32fr_0.68fr] lg:items-start">
+        <div>
+          {audience === "drivers" ? <OneHomeCalculator accent={ac} /> : <FlexSpaceCalculator accent={ac} />}
+        </div>
+        <div className="lg:sticky lg:top-28">
+          <DataTag accent={ac} className="font-label !text-[10px] uppercase tracking-[0.2em]">
+            <span className="pulse-dot inline-block h-2 w-2 rounded-full" style={{ background: ac, color: ac }} /> The Numbers
+          </DataTag>
+          <div className="mt-6 grid grid-cols-2 gap-px overflow-hidden rounded-[8px] border border-chrome/12 bg-chrome/10 lg:grid-cols-1">
             {a.stats.map((s, i) => (
-              <Reveal key={i} delay={i * 80} className="flex min-h-[150px] flex-col justify-between bg-ink p-[clamp(20px,2.4vw,36px)]">
-                <CountUp value={s.big} style={{ color: ac }} className="tnum font-display text-[clamp(30px,3.8vw,52px)] font-black leading-none" />
-                <div className="mt-5 font-body text-[14px] leading-snug text-chrome">{s.label}</div>
+              <Reveal key={i} delay={i * 80} className="bg-ink px-5 py-6">
+                <CountUp value={s.big} style={{ color: ac }} className="tnum font-display text-[clamp(28px,3.4vw,44px)] font-black leading-none" />
+                <div className="mt-2 font-body text-[13px] leading-snug text-chrome">{s.label}</div>
               </Reveal>
             ))}
           </div>
-        </Section>
-      )}
+        </div>
+      </div>
+    </Section>
+  ) : (
+    <Section variant="ink" className="py-[clamp(44px,7vh,96px)]">
+      <div className="grid grid-cols-2 gap-px overflow-hidden rounded-[8px] border border-chrome/12 bg-chrome/10 lg:grid-cols-4">
+        {a.stats.map((s, i) => (
+          <Reveal key={i} delay={i * 80} className="flex min-h-[150px] flex-col justify-between bg-ink p-[clamp(20px,2.4vw,36px)]">
+            <CountUp value={s.big} style={{ color: ac }} className="tnum font-display text-[clamp(30px,3.8vw,52px)] font-black leading-none" />
+            <div className="mt-5 font-body text-[14px] leading-snug text-chrome">{s.label}</div>
+          </Reveal>
+        ))}
+      </div>
+    </Section>
+  );
 
-      {/* ========================= PROBLEM (white) — editorial split ========================= */}
-      <Section variant="light" id="problem" className="py-[clamp(70px,11vh,140px)]">
-        <div className="grid gap-x-16 gap-y-12 lg:grid-cols-[1.2fr_0.8fr] lg:items-start">
-          <div>
-            <SectionHead kicker={a.problem.kicker} title={a.problem.headline} accent={ac} size="xl" tone="onLight" />
-            <Reveal delay={120}>
-              <p className="mt-7 max-w-[54ch] text-pretty font-body text-[clamp(18px,1.9vw,22px)] leading-relaxed text-[#3a3733]">
-                {a.problem.body}
-              </p>
-            </Reveal>
-          </div>
-          <Reveal delay={140} dir="right" className="rounded-card border border-[#E2DDD6] bg-white p-7 sm:p-9 lg:-mt-6">
-            {a.problem.counters.map((c, i) => (
-              <div key={i} className="flex items-baseline gap-6 border-t border-[#E2DDD6] py-5 first:border-t-0 first:pt-0">
-                <CountUp
-                  value={c.big}
-                  style={{ color: ac }}
-                  className="tnum min-w-[120px] font-display text-[clamp(30px,4vw,42px)] font-black leading-none"
-                />
-                <span className="font-body text-[15px] leading-snug text-[#6a655e]">{c.label}</span>
-              </div>
-            ))}
+  /* ========================= PROBLEM (white) — editorial split ========================= */
+  const problemSection = (
+    <Section variant="light" id="problem" className="py-[clamp(70px,11vh,140px)]">
+      <div className="grid gap-x-16 gap-y-12 lg:grid-cols-[1.2fr_0.8fr] lg:items-start">
+        <div>
+          <SectionHead kicker={a.problem.kicker} title={a.problem.headline} accent={ac} size="xl" tone="onLight" />
+          <Reveal delay={120}>
+            <p className="mt-7 max-w-[54ch] text-pretty font-body text-[clamp(18px,1.9vw,22px)] leading-relaxed text-[#3a3733]">
+              {a.problem.body}
+            </p>
           </Reveal>
         </div>
-      </Section>
+        <Reveal delay={140} dir="right" className="rounded-card border border-[#E2DDD6] bg-white p-7 sm:p-9 lg:-mt-6">
+          {a.problem.counters.map((c, i) => (
+            <div key={i} className="flex items-baseline gap-6 border-t border-[#E2DDD6] py-5 first:border-t-0 first:pt-0">
+              <CountUp
+                value={c.big}
+                style={{ color: ac }}
+                className="tnum min-w-[120px] font-display text-[clamp(30px,4vw,42px)] font-black leading-none"
+              />
+              <span className="font-body text-[15px] leading-snug text-[#6a655e]">{c.label}</span>
+            </div>
+          ))}
+        </Reveal>
+      </div>
+    </Section>
+  );
 
-      {/* ===================== SIGNATURE BAND (blueprint) ===================== */}
+  /* ===================== SIGNATURE BANDS (blueprint) — non-drivers ===================== */
+  const signatureBands = (
+    <>
       {a.ledger && (
         <Section variant="blueprint" className="py-[clamp(70px,11vh,140px)]">
           <BuildVsBelong data={a.ledger} accent={ac} />
@@ -205,443 +204,416 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
           <Timeline data={a.timeline} accent={ac} />
         </Section>
       )}
+    </>
+  );
 
-      {/* ===================== ROAD DIVIDER (image) ===================== */}
-      <section className="relative overflow-hidden px-[clamp(20px,6vw,100px)] py-[clamp(96px,14vw,140px)] text-center">
-        <ParallaxImage src={a.roadImage ?? PHOTOS.truckSunset} alt={`${a.navLabel} — LineHaul Station`} strength={0.28} />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,11,11,0.6),rgba(11,11,11,0.84))]" />
-        <Reveal className="relative mx-auto max-w-4xl">
-          <div className="font-label text-[11px] uppercase tracking-[0.24em]" style={{ color: ac }}>
-            {a.road.eyebrow}
-          </div>
-          <h2 className="mt-5 text-balance font-display text-[clamp(36px,6.8vw,96px)] font-black uppercase leading-[0.9] tracking-[-0.025em] text-white">
-            {a.road.headline}
-          </h2>
-          <p className="mt-5 font-script text-[clamp(22px,3.4vw,38px)] font-semibold text-white/90">
-            {a.road.sub}
-          </p>
+  /* ===================== ROAD DIVIDER (image) ===================== */
+  const roadSection = (
+    <section className="relative overflow-hidden px-[clamp(20px,6vw,100px)] py-[clamp(96px,14vw,140px)] text-center">
+      <ParallaxImage src={a.roadImage ?? PHOTOS.truckSunset} alt={`${a.navLabel} — LineHaul Station`} strength={0.28} />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,11,11,0.6),rgba(11,11,11,0.84))]" />
+      <Reveal className="relative mx-auto max-w-4xl">
+        <div className="font-label text-[11px] uppercase tracking-[0.24em]" style={{ color: ac }}>
+          {a.road.eyebrow}
+        </div>
+        <h2 className="mt-5 text-balance font-display text-[clamp(36px,6.8vw,96px)] font-black uppercase leading-[0.9] tracking-[-0.025em] text-white">
+          {a.road.headline}
+        </h2>
+        <p className="mt-5 font-script text-[clamp(22px,3.4vw,38px)] font-semibold text-white/90">
+          {a.road.sub}
+        </p>
+      </Reveal>
+    </section>
+  );
+
+  /* ===================== HOW IT WORKS — pinned scroll-driven (shared) ===================== */
+  const howItWorksSection = (
+    <HowItWorks steps={howSteps} accent={ac} kicker={a.how.eyebrow} title={a.how.headline} />
+  );
+
+  /* ============ SOLO vs RELAY (blueprint) — carriers & government ============ */
+  const soloRelaySection = a.relay && (
+    <Section variant="blueprint" className="py-[clamp(70px,11vh,140px)]">
+      <SoloVsRelay data={a.relay} accent={ac} />
+    </Section>
+  );
+
+  /* ============ CAPABILITIES / AMENITIES (white) — non-drivers (drivers use Services) ============ */
+  const capabilitiesSection = a.amenities ? (
+    <Section variant="light" className="py-[clamp(70px,11vh,140px)]">
+      <div className="grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
+        <SectionHead kicker={a.amenities.eyebrow} title={a.amenities.headline} accent={ac} size="xl" tone="onLight" />
+        <Reveal delay={120}>
+          <p className="text-pretty font-body text-[clamp(18px,1.9vw,21px)] leading-relaxed text-[#3a3733]">{a.amenities.intro}</p>
         </Reveal>
-      </section>
-
-      {/* ===================== HOW IT WORKS — pinned scroll-driven (shared) ===================== */}
-      <HowItWorks steps={howSteps} accent={ac} kicker={a.how.eyebrow} title={a.how.headline} />
-
-      {/* ============ OUTRIDERS STORY (image) — drivers: "Welcome to the Club" + Jeff lockup ============ */}
-      {a.outriders && (
-        <Section variant="image" image={a.outriders.story.image} accent={ac} className="py-[clamp(80px,12vh,160px)]">
-          <div className="grid gap-[clamp(32px,5vw,72px)] lg:grid-cols-[1.34fr_0.66fr] lg:items-center">
-            {/* "Welcome to the Club" + the Outriders story */}
-            <Reveal>
-              <CoinImage src="/assets/coin-outriders.png" alt="Outriders Club challenge coin" size={84} glow={`${ac}55`} className="mb-5" />
-              <div className="font-label text-[11px] uppercase tracking-[0.24em]" style={{ color: ac }}>
-                {a.outriders.story.eyebrow}
-              </div>
-              <h2 className="mt-3 font-script text-[clamp(40px,6vw,76px)] font-semibold leading-[1.02] text-white">
-                {a.outriders.story.headline}
-              </h2>
-              <div className="mt-6 space-y-4 font-body leading-relaxed text-[#e2e2e2]">
-                {a.outriders.story.paras.map((p, i) =>
-                  i === 0 ? (
-                    <p key={i} className="text-[clamp(19px,2.1vw,25px)] font-medium leading-snug text-white">{p}</p>
-                  ) : (
-                    <p key={i} className="text-[clamp(16px,1.7vw,19px)]">{p}</p>
-                  )
-                )}
+      </div>
+      <div className="mt-10 grid auto-rows-[170px] grid-cols-2 gap-3 sm:auto-rows-[212px] md:grid-cols-4">
+        {a.amenities.tiles.map((t, i) => {
+          const span = i === 0 ? "col-span-2 row-span-2" : i === 5 ? "col-span-2" : "col-span-1";
+          return (
+            <Reveal key={i} delay={(i % 4) * 60} className={`group relative overflow-hidden rounded-card border border-chrome/15 ${span}`}>
+              <Image src={t.img} alt={t.title} fill className="img-grade object-cover transition-transform duration-700 group-hover:scale-105" sizes="(max-width: 768px) 50vw, 25vw" />
+              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,11,11,0.05),rgba(11,11,11,0.5)_55%,rgba(11,11,11,0.92))]" />
+              <div className="absolute inset-x-0 top-0 h-0.5 opacity-70" style={{ background: `linear-gradient(90deg, ${ac}, transparent)` }} />
+              <div className="absolute inset-x-0 bottom-0 p-4">
+                <div className={`font-display font-extrabold uppercase leading-tight text-white ${i === 0 ? "text-[20px]" : "text-[15px]"}`}>{t.title}</div>
+                <p className="mt-1 font-body text-[13px] leading-snug text-[#dcdcdc]">{t.blurb}</p>
               </div>
             </Reveal>
-
-            {/* Jeff Swenson portrait + signature lockup */}
-            <Reveal delay={120}>
-              <ChromeFrame variant="dual" glint className="w-full max-w-[300px]">
-                <div className="relative aspect-[4/5] overflow-hidden bg-carbon">
-                  <Image
-                    src="https://static.wixstatic.com/media/84a10c_7dfa17aed1604937b1d1dd98258ee10a~mv2.png/v1/fill/w_640,h_800,al_c,q_90/Bio_JS-23-1.png"
-                    alt="Jeffrey J. Swenson, Founder & CEO"
-                    fill
-                    className="img-grade object-cover object-top"
-                    sizes="300px"
-                  />
+          );
+        })}
+      </div>
+      <Reveal delay={120}>
+        <p className="mt-8 font-script text-[clamp(22px,3vw,34px)] font-semibold" style={{ color: ac }}>{a.amenities.footnote}</p>
+      </Reveal>
+    </Section>
+  ) : (
+    <Section variant="light" className="py-[clamp(70px,11vh,140px)]">
+      <SectionHead kicker={a.featuresEyebrow} title={a.featuresTitle} accent={ac} size="xl" tone="onLight" />
+      <div className="mt-10 grid gap-4 lg:grid-cols-2">
+        {a.features.map((f, i) => (
+          <Reveal key={i} delay={(i % 2) * 80} className="lift group rounded-card border border-[#E2DDD6] bg-white p-6 sm:p-7">
+            <div className="flex items-start gap-5">
+              <span className="tnum mt-1 font-mono text-[14px]" style={{ color: ac }}>{String(i + 1).padStart(2, "0")}</span>
+              <div className="flex-1">
+                <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                  <div className="font-display text-[19px] font-extrabold uppercase tracking-[0.01em] text-ink">{f.title}</div>
+                  <div className="font-mono text-[11px]" style={{ color: ac }}>{f.tag}</div>
                 </div>
-              </ChromeFrame>
-              <div className="mt-5 font-display text-[20px] font-black uppercase leading-tight text-white">Jeffrey J. Swenson</div>
-              <div className="mt-1 font-mono text-[11px] uppercase tracking-[0.12em]" style={{ color: ac }}>Founder &amp; CEO</div>
-              <div className="mt-4 flex flex-wrap gap-2.5">
-                <a
-                  href="https://www.linkedin.com/in/jeff-swenson-2744606"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rounded-btn border border-white/30 px-4 py-2 font-mono text-[10px] uppercase tracking-[0.12em] text-white transition-colors hover:border-[var(--ac)] hover:text-[var(--ac)]"
-                  style={{ ["--ac" as string]: ac }}
-                >
-                  LinkedIn
-                </a>
-                {/* TODO(JJ): Facebook profile URL not provided — add the second social link when available. */}
+                <p className="mt-3 font-body text-[15px] leading-relaxed text-[#6a655e]">{f.blurb}</p>
               </div>
-            </Reveal>
-          </div>
-        </Section>
-      )}
-
-      {/* ============ SOLO vs RELAY (blueprint) — carriers & government ============ */}
-      {a.relay && (
-        <Section variant="blueprint" className="py-[clamp(70px,11vh,140px)]">
-          <SoloVsRelay data={a.relay} accent={ac} />
-        </Section>
-      )}
-
-      {/* ============ CAPABILITIES / AMENITIES (ink) ============ */}
-      {a.amenities ? (
-        <Section variant="light" className="py-[clamp(70px,11vh,140px)]">
-          <div className="grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
-            <SectionHead kicker={a.amenities.eyebrow} title={a.amenities.headline} accent={ac} size="xl" tone="onLight" />
-            <Reveal delay={120}>
-              {audience === "drivers" && (
-                <CoinImage
-                  src="/assets/coin-outriders.png"
-                  alt="Outriders Club challenge coin"
-                  size={96}
-                  glow="rgba(200,160,96,0.45)"
-                  className="mb-5"
-                />
-              )}
-              <p className="text-pretty font-body text-[clamp(18px,1.9vw,21px)] leading-relaxed text-[#3a3733]">{a.amenities.intro}</p>
-            </Reveal>
-          </div>
-          {/* resort mosaic — first tile hero, one wide tile for rhythm */}
-          <div className="mt-10 grid auto-rows-[170px] grid-cols-2 gap-3 sm:auto-rows-[212px] md:grid-cols-4">
-            {a.amenities.tiles.map((t, i) => {
-              const span =
-                i === 0
-                  ? "col-span-2 row-span-2"
-                  : i === 5
-                  ? "col-span-2"
-                  : "col-span-1";
-              return (
-                <Reveal
-                  key={i}
-                  delay={(i % 4) * 60}
-                  className={`group relative overflow-hidden rounded-card border border-chrome/15 ${span}`}
-                >
-                  <Image
-                    src={t.img}
-                    alt={t.title}
-                    fill
-                    className="img-grade object-cover transition-transform duration-700 group-hover:scale-105"
-                    sizes="(max-width: 768px) 50vw, 25vw"
-                  />
-                  <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,11,11,0.05),rgba(11,11,11,0.5)_55%,rgba(11,11,11,0.92))]" />
-                  <div
-                    className="absolute inset-x-0 top-0 h-0.5 opacity-70"
-                    style={{ background: `linear-gradient(90deg, ${ac}, transparent)` }}
-                  />
-                  <div className="absolute inset-x-0 bottom-0 p-4">
-                    <div className={`font-display font-extrabold uppercase leading-tight text-white ${i === 0 ? "text-[20px]" : "text-[15px]"}`}>
-                      {t.title}
-                    </div>
-                    <p className="mt-1 font-body text-[13px] leading-snug text-[#dcdcdc]">{t.blurb}</p>
-                  </div>
-                </Reveal>
-              );
-            })}
-          </div>
-          <Reveal delay={120}>
-            <p className="mt-8 font-script text-[clamp(22px,3vw,34px)] font-semibold" style={{ color: ac }}>
-              {a.amenities.footnote}
-            </p>
-          </Reveal>
-        </Section>
-      ) : (
-        <Section variant="light" className="py-[clamp(70px,11vh,140px)]">
-          <SectionHead kicker={a.featuresEyebrow} title={a.featuresTitle} accent={ac} size="xl" tone="onLight" />
-          <div className="mt-10 grid gap-4 lg:grid-cols-2">
-            {a.features.map((f, i) => (
-              <Reveal
-                key={i}
-                delay={(i % 2) * 80}
-                className="lift group rounded-card border border-[#E2DDD6] bg-white p-6 sm:p-7"
-              >
-                <div className="flex items-start gap-5">
-                  <span className="tnum mt-1 font-mono text-[14px]" style={{ color: ac }}>
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <div className="flex-1">
-                    <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-                      <div className="font-display text-[19px] font-extrabold uppercase tracking-[0.01em] text-ink">
-                        {f.title}
-                      </div>
-                      <div className="font-mono text-[11px]" style={{ color: ac }}>{f.tag}</div>
-                    </div>
-                    <p className="mt-3 font-body text-[15px] leading-relaxed text-[#6a655e]">{f.blurb}</p>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </Section>
-      )}
-
-      {/* ============ NOTHING TO LOSE / EVERYTHING TO GAIN (ink) — 3-step free membership ============ */}
-      {a.outriders && (
-        <Section variant="ink" className="py-[clamp(70px,11vh,140px)]">
-          <Reveal className="max-w-3xl">
-            <div className="font-label text-[11px] uppercase tracking-[0.24em]" style={{ color: ac }}>
-              {a.outriders.join.eyebrow}
             </div>
-            <h2 className="mt-3 font-display text-[clamp(34px,5.6vw,84px)] font-black uppercase leading-[0.92] tracking-[-0.025em] text-white">
-              {a.outriders.join.headline.split("/")[0].trim()}
-              <br />
-              <span style={{ color: ac }}>{a.outriders.join.headline.split("/")[1].trim()}</span>
-            </h2>
           </Reveal>
-          <div className="mt-10 grid gap-4 md:grid-cols-3">
-            {a.outriders.join.steps.map((s, i) => (
-              <Reveal key={s.title} delay={i * 80} className="lift rounded-card border border-chrome/15 bg-panel p-7">
-                <div className="flex items-center gap-3">
-                  <Coin tone="fuel" size={46}>{i + 1}</Coin>
-                  <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-chrome">Step #{i + 1}</span>
-                </div>
-                <div className="mt-4 font-display text-[18px] font-extrabold uppercase tracking-[0.01em] text-white">{s.title}</div>
-                <p className="mt-2 font-body text-[14px] leading-relaxed text-chrome">{s.blurb}</p>
-              </Reveal>
-            ))}
-          </div>
-        </Section>
-      )}
+        ))}
+      </div>
+    </Section>
+  );
 
-      {/* ============ ★ SERVICES TO SUIT YOU ★ (white) — recreated from the image menu ============ */}
-      {a.outriders && (
-        <Section variant="light" className="py-[clamp(70px,11vh,140px)]">
-          <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
-            <div>
-              <Reveal>
-                <CoinImage src="/assets/coin-outriders.png" alt="Outriders Club challenge coin" size={76} glow={`${ac}40`} className="mb-5" />
-              </Reveal>
-              <SectionHead
-                kicker={a.outriders.services.eyebrow}
-                title={<><span className="text-chrome">★</span> {a.outriders.services.headline} <span className="text-chrome">★</span></>}
-                accent={ac}
-                size="xl"
-                tone="onLight"
+  /* ============ OUTRIDERS STORY (ink) — drivers: "Welcome to the Club" + Jeff lockup ============ */
+  const storySection = a.outriders && (
+    <Section variant="ink" id="welcome" className="py-[clamp(80px,12vh,160px)]">
+      <div className="grid gap-[clamp(32px,5vw,72px)] lg:grid-cols-[1.34fr_0.66fr] lg:items-center">
+        <Reveal>
+          <CoinImage src="/assets/coin-outriders.png" alt="Outriders Club challenge coin" size={84} glow={`${ac}55`} className="mb-5" />
+          <div className="font-label text-[11px] uppercase tracking-[0.24em]" style={{ color: ac }}>{a.outriders.story.eyebrow}</div>
+          <h2 className="mt-3 font-script text-[clamp(40px,6vw,76px)] font-semibold leading-[1.02] text-white">{a.outriders.story.headline}</h2>
+          <div className="mt-6 space-y-4 font-body leading-relaxed text-[#e2e2e2]">
+            {a.outriders.story.paras.map((p, i) =>
+              i === 0 ? (
+                <p key={i} className="text-[clamp(19px,2.1vw,25px)] font-medium leading-snug text-white">{p}</p>
+              ) : (
+                <p key={i} className="text-[clamp(16px,1.7vw,19px)]">{p}</p>
+              )
+            )}
+          </div>
+        </Reveal>
+        <Reveal delay={120}>
+          <ChromeFrame variant="dual" glint className="w-full max-w-[300px]">
+            <div className="relative aspect-[4/5] overflow-hidden bg-carbon">
+              <Image
+                src="https://static.wixstatic.com/media/84a10c_7dfa17aed1604937b1d1dd98258ee10a~mv2.png/v1/fill/w_640,h_800,al_c,q_90/Bio_JS-23-1.png"
+                alt="Jeffrey J. Swenson, Founder & CEO"
+                fill
+                className="img-grade object-cover object-top"
+                sizes="300px"
               />
             </div>
-            <Reveal delay={120}>
-              <p className="text-pretty font-body text-[clamp(17px,1.8vw,20px)] leading-relaxed text-[#3a3733]">
-                {a.outriders.services.intro}
-              </p>
-            </Reveal>
-          </div>
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {a.outriders.services.items.map((it, i) => (
-              <Reveal key={it.name} delay={(i % 3) * 60} className="lift rounded-card border border-[#E2DDD6] bg-white p-6">
-                <div className="flex items-baseline gap-3">
-                  <span className="h-1.5 w-1.5 flex-none translate-y-[-2px] rounded-full" style={{ background: ac }} aria-hidden />
-                  <div className="font-display text-[16px] font-extrabold uppercase tracking-[0.01em] text-ink">{it.name}</div>
-                </div>
-                <p className="mt-2 pl-[18px] font-body text-[14px] leading-snug text-[#6a655e]">{it.note}</p>
-              </Reveal>
-            ))}
-          </div>
-        </Section>
-      )}
-
-      {/* ============ ★ AN OUNCE OF PREVENTION ★ (ink) — LH Fleet Services ============ */}
-      {a.outriders && (
-        <Section variant="ink" className="py-[clamp(70px,11vh,140px)]">
-          <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
-            <SectionHead
-              kicker={a.outriders.fleet.eyebrow}
-              title={<><span className="text-chrome">★</span> {a.outriders.fleet.headline} <span className="text-chrome">★</span></>}
-              accent={ac}
-              size="xl"
-            />
-            <Reveal delay={120}>
-              <p className="text-pretty font-body text-[clamp(17px,1.8vw,20px)] leading-relaxed text-[#dadada]">
-                {a.outriders.fleet.intro}
-              </p>
-            </Reveal>
-          </div>
-          <div className="mt-10 grid gap-px overflow-hidden rounded-[8px] border border-chrome/12 bg-chrome/10 sm:grid-cols-2 lg:grid-cols-3">
-            {a.outriders.fleet.items.map((it, i) => (
-              <Reveal key={it.name} delay={(i % 3) * 60} className="bg-ink p-6">
-                <div className="flex items-baseline gap-3">
-                  <span className="tnum font-mono text-[13px]" style={{ color: ac }}>{String(i + 1).padStart(2, "0")}</span>
-                  <div className="font-display text-[16px] font-extrabold uppercase tracking-[0.01em] text-white">{it.name}</div>
-                </div>
-                <p className="mt-2 pl-[26px] font-body text-[14px] leading-snug text-chrome">{it.note}</p>
-              </Reveal>
-            ))}
-          </div>
-        </Section>
-      )}
-
-      {/* ============ SPACE (white) — three ways to get Space ============ */}
-      {a.outriders && (
-        <Section variant="light" className="py-[clamp(70px,11vh,140px)]">
-          <Reveal>
-            <div className="font-label text-[11px] uppercase tracking-[0.24em]" style={{ color: ac }}>
-              Three ways to get Space
-            </div>
-            <h2 className="mt-3 font-display text-[clamp(48px,9vw,120px)] font-black uppercase leading-[0.86] tracking-[-0.03em] text-ink">
-              {a.outriders.join.waysTitle}
-            </h2>
-          </Reveal>
-          <div className="mt-10 grid gap-4 md:grid-cols-3">
-            {a.outriders.join.ways.map((w, i) => (
-              <Reveal key={w.title} delay={i * 80} className="lift rounded-card border border-[#E2DDD6] bg-white p-7">
-                <Coin tone={w.tone} size={44}>{String(i + 1).padStart(2, "0")}</Coin>
-                <div className="mt-4 font-display text-[18px] font-extrabold uppercase tracking-[0.01em] text-ink">{w.title}</div>
-                <p className="mt-2 font-body text-[14px] leading-relaxed text-[#6a655e]">{w.blurb}</p>
-              </Reveal>
-            ))}
-          </div>
-          <Reveal delay={120} className="mt-10">
+          </ChromeFrame>
+          <div className="mt-5 font-display text-[20px] font-black uppercase leading-tight text-white">Jeffrey J. Swenson</div>
+          <div className="mt-1 font-mono text-[11px] uppercase tracking-[0.12em]" style={{ color: ac }}>Founder &amp; CEO</div>
+          <div className="mt-4 flex flex-wrap gap-2.5">
             <a
-              href="/join"
-              className="group inline-flex items-center gap-2.5 rounded-btn px-[30px] py-[17px] font-label text-[12px] uppercase tracking-[0.16em] text-ink shadow-[0_14px_30px_rgba(0,0,0,0.18)] transition duration-300 hover:-translate-y-0.5 hover:brightness-[1.06] active:scale-[0.97]"
-              style={{ background: `linear-gradient(135deg, ${ac}, ${a.accentDark})` }}
+              href="https://www.linkedin.com/in/jeff-swenson-2744606"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-btn border border-white/30 px-4 py-2 font-mono text-[10px] uppercase tracking-[0.12em] text-white transition-colors hover:border-[var(--ac)] hover:text-[var(--ac)]"
+              style={{ ["--ac" as string]: ac }}
             >
-              Join Free.
-              <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+              LinkedIn
             </a>
-          </Reveal>
-        </Section>
-      )}
+            {/* TODO(JJ): Facebook profile URL not provided — add the second social link when available. */}
+          </div>
+        </Reveal>
+      </div>
+    </Section>
+  );
 
-      {/* ===================== TAKE THE TOUR — GALLERY (ink) ===================== */}
-      {a.gallery && a.gallery.length > 0 && (
-        <Section variant="ink" className="py-[clamp(70px,11vh,140px)]">
+  /* ============ NOTHING TO LOSE / EVERYTHING TO GAIN (white) — 3-step free membership ============ */
+  const stepsSection = a.outriders && (
+    <Section variant="light" className="py-[clamp(70px,11vh,140px)]">
+      <Reveal className="max-w-3xl">
+        <div className="font-label text-[11px] uppercase tracking-[0.24em]" style={{ color: ac }}>{a.outriders.join.eyebrow}</div>
+        <h2 className="mt-3 font-display text-[clamp(34px,5.6vw,84px)] font-black uppercase leading-[0.92] tracking-[-0.025em] text-ink">
+          {a.outriders.join.headline.split("/")[0].trim()}
+          <br />
+          <span style={{ color: ac }}>{a.outriders.join.headline.split("/")[1].trim()}</span>
+        </h2>
+      </Reveal>
+      <div className="mt-10 grid gap-4 md:grid-cols-3">
+        {a.outriders.join.steps.map((s, i) => (
+          <Reveal key={s.title} delay={i * 80} className="lift rounded-card border border-[#E2DDD6] bg-white p-7">
+            <div className="flex items-center gap-3">
+              <Coin tone="fuel" size={46}>{i + 1}</Coin>
+              <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#6a655e]">Step #{i + 1}</span>
+            </div>
+            <div className="mt-4 font-display text-[18px] font-extrabold uppercase tracking-[0.01em] text-ink">{s.title}</div>
+            <p className="mt-2 font-body text-[14px] leading-relaxed text-[#6a655e]">{s.blurb}</p>
+          </Reveal>
+        ))}
+      </div>
+    </Section>
+  );
+
+  /* ============ ★ SERVICES TO SUIT YOU ★ (ink) — the single club-amenities section ============ */
+  const servicesSection = a.outriders && (
+    <Section variant="ink" className="py-[clamp(70px,11vh,140px)]">
+      <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
+        <div>
+          <Reveal>
+            <CoinImage src="/assets/coin-outriders.png" alt="Outriders Club challenge coin" size={76} glow={`${ac}40`} className="mb-5" />
+          </Reveal>
           <SectionHead
-            kicker="Take the Tour"
-            title={a.galleryTitle ?? "See The Build."}
+            kicker={a.outriders.services.eyebrow}
+            title={<><span className="text-chrome">★</span> {a.outriders.services.headline} <span className="text-chrome">★</span></>}
             accent={ac}
             size="xl"
           />
-          <div className="mt-9">
-            <RenderingsGallery
-              groups={RENDER_GROUPS.filter((g) => a.gallery!.includes(g.key))}
-              accent={ac}
-            />
-          </div>
-        </Section>
-      )}
+        </div>
+        <Reveal delay={120}>
+          <p className="text-pretty font-body text-[clamp(17px,1.8vw,20px)] leading-relaxed text-[#dadada]">{a.outriders.services.intro}</p>
+        </Reveal>
+      </div>
+      <div className="mt-10 grid gap-px overflow-hidden rounded-[8px] border border-chrome/12 bg-chrome/10 sm:grid-cols-2 lg:grid-cols-3">
+        {a.outriders.services.items.map((it, i) => (
+          <Reveal key={it.name} delay={(i % 3) * 60} className="bg-ink p-6">
+            <div className="flex items-baseline gap-3">
+              <span className="h-1.5 w-1.5 flex-none translate-y-[-2px] rounded-full" style={{ background: ac }} aria-hidden />
+              <div className="font-display text-[16px] font-extrabold uppercase tracking-[0.01em] text-white">{it.name}</div>
+            </div>
+            <p className="mt-2 pl-[18px] font-body text-[14px] leading-snug text-chrome">{it.note}</p>
+          </Reveal>
+        ))}
+      </div>
+    </Section>
+  );
 
-      {/* ===================== WEST MEMPHIS (image) ===================== */}
-      <Section variant="image" image={a.memphisImage} accent={ac} className="py-[clamp(70px,11vh,140px)]">
-        <div className="grid gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+  /* ============ ★ AN OUNCE OF PREVENTION ★ (white) — LH Fleet Services ============ */
+  const fleetSection = a.outriders && (
+    <Section variant="light" className="py-[clamp(70px,11vh,140px)]">
+      <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
+        <SectionHead
+          kicker={a.outriders.fleet.eyebrow}
+          title={<><span style={{ color: ac }}>★</span> {a.outriders.fleet.headline} <span style={{ color: ac }}>★</span></>}
+          accent={ac}
+          size="xl"
+          tone="onLight"
+        />
+        <Reveal delay={120}>
+          <p className="text-pretty font-body text-[clamp(17px,1.8vw,20px)] leading-relaxed text-[#3a3733]">{a.outriders.fleet.intro}</p>
+        </Reveal>
+      </div>
+      <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {a.outriders.fleet.items.map((it, i) => (
+          <Reveal key={it.name} delay={(i % 3) * 60} className="lift rounded-card border border-[#E2DDD6] bg-white p-6">
+            <div className="flex items-baseline gap-3">
+              <span className="tnum font-mono text-[13px]" style={{ color: ac }}>{String(i + 1).padStart(2, "0")}</span>
+              <div className="font-display text-[16px] font-extrabold uppercase tracking-[0.01em] text-ink">{it.name}</div>
+            </div>
+            <p className="mt-2 pl-[26px] font-body text-[14px] leading-snug text-[#6a655e]">{it.note}</p>
+          </Reveal>
+        ))}
+      </div>
+    </Section>
+  );
+
+  /* ============ SPACE (ink) — three ways to get Space ============ */
+  const spaceSection = a.outriders && (
+    <Section variant="ink" className="py-[clamp(70px,11vh,140px)]">
+      <Reveal>
+        <div className="font-label text-[11px] uppercase tracking-[0.24em]" style={{ color: ac }}>Three ways to get Space</div>
+        <h2 className="mt-3 font-display text-[clamp(48px,9vw,120px)] font-black uppercase leading-[0.86] tracking-[-0.03em] text-white">{a.outriders.join.waysTitle}</h2>
+      </Reveal>
+      <div className="mt-10 grid gap-4 md:grid-cols-3">
+        {a.outriders.join.ways.map((w, i) => (
+          <Reveal key={w.title} delay={i * 80} className="lift rounded-card border border-chrome/15 bg-panel p-7">
+            <Coin tone={w.tone} size={44}>{String(i + 1).padStart(2, "0")}</Coin>
+            <div className="mt-4 font-display text-[18px] font-extrabold uppercase tracking-[0.01em] text-white">{w.title}</div>
+            <p className="mt-2 font-body text-[14px] leading-relaxed text-chrome">{w.blurb}</p>
+          </Reveal>
+        ))}
+      </div>
+      <Reveal delay={120} className="mt-10">
+        <a
+          href="/join"
+          className="group inline-flex items-center gap-2.5 rounded-btn px-[30px] py-[17px] font-label text-[12px] uppercase tracking-[0.16em] text-ink shadow-[0_14px_30px_rgba(0,0,0,0.45)] transition duration-300 hover:-translate-y-0.5 hover:brightness-[1.06] active:scale-[0.97]"
+          style={{ background: `linear-gradient(135deg, ${ac}, ${a.accentDark})` }}
+        >
+          Join Free.
+          <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+        </a>
+      </Reveal>
+    </Section>
+  );
+
+  /* ============ WE'RE READY TO ROLL! (white) — monthly webinars + Vimeo player ============ */
+  const webinarSection = a.outriders && (
+    <Section variant="light" className="py-[clamp(70px,11vh,140px)]">
+      <div className="grid items-center gap-[clamp(28px,4vw,64px)] lg:grid-cols-[0.9fr_1.1fr]">
+        <div>
           <Reveal>
-            <SectionHead kicker={a.memphis.kicker} title={a.memphis.headline} accent={ac} size="xl" />
-            <p className="mt-6 max-w-[54ch] text-pretty font-body text-[clamp(18px,1.9vw,21px)] leading-relaxed text-[#e2e2e2]">
-              {a.memphis.body}
-            </p>
-            <div className="mt-7 grid grid-cols-3 gap-3">
-              {a.memphis.stats.map((s, i) => (
-                <Reveal key={i} delay={i * 80} className="rounded-card border border-chrome/20 bg-ink/60 px-4 py-4 backdrop-blur">
-                  <CountUp value={s.big} className="tnum font-display text-[clamp(18px,2.2vw,24px)] font-black leading-none text-white" />
-                  <div className="mt-1.5 font-mono text-[11px] text-chrome">{s.label}</div>
-                </Reveal>
-              ))}
-            </div>
+            <div className="font-label text-[11px] uppercase tracking-[0.24em]" style={{ color: ac }}>{a.outriders.webinar.eyebrow}</div>
+            <h2 className="mt-3 text-balance font-display text-[clamp(34px,5vw,72px)] font-black uppercase leading-[0.95] tracking-[-0.02em] text-ink">{a.outriders.webinar.headline}</h2>
           </Reveal>
-          <Reveal delay={160} dir="right" className="chrome-frame glint">
-            <div className="bg-ink/85 p-7 backdrop-blur">
-              <div className="font-label text-[10px] uppercase tracking-[0.2em]" style={{ color: ac }}>
-                The First Hub
-              </div>
-              <div className="mt-3 font-display text-[30px] font-black uppercase leading-none text-white">
-                {a.memphis.address}
-              </div>
-              <div className="tnum mt-1.5 font-mono text-[13px] text-chrome">{a.memphis.addressSub}</div>
-              <div className="chrome-rule mt-5" />
-              <div className="mt-5">
-                <StatusChip chrome label="Live now" coord="35.14°N / 90.18°W" accent={ac} />
-              </div>
-            </div>
+          <Reveal delay={120}>
+            <p className="mt-6 max-w-[48ch] text-pretty font-body text-[clamp(16px,1.7vw,20px)] leading-relaxed text-[#3a3733]">{a.outriders.webinar.body}</p>
           </Reveal>
         </div>
-      </Section>
-
-      {/* ===================== ONE NETWORK — lane connector (blueprint) ===================== */}
-      <Section variant="blueprint" className="py-[clamp(70px,11vh,140px)]">
-        <LaneConnector current={a.key} accent={ac} />
-      </Section>
-
-      {/* ============ WE'RE READY TO ROLL! (ink) — monthly webinars + Vimeo player ============ */}
-      {a.outriders && (
-        <Section variant="ink" className="py-[clamp(70px,11vh,140px)]">
-          <div className="grid items-center gap-[clamp(28px,4vw,64px)] lg:grid-cols-[0.9fr_1.1fr]">
-            <div>
-              <Reveal>
-                <div className="font-label text-[11px] uppercase tracking-[0.24em]" style={{ color: ac }}>
-                  {a.outriders.webinar.eyebrow}
-                </div>
-                <h2 className="mt-3 text-balance font-display text-[clamp(34px,5vw,72px)] font-black uppercase leading-[0.95] tracking-[-0.02em] text-white">
-                  {a.outriders.webinar.headline}
-                </h2>
-              </Reveal>
-              <Reveal delay={120}>
-                <p className="mt-6 max-w-[48ch] text-pretty font-body text-[clamp(16px,1.7vw,20px)] leading-relaxed text-[#dadada]">
-                  {a.outriders.webinar.body}
-                </p>
-              </Reveal>
+        {/* Responsive 16:9 Vimeo player in the chrome/steel frame (lazy, no autoplay). */}
+        {/* TODO(JJ): branded poster LHS-Webinar2.png isn't in the repo — Vimeo serves its own thumbnail. */}
+        <Reveal delay={140} dir="right">
+          <ChromeFrame variant="steel">
+            <div className="relative aspect-video overflow-hidden bg-carbon">
+              <iframe
+                src={a.outriders.webinar.video}
+                title="LineHaul Station — Monthly Webinar with Jeff Swenson"
+                loading="lazy"
+                allow="fullscreen; picture-in-picture"
+                className="absolute inset-0 h-full w-full"
+              />
             </div>
-            {/* Responsive 16:9 Vimeo player in the chrome/steel frame (lazy, no autoplay). */}
-            {/* TODO(JJ): branded poster LHS-Webinar2.png isn't in the repo — Vimeo serves its own thumbnail. */}
-            <Reveal delay={140} dir="right">
-              <ChromeFrame variant="steel">
-                <div className="relative aspect-video overflow-hidden bg-carbon">
-                  <iframe
-                    src={a.outriders.webinar.video}
-                    title="LineHaul Station — Monthly Webinar with Jeff Swenson"
-                    loading="lazy"
-                    allow="fullscreen; picture-in-picture"
-                    className="absolute inset-0 h-full w-full"
-                  />
-                </div>
-              </ChromeFrame>
-            </Reveal>
+          </ChromeFrame>
+        </Reveal>
+      </div>
+    </Section>
+  );
+
+  /* ===================== TAKE THE TOUR — GALLERY (ink) ===================== */
+  const gallerySection = a.gallery && a.gallery.length > 0 && (
+    <Section variant="ink" className="py-[clamp(70px,11vh,140px)]">
+      <SectionHead kicker="Take the Tour" title={a.galleryTitle ?? "See The Build."} accent={ac} size="xl" />
+      <div className="mt-9">
+        <RenderingsGallery groups={RENDER_GROUPS.filter((g) => a.gallery!.includes(g.key))} accent={ac} />
+      </div>
+    </Section>
+  );
+
+  /* ===================== WEST MEMPHIS (image) ===================== */
+  const memphisSection = (
+    <Section variant="image" image={a.memphisImage} accent={ac} className="py-[clamp(70px,11vh,140px)]">
+      <div className="grid gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+        <Reveal>
+          <SectionHead kicker={a.memphis.kicker} title={a.memphis.headline} accent={ac} size="xl" />
+          <p className="mt-6 max-w-[54ch] text-pretty font-body text-[clamp(18px,1.9vw,21px)] leading-relaxed text-[#e2e2e2]">
+            {a.memphis.body}
+          </p>
+          <div className="mt-7 grid grid-cols-3 gap-3">
+            {a.memphis.stats.map((s, i) => (
+              <Reveal key={i} delay={i * 80} className="rounded-card border border-chrome/20 bg-ink/60 px-4 py-4 backdrop-blur">
+                <CountUp value={s.big} className="tnum font-display text-[clamp(18px,2.2vw,24px)] font-black leading-none text-white" />
+                <div className="mt-1.5 font-mono text-[11px] text-chrome">{s.label}</div>
+              </Reveal>
+            ))}
           </div>
-        </Section>
+        </Reveal>
+        <Reveal delay={160} dir="right" className="chrome-frame glint">
+          <div className="bg-ink/85 p-7 backdrop-blur">
+            <div className="font-label text-[10px] uppercase tracking-[0.2em]" style={{ color: ac }}>The First Hub</div>
+            <div className="mt-3 font-display text-[30px] font-black uppercase leading-none text-white">{a.memphis.address}</div>
+            <div className="tnum mt-1.5 font-mono text-[13px] text-chrome">{a.memphis.addressSub}</div>
+            <div className="chrome-rule mt-5" />
+            <div className="mt-5">
+              <StatusChip chrome label="Live now" coord="35.14°N / 90.18°W" accent={ac} />
+            </div>
+          </div>
+        </Reveal>
+      </div>
+    </Section>
+  );
+
+  /* ===================== ONE NETWORK — lane connector (blueprint) ===================== */
+  const networkSection = (
+    <Section variant="blueprint" className="py-[clamp(70px,11vh,140px)]">
+      <LaneConnector current={a.key} accent={ac} />
+    </Section>
+  );
+
+  /* ===================== LET'S TALK (gradient) — content + contact left, form right ===================== */
+  const letsTalkSection = (
+    <Section variant="gradient" accent={ac} id="contact" className="py-[clamp(70px,11vh,140px)]">
+      <div className="grid gap-[clamp(28px,4vw,64px)] lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+        <div className="lg:sticky lg:top-28">
+          <SectionHead kicker={a.form.eyebrow} title={a.form.headline} accent={ac} size="xl" maxW="max-w-full" />
+          <Reveal delay={100}>
+            <p className="mt-5 max-w-[44ch] text-pretty font-body text-[clamp(16px,1.6vw,20px)] leading-relaxed text-[#dadada]">
+              {a.form.body}
+            </p>
+          </Reveal>
+          <Reveal delay={140}>
+            <ChromeFrame className="mt-9">
+              <div className="grid grid-cols-1 gap-px overflow-hidden bg-chrome/10 sm:grid-cols-3 lg:grid-cols-1">
+                <a href={site.phoneHref} className="bg-ink/80 p-5 backdrop-blur transition-colors hover:bg-ink/95">
+                  <div className="font-mono text-[11px] uppercase tracking-[0.2em]" style={{ color: ac }}>Call</div>
+                  <div className="tnum mt-2 font-mono text-[15px] text-white">{site.phone}</div>
+                </a>
+                <a href={site.emailHref} className="bg-ink/80 p-5 backdrop-blur transition-colors hover:bg-ink/95">
+                  <div className="font-mono text-[11px] uppercase tracking-[0.2em]" style={{ color: ac }}>Email</div>
+                  <div className="mt-2 break-words font-mono text-[15px] text-white">{site.email}</div>
+                </a>
+                <div className="bg-ink/80 p-5 backdrop-blur">
+                  <div className="font-mono text-[11px] uppercase tracking-[0.2em]" style={{ color: ac }}>Visit</div>
+                  <div className="mt-2 font-mono text-[15px] text-white">West Memphis, AR</div>
+                  <div className="mt-1 font-mono text-[12px] text-chrome">{site.domainLabel}</div>
+                </div>
+              </div>
+            </ChromeFrame>
+          </Reveal>
+        </div>
+        <Reveal delay={120} dir="right">
+          <JoinForm accent={ac} accentDark={a.accentDark} />
+        </Reveal>
+      </div>
+    </Section>
+  );
+
+  return (
+    <main className="min-h-screen bg-ink">
+      <Nav accent={ac} active={a.key} />
+      {hero}
+
+      {a.outriders ? (
+        /* DRIVERS — join-drivers cluster leads, OneHome value + proof below */
+        <>
+          {storySection}
+          {stepsSection}
+          {servicesSection}
+          {fleetSection}
+          {spaceSection}
+          {webinarSection}
+          {gallerySection}
+          {roadSection}
+          {numbersBlock}
+          {problemSection}
+          {howItWorksSection}
+          {memphisSection}
+          {networkSection}
+        </>
+      ) : (
+        /* CARRIERS / BROKERS / SHIPPERS / GOVERNMENT — template order */
+        <>
+          {numbersBlock}
+          {problemSection}
+          {signatureBands}
+          {roadSection}
+          {howItWorksSection}
+          {soloRelaySection}
+          {capabilitiesSection}
+          {gallerySection}
+          {memphisSection}
+          {networkSection}
+        </>
       )}
 
-      {/* ===================== LET'S TALK (gradient) — content + contact left, form right ===================== */}
-      <Section variant="gradient" accent={ac} id="contact" className="py-[clamp(70px,11vh,140px)]">
-        <div className="grid gap-[clamp(28px,4vw,64px)] lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
-          {/* content + contact info (left) */}
-          <div className="lg:sticky lg:top-28">
-            <SectionHead kicker={a.form.eyebrow} title={a.form.headline} accent={ac} size="xl" maxW="max-w-full" />
-            <Reveal delay={100}>
-              <p className="mt-5 max-w-[44ch] text-pretty font-body text-[clamp(16px,1.6vw,20px)] leading-relaxed text-[#dadada]">
-                {a.form.body}
-              </p>
-            </Reveal>
-            <Reveal delay={140}>
-              <ChromeFrame className="mt-9">
-                <div className="grid grid-cols-1 gap-px overflow-hidden bg-chrome/10 sm:grid-cols-3 lg:grid-cols-1">
-                  <a href={site.phoneHref} className="bg-ink/80 p-5 backdrop-blur transition-colors hover:bg-ink/95">
-                    <div className="font-mono text-[11px] uppercase tracking-[0.2em]" style={{ color: ac }}>Call</div>
-                    <div className="tnum mt-2 font-mono text-[15px] text-white">{site.phone}</div>
-                  </a>
-                  <a href={site.emailHref} className="bg-ink/80 p-5 backdrop-blur transition-colors hover:bg-ink/95">
-                    <div className="font-mono text-[11px] uppercase tracking-[0.2em]" style={{ color: ac }}>Email</div>
-                    <div className="mt-2 break-words font-mono text-[15px] text-white">{site.email}</div>
-                  </a>
-                  <div className="bg-ink/80 p-5 backdrop-blur">
-                    <div className="font-mono text-[11px] uppercase tracking-[0.2em]" style={{ color: ac }}>Visit</div>
-                    <div className="mt-2 font-mono text-[15px] text-white">West Memphis, AR</div>
-                    <div className="mt-1 font-mono text-[12px] text-chrome">{site.domainLabel}</div>
-                  </div>
-                </div>
-              </ChromeFrame>
-            </Reveal>
-          </div>
-
-          {/* form (right) */}
-          <Reveal delay={120} dir="right">
-            <JoinForm accent={ac} accentDark={a.accentDark} />
-          </Reveal>
-        </div>
-      </Section>
-
+      {letsTalkSection}
       <Footer />
     </main>
   );

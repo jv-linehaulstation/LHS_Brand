@@ -325,7 +325,7 @@ export const audiences: Record<AudienceKey, Audience> = {
         steps: [
           { title: "Free Driver Membership", blurb: "The Driver Membership at LineHaul Station is always 100% Free to all drivers, you simply need to agree to the Code of Conduct and you’ll be cleared to use any Hub across the network." },
           { title: "Create Your Profile", blurb: "The first step is to take advantage of your Driver Profile and start to unlock the many features that come with your free membership. We’ll give you special access to career-changing information." },
-          { title: "Get Others Excited!", blurb: "We have three ways that drivers can gain access to Space. Drivers can EARN FREE Space with our referral program, PURCHASE Space directly, or REQUEST passes from your carrier or broker." },
+          { title: "Get Others Excited!", blurb: "Three ways to get Space — earn it, request it, or purchase it (the cards below have the details)." },
         ],
         waysTitle: "Space",
         ways: [
@@ -335,7 +335,7 @@ export const audiences: Record<AudienceKey, Audience> = {
         ],
       },
       webinar: {
-        eyebrow: "We’re ready to roll",
+        eyebrow: "Monthly webinars",
         headline: "We’re Ready To Roll!",
         body: "Every new member of LineHaul Station will have the opportunity to join the Monthly Webinars that will be quick meetings with Founder & CEO Jeff Swenson about the latest news, and what drivers can do to get the most out of their FREE MEMBERSHIP as we get close to the network launch!",
         video: "https://player.vimeo.com/video/1055748426?title=0&byline=0&portrait=0",
