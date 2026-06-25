@@ -127,7 +127,7 @@ export type Audience = {
       waysTitle: string;
       ways: { title: string; blurb: string; tone: "fuel" | "steel" | "gold" }[];
     };
-    webinar: { eyebrow: string; headline: string; body: string };
+    webinar: { eyebrow: string; headline: string; body: string; video: string };
   };
 
   // SIGNATURE BANDS (one per lane — see AudiencePage). All optional.
@@ -277,19 +277,19 @@ export const audiences: Record<AudienceKey, Audience> = {
     },
     outriders: {
       story: {
-        eyebrow: "Welcome to the Club",
-        headline: "Knights Of The Highway.",
+        eyebrow: "The Outriders",
+        headline: "Welcome to the Club",
         image: PHOTOS.clubLoungePhoto,
         paras: [
           "Trucking is a great story of entrepreneurship and perseverance.",
-          "There is a long legacy of immense pride by truckers that wanted to be the best version of themselves while serving the needs of America with great dignity. LineHaul Station celebrates their independence and success by embracing the very essence of what made trucking appealing to all “Knights of the Highway.”",
-          "That’s why we’ve created the Outriders Club — a place for great drivers to relax, unwind, reward themselves, and rejuvenate, all in the interest of better health and happiness. The exclusive drivers club represents our commitment to reinvigorate the spirit of the American truck driver as hard-working patriots who deserve our support and respect.",
-          "The name “Outriders” is synonymous with a mission to lead, guide, and protect the people we work with and the companies that depend on us each and every day.",
+          "There is a long legacy of immense pride by truckers that wanted to be the best version of themselves while serving the needs of America with great dignity. LineHaul Station celebrates their independence and success by embracing the very essence of what made trucking appealing to all “Knights of the Highway”.",
+          "That’s why we’ve created the Outriders Club, a place for great drivers to relax, unwind, reward themselves and rejuvenate – all in the interest of better health and happiness. The exclusive driver’s club is representative of our commitment to reinvigorate the spirit of the American truck driver as hard-working patriots that deserve our support and respect.",
+          "The name “Outriders” is synonymous with a mission to help “lead, guide, and protect” the people we work with and the companies that depend on us each and every day.",
         ],
       },
       services: {
-        eyebrow: "Services to suit you",
-        headline: "The Outriders Services Menu.",
+        eyebrow: "The Outriders Club",
+        headline: "Services To Suit You",
         intro: "Everything a driver needs to relax, recover, and roll out fresh — inside the 25,000 sq ft private Outriders Club at every Hub.",
         items: [
           { name: "Member’s Grill & Sports Bar", note: "Hot, real cooking and a place to catch the game — no truck-stop microwave." },
@@ -307,8 +307,8 @@ export const audiences: Record<AudienceKey, Audience> = {
         ],
       },
       fleet: {
-        eyebrow: "An ounce of prevention",
-        headline: "LH Fleet Services.",
+        eyebrow: "LH Fleet Services",
+        headline: "An Ounce Of Prevention",
         intro: "Keep your truck road-ready while you rest — on-site service at fair labor rates, right at the Hub.",
         items: [
           { name: "On-Site Maintenance", note: "Routine service handled at the Hub — don’t lose a day to a shop across town." },
@@ -320,24 +320,25 @@ export const audiences: Record<AudienceKey, Audience> = {
         ],
       },
       join: {
-        eyebrow: "Nothing to lose",
-        headline: "Free Membership In Three Steps.",
+        eyebrow: "Free membership",
+        headline: "Nothing To Lose / Everything To Gain",
         steps: [
-          { title: "Free Driver Membership", blurb: "Driver Membership at LineHaul Station is always 100% free. Agree to the Code of Conduct and you’re cleared to use any Hub across the network." },
-          { title: "Create Your Profile", blurb: "Set up your Driver Profile to unlock the features that come with your free membership — including special access to career-changing information." },
-          { title: "Get Others Excited", blurb: "Three ways to gain access to Space: earn it through our referral program, purchase it directly, or request passes from your carrier or broker." },
+          { title: "Free Driver Membership", blurb: "The Driver Membership at LineHaul Station is always 100% Free to all drivers, you simply need to agree to the Code of Conduct and you’ll be cleared to use any Hub across the network." },
+          { title: "Create Your Profile", blurb: "The first step is to take advantage of your Driver Profile and start to unlock the many features that come with your free membership. We’ll give you special access to career-changing information." },
+          { title: "Get Others Excited!", blurb: "We have three ways that drivers can gain access to Space. Drivers can EARN FREE Space with our referral program, PURCHASE Space directly, or REQUEST passes from your carrier or broker." },
         ],
-        waysTitle: "Three Ways To Get Space",
+        waysTitle: "Space",
         ways: [
-          { title: "Earn Your Space", tone: "fuel", blurb: "Earn a lifetime of free Space by sponsoring ten great drivers, who then each sponsor ten of their own. (Conditions apply.)" },
-          { title: "Request Your Space", tone: "steel", blurb: "We give you the tools to get your current carrier to support you with Space — or to access “The LineHaul List” to find a carrier, fleet, or brokerage looking for a driver like you." },
-          { title: "Purchase Your Space", tone: "gold", blurb: "Special pricing for “anyone with a steering wheel in their hand.” Your Membership Director will guide you through purchasing FlexSpace." },
+          { title: "Earn Your Space", tone: "fuel", blurb: "We are offering Drivers a fantastic way to earn a Lifetime of FREE Space simply by sponsoring the membership of Ten great drivers, who then sponsor Ten drivers of their own. (conditions apply)" },
+          { title: "Request Your Space", tone: "steel", blurb: "We give you all the tools you need to either get your current carrier to support you with space, or access ‘The LineHaul List’ to find a carrier, fleet, or brokerage looking for a driver like you!" },
+          { title: "Purchase Your Space", tone: "gold", blurb: "We’re offering special pricing to ‘anyone with a steering wheel in their hand’! Just contact your Membership Director and we can guide you in purchasing FlexSpace." },
         ],
       },
       webinar: {
         eyebrow: "We’re ready to roll",
-        headline: "Monthly Webinars With Jeff Swenson.",
-        body: "Every new member gets a seat at the monthly webinars — quick meetings with Founder & CEO Jeff Swenson on the latest news and how to get the most out of your free membership as we get close to the network launch.",
+        headline: "We’re Ready To Roll!",
+        body: "Every new member of LineHaul Station will have the opportunity to join the Monthly Webinars that will be quick meetings with Founder & CEO Jeff Swenson about the latest news, and what drivers can do to get the most out of their FREE MEMBERSHIP as we get close to the network launch!",
+        video: "https://player.vimeo.com/video/1055748426?title=0&byline=0&portrait=0",
       },
     },
     memphis: {

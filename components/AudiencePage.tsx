@@ -226,23 +226,59 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
       {/* ===================== HOW IT WORKS — pinned scroll-driven (shared) ===================== */}
       <HowItWorks steps={howSteps} accent={ac} kicker={a.how.eyebrow} title={a.how.headline} />
 
-      {/* ============ OUTRIDERS STORY (image) — drivers: "Welcome to the Club" ============ */}
+      {/* ============ OUTRIDERS STORY (image) — drivers: "Welcome to the Club" + Jeff lockup ============ */}
       {a.outriders && (
         <Section variant="image" image={a.outriders.story.image} accent={ac} className="py-[clamp(80px,12vh,160px)]">
-          <Reveal className="max-w-3xl">
-            <CoinImage src="/assets/coin-outriders.png" alt="Outriders Club challenge coin" size={92} glow={`${ac}55`} className="mb-6" />
-            <div className="font-label text-[11px] uppercase tracking-[0.24em]" style={{ color: ac }}>
-              {a.outriders.story.eyebrow}
-            </div>
-            <h2 className="mt-4 text-balance font-display text-[clamp(34px,5.6vw,84px)] font-black uppercase leading-[0.92] tracking-[-0.025em] text-white">
-              {a.outriders.story.headline}
-            </h2>
-            <div className="mt-7 space-y-5 font-body text-[clamp(16px,1.7vw,20px)] leading-relaxed text-[#e2e2e2]">
-              {a.outriders.story.paras.map((p, i) => (
-                <p key={i}>{p}</p>
-              ))}
-            </div>
-          </Reveal>
+          <div className="grid gap-[clamp(32px,5vw,72px)] lg:grid-cols-[1.34fr_0.66fr] lg:items-center">
+            {/* "Welcome to the Club" + the Outriders story */}
+            <Reveal>
+              <CoinImage src="/assets/coin-outriders.png" alt="Outriders Club challenge coin" size={84} glow={`${ac}55`} className="mb-5" />
+              <div className="font-label text-[11px] uppercase tracking-[0.24em]" style={{ color: ac }}>
+                {a.outriders.story.eyebrow}
+              </div>
+              <h2 className="mt-3 font-script text-[clamp(40px,6vw,76px)] font-semibold leading-[1.02] text-white">
+                {a.outriders.story.headline}
+              </h2>
+              <div className="mt-6 space-y-4 font-body leading-relaxed text-[#e2e2e2]">
+                {a.outriders.story.paras.map((p, i) =>
+                  i === 0 ? (
+                    <p key={i} className="text-[clamp(19px,2.1vw,25px)] font-medium leading-snug text-white">{p}</p>
+                  ) : (
+                    <p key={i} className="text-[clamp(16px,1.7vw,19px)]">{p}</p>
+                  )
+                )}
+              </div>
+            </Reveal>
+
+            {/* Jeff Swenson portrait + signature lockup */}
+            <Reveal delay={120}>
+              <ChromeFrame variant="dual" glint className="w-full max-w-[300px]">
+                <div className="relative aspect-[4/5] overflow-hidden bg-carbon">
+                  <Image
+                    src="https://static.wixstatic.com/media/84a10c_7dfa17aed1604937b1d1dd98258ee10a~mv2.png/v1/fill/w_640,h_800,al_c,q_90/Bio_JS-23-1.png"
+                    alt="Jeffrey J. Swenson, Founder & CEO"
+                    fill
+                    className="img-grade object-cover object-top"
+                    sizes="300px"
+                  />
+                </div>
+              </ChromeFrame>
+              <div className="mt-5 font-display text-[20px] font-black uppercase leading-tight text-white">Jeffrey J. Swenson</div>
+              <div className="mt-1 font-mono text-[11px] uppercase tracking-[0.12em]" style={{ color: ac }}>Founder &amp; CEO</div>
+              <div className="mt-4 flex flex-wrap gap-2.5">
+                <a
+                  href="https://www.linkedin.com/in/jeff-swenson-2744606"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-btn border border-white/30 px-4 py-2 font-mono text-[10px] uppercase tracking-[0.12em] text-white transition-colors hover:border-[var(--ac)] hover:text-[var(--ac)]"
+                  style={{ ["--ac" as string]: ac }}
+                >
+                  LinkedIn
+                </a>
+                {/* TODO(JJ): Facebook profile URL not provided — add the second social link when available. */}
+              </div>
+            </Reveal>
+          </div>
         </Section>
       )}
 
@@ -344,53 +380,130 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
         </Section>
       )}
 
-      {/* ============ OUTRIDERS SERVICES MENU (ink) — recreated from the image menu ============ */}
+      {/* ============ NOTHING TO LOSE / EVERYTHING TO GAIN (ink) — 3-step free membership ============ */}
       {a.outriders && (
         <Section variant="ink" className="py-[clamp(70px,11vh,140px)]">
-          <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
-            <SectionHead kicker={a.outriders.services.eyebrow} title={a.outriders.services.headline} accent={ac} size="xl" />
-            <Reveal delay={120}>
-              <p className="text-pretty font-body text-[clamp(17px,1.8vw,20px)] leading-relaxed text-[#dadada]">
-                {a.outriders.services.intro}
-              </p>
-            </Reveal>
-          </div>
-          <div className="mt-10 grid gap-px overflow-hidden rounded-[8px] border border-chrome/12 bg-chrome/10 sm:grid-cols-2 lg:grid-cols-3">
-            {a.outriders.services.items.map((it, i) => (
-              <Reveal key={it.name} delay={(i % 3) * 60} className="bg-ink p-6">
-                <div className="flex items-baseline gap-3">
-                  <span className="h-1.5 w-1.5 flex-none translate-y-[-2px] rounded-full" style={{ background: ac }} aria-hidden />
-                  <div className="font-display text-[16px] font-extrabold uppercase tracking-[0.01em] text-white">{it.name}</div>
+          <Reveal className="max-w-3xl">
+            <div className="font-label text-[11px] uppercase tracking-[0.24em]" style={{ color: ac }}>
+              {a.outriders.join.eyebrow}
+            </div>
+            <h2 className="mt-3 font-display text-[clamp(34px,5.6vw,84px)] font-black uppercase leading-[0.92] tracking-[-0.025em] text-white">
+              {a.outriders.join.headline.split("/")[0].trim()}
+              <br />
+              <span style={{ color: ac }}>{a.outriders.join.headline.split("/")[1].trim()}</span>
+            </h2>
+          </Reveal>
+          <div className="mt-10 grid gap-4 md:grid-cols-3">
+            {a.outriders.join.steps.map((s, i) => (
+              <Reveal key={s.title} delay={i * 80} className="lift rounded-card border border-chrome/15 bg-panel p-7">
+                <div className="flex items-center gap-3">
+                  <Coin tone="fuel" size={46}>{i + 1}</Coin>
+                  <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-chrome">Step #{i + 1}</span>
                 </div>
-                <p className="mt-2 pl-[18px] font-body text-[14px] leading-snug text-chrome">{it.note}</p>
+                <div className="mt-4 font-display text-[18px] font-extrabold uppercase tracking-[0.01em] text-white">{s.title}</div>
+                <p className="mt-2 font-body text-[14px] leading-relaxed text-chrome">{s.blurb}</p>
               </Reveal>
             ))}
           </div>
         </Section>
       )}
 
-      {/* ============ LH FLEET SERVICES (white) — "An Ounce Of Prevention" ============ */}
+      {/* ============ ★ SERVICES TO SUIT YOU ★ (white) — recreated from the image menu ============ */}
       {a.outriders && (
         <Section variant="light" className="py-[clamp(70px,11vh,140px)]">
           <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
-            <SectionHead kicker={a.outriders.fleet.eyebrow} title={a.outriders.fleet.headline} accent={ac} size="xl" tone="onLight" />
+            <div>
+              <Reveal>
+                <CoinImage src="/assets/coin-outriders.png" alt="Outriders Club challenge coin" size={76} glow={`${ac}40`} className="mb-5" />
+              </Reveal>
+              <SectionHead
+                kicker={a.outriders.services.eyebrow}
+                title={<><span className="text-chrome">★</span> {a.outriders.services.headline} <span className="text-chrome">★</span></>}
+                accent={ac}
+                size="xl"
+                tone="onLight"
+              />
+            </div>
             <Reveal delay={120}>
               <p className="text-pretty font-body text-[clamp(17px,1.8vw,20px)] leading-relaxed text-[#3a3733]">
-                {a.outriders.fleet.intro}
+                {a.outriders.services.intro}
               </p>
             </Reveal>
           </div>
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {a.outriders.fleet.items.map((it, i) => (
+            {a.outriders.services.items.map((it, i) => (
               <Reveal key={it.name} delay={(i % 3) * 60} className="lift rounded-card border border-[#E2DDD6] bg-white p-6">
                 <div className="flex items-baseline gap-3">
-                  <span className="tnum font-mono text-[13px]" style={{ color: ac }}>{String(i + 1).padStart(2, "0")}</span>
+                  <span className="h-1.5 w-1.5 flex-none translate-y-[-2px] rounded-full" style={{ background: ac }} aria-hidden />
                   <div className="font-display text-[16px] font-extrabold uppercase tracking-[0.01em] text-ink">{it.name}</div>
                 </div>
-                <p className="mt-2 pl-[26px] font-body text-[14px] leading-snug text-[#6a655e]">{it.note}</p>
+                <p className="mt-2 pl-[18px] font-body text-[14px] leading-snug text-[#6a655e]">{it.note}</p>
               </Reveal>
             ))}
           </div>
+        </Section>
+      )}
+
+      {/* ============ ★ AN OUNCE OF PREVENTION ★ (ink) — LH Fleet Services ============ */}
+      {a.outriders && (
+        <Section variant="ink" className="py-[clamp(70px,11vh,140px)]">
+          <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
+            <SectionHead
+              kicker={a.outriders.fleet.eyebrow}
+              title={<><span className="text-chrome">★</span> {a.outriders.fleet.headline} <span className="text-chrome">★</span></>}
+              accent={ac}
+              size="xl"
+            />
+            <Reveal delay={120}>
+              <p className="text-pretty font-body text-[clamp(17px,1.8vw,20px)] leading-relaxed text-[#dadada]">
+                {a.outriders.fleet.intro}
+              </p>
+            </Reveal>
+          </div>
+          <div className="mt-10 grid gap-px overflow-hidden rounded-[8px] border border-chrome/12 bg-chrome/10 sm:grid-cols-2 lg:grid-cols-3">
+            {a.outriders.fleet.items.map((it, i) => (
+              <Reveal key={it.name} delay={(i % 3) * 60} className="bg-ink p-6">
+                <div className="flex items-baseline gap-3">
+                  <span className="tnum font-mono text-[13px]" style={{ color: ac }}>{String(i + 1).padStart(2, "0")}</span>
+                  <div className="font-display text-[16px] font-extrabold uppercase tracking-[0.01em] text-white">{it.name}</div>
+                </div>
+                <p className="mt-2 pl-[26px] font-body text-[14px] leading-snug text-chrome">{it.note}</p>
+              </Reveal>
+            ))}
+          </div>
+        </Section>
+      )}
+
+      {/* ============ SPACE (white) — three ways to get Space ============ */}
+      {a.outriders && (
+        <Section variant="light" className="py-[clamp(70px,11vh,140px)]">
+          <Reveal>
+            <div className="font-label text-[11px] uppercase tracking-[0.24em]" style={{ color: ac }}>
+              Three ways to get Space
+            </div>
+            <h2 className="mt-3 font-display text-[clamp(48px,9vw,120px)] font-black uppercase leading-[0.86] tracking-[-0.03em] text-ink">
+              {a.outriders.join.waysTitle}
+            </h2>
+          </Reveal>
+          <div className="mt-10 grid gap-4 md:grid-cols-3">
+            {a.outriders.join.ways.map((w, i) => (
+              <Reveal key={w.title} delay={i * 80} className="lift rounded-card border border-[#E2DDD6] bg-white p-7">
+                <Coin tone={w.tone} size={44}>{String(i + 1).padStart(2, "0")}</Coin>
+                <div className="mt-4 font-display text-[18px] font-extrabold uppercase tracking-[0.01em] text-ink">{w.title}</div>
+                <p className="mt-2 font-body text-[14px] leading-relaxed text-[#6a655e]">{w.blurb}</p>
+              </Reveal>
+            ))}
+          </div>
+          <Reveal delay={120} className="mt-10">
+            <a
+              href="/join"
+              className="group inline-flex items-center gap-2.5 rounded-btn px-[30px] py-[17px] font-label text-[12px] uppercase tracking-[0.16em] text-ink shadow-[0_14px_30px_rgba(0,0,0,0.18)] transition duration-300 hover:-translate-y-0.5 hover:brightness-[1.06] active:scale-[0.97]"
+              style={{ background: `linear-gradient(135deg, ${ac}, ${a.accentDark})` }}
+            >
+              Join Free.
+              <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+            </a>
+          </Reveal>
         </Section>
       )}
 
@@ -409,50 +522,6 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
               accent={ac}
             />
           </div>
-        </Section>
-      )}
-
-      {/* ============ JOIN FREE (white) — 3-step membership + 3 ways to get Space ============ */}
-      {a.outriders && (
-        <Section variant="light" className="py-[clamp(70px,11vh,140px)]">
-          <SectionHead kicker={a.outriders.join.eyebrow} title={a.outriders.join.headline} accent={ac} size="xl" tone="onLight" />
-          <div className="mt-10 grid gap-4 md:grid-cols-3">
-            {a.outriders.join.steps.map((s, i) => (
-              <Reveal key={s.title} delay={i * 80} className="rounded-card border border-[#E2DDD6] bg-white p-7">
-                <Coin tone="fuel" size={46}>{String(i + 1).padStart(2, "0")}</Coin>
-                <div className="mt-4 font-display text-[18px] font-extrabold uppercase tracking-[0.01em] text-ink">{s.title}</div>
-                <p className="mt-2 font-body text-[14px] leading-relaxed text-[#6a655e]">{s.blurb}</p>
-              </Reveal>
-            ))}
-          </div>
-
-          <div className="mt-12">
-            <Reveal>
-              <h3 className="font-display text-[clamp(22px,3vw,34px)] font-black uppercase leading-tight text-ink">
-                {a.outriders.join.waysTitle}
-              </h3>
-            </Reveal>
-            <div className="mt-6 grid gap-4 md:grid-cols-3">
-              {a.outriders.join.ways.map((w, i) => (
-                <Reveal key={w.title} delay={i * 80} className="lift rounded-card border border-[#E2DDD6] bg-white p-7">
-                  <Coin tone={w.tone} size={44}>{String(i + 1).padStart(2, "0")}</Coin>
-                  <div className="mt-4 font-display text-[18px] font-extrabold uppercase tracking-[0.01em] text-ink">{w.title}</div>
-                  <p className="mt-2 font-body text-[14px] leading-relaxed text-[#6a655e]">{w.blurb}</p>
-                </Reveal>
-              ))}
-            </div>
-          </div>
-
-          <Reveal delay={120} className="mt-10">
-            <a
-              href="/join"
-              className="group inline-flex items-center gap-2.5 rounded-btn px-[30px] py-[17px] font-label text-[12px] uppercase tracking-[0.16em] text-ink shadow-[0_14px_30px_rgba(0,0,0,0.18)] transition duration-300 hover:-translate-y-0.5 hover:brightness-[1.06] active:scale-[0.97]"
-              style={{ background: `linear-gradient(135deg, ${ac}, ${a.accentDark})` }}
-            >
-              Join Free.
-              <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">→</span>
-            </a>
-          </Reveal>
         </Section>
       )}
 
@@ -496,26 +565,41 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
         <LaneConnector current={a.key} accent={ac} />
       </Section>
 
-      {/* ============ MONTHLY WEBINARS (ink) — drivers: "We're Ready To Roll" ============ */}
+      {/* ============ WE'RE READY TO ROLL! (ink) — monthly webinars + Vimeo player ============ */}
       {a.outriders && (
-        <Section variant="ink" className="py-[clamp(56px,9vh,110px)]">
-          <ChromeFrame glint>
-            <div className="grid items-center gap-8 bg-ink/80 p-8 backdrop-blur sm:p-10 lg:grid-cols-[0.95fr_1.05fr]">
-              <div>
+        <Section variant="ink" className="py-[clamp(70px,11vh,140px)]">
+          <div className="grid items-center gap-[clamp(28px,4vw,64px)] lg:grid-cols-[0.9fr_1.1fr]">
+            <div>
+              <Reveal>
                 <div className="font-label text-[11px] uppercase tracking-[0.24em]" style={{ color: ac }}>
                   {a.outriders.webinar.eyebrow}
                 </div>
-                <h2 className="mt-4 text-balance font-display text-[clamp(28px,3.6vw,52px)] font-black uppercase leading-[0.95] tracking-[-0.02em] text-white">
+                <h2 className="mt-3 text-balance font-display text-[clamp(34px,5vw,72px)] font-black uppercase leading-[0.95] tracking-[-0.02em] text-white">
                   {a.outriders.webinar.headline}
                 </h2>
-              </div>
+              </Reveal>
               <Reveal delay={120}>
-                <p className="text-pretty font-body text-[clamp(16px,1.7vw,20px)] leading-relaxed text-[#dadada]">
+                <p className="mt-6 max-w-[48ch] text-pretty font-body text-[clamp(16px,1.7vw,20px)] leading-relaxed text-[#dadada]">
                   {a.outriders.webinar.body}
                 </p>
               </Reveal>
             </div>
-          </ChromeFrame>
+            {/* Responsive 16:9 Vimeo player in the chrome/steel frame (lazy, no autoplay). */}
+            {/* TODO(JJ): branded poster LHS-Webinar2.png isn't in the repo — Vimeo serves its own thumbnail. */}
+            <Reveal delay={140} dir="right">
+              <ChromeFrame variant="steel">
+                <div className="relative aspect-video overflow-hidden bg-carbon">
+                  <iframe
+                    src={a.outriders.webinar.video}
+                    title="LineHaul Station — Monthly Webinar with Jeff Swenson"
+                    loading="lazy"
+                    allow="fullscreen; picture-in-picture"
+                    className="absolute inset-0 h-full w-full"
+                  />
+                </div>
+              </ChromeFrame>
+            </Reveal>
+          </div>
         </Section>
       )}
 
