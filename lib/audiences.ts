@@ -119,7 +119,7 @@ export type Audience = {
   outriders?: {
     story: { eyebrow: string; headline: string; image: string; paras: string[] };
     services: { eyebrow: string; headline: string; intro: string; items: { name: string; note: string }[] };
-    fleet: { eyebrow: string; headline: string; intro: string; items: { name: string; note: string }[] };
+    fleet: { eyebrow: string; headline: string; intro: string; items: { name: string; note: string; img: string }[] };
     join: {
       eyebrow: string;
       headline: string;
@@ -310,13 +310,15 @@ export const audiences: Record<AudienceKey, Audience> = {
         eyebrow: "LH Fleet Services",
         headline: "An Ounce Of Prevention",
         intro: "Keep your truck road-ready while you rest — on-site service at fair labor rates, right at the Hub.",
+        // LHS Fleet Services facility renderings (ours, from the deck library).
+        // TODO(JJ): swap in dedicated shop/bay photos per service when available.
         items: [
-          { name: "On-Site Maintenance", note: "Routine service handled at the Hub — don’t lose a day to a shop across town." },
-          { name: "Inspection", note: "DOT-ready inspections that keep you compliant and rolling." },
-          { name: "Preventive Maintenance", note: "Scheduled PM that catches problems before they catch you." },
-          { name: "Repair", note: "An on-site repair partner to get you back on the road fast." },
-          { name: "State-Of-The-Art Truck Wash", note: "A professional wash bay to keep the rig sharp." },
-          { name: "Fair Labor Rates", note: "Honest pricing — service that respects the driver’s wallet." },
+          { name: "On-Site Maintenance", note: "Routine service handled at the Hub — don’t lose a day to a shop across town.", img: PHOTOS.fleetEntry1 },
+          { name: "Inspection", note: "DOT-ready inspections that keep you compliant and rolling.", img: PHOTOS.fleetEntry2 },
+          { name: "Preventive Maintenance", note: "Scheduled PM that catches problems before they catch you.", img: PHOTOS.fleetExit },
+          { name: "Repair", note: "An on-site repair partner to get you back on the road fast.", img: PHOTOS.fleetFuel },
+          { name: "State-Of-The-Art Truck Wash", note: "A professional wash bay to keep the rig sharp.", img: PHOTOS.truckWashEntry },
+          { name: "Fair Labor Rates", note: "Honest pricing — service that respects the driver’s wallet.", img: PHOTOS.truckWashExit },
         ],
       },
       join: {

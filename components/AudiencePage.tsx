@@ -115,7 +115,7 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
         </div>
       </div>
       <a
-        href={a.outriders ? "#numbers" : "#problem"}
+        href={a.outriders ? "#welcome" : "#problem"}
         className="absolute inset-x-0 bottom-5 mx-auto flex w-fit items-center gap-2 font-label text-[10px] uppercase tracking-[0.2em] text-chrome transition-colors hover:text-white"
       >
         <span className="scroll-nudge inline-block">↓</span> {a.scrollHint}
@@ -289,7 +289,8 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
   /* ============ OUTRIDERS STORY (ink) — drivers: "Welcome to the Club" + Jeff lockup ============ */
   const storySection = a.outriders && (
     <Section variant="ink" id="welcome" className="py-[clamp(80px,12vh,160px)]">
-      <div className="grid gap-[clamp(32px,5vw,72px)] lg:grid-cols-[1.34fr_0.66fr] lg:items-center">
+      <div className="grid gap-[clamp(32px,5vw,72px)] lg:grid-cols-2 lg:items-center">
+        {/* story copy */}
         <Reveal>
           <CoinImage src="/assets/coin-outriders.png" alt="Outriders Club challenge coin" size={84} glow={`${ac}55`} className="mb-5" />
           <h2 className="font-script text-[clamp(40px,6vw,76px)] font-semibold leading-[1.02] text-white">{a.outriders.story.headline}</h2>
@@ -303,21 +304,28 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
             )}
           </div>
         </Reveal>
+        {/* webinar invite → video → Jeff credit (the old "We're Ready To Roll" band, merged in) */}
         <Reveal delay={120}>
-          <ChromeFrame variant="dual" glint className="w-full max-w-[300px]">
-            <div className="relative aspect-[4/5] overflow-hidden bg-carbon">
-              <Image
-                src="https://static.wixstatic.com/media/84a10c_7dfa17aed1604937b1d1dd98258ee10a~mv2.png/v1/fill/w_640,h_800,al_c,q_90/Bio_JS-23-1.png"
-                alt="Jeffrey J. Swenson, Founder & CEO"
-                fill
-                className="img-grade object-cover object-top"
-                sizes="300px"
+          <p className="font-body text-[clamp(15px,1.5vw,18px)] leading-relaxed text-chrome">
+            {a.outriders.webinar.body}
+          </p>
+          {/* TODO(JJ): branded poster LHS-Webinar2.png isn't in the repo — Vimeo serves its own thumbnail. */}
+          <ChromeFrame variant="steel" className="mt-5">
+            <div className="relative aspect-video overflow-hidden bg-carbon">
+              <iframe
+                src={a.outriders.webinar.video}
+                title="LineHaul Station — Monthly Webinar with Jeff Swenson"
+                loading="lazy"
+                allow="fullscreen; picture-in-picture"
+                className="absolute inset-0 h-full w-full"
               />
             </div>
           </ChromeFrame>
-          <div className="mt-5 font-display text-[20px] font-black uppercase leading-tight text-white">Jeffrey J. Swenson</div>
-          <div className="mt-1 font-mono text-[11px] uppercase tracking-[0.12em]" style={{ color: ac }}>Founder &amp; CEO</div>
-          <div className="mt-4 flex flex-wrap gap-2.5">
+          <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <div className="font-display text-[16px] font-black uppercase leading-tight text-white">Jeffrey J. Swenson</div>
+              <div className="mt-0.5 font-mono text-[11px] uppercase tracking-[0.12em]" style={{ color: ac }}>Founder &amp; CEO</div>
+            </div>
             <a
               href="https://www.linkedin.com/in/jeff-swenson-2744606"
               target="_blank"
@@ -327,7 +335,7 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
             >
               LinkedIn
             </a>
-            {/* TODO(JJ): Facebook profile URL not provided — add the second social link when available. */}
+            {/* TODO(JJ): Facebook profile URL not provided — add the icon/link when available. */}
           </div>
         </Reveal>
       </div>
@@ -344,51 +352,32 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
           <span style={{ color: ac }}>{a.outriders.join.headline.split("/")[1].trim()}</span>
         </h2>
       </Reveal>
-      <div className="mt-10 grid gap-4 md:grid-cols-3">
+      {/* numbered process rail: 01 — 02 — 03 */}
+      <div className="mt-12 grid gap-x-8 gap-y-10 md:grid-cols-3">
         {a.outriders.join.steps.map((s, i) => (
-          <Reveal key={s.title} delay={i * 80} className="lift rounded-card border border-[#E2DDD6] bg-white p-7">
-            <div className="flex items-center gap-3">
-              <Coin tone="fuel" size={46}>{i + 1}</Coin>
-              <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#6a655e]">Step #{i + 1}</span>
+          <Reveal key={s.title} delay={i * 90}>
+            <div className="flex items-center gap-4">
+              <div
+                className="relative z-10 flex h-[52px] w-[52px] flex-none items-center justify-center rounded-full border-2 bg-white"
+                style={{ borderColor: ac }}
+              >
+                <span className="tnum font-display text-[19px] font-black" style={{ color: ac }}>{String(i + 1).padStart(2, "0")}</span>
+              </div>
+              {i < a.outriders!.join.steps.length - 1 && (
+                <span className="hidden h-px flex-1 bg-[#E2DDD6] md:block" aria-hidden />
+              )}
             </div>
-            <div className="mt-4 font-display text-[18px] font-extrabold uppercase tracking-[0.01em] text-ink">{s.title}</div>
-            <p className="mt-2 font-body text-[14px] leading-relaxed text-[#6a655e]">{s.blurb}</p>
+            <div className="mt-5 font-display text-[18px] font-extrabold uppercase tracking-[0.01em] text-ink">{s.title}</div>
+            <p className="mt-2 max-w-[36ch] font-body text-[14px] leading-relaxed text-[#6a655e]">{s.blurb}</p>
           </Reveal>
         ))}
       </div>
     </Section>
   );
 
-  /* ============ ★ SERVICES TO SUIT YOU ★ (ink) — the single club-amenities section ============ */
-  const servicesSection = a.outriders && (
-    <Section variant="ink" className="py-[clamp(70px,11vh,140px)]">
-      <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
-        <SectionHead
-          title={<><span style={{ color: ac }}>★</span> {a.outriders.services.headline} <span style={{ color: ac }}>★</span></>}
-          accent={ac}
-          size="xl"
-        />
-        <Reveal delay={120}>
-          <p className="text-pretty font-body text-[clamp(17px,1.8vw,20px)] leading-relaxed text-[#dadada]">{a.outriders.services.intro}</p>
-        </Reveal>
-      </div>
-      {/* Menu-style hairline list (not cards) — varies the rhythm vs the Fleet grid below. */}
-      <div className="mt-10 grid border-t border-chrome/12 sm:grid-cols-2 sm:gap-x-[clamp(32px,5vw,80px)]">
-        {a.outriders.services.items.map((it, i) => (
-          <Reveal key={it.name} delay={(i % 2) * 50} className="border-b border-chrome/12 py-4">
-            <div className="flex items-baseline gap-3">
-              <span className="font-display text-[15px] font-extrabold uppercase tracking-[0.01em] text-white">{it.name}</span>
-              <span className="h-px flex-1 translate-y-[-3px] bg-chrome/15" aria-hidden />
-              <span className="h-1.5 w-1.5 flex-none rounded-full" style={{ background: ac }} aria-hidden />
-            </div>
-            <p className="mt-1.5 font-body text-[13.5px] leading-snug text-chrome">{it.note}</p>
-          </Reveal>
-        ))}
-      </div>
-    </Section>
-  );
+  /* (Services To Suit You list deleted — the Tour gallery is the single club-amenities visual.) */
 
-  /* ============ ★ AN OUNCE OF PREVENTION ★ (white) — LH Fleet Services ============ */
+  /* ============ ★ AN OUNCE OF PREVENTION ★ (white) — LH Fleet Services, image cards ============ */
   const fleetSection = a.outriders && (
     <Section variant="light" className="py-[clamp(70px,11vh,140px)]">
       <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
@@ -405,12 +394,24 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
       </div>
       <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {a.outriders.fleet.items.map((it, i) => (
-          <Reveal key={it.name} delay={(i % 3) * 60} className="lift rounded-card border border-[#E2DDD6] bg-white p-6">
-            <div className="flex items-baseline gap-3">
-              <span className="tnum font-mono text-[13px]" style={{ color: ac }}>{String(i + 1).padStart(2, "0")}</span>
-              <div className="font-display text-[16px] font-extrabold uppercase tracking-[0.01em] text-ink">{it.name}</div>
+          <Reveal key={it.name} delay={(i % 3) * 60} className="lift group overflow-hidden rounded-card border border-[#E2DDD6] bg-white">
+            <div className="relative aspect-[4/3] overflow-hidden bg-carbon">
+              <Image
+                src={it.img}
+                alt={it.name}
+                fill
+                loading="lazy"
+                className="img-grade object-cover transition-transform duration-700 group-hover:scale-105"
+                sizes="(max-width: 768px) 100vw, 33vw"
+              />
+              <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_42%,rgba(11,11,11,0.82))]" />
+              <div className="absolute inset-x-0 top-0 h-0.5 opacity-80" style={{ background: `linear-gradient(90deg, ${ac}, transparent)` }} aria-hidden />
+              <div className="absolute inset-x-0 bottom-0 flex items-center gap-2.5 p-4">
+                <span className="tnum font-mono text-[12px]" style={{ color: ac }}>{String(i + 1).padStart(2, "0")}</span>
+                <div className="font-display text-[15px] font-extrabold uppercase leading-tight text-white">{it.name}</div>
+              </div>
             </div>
-            <p className="mt-2 pl-[26px] font-body text-[14px] leading-snug text-[#6a655e]">{it.note}</p>
+            <p className="p-5 font-body text-[14px] leading-snug text-[#6a655e]">{it.note}</p>
           </Reveal>
         ))}
       </div>
@@ -427,12 +428,18 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
           Space is your place in the network — secure parking, trailer drop, and terminal access at every LineHaul Station Hub. Here are the three ways to get it.
         </p>
       </Reveal>
-      <div className="mt-10 grid gap-4 md:grid-cols-3">
+      {/* vertical Earn → Request → Purchase path (tone coins + connector) — distinct from the §2 rail */}
+      <div className="mt-12 max-w-3xl">
         {a.outriders.join.ways.map((w, i) => (
-          <Reveal key={w.title} delay={i * 80} className="lift rounded-card border border-chrome/15 bg-panel p-7">
-            <Coin tone={w.tone} size={44}>{String(i + 1).padStart(2, "0")}</Coin>
-            <div className="mt-4 font-display text-[18px] font-extrabold uppercase tracking-[0.01em] text-white">{w.title}</div>
-            <p className="mt-2 font-body text-[14px] leading-relaxed text-chrome">{w.blurb}</p>
+          <Reveal key={w.title} delay={i * 90} className="relative flex gap-5 pb-9 last:pb-0">
+            {i < a.outriders!.join.ways.length - 1 && (
+              <span className="absolute bottom-0 left-[31px] top-[68px] w-px bg-chrome/20" aria-hidden />
+            )}
+            <Coin tone={w.tone} size={64} className="relative z-10 flex-none">{String(i + 1).padStart(2, "0")}</Coin>
+            <div className="pt-1.5">
+              <div className="font-display text-[clamp(22px,3vw,32px)] font-black uppercase leading-none text-white">{w.title}</div>
+              <p className="mt-2.5 max-w-[52ch] font-body text-[15px] leading-relaxed text-chrome">{w.blurb}</p>
+            </div>
           </Reveal>
         ))}
       </div>
@@ -449,33 +456,33 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
     </Section>
   );
 
-  /* ============ WE'RE READY TO ROLL! (white) — monthly webinars + Vimeo player ============ */
-  const webinarSection = a.outriders && (
-    <Section variant="light" className="py-[clamp(70px,11vh,140px)]">
-      <div className="grid items-center gap-[clamp(28px,4vw,64px)] lg:grid-cols-[0.9fr_1.1fr]">
+  /* (We're Ready To Roll band deleted — the webinar video is merged into Welcome To The Club above.) */
+
+  /* ============ ONEHOME CALCULATOR + EMPTY-HOME STORY (blueprint) — drivers; absorbs the Problem section ============ */
+  const calcStorySection = a.outriders && (
+    <Section variant="blueprint" id="numbers" className="py-[clamp(70px,11vh,140px)]">
+      <div className="grid gap-[clamp(28px,4vw,56px)] lg:grid-cols-[1.25fr_0.75fr] lg:items-start">
         <div>
-          <Reveal>
-            <h2 className="text-balance font-display text-[clamp(34px,5vw,72px)] font-black uppercase leading-[0.95] tracking-[-0.02em] text-ink">{a.outriders.webinar.headline}</h2>
-          </Reveal>
+          <OneHomeCalculator accent={ac} />
+        </div>
+        <div className="lg:sticky lg:top-28">
+          <SectionHead kicker={a.problem.kicker} title={a.problem.headline} accent={ac} size="base" />
           <Reveal delay={120}>
-            <p className="mt-6 max-w-[48ch] text-pretty font-body text-[clamp(16px,1.7vw,20px)] leading-relaxed text-[#3a3733]">{a.outriders.webinar.body}</p>
+            <p className="mt-5 max-w-[46ch] text-pretty font-body text-[clamp(16px,1.7vw,20px)] leading-relaxed text-[#dadada]">
+              {a.problem.body}
+            </p>
+          </Reveal>
+          <Reveal delay={160}>
+            <div className="mt-6">
+              {a.problem.counters.map((c, i) => (
+                <div key={i} className="flex items-baseline gap-5 border-t border-chrome/15 py-4 first:border-t-0 first:pt-0">
+                  <CountUp value={c.big} style={{ color: ac }} className="tnum min-w-[92px] font-display text-[clamp(24px,3vw,36px)] font-black leading-none" />
+                  <span className="font-body text-[14px] leading-snug text-chrome">{c.label}</span>
+                </div>
+              ))}
+            </div>
           </Reveal>
         </div>
-        {/* Responsive 16:9 Vimeo player in the chrome/steel frame (lazy, no autoplay). */}
-        {/* TODO(JJ): branded poster LHS-Webinar2.png isn't in the repo — Vimeo serves its own thumbnail. */}
-        <Reveal delay={140} dir="right">
-          <ChromeFrame variant="steel">
-            <div className="relative aspect-video overflow-hidden bg-carbon">
-              <iframe
-                src={a.outriders.webinar.video}
-                title="LineHaul Station — Monthly Webinar with Jeff Swenson"
-                loading="lazy"
-                allow="fullscreen; picture-in-picture"
-                className="absolute inset-0 h-full w-full"
-              />
-            </div>
-          </ChromeFrame>
-        </Reveal>
       </div>
     </Section>
   );
@@ -574,19 +581,16 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
       {hero}
 
       {a.outriders ? (
-        /* DRIVERS — lead with the highlight: OneHome calculator + the founder video,
-           then the club story + join cluster, then proof. */
+        /* DRIVERS — join cluster on top (welcome+video → membership → club tour → fleet → space),
+           then the OneHome calculator + empty-home story and proof below. No duplicated sections. */
         <>
-          {numbersBlock}
-          {webinarSection}
           {storySection}
           {stepsSection}
-          {servicesSection}
+          {gallerySection}
           {fleetSection}
           {spaceSection}
+          {calcStorySection}
           {roadSection}
-          {gallerySection}
-          {problemSection}
           {howItWorksSection}
           {memphisSection}
           {networkSection}
