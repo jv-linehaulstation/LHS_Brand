@@ -55,6 +55,11 @@ const ONEHOME = {
       "Random Parking Lots with No Services?",
     ],
     blurb: "Upgrade your lifestyle on the road — often while spending less.",
+    full: [
+      "Many drivers spend thousands each month maintaining a home they barely use, while still relying on low-quality options when they’re actually on the road. That means paying full price for an empty apartment — and then parking in a gravel lot at the end of a 12-hour day.",
+      "With OneHome, you’re investing in a lifestyle that actually matches your reality. Instead of paying for unused space, you gain access to a private, gated network designed for comfort, safety, and consistency.",
+      "The result is a mountain of value: more lifestyle, better rest, and a smarter use of your money.",
+    ],
     table: [
       { trad: "Pay for 365 days", one: "Pay only for days you use" },
       { trad: "Use maybe 60–120 days", one: "Start at 60 days, grow anytime" },
@@ -72,14 +77,70 @@ const ONEHOME = {
     intro:
       "Every LineHaul Station location is built to deliver a premium experience for drivers. From food and relaxation to fitness and convenience, every detail is designed to help you recharge, reset, and enjoy your time off the road in a way that simply hasn’t existed in trucking before.",
     cards: [
-      { name: "Member’s Grill", meta: "great food • entertainment • relax", blurb: "A real kitchen for real meals — your days of eating whatever’s under the heat lamp are over.", img: PHOTOS.clubDining },
-      { name: "Sky Deck", meta: "outdoor firepits • water features • star gazing", blurb: "Your open-air escape — kick back and take it all in.", img: PHOTOS.skydeck },
-      { name: "Digital Den", meta: "gamer’s center • billiards • trap & skeet", blurb: "An experiential center built for downtime — unwind after a long day behind the wheel.", img: PHOTOS.gamerDen1 },
-      { name: "Fitness Studio", meta: "cardio • weights • showers • lockers", blurb: "Stay strong on the road — everything you need to move, stretch, and recharge.", img: PHOTOS.fitness },
-      { name: "Laundry & More", meta: "washers • dryers • daily essentials", blurb: "Clean clothes made easy — feel fresh and ready for the road.", img: PHOTOS.laundry },
-      { name: "Gear Shop", meta: "logo apparel • accessories • sundries", blurb: "Everything a driver needs, right where you need it.", img: PHOTOS.gearShop }, // TODO(JJ): photo — white ¾-zip + real LHS logo
-      { name: "Resort Pool & Spa", meta: "outdoor pool • hot tubs • sun & fun", blurb: "Resort-level recovery — because life on the road shouldn’t mean skipping rest.", img: PHOTOS.waterFeature },
-      { name: "Camp K9", meta: "dog park • relief stations • driver-friendly", blurb: "Your co-pilot deserves a break too.", img: PHOTOS.clubPatio },
+      {
+        name: "Member’s Grill", meta: "great food • entertainment • relax", img: PHOTOS.clubDining,
+        blurb: "A real kitchen for real meals — your days of eating whatever’s under the heat lamp are over.",
+        full: [
+          "The Member’s Grill gives you a clean, modern space to eat better and live better. Whether you’re cooking for yourself or grabbing something fresh, you’ll find quality food and drinks designed for drivers who are done settling.",
+          "Think of it as the kitchen you’d want in your own home — except you don’t have to clean it. Fresh ingredients, inventive drink options, and snacks that are actually worth eating. It’s one of the first things drivers notice when they arrive, and one of the reasons they keep coming back.",
+        ],
+      },
+      {
+        name: "Sky Deck", meta: "outdoor firepits • water features • star gazing", img: PHOTOS.skydeck,
+        blurb: "Your open-air escape — kick back and take it all in.",
+        full: [
+          "The Sky Deck is designed to give you something drivers almost never get: real outdoor space that feels good. Perfect for relaxing, socializing, playing games, or just enjoying a quiet moment above the roar of the road.",
+          "With fire pits, garden areas, and open-air seating, it’s the kind of space that makes you forget you’re at a truck terminal. It feels like the rooftop of a place you’d actually want to hang out — because it is.",
+        ],
+      },
+      {
+        name: "Digital Den", meta: "gamer’s center • billiards • trap & skeet", img: PHOTOS.gamerDen1,
+        blurb: "An experiential center built for downtime — unwind after a long day behind the wheel.",
+        full: [
+          "The Digital Den is where drivers come to blow off steam. It’s built for entertainment, social connection, and personal downtime — with gaming, billiards, private screens, and experiences you won’t find anywhere else on the road.",
+          "Whether you want to compete with fellow drivers or just decompress on your own, the Digital Den gives you space and options that go far beyond the usual break room. It’s designed to make your off-hours feel like they actually belong to you.",
+        ],
+      },
+      {
+        name: "Fitness Studio", meta: "cardio • weights • showers • lockers", img: PHOTOS.fitness,
+        blurb: "Stay strong on the road — everything you need to move, stretch, and recharge.",
+        full: [
+          "The Fitness Studio gives you a real workout space so you can take care of your body no matter where your route takes you. Cardio equipment, free weights, and enough room to actually move — plus clean showers and lockers so you’re ready to go.",
+          "Driving for a living takes a physical toll, and most drivers have zero access to quality fitness on the road. The Fitness Studio changes that. It’s built for drivers who want to feel their best mile after mile.",
+        ],
+      },
+      {
+        name: "Laundry & More", meta: "washers • dryers • daily essentials", img: PHOTOS.laundry,
+        blurb: "Clean clothes made easy — feel fresh and ready for the road.",
+        full: [
+          "There’s nothing better than feeling fresh and clean when you’re out on the road. Our modern laundry facilities give you everything you need to look your absolute best — without the hassle of hunting down a truck stop laundromat.",
+          "It’s a simple thing, but it makes a big difference in how you feel day to day. Quality machines, a clean environment, and daily essentials right where you need them.",
+        ],
+      },
+      {
+        name: "Gear Shop", meta: "logo apparel • accessories • sundries", img: PHOTOS.gearShop, // TODO(JJ): photo — white ¾-zip + real LHS logo
+        blurb: "Everything a driver needs, right where you need it.",
+        full: [
+          "The Gear Shop is all about convenience paired with quality and value. We’re stocked with essentials, upgrades, and everyday items for life on the road — plus LineHaul Station apparel and gear you’ll actually want to wear.",
+          "No more making special trips or ordering things online and hoping they arrive somewhere you’ll actually be. The Gear Shop puts what you need within arm’s reach, every time you stop.",
+        ],
+      },
+      {
+        name: "Resort Pool & Spa", meta: "outdoor pool • hot tubs • sun & fun", img: PHOTOS.waterFeature,
+        blurb: "Resort-level recovery — because life on the road shouldn’t mean skipping rest.",
+        full: [
+          "The pool and spa area is designed for real recovery. After long days behind the wheel, drivers deserve more than a quick shower and a cramped sleeper. This is where you actually unwind.",
+          "Whether it’s a few laps, a soak, or just sitting by the water and doing absolutely nothing, the pool and spa deliver the kind of experience that makes OneHome feel like the private resort community it’s designed to be.",
+        ],
+      },
+      {
+        name: "Camp K9", meta: "dog park • relief stations • driver-friendly", img: PHOTOS.clubPatio,
+        blurb: "Your co-pilot deserves a break too.",
+        full: [
+          "A lot of drivers travel with their best friend, and finding a safe, clean place for them to run is almost impossible on the road. Camp K9 gives your co-pilot room to stretch, play, and just be a dog.",
+          "It’s one of those amenities that drivers don’t expect — but once they see it, they never want to go back to a place that doesn’t have one. Safe, fenced, and built with the road-life pet owner in mind.",
+        ],
+      },
     ],
   },
   fleet: {
@@ -128,7 +189,8 @@ const ONEHOME = {
     blurb: "See how your current housing costs compare to a OneHome membership.",
     paras: [
       "Many drivers spend $2,000–$2,500 per month maintaining a home they barely use. By switching to a OneHome 60-day membership, drivers in that range could save over $1,200 every month while upgrading their lifestyle on the road.",
-      "Enter your income, current housing costs, utilities, and other living expenses — and see what your life could look like with OneHome instead.",
+      "The OneHome Lifestyle Calculator shows you exactly how the numbers work. Enter your income, current housing costs, utilities, and other living expenses — and see what your life could look like with OneHome instead.",
+      "This isn’t a gimmick. It’s straightforward math. And for most drivers, the numbers tell a story they weren’t expecting.",
     ],
   },
   join: {
@@ -138,6 +200,7 @@ const ONEHOME = {
     paras: [
       "OneHome is currently in pre-launch. By joining now, you’ll get early access to availability, program details, and next steps as locations come online.",
       "LineHaul Station’s OneHome program is a national pre-sales effort. There are no contracts or payments required at this stage — you’re simply getting on the list so that when we’re ready, you’re first in line.",
+      "There’s no risk. There’s no commitment. There’s just the chance to be part of something that’s about to change how drivers live on the road.",
     ],
   },
 };
@@ -730,6 +793,9 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
               </li>
             ))}
           </ul>
+          <div className="mt-6 space-y-4 text-pretty font-body text-[clamp(15px,1.5vw,18px)] leading-relaxed text-[#dadada]">
+            {ONEHOME.value.full.map((p, j) => <p key={j}>{p}</p>)}
+          </div>
           <p className="mt-6 font-script text-[clamp(20px,2.4vw,30px)] font-semibold" style={{ color: ac }}>{ONEHOME.value.blurb}</p>
         </div>
         <Reveal delay={120} dir="right">
@@ -760,19 +826,27 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
           <p className="mt-3 font-body text-[clamp(15px,1.5vw,18px)] leading-relaxed text-[#3a3733]">{ONEHOME.amenities.intro}</p>
         </Reveal>
       </div>
-      <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {/* alternating image/copy rows — room for the playbook's full copy per amenity */}
+      <div className="mt-14 space-y-[clamp(48px,7vw,96px)]">
         {ONEHOME.amenities.cards.map((c, i) => (
-          <Reveal key={c.name} delay={(i % 4) * 60} className="lift group overflow-hidden rounded-card border border-[#E2DDD6] bg-white">
-            <div className="relative aspect-[4/3] overflow-hidden bg-carbon">
-              <Image src={c.img} alt={c.name} fill loading="lazy" className="img-grade object-cover transition-transform duration-700 group-hover:scale-105" sizes="(max-width: 768px) 50vw, 25vw" />
-              <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_45%,rgba(11,11,11,0.85))]" />
-              <div className="absolute inset-x-0 top-0 h-0.5 opacity-80" style={{ background: `linear-gradient(90deg, ${ac}, transparent)` }} aria-hidden />
-              <div className="absolute inset-x-0 bottom-0 p-4">
-                <div className="font-display text-[16px] font-extrabold uppercase leading-tight text-white">{c.name}</div>
-                <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.06em]" style={{ color: ac }}>{c.meta}</div>
+          <Reveal key={c.name} className="grid items-center gap-x-[clamp(28px,4vw,72px)] gap-y-6 lg:grid-cols-2">
+            <div className={`group relative overflow-hidden rounded-card border border-[#E2DDD6] ${i % 2 === 1 ? "lg:order-2" : ""}`}>
+              <div className="relative aspect-[4/3] overflow-hidden bg-carbon">
+                <Image src={c.img} alt={c.name} fill loading="lazy" className="img-grade object-cover transition-transform duration-700 group-hover:scale-105" sizes="(max-width: 1024px) 100vw, 50vw" />
+                <div className="absolute inset-x-0 top-0 h-0.5 opacity-80" style={{ background: `linear-gradient(90deg, ${ac}, transparent)` }} aria-hidden />
               </div>
             </div>
-            <p className="p-4 font-body text-[13.5px] leading-snug text-[#6a655e]">{c.blurb}</p>
+            <div>
+              <div className="flex items-baseline gap-3">
+                <span className="tnum font-mono text-[13px]" style={{ color: ac }}>{String(i + 1).padStart(2, "0")}</span>
+                <h3 className="font-display text-[clamp(24px,3vw,40px)] font-black uppercase leading-none tracking-[-0.01em] text-ink">{c.name}</h3>
+              </div>
+              <div className="mt-2.5 font-mono text-[11px] uppercase tracking-[0.12em]" style={{ color: ac }}>{c.meta}</div>
+              <p className="mt-4 text-pretty font-body text-[clamp(16px,1.6vw,19px)] font-semibold leading-snug text-ink">{c.blurb}</p>
+              <div className="mt-3 space-y-3 text-pretty font-body text-[clamp(15px,1.5vw,17px)] leading-relaxed text-[#3a3733]">
+                {c.full.map((p, j) => <p key={j}>{p}</p>)}
+              </div>
+            </div>
           </Reveal>
         ))}
       </div>
@@ -832,8 +906,8 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
   );
 
   /* ============ §10 JOIN ONEHOME (gradient) — interest form, last ============ */
-  /* FLAG(JJ): the playbook lists Membership Director J.J. Swenson 602-858-8000 / jj@linehaulstation.com,
-     but lib/site.ts is 602-428-2222 / info@linehaulstation.com. Using the site's canonical values until resolved. */
+  /* Contact resolved per JJ: lib/site.ts now uses the playbook's Membership Director
+     contact (J.J. Swenson · 602-858-8000 · jj@linehaulstation.com) site-wide. */
   const joinOneHomeSection = audience === "drivers" && (
     <Section variant="gradient" accent={ac} id="contact" className="py-[clamp(70px,11vh,140px)]">
       <div className="grid gap-[clamp(28px,4vw,64px)] lg:grid-cols-[0.85fr_1.15fr] lg:items-start">

@@ -103,7 +103,7 @@ export default function JoinForm({
             href={site.phoneHref}
             className="mt-6 inline-flex items-center gap-2 font-mono text-[13px] text-chrome underline transition-colors hover:text-white"
           >
-            Questions? Call (602) 898-8000
+            Questions? Call {site.phone}
           </a>
         </div>
       </div>
@@ -190,8 +190,8 @@ export default function JoinForm({
 
         <p className="mt-4 text-center font-body text-[13px] text-chrome">
           Driver memberships are completely free. Prefer to talk first?{" "}
-          <a href="tel:6028988000" className="underline hover:text-white">
-            Call (602) 898-8000
+          <a href={site.phoneHref} className="underline hover:text-white">
+            Call {site.phone}
           </a>
           .
         </p>

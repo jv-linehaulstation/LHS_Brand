@@ -1,10 +1,11 @@
 // Single source of truth for contact + nav. Update phone/email/links here only.
 export const site = {
   name: "LineHaul Station",
-  phone: "602-428-2222",
-  phoneHref: "tel:6024282222",
-  email: "info@linehaulstation.com",
-  emailHref: "mailto:info@linehaulstation.com",
+  // Membership Director contact per the OneHome Copy Playbook (J.J. Swenson).
+  phone: "602-858-8000",
+  phoneHref: "tel:6028588000",
+  email: "jj@linehaulstation.com",
+  emailHref: "mailto:jj@linehaulstation.com",
   domainLabel: "LineHaulStation.com",
   tagline: "Modern-Day Pony Express · West Memphis, AR",
   // Where the two approved CTAs point. Keep both — never "Sign Up" / "Register".
