@@ -213,10 +213,7 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
       <ParallaxImage src={a.roadImage ?? PHOTOS.truckSunset} alt={`${a.navLabel} — LineHaul Station`} strength={0.28} />
       <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,11,11,0.6),rgba(11,11,11,0.84))]" />
       <Reveal className="relative mx-auto max-w-4xl">
-        <div className="font-label text-[11px] uppercase tracking-[0.24em]" style={{ color: ac }}>
-          {a.road.eyebrow}
-        </div>
-        <h2 className="mt-5 text-balance font-display text-[clamp(36px,6.8vw,96px)] font-black uppercase leading-[0.9] tracking-[-0.025em] text-white">
+        <h2 className="text-balance font-display text-[clamp(36px,6.8vw,96px)] font-black uppercase leading-[0.9] tracking-[-0.025em] text-white">
           {a.road.headline}
         </h2>
         <p className="mt-5 font-script text-[clamp(22px,3.4vw,38px)] font-semibold text-white/90">
@@ -228,7 +225,7 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
 
   /* ===================== HOW IT WORKS — pinned scroll-driven (shared) ===================== */
   const howItWorksSection = (
-    <HowItWorks steps={howSteps} accent={ac} kicker={a.how.eyebrow} title={a.how.headline} />
+    <HowItWorks steps={howSteps} accent={ac} title={a.how.headline} />
   );
 
   /* ============ SOLO vs RELAY (blueprint) — carriers & government ============ */
@@ -295,8 +292,7 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
       <div className="grid gap-[clamp(32px,5vw,72px)] lg:grid-cols-[1.34fr_0.66fr] lg:items-center">
         <Reveal>
           <CoinImage src="/assets/coin-outriders.png" alt="Outriders Club challenge coin" size={84} glow={`${ac}55`} className="mb-5" />
-          <div className="font-label text-[11px] uppercase tracking-[0.24em]" style={{ color: ac }}>{a.outriders.story.eyebrow}</div>
-          <h2 className="mt-3 font-script text-[clamp(40px,6vw,76px)] font-semibold leading-[1.02] text-white">{a.outriders.story.headline}</h2>
+          <h2 className="font-script text-[clamp(40px,6vw,76px)] font-semibold leading-[1.02] text-white">{a.outriders.story.headline}</h2>
           <div className="mt-6 space-y-4 font-body leading-relaxed text-[#e2e2e2]">
             {a.outriders.story.paras.map((p, i) =>
               i === 0 ? (
@@ -342,8 +338,7 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
   const stepsSection = a.outriders && (
     <Section variant="light" className="py-[clamp(70px,11vh,140px)]">
       <Reveal className="max-w-3xl">
-        <div className="font-label text-[11px] uppercase tracking-[0.24em]" style={{ color: ac }}>{a.outriders.join.eyebrow}</div>
-        <h2 className="mt-3 font-display text-[clamp(34px,5.6vw,84px)] font-black uppercase leading-[0.92] tracking-[-0.025em] text-ink">
+        <h2 className="font-display text-[clamp(34px,5.6vw,84px)] font-black uppercase leading-[0.92] tracking-[-0.025em] text-ink">
           {a.outriders.join.headline.split("/")[0].trim()}
           <br />
           <span style={{ color: ac }}>{a.outriders.join.headline.split("/")[1].trim()}</span>
@@ -373,7 +368,6 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
             <CoinImage src="/assets/coin-outriders.png" alt="Outriders Club challenge coin" size={76} glow={`${ac}40`} className="mb-5" />
           </Reveal>
           <SectionHead
-            kicker={a.outriders.services.eyebrow}
             title={<><span className="text-chrome">★</span> {a.outriders.services.headline} <span className="text-chrome">★</span></>}
             accent={ac}
             size="xl"
@@ -383,14 +377,16 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
           <p className="text-pretty font-body text-[clamp(17px,1.8vw,20px)] leading-relaxed text-[#dadada]">{a.outriders.services.intro}</p>
         </Reveal>
       </div>
-      <div className="mt-10 grid gap-px overflow-hidden rounded-[8px] border border-chrome/12 bg-chrome/10 sm:grid-cols-2 lg:grid-cols-3">
+      {/* Menu-style hairline list (not cards) — varies the rhythm vs the Fleet grid below. */}
+      <div className="mt-10 grid border-t border-chrome/12 sm:grid-cols-2 sm:gap-x-[clamp(32px,5vw,80px)]">
         {a.outriders.services.items.map((it, i) => (
-          <Reveal key={it.name} delay={(i % 3) * 60} className="bg-ink p-6">
+          <Reveal key={it.name} delay={(i % 2) * 50} className="border-b border-chrome/12 py-4">
             <div className="flex items-baseline gap-3">
-              <span className="h-1.5 w-1.5 flex-none translate-y-[-2px] rounded-full" style={{ background: ac }} aria-hidden />
-              <div className="font-display text-[16px] font-extrabold uppercase tracking-[0.01em] text-white">{it.name}</div>
+              <span className="font-display text-[15px] font-extrabold uppercase tracking-[0.01em] text-white">{it.name}</span>
+              <span className="h-px flex-1 translate-y-[-3px] bg-chrome/15" aria-hidden />
+              <span className="h-1.5 w-1.5 flex-none rounded-full" style={{ background: ac }} aria-hidden />
             </div>
-            <p className="mt-2 pl-[18px] font-body text-[14px] leading-snug text-chrome">{it.note}</p>
+            <p className="mt-1.5 font-body text-[13.5px] leading-snug text-chrome">{it.note}</p>
           </Reveal>
         ))}
       </div>
@@ -461,8 +457,7 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
       <div className="grid items-center gap-[clamp(28px,4vw,64px)] lg:grid-cols-[0.9fr_1.1fr]">
         <div>
           <Reveal>
-            <div className="font-label text-[11px] uppercase tracking-[0.24em]" style={{ color: ac }}>{a.outriders.webinar.eyebrow}</div>
-            <h2 className="mt-3 text-balance font-display text-[clamp(34px,5vw,72px)] font-black uppercase leading-[0.95] tracking-[-0.02em] text-ink">{a.outriders.webinar.headline}</h2>
+            <h2 className="text-balance font-display text-[clamp(34px,5vw,72px)] font-black uppercase leading-[0.95] tracking-[-0.02em] text-ink">{a.outriders.webinar.headline}</h2>
           </Reveal>
           <Reveal delay={120}>
             <p className="mt-6 max-w-[48ch] text-pretty font-body text-[clamp(16px,1.7vw,20px)] leading-relaxed text-[#3a3733]">{a.outriders.webinar.body}</p>
@@ -490,7 +485,7 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
   /* ===================== TAKE THE TOUR — GALLERY (ink) ===================== */
   const gallerySection = a.gallery && a.gallery.length > 0 && (
     <Section variant="ink" className="py-[clamp(70px,11vh,140px)]">
-      <SectionHead kicker="Take the Tour" title={a.galleryTitle ?? "See The Build."} accent={ac} size="xl" />
+      <SectionHead title={a.galleryTitle ?? "See The Build."} accent={ac} size="xl" />
       <div className="mt-9">
         <RenderingsGallery groups={RENDER_GROUPS.filter((g) => a.gallery!.includes(g.key))} accent={ac} />
       </div>
@@ -502,7 +497,7 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
     <Section variant="image" image={a.memphisImage} accent={ac} className="py-[clamp(70px,11vh,140px)]">
       <div className="grid gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
         <Reveal>
-          <SectionHead kicker={a.memphis.kicker} title={a.memphis.headline} accent={ac} size="xl" />
+          <SectionHead title={a.memphis.headline} accent={ac} size="xl" />
           <p className="mt-6 max-w-[54ch] text-pretty font-body text-[clamp(18px,1.9vw,21px)] leading-relaxed text-[#e2e2e2]">
             {a.memphis.body}
           </p>

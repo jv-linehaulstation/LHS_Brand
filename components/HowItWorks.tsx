@@ -59,10 +59,12 @@ export default function HowItWorks({
 
   const Heading = (
     <>
-      <div className="flex items-center gap-3 font-mono text-[12px] uppercase tracking-[0.28em]" style={{ color: accent }}>
-        <span className="h-px w-7" style={{ background: accent }} aria-hidden /> {kicker}
-      </div>
-      <h2 className="mt-3 font-display text-[clamp(34px,5.6vw,84px)] font-black uppercase leading-[0.92] tracking-[-0.025em] text-white">
+      {kicker && (
+        <div className="flex items-center gap-3 font-mono text-[12px] uppercase tracking-[0.28em]" style={{ color: accent }}>
+          <span className="h-px w-7" style={{ background: accent }} aria-hidden /> {kicker}
+        </div>
+      )}
+      <h2 className="font-display text-[clamp(34px,5.6vw,84px)] font-black uppercase leading-[0.92] tracking-[-0.025em] text-white">
         {title}
       </h2>
     </>
