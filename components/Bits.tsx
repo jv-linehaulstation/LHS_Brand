@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Reveal from "@/components/motion/Reveal";
 
 /**
@@ -82,16 +83,50 @@ export function ChromeFrame({
   className = "",
 }: {
   children: React.ReactNode;
-  variant?: "chrome" | "dual";
+  variant?: "chrome" | "dual" | "steel";
   glint?: boolean;
   className?: string;
 }) {
+  const frame =
+    variant === "dual" ? "dual-frame" : variant === "steel" ? "steel-frame" : "chrome-frame";
   return (
-    <div
-      className={`${variant === "dual" ? "dual-frame" : "chrome-frame"} ${glint ? "glint" : ""} ${className}`}
+    <div className={`${frame} ${glint ? "glint" : ""} ${className}`}>{children}</div>
+  );
+}
+
+/** Real minted-coin PNG (OneHome / FlexSpace), crisp with a soft glow.
+ *  For the CSS numeral coin use <Coin>. */
+export function CoinImage({
+  src,
+  alt,
+  size = 104,
+  glow = "rgba(176,176,176,0.28)",
+  className = "",
+}: {
+  src: string;
+  alt: string;
+  size?: number;
+  glow?: string;
+  className?: string;
+}) {
+  return (
+    <span
+      className={`relative inline-flex flex-none items-center justify-center ${className}`}
+      style={{ width: size, height: size }}
     >
-      {children}
-    </div>
+      <span
+        className="pointer-events-none absolute inset-[-12%] rounded-full blur-xl"
+        style={{ background: `radial-gradient(circle, ${glow}, transparent 68%)` }}
+        aria-hidden
+      />
+      <Image
+        src={src}
+        alt={alt}
+        width={size}
+        height={size}
+        className="relative h-full w-full object-contain drop-shadow-[0_6px_14px_rgba(0,0,0,0.55)]"
+      />
+    </span>
   );
 }
 

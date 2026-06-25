@@ -81,8 +81,8 @@ export default function JoinForm({
 
   if (done) {
     return (
-      <div className="frame">
-        <div className="rounded-[4px] bg-ink/85 p-8 text-center backdrop-blur sm:p-10">
+      <div className="chrome-frame">
+        <div className="bg-ink/85 p-8 text-center backdrop-blur sm:p-10">
           <div
             className="mx-auto flex h-12 w-12 items-center justify-center rounded-full text-ink"
             style={{ background: ACCENT }}
@@ -109,11 +109,11 @@ export default function JoinForm({
   }
 
   const fieldCls =
-    "w-full rounded-btn border border-chrome/20 bg-carbon px-4 py-3 font-body text-[15px] text-white outline-none transition-colors placeholder:text-[#6a6a6a] focus:border-[var(--ac)]";
+    "w-full rounded-btn border border-steel/30 bg-carbon px-4 py-3 font-body text-[15px] text-white outline-none transition-colors placeholder:text-[#6a6a6a] focus:border-[var(--ac)]";
 
   return (
-    <form onSubmit={submit} className="frame" style={{ ["--ac" as string]: ACCENT }}>
-      <div className="rounded-[4px] bg-ink/85 p-6 backdrop-blur sm:p-8">
+    <form onSubmit={submit} className="chrome-frame" style={{ ["--ac" as string]: ACCENT }}>
+      <div className="bg-ink/85 p-6 backdrop-blur sm:p-8">
         <div className="grid gap-4 sm:grid-cols-2">
           {TEXT_FIELDS.map((f) => (
             <div key={f.name} className={f.half ? "" : "sm:col-span-2"}>

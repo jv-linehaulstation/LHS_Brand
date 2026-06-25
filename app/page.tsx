@@ -12,7 +12,7 @@ import WideSlider, { type Slide } from "@/components/WideSlider";
 import AudienceScroll from "@/components/AudienceScroll";
 import FilterGallery from "@/components/FilterGallery";
 import JoinForm from "@/components/JoinForm";
-import { ChromeFrame, Coin, StatusChip } from "@/components/Bits";
+import { ChromeFrame, Coin, CoinImage, StatusChip } from "@/components/Bits";
 import { PHOTOS } from "@/lib/audiences";
 import { site } from "@/lib/site";
 
@@ -47,9 +47,10 @@ const PROGRAMS: {
   accent: string;
   href: string;
   coin: "steel" | "fuel" | "gold";
+  coinImg?: string;
 }[] = [
-  { name: "FlexSpace", tagline: "It's YOUR Terminal Network.", blurb: "Shared-use terminal access sold in increments — Guest Pass, Proprietary Membership, or Dedicated Space. Carrier-facing.", accent: "#4878A8", href: "/carriers", coin: "steel" },
-  { name: "OneHome", tagline: "Everywhere The Road Takes You.", blurb: "A private, resort-quality community network built exclusively for America's truckers. Driver-facing.", accent: "#F07820", href: "/drivers", coin: "fuel" },
+  { name: "FlexSpace", tagline: "It's YOUR Terminal Network.", blurb: "Shared-use terminal access sold in increments — Guest Pass, Proprietary Membership, or Dedicated Space. Carrier-facing.", accent: "#4878A8", href: "/carriers", coin: "steel", coinImg: "/assets/coin-flexspace.png" },
+  { name: "OneHome", tagline: "Everywhere The Road Takes You.", blurb: "A private, resort-quality community network built exclusively for America's truckers. Driver-facing.", accent: "#F07820", href: "/drivers", coin: "fuel", coinImg: "/assets/coin-onehome.png" },
   { name: "Outriders Club", tagline: "The Rig Carlton.", blurb: "A 25,000+ sq ft private drivers club — restaurant, fitness, showers, gaming, rooftop sky deck, and more.", accent: "#C8A060", href: "/join", coin: "gold" },
 ];
 
@@ -117,7 +118,7 @@ export default function Home() {
 
       {/* ============ 2. FIND YOUR LANE [B] — pinned sticky-scroll audiences ============ */}
       <section id="lanes" className={`bg-ink ${PAD} py-[clamp(70px,11vh,140px)]`}>
-        <Reveal><Kick>Find Your Lane</Kick></Reveal>
+        <Reveal><Kick accent="#7EC8E3">Find Your Lane</Kick></Reveal>
         <Reveal as="h2" className="mt-3 font-display text-[clamp(36px,6vw,92px)] font-black uppercase leading-[0.9] tracking-[-0.025em] text-white">
           One Network. Every Lane.
         </Reveal>
@@ -145,8 +146,8 @@ export default function Home() {
             </p>
           </Reveal>
 
-          {/* Col 2 — Jeff (contained square headshot) */}
-          <Reveal delay={80}>
+          {/* Col 2 — Jeff (contained square headshot), centered to balance the 3 cols */}
+          <Reveal delay={80} className="flex flex-col lg:items-center lg:text-center">
             <div className="font-mono text-[11px] uppercase tracking-[0.2em]" style={{ color: "#6a655e" }}>Founder</div>
             <ChromeFrame variant="dual" glint className="mt-5 w-full max-w-[280px]">
               <div className="relative aspect-square w-full overflow-hidden bg-carbon">
@@ -155,12 +156,12 @@ export default function Home() {
             </ChromeFrame>
             <div className="mt-5 font-display text-[clamp(20px,2.2vw,26px)] font-black uppercase leading-tight" style={{ color: CARBON }}>Jeff Swenson</div>
             <div className="mt-1 font-mono text-[11px] uppercase tracking-[0.12em] text-fuel">Founder &amp; CEO</div>
-            <p className="mt-4 max-w-[42ch] font-body text-[clamp(14px,1.35vw,16px)] leading-relaxed" style={{ color: "#3a3733" }}>
+            <p className="mt-4 max-w-[42ch] font-body text-[clamp(14px,1.35vw,16px)] leading-relaxed lg:mx-auto" style={{ color: "#3a3733" }}>
               Jeff spent 35 years and more than $2&nbsp;billion building residential, commercial, and
               logistics real estate — then brought that standard to freight: treat the industry&apos;s best
               drivers with dignity and respect, and never compromise on quality.
             </p>
-            <div className="mt-4 flex flex-wrap gap-2.5">
+            <div className="mt-4 flex flex-wrap gap-2.5 lg:justify-center">
               <a href="https://www.linkedin.com/in/jeff-swenson-2744606" target="_blank" rel="noopener noreferrer" className="rounded-btn border px-3 py-2 font-mono text-[10px] uppercase tracking-[0.12em] transition-colors hover:border-fuel hover:text-fuel" style={{ borderColor: LINE_L, color: CARBON }}>LinkedIn</a>
               <a href="mailto:js@linehaulstation.com" className="rounded-btn border px-3 py-2 font-mono text-[10px] uppercase tracking-[0.12em] transition-colors hover:border-fuel hover:text-fuel" style={{ borderColor: LINE_L, color: CARBON }}>js@linehaulstation.com</a>
             </div>
@@ -195,7 +196,7 @@ export default function Home() {
         <div className="grid gap-[clamp(28px,4vw,64px)] lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
           {/* content left */}
           <div className="lg:sticky lg:top-28">
-            <Reveal><Kick>One Network · Three Programs</Kick></Reveal>
+            <Reveal><Kick accent="#7EC8E3">One Network · Three Programs</Kick></Reveal>
             <Reveal as="h2" className="mt-3 font-display text-[clamp(36px,5vw,80px)] font-black uppercase leading-[0.92] tracking-[-0.025em] text-white">
               Three Ways Into The{" "}
               <span className="text-chrome-fill">Network.</span>
@@ -219,7 +220,11 @@ export default function Home() {
                     style={{ ["--ac" as string]: p.accent }}
                   >
                     <div className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full opacity-25 blur-2xl transition-opacity duration-500 group-hover:opacity-50" style={{ background: p.accent }} />
-                    <Coin tone={p.coin} className="relative mr-6 mt-1 flex-none">{String(i + 1).padStart(2, "0")}</Coin>
+                    {p.coinImg ? (
+                      <CoinImage src={p.coinImg} alt={`${p.name} challenge coin`} size={84} className="relative mr-6 mt-0.5" />
+                    ) : (
+                      <Coin tone={p.coin} className="relative mr-6 mt-1 flex-none">{String(i + 1).padStart(2, "0")}</Coin>
+                    )}
                     <div className="relative flex-1">
                       <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
                         <div className="font-display text-[clamp(24px,2.6vw,34px)] font-black uppercase leading-none text-white">{p.name}</div>
@@ -257,11 +262,12 @@ export default function Home() {
         <div className="grid gap-x-12 gap-y-10 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
           <div>
             <Reveal className="flex flex-wrap items-center gap-4">
-              <Kick>The Network</Kick>
+              <Kick accent="#7EC8E3">The Network</Kick>
               <StatusChip chrome label="Open Now · West Memphis" accent="#18A848" />
             </Reveal>
             <Reveal as="h2" className="mt-3 font-display text-[clamp(36px,6vw,92px)] font-black uppercase leading-[0.9] tracking-[-0.025em] text-white">
-              A National Freight Relay.
+              A National Freight{" "}
+              <span className="text-steel-fill">Relay.</span>
             </Reveal>
             <Reveal delay={120}>
               <p className="mt-6 max-w-[44ch] font-body text-[clamp(16px,1.6vw,20px)] leading-relaxed text-[#dadada]">
@@ -312,7 +318,7 @@ export default function Home() {
         <div className="relative grid gap-[clamp(28px,4vw,64px)] lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
           {/* content + contact info (left) */}
           <div className="lg:sticky lg:top-28">
-            <Reveal><Kick>Let&apos;s Talk</Kick></Reveal>
+            <Reveal><Kick accent="#7EC8E3">Let&apos;s Talk</Kick></Reveal>
             <Reveal as="h2" className="mt-4 font-display text-[clamp(34px,5vw,80px)] font-black uppercase leading-[0.92] tracking-[-0.025em] text-white">
               Build The Future Of Freight With Us.
             </Reveal>
@@ -322,21 +328,23 @@ export default function Home() {
               </p>
             </Reveal>
             <Reveal delay={140}>
-              <div className="mt-9 grid grid-cols-1 gap-px overflow-hidden rounded-[8px] border border-chrome/15 bg-chrome/10 sm:grid-cols-3 lg:grid-cols-1">
-                <a href={site.phoneHref} className="bg-ink/70 p-5 backdrop-blur transition-colors hover:bg-ink/90">
-                  <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-fuel">Call</div>
-                  <div className="tnum mt-2 font-mono text-[15px] text-white">{site.phone}</div>
-                </a>
-                <a href={site.emailHref} className="bg-ink/70 p-5 backdrop-blur transition-colors hover:bg-ink/90">
-                  <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-fuel">Email</div>
-                  <div className="mt-2 break-words font-mono text-[15px] text-white">{site.email}</div>
-                </a>
-                <div className="bg-ink/70 p-5 backdrop-blur">
-                  <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-fuel">Visit</div>
-                  <div className="mt-2 font-mono text-[15px] text-white">West Memphis, AR</div>
-                  <div className="mt-1 font-mono text-[12px] text-chrome">{site.domainLabel}</div>
+              <ChromeFrame className="mt-9">
+                <div className="grid grid-cols-1 gap-px overflow-hidden bg-chrome/10 sm:grid-cols-3 lg:grid-cols-1">
+                  <a href={site.phoneHref} className="bg-ink/80 p-5 backdrop-blur transition-colors hover:bg-ink/95">
+                    <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-steel">Call</div>
+                    <div className="tnum mt-2 font-mono text-[15px] text-white">{site.phone}</div>
+                  </a>
+                  <a href={site.emailHref} className="bg-ink/80 p-5 backdrop-blur transition-colors hover:bg-ink/95">
+                    <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-steel">Email</div>
+                    <div className="mt-2 break-words font-mono text-[15px] text-white">{site.email}</div>
+                  </a>
+                  <div className="bg-ink/80 p-5 backdrop-blur">
+                    <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-steel">Visit</div>
+                    <div className="mt-2 font-mono text-[15px] text-white">West Memphis, AR</div>
+                    <div className="mt-1 font-mono text-[12px] text-chrome">{site.domainLabel}</div>
+                  </div>
                 </div>
-              </div>
+              </ChromeFrame>
             </Reveal>
           </div>
 

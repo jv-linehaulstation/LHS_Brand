@@ -71,3 +71,34 @@ site-wide):
 - [ ] Brand patterns built as reusable utilities (buttons/chips, cards/frames, coins, dividers, textures)
 - [ ] AA contrast verified · responsive · brand rules intact
 - [ ] `npx tsc --noEmit` clean · `npm run build` passes · browser-checked · pushed to `redesign-v2`
+
+---
+
+## ⭐ Round 2 (JJ QA — apply on top)
+
+**QA finding:** the v2 tokens/patterns are in and `tsc` passes, and chrome frames/pills/coins/glint
+ARE used — but the **metallic gradient is under-applied** (`grad-chrome`, `grad-steel`,
+`text-steel-fill` = 0 uses in JSX), so the homepage still reads orange-dominant. Lift the chrome/
+steel prominence per below.
+
+- **Homepage — make chrome/steel the premium structural color (less orange).**
+  - **Photo borders:** wrap key images in the **ChromeFrame / `grad-chrome` (dual-metal)** border —
+    the lane media, gallery, Three Programs cards, Who-We-Are images, section renders.
+  - **Form borders:** give the contact / Join form (container + inputs) **chrome/steel borders**.
+  - Keep **orange as a deliberate accent only** (primary CTA, one headline word) — let chrome/steel
+    carry frames, rules, dividers, pills, and badges.
+- **Orange stays the Drivers signal.** Keep the **Drivers landing page orange-forward** (its accent
+  is `#F07820`); the homepage leans chrome/steel.
+
+- **Who We Are — center Col 2 (Jeff).** Jeff's column hugs the far left. Center the column's
+  content (e.g. `mx-auto` / ~150px or less side margin) so **Cols 1, 2, 3 are evenly spaced** and
+  balanced.
+
+- **Coins (real PNGs — already split & in repo):**
+  - `public/assets/coin-onehome.png` (ONE★HOME) → use on the **Drivers** landing page.
+  - `public/assets/coin-flexspace.png` (FLEX★SPACE) → use on the **Carriers** landing page.
+  - **Incorporate the coins on the homepage** too — in the **Three Programs** section: OneHome card
+    → OneHome coin, FlexSpace card → FlexSpace coin (Outriders card can use a gold-chrome mark).
+  - Size them tastefully (≈80–120px), crisp, with subtle drop/glow; don't stretch.
+
+- Re-verify: AA contrast on chrome text, reduced-motion safe, responsive, `tsc` + `build`, push.

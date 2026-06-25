@@ -110,6 +110,15 @@ body {
 .dual-frame > * {
   border-radius: 5px;
 }
+/* Steel-blue chrome frame — cool crown accent for lane / cool media. */
+.steel-frame {
+  padding: 1.5px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #d6eef8, #3e8ab0 50%, #7ec8e3);
+}
+.steel-frame > * {
+  border-radius: 5px;
+}
 
 /* --- Chrome PILL chip — status chips, "Open Now," tags. --- */
 .chrome-pill {

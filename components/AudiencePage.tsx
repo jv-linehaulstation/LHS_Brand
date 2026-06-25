@@ -6,7 +6,7 @@ import Reveal from "@/components/motion/Reveal";
 import CountUp from "@/components/motion/CountUp";
 import ParallaxImage from "@/components/motion/ParallaxImage";
 import { PrimaryCTA, GhostCTA } from "@/components/CTA";
-import { SectionHead, StatusChip, DataTag } from "@/components/Bits";
+import { SectionHead, StatusChip, DataTag, CoinImage } from "@/components/Bits";
 import { BuildVsBelong, RelayDiagram, Timeline, SoloVsRelay } from "@/components/Signatures";
 import RenderingsGallery from "@/components/RenderingsGallery";
 import { RENDER_GROUPS } from "@/lib/renderGroups";
@@ -22,6 +22,14 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
   const a = audiences[audience];
   const ac = a.accent;
   const hasCalc = audience === "drivers" || audience === "carriers";
+
+  // Minted program coin — OneHome on Drivers, FlexSpace on Carriers.
+  const programCoin =
+    audience === "drivers"
+      ? "/assets/coin-onehome.png"
+      : audience === "carriers"
+      ? "/assets/coin-flexspace.png"
+      : null;
 
   // Map this lane's "how it works" steps onto the shared pinned HowItWorks module.
   const HOW_IMAGES = [PHOTOS.buildingExterior, PHOTOS.fleetFuel, PHOTOS.crossDock, PHOTOS.skydeck, PHOTOS.truckSunset];
@@ -50,6 +58,16 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
         </div>
 
         <div className="relative w-full">
+          {programCoin && (
+            <Reveal className="mb-6">
+              <CoinImage
+                src={programCoin}
+                alt={`${audience === "drivers" ? "OneHome" : "FlexSpace"} challenge coin`}
+                size={112}
+                glow={`${ac}55`}
+              />
+            </Reveal>
+          )}
           <Reveal>
             <StatusChip label="West Memphis Hub — Open Now" coord="I-40 / I-55" accent={ac} />
           </Reveal>

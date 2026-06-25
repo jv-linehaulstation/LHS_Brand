@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { ChromeFrame } from "@/components/Bits";
 import { audiences, PHOTOS } from "@/lib/audiences";
 
 /**
@@ -120,13 +121,15 @@ export default function AudienceScroll() {
     return (
       <div className="mt-9 grid gap-5">
         {LANES.map((lane, i) => (
-          <div key={lane.key} className="overflow-hidden rounded-card border border-chrome/15 bg-panel">
-            <div className="relative aspect-[16/9]">
-              <Image src={lane.img} alt={lane.label} fill loading="lazy" className="img-grade object-cover" sizes="100vw" />
-              <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_55%,rgba(11,11,11,0.7))]" />
+          <ChromeFrame key={lane.key} variant="steel">
+            <div className="overflow-hidden bg-panel">
+              <div className="relative aspect-[16/9]">
+                <Image src={lane.img} alt={lane.label} fill loading="lazy" className="img-grade object-cover" sizes="100vw" />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_55%,rgba(11,11,11,0.7))]" />
+              </div>
+              <div className="p-6 sm:p-8">{Block(lane, i)}</div>
             </div>
-            <div className="p-6 sm:p-8">{Block(lane, i)}</div>
-          </div>
+          </ChromeFrame>
         ))}
       </div>
     );
@@ -137,7 +140,8 @@ export default function AudienceScroll() {
     <div className="mt-9 grid gap-[clamp(24px,4vw,64px)] lg:grid-cols-2">
       {/* sticky media — fills the full viewport height; swaps to active lane */}
       <div className="lg:sticky lg:top-0 lg:h-[100svh] lg:self-start lg:py-[6vh]">
-        <div className="relative h-full min-h-[60vh] overflow-hidden rounded-[8px] border border-chrome/15 bg-carbon">
+        <ChromeFrame variant="steel" className="h-full min-h-[60vh]">
+        <div className="relative h-full min-h-[60vh] overflow-hidden bg-carbon">
           {LANES.map((lane, i) => (
             <div key={lane.key} className="absolute inset-0 transition-[opacity,transform] duration-700 ease-out" style={{ opacity: i === active ? 1 : 0, transform: i === active ? "scale(1)" : "scale(1.05)" }}>
               <Image src={lane.img} alt={i === active ? `${lane.label} — LineHaul Station` : ""} fill priority={i === 0} className="img-grade object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
@@ -150,6 +154,7 @@ export default function AudienceScroll() {
             ))}
           </div>
         </div>
+        </ChromeFrame>
       </div>
 
       {/* scrolling content — one block per lane */}
