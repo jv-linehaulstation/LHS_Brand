@@ -6,7 +6,7 @@ import Reveal from "@/components/motion/Reveal";
 import CountUp from "@/components/motion/CountUp";
 import ParallaxImage from "@/components/motion/ParallaxImage";
 import { PrimaryCTA, GhostCTA } from "@/components/CTA";
-import { SectionHead, StatusChip, DataTag, CoinImage, ChromeFrame } from "@/components/Bits";
+import { SectionHead, StatusChip, DataTag, CoinImage, ChromeFrame, Coin } from "@/components/Bits";
 import { BuildVsBelong, RelayDiagram, Timeline, SoloVsRelay } from "@/components/Signatures";
 import RenderingsGallery from "@/components/RenderingsGallery";
 import { RENDER_GROUPS } from "@/lib/renderGroups";
@@ -226,6 +226,26 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
       {/* ===================== HOW IT WORKS — pinned scroll-driven (shared) ===================== */}
       <HowItWorks steps={howSteps} accent={ac} kicker={a.how.eyebrow} title={a.how.headline} />
 
+      {/* ============ OUTRIDERS STORY (image) — drivers: "Welcome to the Club" ============ */}
+      {a.outriders && (
+        <Section variant="image" image={a.outriders.story.image} accent={ac} className="py-[clamp(80px,12vh,160px)]">
+          <Reveal className="max-w-3xl">
+            <CoinImage src="/assets/coin-outriders.png" alt="Outriders Club challenge coin" size={92} glow={`${ac}55`} className="mb-6" />
+            <div className="font-label text-[11px] uppercase tracking-[0.24em]" style={{ color: ac }}>
+              {a.outriders.story.eyebrow}
+            </div>
+            <h2 className="mt-4 text-balance font-display text-[clamp(34px,5.6vw,84px)] font-black uppercase leading-[0.92] tracking-[-0.025em] text-white">
+              {a.outriders.story.headline}
+            </h2>
+            <div className="mt-7 space-y-5 font-body text-[clamp(16px,1.7vw,20px)] leading-relaxed text-[#e2e2e2]">
+              {a.outriders.story.paras.map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
+            </div>
+          </Reveal>
+        </Section>
+      )}
+
       {/* ============ SOLO vs RELAY (blueprint) — carriers & government ============ */}
       {a.relay && (
         <Section variant="blueprint" className="py-[clamp(70px,11vh,140px)]">
@@ -324,6 +344,56 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
         </Section>
       )}
 
+      {/* ============ OUTRIDERS SERVICES MENU (ink) — recreated from the image menu ============ */}
+      {a.outriders && (
+        <Section variant="ink" className="py-[clamp(70px,11vh,140px)]">
+          <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
+            <SectionHead kicker={a.outriders.services.eyebrow} title={a.outriders.services.headline} accent={ac} size="xl" />
+            <Reveal delay={120}>
+              <p className="text-pretty font-body text-[clamp(17px,1.8vw,20px)] leading-relaxed text-[#dadada]">
+                {a.outriders.services.intro}
+              </p>
+            </Reveal>
+          </div>
+          <div className="mt-10 grid gap-px overflow-hidden rounded-[8px] border border-chrome/12 bg-chrome/10 sm:grid-cols-2 lg:grid-cols-3">
+            {a.outriders.services.items.map((it, i) => (
+              <Reveal key={it.name} delay={(i % 3) * 60} className="bg-ink p-6">
+                <div className="flex items-baseline gap-3">
+                  <span className="h-1.5 w-1.5 flex-none translate-y-[-2px] rounded-full" style={{ background: ac }} aria-hidden />
+                  <div className="font-display text-[16px] font-extrabold uppercase tracking-[0.01em] text-white">{it.name}</div>
+                </div>
+                <p className="mt-2 pl-[18px] font-body text-[14px] leading-snug text-chrome">{it.note}</p>
+              </Reveal>
+            ))}
+          </div>
+        </Section>
+      )}
+
+      {/* ============ LH FLEET SERVICES (white) — "An Ounce Of Prevention" ============ */}
+      {a.outriders && (
+        <Section variant="light" className="py-[clamp(70px,11vh,140px)]">
+          <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
+            <SectionHead kicker={a.outriders.fleet.eyebrow} title={a.outriders.fleet.headline} accent={ac} size="xl" tone="onLight" />
+            <Reveal delay={120}>
+              <p className="text-pretty font-body text-[clamp(17px,1.8vw,20px)] leading-relaxed text-[#3a3733]">
+                {a.outriders.fleet.intro}
+              </p>
+            </Reveal>
+          </div>
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {a.outriders.fleet.items.map((it, i) => (
+              <Reveal key={it.name} delay={(i % 3) * 60} className="lift rounded-card border border-[#E2DDD6] bg-white p-6">
+                <div className="flex items-baseline gap-3">
+                  <span className="tnum font-mono text-[13px]" style={{ color: ac }}>{String(i + 1).padStart(2, "0")}</span>
+                  <div className="font-display text-[16px] font-extrabold uppercase tracking-[0.01em] text-ink">{it.name}</div>
+                </div>
+                <p className="mt-2 pl-[26px] font-body text-[14px] leading-snug text-[#6a655e]">{it.note}</p>
+              </Reveal>
+            ))}
+          </div>
+        </Section>
+      )}
+
       {/* ===================== TAKE THE TOUR — GALLERY (ink) ===================== */}
       {a.gallery && a.gallery.length > 0 && (
         <Section variant="ink" className="py-[clamp(70px,11vh,140px)]">
@@ -339,6 +409,50 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
               accent={ac}
             />
           </div>
+        </Section>
+      )}
+
+      {/* ============ JOIN FREE (white) — 3-step membership + 3 ways to get Space ============ */}
+      {a.outriders && (
+        <Section variant="light" className="py-[clamp(70px,11vh,140px)]">
+          <SectionHead kicker={a.outriders.join.eyebrow} title={a.outriders.join.headline} accent={ac} size="xl" tone="onLight" />
+          <div className="mt-10 grid gap-4 md:grid-cols-3">
+            {a.outriders.join.steps.map((s, i) => (
+              <Reveal key={s.title} delay={i * 80} className="rounded-card border border-[#E2DDD6] bg-white p-7">
+                <Coin tone="fuel" size={46}>{String(i + 1).padStart(2, "0")}</Coin>
+                <div className="mt-4 font-display text-[18px] font-extrabold uppercase tracking-[0.01em] text-ink">{s.title}</div>
+                <p className="mt-2 font-body text-[14px] leading-relaxed text-[#6a655e]">{s.blurb}</p>
+              </Reveal>
+            ))}
+          </div>
+
+          <div className="mt-12">
+            <Reveal>
+              <h3 className="font-display text-[clamp(22px,3vw,34px)] font-black uppercase leading-tight text-ink">
+                {a.outriders.join.waysTitle}
+              </h3>
+            </Reveal>
+            <div className="mt-6 grid gap-4 md:grid-cols-3">
+              {a.outriders.join.ways.map((w, i) => (
+                <Reveal key={w.title} delay={i * 80} className="lift rounded-card border border-[#E2DDD6] bg-white p-7">
+                  <Coin tone={w.tone} size={44}>{String(i + 1).padStart(2, "0")}</Coin>
+                  <div className="mt-4 font-display text-[18px] font-extrabold uppercase tracking-[0.01em] text-ink">{w.title}</div>
+                  <p className="mt-2 font-body text-[14px] leading-relaxed text-[#6a655e]">{w.blurb}</p>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+
+          <Reveal delay={120} className="mt-10">
+            <a
+              href="/join"
+              className="group inline-flex items-center gap-2.5 rounded-btn px-[30px] py-[17px] font-label text-[12px] uppercase tracking-[0.16em] text-ink shadow-[0_14px_30px_rgba(0,0,0,0.18)] transition duration-300 hover:-translate-y-0.5 hover:brightness-[1.06] active:scale-[0.97]"
+              style={{ background: `linear-gradient(135deg, ${ac}, ${a.accentDark})` }}
+            >
+              Join Free.
+              <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+            </a>
+          </Reveal>
         </Section>
       )}
 
@@ -381,6 +495,29 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
       <Section variant="blueprint" className="py-[clamp(70px,11vh,140px)]">
         <LaneConnector current={a.key} accent={ac} />
       </Section>
+
+      {/* ============ MONTHLY WEBINARS (ink) — drivers: "We're Ready To Roll" ============ */}
+      {a.outriders && (
+        <Section variant="ink" className="py-[clamp(56px,9vh,110px)]">
+          <ChromeFrame glint>
+            <div className="grid items-center gap-8 bg-ink/80 p-8 backdrop-blur sm:p-10 lg:grid-cols-[0.95fr_1.05fr]">
+              <div>
+                <div className="font-label text-[11px] uppercase tracking-[0.24em]" style={{ color: ac }}>
+                  {a.outriders.webinar.eyebrow}
+                </div>
+                <h2 className="mt-4 text-balance font-display text-[clamp(28px,3.6vw,52px)] font-black uppercase leading-[0.95] tracking-[-0.02em] text-white">
+                  {a.outriders.webinar.headline}
+                </h2>
+              </div>
+              <Reveal delay={120}>
+                <p className="text-pretty font-body text-[clamp(16px,1.7vw,20px)] leading-relaxed text-[#dadada]">
+                  {a.outriders.webinar.body}
+                </p>
+              </Reveal>
+            </div>
+          </ChromeFrame>
+        </Section>
+      )}
 
       {/* ===================== LET'S TALK (gradient) — content + contact left, form right ===================== */}
       <Section variant="gradient" accent={ac} id="contact" className="py-[clamp(70px,11vh,140px)]">

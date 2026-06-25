@@ -114,6 +114,22 @@ export type Audience = {
     footnote: string;
   };
 
+  // OUTRIDERS / JOIN-DRIVERS content (drivers only) — story, free-membership
+  // path, recreated services + fleet menus, and the monthly webinar band.
+  outriders?: {
+    story: { eyebrow: string; headline: string; image: string; paras: string[] };
+    services: { eyebrow: string; headline: string; intro: string; items: { name: string; note: string }[] };
+    fleet: { eyebrow: string; headline: string; intro: string; items: { name: string; note: string }[] };
+    join: {
+      eyebrow: string;
+      headline: string;
+      steps: { title: string; blurb: string }[];
+      waysTitle: string;
+      ways: { title: string; blurb: string; tone: "fuel" | "steel" | "gold" }[];
+    };
+    webinar: { eyebrow: string; headline: string; body: string };
+  };
+
   // SIGNATURE BANDS (one per lane — see AudiencePage). All optional.
   // carriers — "Build vs Belong" cost ledger
   ledger?: {
@@ -258,6 +274,71 @@ export const audiences: Record<AudienceKey, Audience> = {
         { title: "Camp K9", blurb: "Your co-pilot gets cared for too.", img: PHOTOS.clubPatio },
       ],
       footnote: "Members call the 25,000 sq ft private drivers club “The Rig Carlton.”",
+    },
+    outriders: {
+      story: {
+        eyebrow: "Welcome to the Club",
+        headline: "Knights Of The Highway.",
+        image: PHOTOS.clubLoungePhoto,
+        paras: [
+          "Trucking is a great story of entrepreneurship and perseverance.",
+          "There is a long legacy of immense pride by truckers that wanted to be the best version of themselves while serving the needs of America with great dignity. LineHaul Station celebrates their independence and success by embracing the very essence of what made trucking appealing to all “Knights of the Highway.”",
+          "That’s why we’ve created the Outriders Club — a place for great drivers to relax, unwind, reward themselves, and rejuvenate, all in the interest of better health and happiness. The exclusive drivers club represents our commitment to reinvigorate the spirit of the American truck driver as hard-working patriots who deserve our support and respect.",
+          "The name “Outriders” is synonymous with a mission to lead, guide, and protect the people we work with and the companies that depend on us each and every day.",
+        ],
+      },
+      services: {
+        eyebrow: "Services to suit you",
+        headline: "The Outriders Services Menu.",
+        intro: "Everything a driver needs to relax, recover, and roll out fresh — inside the 25,000 sq ft private Outriders Club at every Hub.",
+        items: [
+          { name: "Member’s Grill & Sports Bar", note: "Hot, real cooking and a place to catch the game — no truck-stop microwave." },
+          { name: "Rooftop Sky Deck", note: "Open-air lounge to decompress after the haul." },
+          { name: "Overdrive Fitness Studio", note: "Real equipment to stay road-strong." },
+          { name: "Private Shower Suites", note: "Clean and private, ready the minute you pull in." },
+          { name: "The Gamer’s Den", note: "Screens, consoles, and a place to unwind." },
+          { name: "Barbershop", note: "Look sharp before the next run." },
+          { name: "Gear Shop", note: "Parts, supplies, and road essentials on site." },
+          { name: "Laundry Center", note: "Fresh clothes without losing a day." },
+          { name: "Resort Pool & Spa", note: "Recover like the miles are worth it." },
+          { name: "Digital Den & Business Center", note: "Fast Wi-Fi and quiet desks for the paperwork." },
+          { name: "Camp K9", note: "Your co-pilot gets cared for too." },
+          { name: "Members’ Lounge", note: "Comfortable space to relax with fellow Outriders." },
+        ],
+      },
+      fleet: {
+        eyebrow: "An ounce of prevention",
+        headline: "LH Fleet Services.",
+        intro: "Keep your truck road-ready while you rest — on-site service at fair labor rates, right at the Hub.",
+        items: [
+          { name: "On-Site Maintenance", note: "Routine service handled at the Hub — don’t lose a day to a shop across town." },
+          { name: "Inspection", note: "DOT-ready inspections that keep you compliant and rolling." },
+          { name: "Preventive Maintenance", note: "Scheduled PM that catches problems before they catch you." },
+          { name: "Repair", note: "An on-site repair partner to get you back on the road fast." },
+          { name: "State-Of-The-Art Truck Wash", note: "A professional wash bay to keep the rig sharp." },
+          { name: "Fair Labor Rates", note: "Honest pricing — service that respects the driver’s wallet." },
+        ],
+      },
+      join: {
+        eyebrow: "Nothing to lose",
+        headline: "Free Membership In Three Steps.",
+        steps: [
+          { title: "Free Driver Membership", blurb: "Driver Membership at LineHaul Station is always 100% free. Agree to the Code of Conduct and you’re cleared to use any Hub across the network." },
+          { title: "Create Your Profile", blurb: "Set up your Driver Profile to unlock the features that come with your free membership — including special access to career-changing information." },
+          { title: "Get Others Excited", blurb: "Three ways to gain access to Space: earn it through our referral program, purchase it directly, or request passes from your carrier or broker." },
+        ],
+        waysTitle: "Three Ways To Get Space",
+        ways: [
+          { title: "Earn Your Space", tone: "fuel", blurb: "Earn a lifetime of free Space by sponsoring ten great drivers, who then each sponsor ten of their own. (Conditions apply.)" },
+          { title: "Request Your Space", tone: "steel", blurb: "We give you the tools to get your current carrier to support you with Space — or to access “The LineHaul List” to find a carrier, fleet, or brokerage looking for a driver like you." },
+          { title: "Purchase Your Space", tone: "gold", blurb: "Special pricing for “anyone with a steering wheel in their hand.” Your Membership Director will guide you through purchasing FlexSpace." },
+        ],
+      },
+      webinar: {
+        eyebrow: "We’re ready to roll",
+        headline: "Monthly Webinars With Jeff Swenson.",
+        body: "Every new member gets a seat at the monthly webinars — quick meetings with Founder & CEO Jeff Swenson on the latest news and how to get the most out of your free membership as we get close to the network launch.",
+      },
     },
     memphis: {
       kicker: "Open now",
