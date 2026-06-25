@@ -50,6 +50,8 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(11,11,11,0.96)_0%,rgba(11,11,11,0.72)_55%,rgba(11,11,11,0.4)_100%)]" />
         <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(11,11,11,0.94),transparent_52%)]" />
         <div className="blueprint pointer-events-none absolute inset-0 opacity-20" />
+        {/* bottom fade into the dark post-hero section — matches the homepage hero */}
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-[linear-gradient(0deg,#0B0B0B,transparent)]" />
         <div className="pointer-events-none absolute inset-x-0 top-0 h-[2px] overflow-hidden">
           <div className="scan-once h-full w-full" style={{ ["--ac" as string]: ac }} />
         </div>
@@ -123,27 +125,43 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
         </a>
       </section>
 
-      {/* ====================== STAT CONSOLE (ink) ====================== */}
-      <Section variant="ink" className="py-0">
-        <div className="flex items-center justify-between border-b border-chrome/10 py-4">
-          <DataTag accent={ac} className="font-label !text-[10px] uppercase tracking-[0.2em]">
-            <span className="pulse-dot inline-block h-2 w-2 rounded-full" style={{ background: ac, color: ac }} /> The Numbers
-          </DataTag>
-          <DataTag className="hidden sm:inline-flex">{a.navLabel.toUpperCase()} · LIVE</DataTag>
-        </div>
-        <div className="grid grid-cols-2 md:grid-cols-4">
-          {a.stats.map((s, i) => (
-            <Reveal
-              key={i}
-              delay={i * 80}
-              className="border-b border-r border-chrome/10 px-6 py-9 last:border-r-0 md:border-b-0 [&:nth-child(2)]:border-r-0 md:[&:nth-child(2)]:border-r"
-            >
-              <CountUp value={s.big} style={{ color: ac }} className="tnum font-display text-[clamp(32px,4vw,56px)] font-black leading-none" />
-              <div className="mt-3 font-body text-[14px] leading-snug text-chrome">{s.label}</div>
-            </Reveal>
-          ))}
-        </div>
-      </Section>
+      {/* ============ POST-HERO (ink) — hero fade → calculator + counters (drivers/carriers)
+           or a quiet stats beat (others); the same "hero → dark numbers" beat everywhere ============ */}
+      {hasCalc ? (
+        <Section variant="ink" className="py-[clamp(44px,7vh,96px)]">
+          <div className="grid gap-[clamp(28px,4vw,56px)] lg:grid-cols-[1.32fr_0.68fr] lg:items-start">
+            {/* left — the calculator */}
+            <div>
+              {audience === "drivers" ? <OneHomeCalculator accent={ac} /> : <FlexSpaceCalculator accent={ac} />}
+            </div>
+            {/* right — the counter numbers (the former stat console) */}
+            <div className="lg:sticky lg:top-28">
+              <DataTag accent={ac} className="font-label !text-[10px] uppercase tracking-[0.2em]">
+                <span className="pulse-dot inline-block h-2 w-2 rounded-full" style={{ background: ac, color: ac }} /> The Numbers
+              </DataTag>
+              <div className="mt-6 grid grid-cols-2 gap-px overflow-hidden rounded-[8px] border border-chrome/12 bg-chrome/10 lg:grid-cols-1">
+                {a.stats.map((s, i) => (
+                  <Reveal key={i} delay={i * 80} className="bg-ink px-5 py-6">
+                    <CountUp value={s.big} style={{ color: ac }} className="tnum font-display text-[clamp(28px,3.4vw,44px)] font-black leading-none" />
+                    <div className="mt-2 font-body text-[13px] leading-snug text-chrome">{s.label}</div>
+                  </Reveal>
+                ))}
+              </div>
+            </div>
+          </div>
+        </Section>
+      ) : (
+        <Section variant="ink" className="py-[clamp(44px,7vh,96px)]">
+          <div className="grid grid-cols-2 gap-px overflow-hidden rounded-[8px] border border-chrome/12 bg-chrome/10 lg:grid-cols-4">
+            {a.stats.map((s, i) => (
+              <Reveal key={i} delay={i * 80} className="flex min-h-[150px] flex-col justify-between bg-ink p-[clamp(20px,2.4vw,36px)]">
+                <CountUp value={s.big} style={{ color: ac }} className="tnum font-display text-[clamp(30px,3.8vw,52px)] font-black leading-none" />
+                <div className="mt-5 font-body text-[14px] leading-snug text-chrome">{s.label}</div>
+              </Reveal>
+            ))}
+          </div>
+        </Section>
+      )}
 
       {/* ========================= PROBLEM (white) — editorial split ========================= */}
       <Section variant="light" id="problem" className="py-[clamp(70px,11vh,140px)]">
@@ -170,18 +188,6 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
           </Reveal>
         </div>
       </Section>
-
-      {/* ===================== CALCULATOR (panel) — drivers & carriers ===================== */}
-      {audience === "drivers" && (
-        <Section variant="ink" className="py-2">
-          <OneHomeCalculator accent={ac} />
-        </Section>
-      )}
-      {audience === "carriers" && (
-        <Section variant="ink" className="py-2">
-          <FlexSpaceCalculator accent={ac} />
-        </Section>
-      )}
 
       {/* ===================== SIGNATURE BAND (blueprint) ===================== */}
       {a.ledger && (

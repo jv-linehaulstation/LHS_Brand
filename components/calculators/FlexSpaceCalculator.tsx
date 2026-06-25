@@ -35,7 +35,7 @@ export default function FlexSpaceCalculator({ accent = "#4878A8" }: { accent?: s
   const perTruck = trucks ? mo / trucks : 0;
 
   return (
-    <section id="calculator" className="py-[84px]">
+    <section id="calculator">
       <div className="mb-10">
         <div className="font-label text-[11px] uppercase tracking-[0.24em] text-steel">
           Run Your Own Numbers

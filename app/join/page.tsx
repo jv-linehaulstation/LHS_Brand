@@ -252,14 +252,14 @@ export default function JoinPage() {
                 we&apos;ll get you set up with the club, the app, and first-Hub news.
               </p>
             </Reveal>
-            <Reveal delay={200} className="mt-8 chrome-frame inline-block">
+            <Reveal delay={200} className="mt-8 chrome-frame block w-full max-w-md">
               <div className="relative overflow-hidden bg-carbon">
                 <Image
                   src={`${O}/form-art.png`}
                   alt="The Outriders Club — LineHaul Station"
                   width={1549}
                   height={312}
-                  className="h-auto w-full max-w-md"
+                  className="h-auto w-full"
                 />
               </div>
             </Reveal>

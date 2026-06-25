@@ -466,7 +466,11 @@ body {
   background: radial-gradient(125% 95% at 50% 38%, #242220 0%, #161514 58%, #0e0d0c 100%);
   transition: transform 0.66s cubic-bezier(0.7, 0, 0.18, 1);
   will-change: transform;
+  /* Clip any child that briefly renders at intrinsic size before its width
+     rule applies (badge PNG is large) — never let the loader cause page scroll. */
+  overflow: hidden;
 }
+.ld-badge img { max-width: 104px; }
 #lhs-loader.done { transform: translateY(-100%); }
 .ld-badge {
   position: relative;

@@ -116,6 +116,18 @@ export default function Home() {
         <ScrollCursor />
       </section>
 
+      {/* ============ 1.5 STATS RIBBON [B] — quiet count-up ribbon directly under the hero (R8) ============ */}
+      <section className={`bg-ink ${PAD} pb-[clamp(8px,2vh,28px)] pt-[clamp(20px,4vh,44px)]`}>
+        <div className="grid grid-cols-2 gap-px overflow-hidden rounded-[8px] border border-chrome/12 bg-chrome/10 lg:grid-cols-4">
+          {STATS.map((s, i) => (
+            <Reveal key={i} delay={i * 70} className="flex min-h-[140px] flex-col justify-between bg-ink p-[clamp(20px,2.4vw,36px)]">
+              <CountUp value={s.big} className="tnum font-display text-[clamp(30px,3.8vw,52px)] font-black leading-none text-white" />
+              <div className="mt-5 font-mono text-[12px] uppercase leading-relaxed tracking-[0.08em] text-chrome">{s.label}</div>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
       {/* ============ 2. FIND YOUR LANE [B] — pinned sticky-scroll audiences ============ */}
       <section id="lanes" className={`bg-ink ${PAD} py-[clamp(70px,11vh,140px)]`}>
         <Reveal><Kick accent="#7EC8E3">Find Your Lane</Kick></Reveal>
@@ -295,20 +307,6 @@ export default function Home() {
         <Reveal dir="left" className="mt-11">
           <NetworkMap />
         </Reveal>
-      </section>
-
-      {/* ============ 8. BY THE NUMBERS [W] — roomy stats ============ */}
-      <section className={`${PAD} py-[clamp(70px,11vh,140px)]`} style={{ background: WHITE }}>
-        <Reveal><Kick>By The Numbers</Kick></Reveal>
-        <Reveal delay={60}><div className="chrome-rule mt-7" aria-hidden /></Reveal>
-        <div className="mt-10 grid grid-cols-1 gap-px overflow-hidden rounded-[8px] border sm:grid-cols-2 lg:grid-cols-4" style={{ background: LINE_L, borderColor: LINE_L }}>
-          {STATS.map((s, i) => (
-            <Reveal key={i} delay={i * 80} className="flex min-h-[180px] flex-col justify-between p-[clamp(28px,3vw,48px)]" style={{ background: WHITE }}>
-              <CountUp value={s.big} className="tnum font-display text-[clamp(36px,4.6vw,60px)] font-black leading-none" style={{ color: CARBON }} />
-              <div className="mt-6 font-mono text-[12px] uppercase leading-relaxed tracking-[0.08em]" style={{ color: "#6a655e" }}>{s.label}</div>
-            </Reveal>
-          ))}
-        </div>
       </section>
 
       {/* ============ 9. LET'S TALK [B] — 2 cols: content + contact left, form right ============ */}

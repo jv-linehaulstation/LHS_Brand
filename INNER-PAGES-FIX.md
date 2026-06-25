@@ -38,3 +38,25 @@ End with `npx tsc --noEmit` + `npm run build` + a **browser pass at mobile (~390
 - Every section heading is visible (reveals fire).
 - Accents correct per page; chrome/coins render; calculators (drivers/carriers) usable on mobile.
 - `npx tsc --noEmit` clean · `npm run build` passes · browser-checked at 3 widths · pushed.
+
+---
+
+## ⭐ Round 2 (JJ — How It Works design + post-hero calculator pattern)
+
+- **Inner "How It Works" → match the homepage "Find Your Lane" design.** Rebuild the inner-page
+  `HowItWorks` (the Pull In · Recharge · Relay steps on every audience page) to use the **same
+  design as the homepage `AudienceScroll`** component ("One Network. Every Lane." / Find Your
+  Lane): **sticky media on the left**, **numbered content blocks scrolling on the right**
+  (heading + description per step) with the `001 / 002 / 003` counter. Reuse / mirror
+  `AudienceScroll`'s layout + visual styling rather than the current HowItWorks look. Keep the
+  per-audience accent.
+
+- **Post-hero pattern: hero fade → DARK calculator section (drivers & carriers).** Give the inner
+  hero the **same bottom fade as the homepage hero**, then make the **next section the calculator
+  on a dark background**, laid out in **two columns: left = the calculator** (OneHome on Drivers,
+  FlexSpace on Carriers), **right = the counter numbers** (move the current STAT CONSOLE counters
+  into this section's right column). Place it **directly after the hero** (ahead of the Problem
+  section).
+  - **Non-calculator pages (brokers / shippers / government):** keep a **dark stats section right
+    after the hero** (the count-up numbers), titleless / minimal — matching the homepage's quiet
+    post-hero stats treatment. So every page follows the same "hero fade → dark numbers section" beat.

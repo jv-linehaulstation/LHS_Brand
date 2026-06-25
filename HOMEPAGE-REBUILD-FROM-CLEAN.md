@@ -183,6 +183,16 @@ Hero → **One Network. Every Lane.** (audiences, sticky-scroll) → **Who We Ar
 
 ---
 
+## ⭐ R8 deltas (JJ's review)
+
+- **Move "By The Numbers" directly below the hero.** Relocate the By-The-Numbers count-up stats so
+  they sit **immediately under the hero**, before "One Network. Every Lane." **Remove its
+  title/kicker** — just the count-up stats. Background = **black/ink (or transparent over black),
+  same as the Find Your Lane (`AudienceScroll`) section** — so it reads as a quiet stats ribbon
+  under the hero, not a titled section. (It leaves its old slot near the bottom.)
+
+---
+
 ## STEP 1 — Revert the homepage to the clean pre-vaulk base
 - Restore **`app/page.tsx`** to its state at commit **`2306b52`**
   ("Homepage visuals: pair every render…") — the last good homepage before the vaulk rebuild:
