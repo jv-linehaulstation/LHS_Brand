@@ -115,7 +115,7 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
         </div>
       </div>
       <a
-        href={a.outriders ? "#welcome" : "#problem"}
+        href={a.outriders ? "#numbers" : "#problem"}
         className="absolute inset-x-0 bottom-5 mx-auto flex w-fit items-center gap-2 font-label text-[10px] uppercase tracking-[0.2em] text-chrome transition-colors hover:text-white"
       >
         <span className="scroll-nudge inline-block">↓</span> {a.scrollHint}
@@ -125,7 +125,7 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
 
   /* ============ NUMBERS (ink) — calculator + counters (drivers/carriers) or a quiet stats beat ============ */
   const numbersBlock = hasCalc ? (
-    <Section variant="ink" className="py-[clamp(44px,7vh,96px)]">
+    <Section variant="ink" id="numbers" className="py-[clamp(44px,7vh,96px)]">
       <div className="grid gap-[clamp(28px,4vw,56px)] lg:grid-cols-[1.32fr_0.68fr] lg:items-start">
         <div>
           {audience === "drivers" ? <OneHomeCalculator accent={ac} /> : <FlexSpaceCalculator accent={ac} />}
@@ -574,17 +574,18 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
       {hero}
 
       {a.outriders ? (
-        /* DRIVERS — join-drivers cluster leads, OneHome value + proof below */
+        /* DRIVERS — lead with the highlight: OneHome calculator + the founder video,
+           then the club story + join cluster, then proof. */
         <>
+          {numbersBlock}
+          {webinarSection}
           {storySection}
           {stepsSection}
           {servicesSection}
           {fleetSection}
           {spaceSection}
-          {webinarSection}
-          {gallerySection}
           {roadSection}
-          {numbersBlock}
+          {gallerySection}
           {problemSection}
           {howItWorksSection}
           {memphisSection}
