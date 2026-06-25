@@ -118,9 +118,9 @@ export default function Home() {
 
       {/* ============ 1.5 STATS RIBBON [B] — quiet count-up ribbon directly under the hero (R8) ============ */}
       <section className={`bg-ink ${PAD} pb-[clamp(8px,2vh,28px)] pt-[clamp(20px,4vh,44px)]`}>
-        <div className="grid grid-cols-2 gap-px overflow-hidden rounded-[8px] border border-chrome/12 bg-chrome/10 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-x-[clamp(20px,4vw,56px)] gap-y-8 lg:grid-cols-4">
           {STATS.map((s, i) => (
-            <Reveal key={i} delay={i * 70} className="flex min-h-[140px] flex-col justify-between bg-ink p-[clamp(20px,2.4vw,36px)]">
+            <Reveal key={i} delay={i * 70} className="flex min-h-[120px] flex-col justify-between py-[clamp(12px,2vw,24px)]">
               <CountUp value={s.big} className="tnum font-display text-[clamp(30px,3.8vw,52px)] font-black leading-none text-white" />
               <div className="mt-5 font-mono text-[12px] uppercase leading-relaxed tracking-[0.08em] text-chrome">{s.label}</div>
             </Reveal>
