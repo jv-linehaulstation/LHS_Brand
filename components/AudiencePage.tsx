@@ -233,6 +233,15 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
           <div className="grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
             <SectionHead kicker={a.amenities.eyebrow} title={a.amenities.headline} accent={ac} size="xl" tone="onLight" />
             <Reveal delay={120}>
+              {audience === "drivers" && (
+                <CoinImage
+                  src="/assets/coin-outriders.png"
+                  alt="Outriders Club challenge coin"
+                  size={96}
+                  glow="rgba(200,160,96,0.45)"
+                  className="mb-5"
+                />
+              )}
               <p className="text-pretty font-body text-[clamp(18px,1.9vw,21px)] leading-relaxed text-[#3a3733]">{a.amenities.intro}</p>
             </Reveal>
           </div>

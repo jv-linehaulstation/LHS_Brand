@@ -21,6 +21,9 @@ new ones.** Mirror the homepage's look, motion, and spacing exactly. Cohesion ov
   Call · Email · Visit; content-matched imagery (no generic photos that don't fit the copy).
 - **Polish pass** — after aligning each page, run the same **`impeccable` + `frontend-design` +
   `ui-ux-pro-max`** animation + spacing pass used on the homepage (structure/content unchanged).
+- **Brand System v2** — apply the new **chrome/steel metallic gradients + patterns** (see
+  `BRAND-SYSTEM-V2-PATTERNS.md` / `reference/brand-system-v2.html`) on every page too, using the
+  shared tokens/utilities built for the homepage (chrome pills, metallic frames, coins, rules, glint).
 
 ---
 

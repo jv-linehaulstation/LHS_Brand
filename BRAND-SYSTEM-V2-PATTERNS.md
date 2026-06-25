@@ -97,8 +97,11 @@ steel prominence per below.
 - **Coins (real PNGs — already split & in repo):**
   - `public/assets/coin-onehome.png` (ONE★HOME) → use on the **Drivers** landing page.
   - `public/assets/coin-flexspace.png` (FLEX★SPACE) → use on the **Carriers** landing page.
-  - **Incorporate the coins on the homepage** too — in the **Three Programs** section: OneHome card
-    → OneHome coin, FlexSpace card → FlexSpace coin (Outriders card can use a gold-chrome mark).
+  - `public/assets/coin-outriders.png` (gold OUTRIDERS★CLUB) → use on the **Drivers** page
+    (Outriders Club) and the homepage Outriders card.
+  - **Incorporate all three coins on the homepage Three Programs** section: OneHome card →
+    `coin-onehome.png`, FlexSpace card → `coin-flexspace.png`, Outriders Club card →
+    `coin-outriders.png`. (Full copper/steel/gold set — all three exist in the repo now.)
   - Size them tastefully (≈80–120px), crisp, with subtle drop/glow; don't stretch.
 
 - Re-verify: AA contrast on chrome text, reduced-motion safe, responsive, `tsc` + `build`, push.
