@@ -906,8 +906,8 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
   );
 
   /* ============ §10 JOIN ONEHOME (gradient) — interest form, last ============ */
-  /* Contact resolved per JJ: lib/site.ts now uses the playbook's Membership Director
-     contact (J.J. Swenson · 602-858-8000 · jj@linehaulstation.com) site-wide. */
+  /* Contact pulls from lib/site.ts (the canonical site contact). Per JJ, the OneHome
+     playbook's Membership Director contact is not used anywhere on the site. */
   const joinOneHomeSection = audience === "drivers" && (
     <Section variant="gradient" accent={ac} id="contact" className="py-[clamp(70px,11vh,140px)]">
       <div className="grid gap-[clamp(28px,4vw,64px)] lg:grid-cols-[0.85fr_1.15fr] lg:items-start">

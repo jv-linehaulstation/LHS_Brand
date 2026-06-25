@@ -8,6 +8,7 @@ import Reveal from "@/components/motion/Reveal";
 import BackgroundVideo from "@/components/motion/BackgroundVideo";
 import { SectionHead, StatusChip, DataTag, ChromeFrame } from "@/components/Bits";
 import JoinForm from "@/components/JoinForm";
+import { site } from "@/lib/site";
 import PhotoGallery, { type Shot } from "@/components/PhotoGallery";
 import FAQ, { type QA } from "@/components/FAQ";
 import LaneConnector from "@/components/LaneConnector";
@@ -142,7 +143,7 @@ export default function JoinPage() {
                   <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">→</span>
                 </a>
                 <a
-                  href="tel:6028988000"
+                  href={site.phoneHref}
                   className="inline-flex items-center gap-2.5 rounded-btn border border-chrome/30 bg-carbon/70 px-[30px] py-[17px] font-label text-[12px] uppercase tracking-[0.16em] text-white transition duration-300 hover:border-[var(--ac)] active:scale-[0.97]"
                   style={{ ["--ac" as string]: ACCENT }}
                 >
@@ -150,7 +151,7 @@ export default function JoinPage() {
                 </a>
               </div>
               <p className="tnum mt-5 max-w-[34ch] font-mono text-[12px] leading-snug text-chrome">
-                Free membership · (602) 898-8000
+                Free membership · {site.phone}
               </p>
             </Reveal>
           </div>
@@ -271,8 +272,8 @@ export default function JoinPage() {
                 <span className="inline-flex items-center gap-2">
                   <span className="h-2 w-2 rounded-full bg-chrome/50" /> Private — never sold
                 </span>
-                <a href="tel:6028988000" className="underline transition-colors hover:text-white">
-                  (602) 898-8000
+                <a href={site.phoneHref} className="underline transition-colors hover:text-white">
+                  {site.phone}
                 </a>
               </div>
             </Reveal>
