@@ -82,7 +82,7 @@ export default function Section({
       {variant === "blueprint" && (
         <div className="blueprint pointer-events-none absolute inset-0 opacity-60" />
       )}
-      <div className="relative mx-auto max-w-site">{children}</div>
+      <div className="relative">{children}</div>
     </section>
   );
 }
