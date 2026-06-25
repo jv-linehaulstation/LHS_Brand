@@ -12,6 +12,7 @@ import WideSlider, { type Slide } from "@/components/WideSlider";
 import AudienceScroll from "@/components/AudienceScroll";
 import FilterGallery from "@/components/FilterGallery";
 import JoinForm from "@/components/JoinForm";
+import { ChromeFrame, Coin, StatusChip } from "@/components/Bits";
 import { PHOTOS } from "@/lib/audiences";
 import { site } from "@/lib/site";
 
@@ -39,10 +40,17 @@ const SLIDES: Slide[] = [
 ];
 
 // THREE PROGRAMS — restored from 0543462, restyled into the current system.
-const PROGRAMS = [
-  { name: "FlexSpace", tagline: "It's YOUR Terminal Network.", blurb: "Shared-use terminal access sold in increments — Guest Pass, Proprietary Membership, or Dedicated Space. Carrier-facing.", accent: "#4878A8", href: "/carriers" },
-  { name: "OneHome", tagline: "Everywhere The Road Takes You.", blurb: "A private, resort-quality community network built exclusively for America's truckers. Driver-facing.", accent: "#F07820", href: "/drivers" },
-  { name: "Outriders Club", tagline: "The Rig Carlton.", blurb: "A 25,000+ sq ft private drivers club — restaurant, fitness, showers, gaming, rooftop sky deck, and more.", accent: "#C8A060", href: "/join" },
+const PROGRAMS: {
+  name: string;
+  tagline: string;
+  blurb: string;
+  accent: string;
+  href: string;
+  coin: "steel" | "fuel" | "gold";
+}[] = [
+  { name: "FlexSpace", tagline: "It's YOUR Terminal Network.", blurb: "Shared-use terminal access sold in increments — Guest Pass, Proprietary Membership, or Dedicated Space. Carrier-facing.", accent: "#4878A8", href: "/carriers", coin: "steel" },
+  { name: "OneHome", tagline: "Everywhere The Road Takes You.", blurb: "A private, resort-quality community network built exclusively for America's truckers. Driver-facing.", accent: "#F07820", href: "/drivers", coin: "fuel" },
+  { name: "Outriders Club", tagline: "The Rig Carlton.", blurb: "A 25,000+ sq ft private drivers club — restaurant, fitness, showers, gaming, rooftop sky deck, and more.", accent: "#C8A060", href: "/join", coin: "gold" },
 ];
 
 // Board advisors (pulled from /leadership) — shown small on the home page.
@@ -140,9 +148,11 @@ export default function Home() {
           {/* Col 2 — Jeff (contained square headshot) */}
           <Reveal delay={80}>
             <div className="font-mono text-[11px] uppercase tracking-[0.2em]" style={{ color: "#6a655e" }}>Founder</div>
-            <div className="relative mt-5 aspect-square w-full max-w-[280px] overflow-hidden rounded-[10px] border" style={{ borderColor: LINE_L }}>
-              <Image src="https://static.wixstatic.com/media/84a10c_7dfa17aed1604937b1d1dd98258ee10a~mv2.png/v1/fill/w_640,h_800,al_c,q_90/Bio_JS-23-1.png" alt="Jeff Swenson, Founder & CEO" fill className="object-cover object-top" sizes="280px" />
-            </div>
+            <ChromeFrame variant="dual" glint className="mt-5 w-full max-w-[280px]">
+              <div className="relative aspect-square w-full overflow-hidden bg-carbon">
+                <Image src="https://static.wixstatic.com/media/84a10c_7dfa17aed1604937b1d1dd98258ee10a~mv2.png/v1/fill/w_640,h_800,al_c,q_90/Bio_JS-23-1.png" alt="Jeff Swenson, Founder & CEO" fill className="object-cover object-top" sizes="280px" />
+              </div>
+            </ChromeFrame>
             <div className="mt-5 font-display text-[clamp(20px,2.2vw,26px)] font-black uppercase leading-tight" style={{ color: CARBON }}>Jeff Swenson</div>
             <div className="mt-1 font-mono text-[11px] uppercase tracking-[0.12em] text-fuel">Founder &amp; CEO</div>
             <p className="mt-4 max-w-[42ch] font-body text-[clamp(14px,1.35vw,16px)] leading-relaxed" style={{ color: "#3a3733" }}>
@@ -187,7 +197,8 @@ export default function Home() {
           <div className="lg:sticky lg:top-28">
             <Reveal><Kick>One Network · Three Programs</Kick></Reveal>
             <Reveal as="h2" className="mt-3 font-display text-[clamp(36px,5vw,80px)] font-black uppercase leading-[0.92] tracking-[-0.025em] text-white">
-              Three Ways Into The Network.
+              Three Ways Into The{" "}
+              <span className="text-chrome-fill">Network.</span>
             </Reveal>
             <Reveal delay={100}>
               <p className="mt-6 max-w-[42ch] font-body text-[clamp(16px,1.6vw,20px)] leading-relaxed text-[#dadada]">
@@ -201,24 +212,26 @@ export default function Home() {
           <div className="grid gap-4">
             {PROGRAMS.map((p, i) => (
               <Reveal key={p.name} delay={i * 80}>
-                <Link
-                  href={p.href}
-                  className="lift group relative flex overflow-hidden rounded-card border border-chrome/15 bg-[#141414] p-7 transition-colors hover:border-[var(--ac)] sm:p-8"
-                  style={{ ["--ac" as string]: p.accent }}
-                >
-                  <div className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full opacity-25 blur-2xl transition-opacity duration-500 group-hover:opacity-50" style={{ background: p.accent }} />
-                  <span className="tnum relative mr-6 font-mono text-[13px]" style={{ color: p.accent }}>{String(i + 1).padStart(2, "0")}</span>
-                  <div className="relative flex-1">
-                    <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-                      <div className="font-display text-[clamp(24px,2.6vw,34px)] font-black uppercase leading-none text-white">{p.name}</div>
-                      <div className="font-script text-[clamp(20px,2.2vw,26px)] font-semibold" style={{ color: p.accent }}>{p.tagline}</div>
+                <ChromeFrame glint className="lift">
+                  <Link
+                    href={p.href}
+                    className="group relative flex overflow-hidden bg-[#141414] p-7 sm:p-8"
+                    style={{ ["--ac" as string]: p.accent }}
+                  >
+                    <div className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full opacity-25 blur-2xl transition-opacity duration-500 group-hover:opacity-50" style={{ background: p.accent }} />
+                    <Coin tone={p.coin} className="relative mr-6 mt-1 flex-none">{String(i + 1).padStart(2, "0")}</Coin>
+                    <div className="relative flex-1">
+                      <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                        <div className="font-display text-[clamp(24px,2.6vw,34px)] font-black uppercase leading-none text-white">{p.name}</div>
+                        <div className="font-script text-[clamp(20px,2.2vw,26px)] font-semibold" style={{ color: p.accent }}>{p.tagline}</div>
+                      </div>
+                      <p className="mt-4 max-w-[60ch] font-body text-[15px] leading-relaxed text-chrome">{p.blurb}</p>
+                      <span className="mt-5 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.16em] text-white">
+                        Explore <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1" style={{ color: p.accent }}>→</span>
+                      </span>
                     </div>
-                    <p className="mt-4 max-w-[60ch] font-body text-[15px] leading-relaxed text-chrome">{p.blurb}</p>
-                    <span className="mt-5 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.16em] text-white">
-                      Explore <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1" style={{ color: p.accent }}>→</span>
-                    </span>
-                  </div>
-                </Link>
+                  </Link>
+                </ChromeFrame>
               </Reveal>
             ))}
           </div>
@@ -243,7 +256,10 @@ export default function Home() {
       <section id="network" className={`bg-ink ${PAD} py-[clamp(70px,11vh,140px)]`}>
         <div className="grid gap-x-12 gap-y-10 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
           <div>
-            <Reveal><Kick>The Network</Kick></Reveal>
+            <Reveal className="flex flex-wrap items-center gap-4">
+              <Kick>The Network</Kick>
+              <StatusChip chrome label="Open Now · West Memphis" accent="#18A848" />
+            </Reveal>
             <Reveal as="h2" className="mt-3 font-display text-[clamp(36px,6vw,92px)] font-black uppercase leading-[0.9] tracking-[-0.025em] text-white">
               A National Freight Relay.
             </Reveal>
@@ -255,13 +271,17 @@ export default function Home() {
               </p>
             </Reveal>
           </div>
-          <Reveal dir="right" className="frame">
-            <div className="relative aspect-[16/10] overflow-hidden rounded-[4px] bg-carbon">
+          <Reveal dir="right" className="chrome-frame glint">
+            <div className="relative aspect-[16/10] overflow-hidden bg-carbon">
               <Image src={PHOTOS.highwayInterchange} alt="A national freight interchange" fill loading="lazy" className="img-grade object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
               <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_55%,rgba(11,11,11,0.8))]" />
-              <div className="absolute inset-x-0 bottom-0 flex items-center gap-3 p-5">
-                <span className="h-2 w-2 rounded-full bg-fuel shadow-[0_0_10px_1px_rgba(240,120,32,0.8)]" aria-hidden />
-                <span className="tnum font-mono text-[12px] uppercase tracking-[0.12em] text-white">I-40 / I-55 · ~60,000 trucks a day</span>
+              <div className="absolute inset-x-0 bottom-0 flex p-5">
+                <span className="chrome-pill">
+                  <span>
+                    <span className="h-2 w-2 rounded-full bg-fuel shadow-[0_0_10px_1px_rgba(240,120,32,0.8)]" aria-hidden />
+                    <span className="tnum font-mono text-[12px] uppercase tracking-[0.12em] text-white">I-40 / I-55 · ~60,000 trucks a day</span>
+                  </span>
+                </span>
               </div>
             </div>
           </Reveal>
@@ -274,6 +294,7 @@ export default function Home() {
       {/* ============ 8. BY THE NUMBERS [W] — roomy stats ============ */}
       <section className={`${PAD} py-[clamp(70px,11vh,140px)]`} style={{ background: WHITE }}>
         <Reveal><Kick>By The Numbers</Kick></Reveal>
+        <Reveal delay={60}><div className="chrome-rule mt-7" aria-hidden /></Reveal>
         <div className="mt-10 grid grid-cols-1 gap-px overflow-hidden rounded-[8px] border sm:grid-cols-2 lg:grid-cols-4" style={{ background: LINE_L, borderColor: LINE_L }}>
           {STATS.map((s, i) => (
             <Reveal key={i} delay={i * 80} className="flex min-h-[180px] flex-col justify-between p-[clamp(28px,3vw,48px)]" style={{ background: WHITE }}>

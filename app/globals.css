@@ -43,6 +43,194 @@ body {
 }
 
 /* ===================================================================
+   BRAND SYSTEM v2 — Chrome / Steel metallic accent layer
+   Gradient stops + keyframes ported verbatim from
+   reference/brand-system-v2.html. Premium accent: use judiciously
+   (badges, frames, keylines, pills, coins) — never as small body text.
+   =================================================================== */
+
+/* --- Named gradient SURFACES (mirror the Tailwind backgroundImage tokens) --- */
+.grad-chrome {
+  background-image: linear-gradient(180deg, #f2f2f2 0%, #c4c4c4 16%, #8e8e8e 44%, #6a6a6a 50%, #9c9c9c 56%, #d6d6d6 76%, #7c7c7c 100%);
+}
+.grad-fuel-chrome {
+  background-image: linear-gradient(135deg, #fce0be 0%, #f4a24a 30%, #c85a12 52%, #e88a3c 60%, #f07820 100%);
+}
+.grad-gold-chrome {
+  background-image: linear-gradient(135deg, #e8c97e 0%, #c8a060 34%, #8c6e3a 54%, #b89452 62%, #c8a060 100%);
+}
+.grad-fuel {
+  background-image: linear-gradient(135deg, #fbb04a 0%, #f07820 55%, #c85a12 100%);
+}
+.grad-steel {
+  background-image: linear-gradient(135deg, #d6eef8 0%, #7ec8e3 32%, #3e8ab0 54%, #6fb6d6 62%, #7ec8e3 100%);
+}
+.grad-dual-metal {
+  background-image: linear-gradient(90deg, #79bedd 0%, #a2d2e7 25%, #8797a0 50%, #b5a380 75%, #d6bf94 100%);
+}
+
+/* --- Metallic TEXT fills — large/bold DISPLAY headlines only (AA-safe at scale).
+   One accent moment per section; falls back to a solid tone where unsupported. --- */
+.text-chrome-fill,
+.text-fuel-chrome,
+.text-gold-chrome,
+.text-steel-fill {
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+.text-chrome-fill { background-image: linear-gradient(180deg, #ffffff 0%, #d6d6d6 38%, #9c9c9c 62%, #e4e4e4 100%); }
+.text-fuel-chrome { background-image: linear-gradient(135deg, #fce0be 0%, #f4a24a 34%, #f07820 70%, #c85a12 100%); }
+.text-gold-chrome { background-image: linear-gradient(135deg, #e8c97e 0%, #c8a060 40%, #b89452 70%, #8c6e3a 100%); }
+.text-steel-fill  { background-image: linear-gradient(135deg, #d6eef8 0%, #7ec8e3 40%, #6fb6d6 70%, #3e8ab0 100%); }
+@supports not ((-webkit-background-clip: text) or (background-clip: text)) {
+  .text-chrome-fill { color: #e4e4e4; -webkit-text-fill-color: #e4e4e4; }
+  .text-fuel-chrome { color: #f07820; -webkit-text-fill-color: #f07820; }
+  .text-gold-chrome { color: #c8a060; -webkit-text-fill-color: #c8a060; }
+  .text-steel-fill  { color: #7ec8e3; -webkit-text-fill-color: #7ec8e3; }
+}
+
+/* --- Chrome bevel FRAME — lit-edge variant of the signature 1.5px frame.
+   Wrap any block to add a premium metallic border. --- */
+.chrome-frame {
+  padding: 1.5px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #f2f2f2, #6a6a6a 50%, #d6d6d6);
+}
+.chrome-frame > * {
+  border-radius: 5px;
+}
+/* Steel-blue + gold dual-metal frame for hero badges / founder marks. */
+.dual-frame {
+  padding: 1.5px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #79bedd, #161a1f 52%, #d6bf94);
+}
+.dual-frame > * {
+  border-radius: 5px;
+}
+
+/* --- Chrome PILL chip — status chips, "Open Now," tags. --- */
+.chrome-pill {
+  display: inline-flex;
+  padding: 1.5px;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, #f2f2f2, #6a6a6a 50%, #d6d6d6);
+}
+.chrome-pill > * {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 9999px;
+  background: #141414;
+  padding: 7px 14px;
+}
+
+/* --- Minted "coin" BADGE — circular program/index mark. --- */
+.coin {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  color: #1a1a1a;
+  font-weight: 900;
+  background: linear-gradient(180deg, #f2f2f2 0%, #c4c4c4 16%, #8e8e8e 44%, #6a6a6a 50%, #9c9c9c 56%, #d6d6d6 76%, #7c7c7c 100%);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.65),
+    inset 0 -2px 3px rgba(0, 0, 0, 0.4),
+    0 2px 6px rgba(0, 0, 0, 0.4);
+}
+.coin--fuel { background-image: linear-gradient(135deg, #fce0be 0%, #f4a24a 30%, #c85a12 52%, #e88a3c 60%, #f07820 100%); color: #0b0b0b; }
+.coin--gold { background-image: linear-gradient(135deg, #e8c97e 0%, #c8a060 34%, #8c6e3a 54%, #b89452 62%, #c8a060 100%); color: #0b0b0b; }
+.coin--steel { background-image: linear-gradient(135deg, #d6eef8 0%, #7ec8e3 32%, #3e8ab0 54%, #6fb6d6 62%, #7ec8e3 100%); color: #0b0b0b; }
+
+/* --- Chrome KEYLINE / rule — engineered metallic divider. --- */
+.chrome-rule {
+  height: 1px;
+  border: 0;
+  background: linear-gradient(90deg, transparent, #d6d6d6 18%, #8e8e8e 50%, #d6d6d6 82%, transparent);
+}
+
+/* --- Chrome GLINT — periodic metallic sweep on badges/logo/premium cards. --- */
+.glint {
+  position: relative;
+  overflow: hidden;
+}
+.glint::after {
+  content: "";
+  position: absolute;
+  top: -10%;
+  left: 0;
+  width: 38%;
+  height: 120%;
+  pointer-events: none;
+  background: linear-gradient(105deg, transparent, rgba(255, 255, 255, 0.55) 50%, transparent);
+  transform: skewX(-12deg);
+  animation: lhsGlint 4.5s ease-in-out infinite;
+}
+
+/* --- Animated keyline that DRAWS from the leading edge (lhsDraw). --- */
+.kline {
+  position: relative;
+  height: 1px;
+  background: rgba(176, 176, 176, 0.16);
+}
+.kline::after {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 0;
+  background: linear-gradient(90deg, #f2f2f2, #8e8e8e 50%, #d6d6d6);
+}
+.kline.in::after {
+  animation: lhsDraw 0.9s 0.1s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+}
+
+/* --- Premium dark-section textures. --- */
+.steel-wash {
+  background-image: radial-gradient(120% 90% at 50% -10%, rgba(126, 200, 227, 0.14), transparent 60%);
+}
+.chrome-texture {
+  background-image:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 30%),
+    repeating-linear-gradient(115deg, rgba(214, 214, 214, 0.035) 0 2px, transparent 2px 7px);
+}
+
+/* v2 keyframes (named to match the brand file). */
+@keyframes lhsGlint {
+  0% { transform: translateX(-130%) skewX(-12deg); }
+  60%, 100% { transform: translateX(240%) skewX(-12deg); }
+}
+@keyframes lhsDraw {
+  0% { width: 0; }
+  100% { width: 100%; }
+}
+@keyframes lhsPulse {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
+}
+@keyframes lhsBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.25; }
+}
+@keyframes lhsRoll {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+
+/* Reduced-motion: all metallic motion off (glint/draw/pulse/blink/roll). */
+@media (prefers-reduced-motion: reduce) {
+  .glint::after { animation: none; opacity: 0; }
+  .kline.in::after { animation: none; width: 100%; }
+  .animate-lhs-glint,
+  .animate-lhs-pulse,
+  .animate-lhs-blink,
+  .animate-lhs-roll,
+  .animate-lhs-scan { animation: none !important; }
+}
+
+/* ===================================================================
    Redesign v2 — "freight control-room / wayfinding" design system
    (additive; tokens + Loader contract above are untouched)
    =================================================================== */

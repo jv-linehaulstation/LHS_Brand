@@ -27,31 +27,94 @@ export function DataTag({
   );
 }
 
-/** Live-status chip — the "departures board" landmark. */
+/** Live-status chip — the "departures board" landmark.
+ *  `chrome` swaps the carbon outline for the v2 metallic chrome-pill bezel. */
 export function StatusChip({
   label,
   coord,
   accent = "#F07820",
   live = true,
+  chrome = false,
 }: {
   label: string;
   coord?: string;
   accent?: string;
   live?: boolean;
+  chrome?: boolean;
 }) {
-  return (
-    <span className="inline-flex items-center gap-3 rounded-btn border border-chrome/20 bg-ink/70 px-3.5 py-2 backdrop-blur-sm">
-      <span
-        className={`relative inline-block h-2 w-2 rounded-full ${live ? "pulse-dot" : ""}`}
-        style={{ background: accent, color: accent }}
-        aria-hidden
-      />
-      <span className="font-label text-[10px] uppercase tracking-[0.18em] text-white">
-        {label}
-      </span>
+  const dot = (
+    <span
+      className={`relative inline-block h-2 w-2 rounded-full ${live ? "pulse-dot" : ""}`}
+      style={{ background: accent, color: accent }}
+      aria-hidden
+    />
+  );
+  const inner = (
+    <>
+      {dot}
+      <span className="font-label text-[10px] uppercase tracking-[0.18em] text-white">{label}</span>
       {coord && (
         <span className="tnum hidden font-mono text-[11px] text-chrome sm:inline">{coord}</span>
       )}
+    </>
+  );
+
+  if (chrome) {
+    return (
+      <span className="chrome-pill align-middle">
+        <span>{inner}</span>
+      </span>
+    );
+  }
+  return (
+    <span className="inline-flex items-center gap-3 rounded-btn border border-chrome/20 bg-ink/70 px-3.5 py-2 backdrop-blur-sm">
+      {inner}
+    </span>
+  );
+}
+
+/** Metallic bevel frame — wraps any block in the v2 chrome (or dual-metal) border.
+ *  Optional `glint` adds the periodic chrome sweep (reduced-motion safe). */
+export function ChromeFrame({
+  children,
+  variant = "chrome",
+  glint = false,
+  className = "",
+}: {
+  children: React.ReactNode;
+  variant?: "chrome" | "dual";
+  glint?: boolean;
+  className?: string;
+}) {
+  return (
+    <div
+      className={`${variant === "dual" ? "dual-frame" : "chrome-frame"} ${glint ? "glint" : ""} ${className}`}
+    >
+      {children}
+    </div>
+  );
+}
+
+/** Minted "coin" badge — circular metallic index/program mark. */
+export function Coin({
+  children,
+  tone = "chrome",
+  size = 44,
+  className = "",
+}: {
+  children: React.ReactNode;
+  tone?: "chrome" | "fuel" | "gold" | "steel";
+  size?: number;
+  className?: string;
+}) {
+  const toneClass = tone === "chrome" ? "" : `coin--${tone}`;
+  return (
+    <span
+      className={`coin tnum font-display ${toneClass} ${className}`}
+      style={{ width: size, height: size, fontSize: size * 0.34 }}
+      aria-hidden
+    >
+      {children}
     </span>
   );
 }
