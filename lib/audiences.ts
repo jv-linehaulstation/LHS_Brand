@@ -220,9 +220,9 @@ export const audiences: Record<AudienceKey, Audience> = {
     gallery: ["club", "skydeck"],
     galleryTitle: "Tour The Outriders Club.",
     eyebrow: "OneHome by LineHaul Station",
-    heroPunch: "You're home ~60 days a year. You're paying for 365.",
+    heroPunch: "I need One★Home at both ends of a long road.",
     sub: "Everywhere the road takes you.",
-    desc: "A home you only pay for on the days you're actually in it. OneHome is a resort-quality, gated community built for tractor-trailers that could save you $15,000 or more a year.",
+    desc: "A smarter way to live on the road — built exclusively for professional drivers.",
     heroNote: "Driver membership is 100% free — agree to the Code of Conduct and you're in.",
     scrollHint: "See what an empty home really costs",
     stats: [

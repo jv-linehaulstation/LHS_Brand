@@ -18,6 +18,130 @@ import FlexSpaceCalculator from "@/components/calculators/FlexSpaceCalculator";
 import { audiences, AudienceKey, PHOTOS } from "@/lib/audiences";
 import { site } from "@/lib/site";
 
+/* OneHome Copy Playbook (Revised 3-18-26) — verbatim copy for the /drivers rebuild.
+   Rule: "OneHome" carries NO star in body copy (the One★Home star is logo-only). */
+const ONEHOME = {
+  hero: {
+    verse: [
+      "Truck doesn’t fit in the driveway.",
+      "Can’t live out of some truck stop lot.",
+      "What if there was a new way for truckers",
+      "to make the most of what they’ve got?",
+    ],
+    blurb: "A smarter way to live on the road — built exclusively for professional drivers.",
+    paras: [
+      "Truck drivers have always had to choose between two imperfect options: paying for a home they rarely use or living out of truck stops and parking lots.",
+      "OneHome introduces a completely new model. Built specifically for professional drivers, it gives you access to a nationwide network of LineHaul Station locations designed to feel like home.",
+    ],
+  },
+  core: {
+    kicker: "You’re paying for 365 days. You’re only using about 100.",
+    headline: "Here’s A New & Better Option",
+    subhead: "Most drivers are paying for a home they barely live in.",
+    blurb: "Stop paying for what you don’t use.",
+    paras: [
+      "Housing is expensive – rent/mortgage, taxes, insurance, utilities, maintenance – and we pay for it 365 DAYS A YEAR whether we’re home or not…. UNTIL NOW. OneHome eliminates the financial waste for truckers so that they keep more of their hard-earned income and better save for retirement. With our proprietary OneHome program, LineHaul Station becomes your new home, and you ONLY PAY FOR THE DAYS YOU USE IT.",
+      "Life becomes a much better experience with daily access to resort-quality amenities and options for mail service, personal vehicle parking and self-storage. Start with the number of days you need and increase your use whenever you’re ready. No more flushing money down the drain.",
+      "We anticipate truckers could SAVE $15,000 or more per year on ordinary living expenses and those savings could grow into a staggering amount of money if carefully invested over the next 30-40 years!",
+    ],
+  },
+  value: {
+    headline: "For a lot less money, a far superior experience.",
+    subhead: "What Is Home For You Today?",
+    prompt: "How often are you there? Where do you park your truck?",
+    prompts: [
+      "Renting a Small Basic Apartment?",
+      "Renting or Owning a Traditional Home?",
+      "Random Parking Lots with No Services?",
+    ],
+    blurb: "Upgrade your lifestyle on the road — often while spending less.",
+    table: [
+      { trad: "Pay for 365 days", one: "Pay only for days you use" },
+      { trad: "Use maybe 60–120 days", one: "Start at 60 days, grow anytime" },
+      { trad: "Mortgage + interest", one: "No mortgage, no interest" },
+      { trad: "Full utilities year-round", one: "No utility burden" },
+      { trad: "Maintenance and repairs", one: "Zero maintenance" },
+      { trad: "Can’t park your truck", one: "Secure truck parking included" },
+      { trad: "Truck stop when on the road", one: "Resort-style network nationwide" },
+    ],
+  },
+  amenities: {
+    headline: "Absolutely Amazing Amenities",
+    subhead: "Everything you need — built for life on the road.",
+    blurb: "Designed to elevate every part of your day.",
+    intro:
+      "Every LineHaul Station location is built to deliver a premium experience for drivers. From food and relaxation to fitness and convenience, every detail is designed to help you recharge, reset, and enjoy your time off the road in a way that simply hasn’t existed in trucking before.",
+    cards: [
+      { name: "Member’s Grill", meta: "great food • entertainment • relax", blurb: "A real kitchen for real meals — your days of eating whatever’s under the heat lamp are over.", img: PHOTOS.clubDining },
+      { name: "Sky Deck", meta: "outdoor firepits • water features • star gazing", blurb: "Your open-air escape — kick back and take it all in.", img: PHOTOS.skydeck },
+      { name: "Digital Den", meta: "gamer’s center • billiards • trap & skeet", blurb: "An experiential center built for downtime — unwind after a long day behind the wheel.", img: PHOTOS.gamerDen1 },
+      { name: "Fitness Studio", meta: "cardio • weights • showers • lockers", blurb: "Stay strong on the road — everything you need to move, stretch, and recharge.", img: PHOTOS.fitness },
+      { name: "Laundry & More", meta: "washers • dryers • daily essentials", blurb: "Clean clothes made easy — feel fresh and ready for the road.", img: PHOTOS.laundry },
+      { name: "Gear Shop", meta: "logo apparel • accessories • sundries", blurb: "Everything a driver needs, right where you need it.", img: PHOTOS.gearShop }, // TODO(JJ): photo — white ¾-zip + real LHS logo
+      { name: "Resort Pool & Spa", meta: "outdoor pool • hot tubs • sun & fun", blurb: "Resort-level recovery — because life on the road shouldn’t mean skipping rest.", img: PHOTOS.waterFeature },
+      { name: "Camp K9", meta: "dog park • relief stations • driver-friendly", blurb: "Your co-pilot deserves a break too.", img: PHOTOS.clubPatio },
+    ],
+  },
+  fleet: {
+    headline: "Fleet Services",
+    subhead: "repairs • maintenance • inspections • truck wash",
+    para:
+      "It’s no secret that preventive maintenance is critically important for truckers. The trick is finding a nearby shop that does good work at a fair price on your schedule. No matter what type of service you need, LineHaul Station makes it easy as a one-stop shop solution with super convenient access while you’re relaxing at your new home. It doesn’t get any better than this!",
+    // TODO(JJ): supply dedicated Fleet Services photos; using LHS facility renderings for now.
+    cards: [
+      { name: "Repairs", img: PHOTOS.fleetEntry1 },
+      { name: "Maintenance", img: PHOTOS.fleetExit },
+      { name: "Inspections", img: PHOTOS.fleetEntry2 },
+      { name: "Truck Wash", img: PHOTOS.truckWashEntry },
+      { name: "Fair Labor Rates", img: PHOTOS.fleetFuel },
+    ],
+  },
+  network: {
+    headline: "Everywhere the Road Takes You",
+    subhead: "A growing nationwide network of LineHaul Station locations.",
+    blurb: "Home isn’t one place. It’s a system.",
+    paras: [
+      "OneHome is built on a network that continues to grow. As new locations come online, your access expands — giving you more places to call home, wherever the road takes you.",
+      "This isn’t just a single destination. It’s a living system designed to move with you. The more the network grows, the more valuable your membership becomes — and the fewer nights you’ll ever need to spend at a truck stop again.",
+    ],
+    markets: [
+      "San Antonio", "El Paso", "Houston", "Dallas", "Mobile", "Jackson", "Memphis", "Knoxville",
+      "Charlotte", "Atlanta", "Wilmington", "Richmond", "Carlisle", "Cleveland", "Detroit", "Chicago",
+      "Kansas City", "Omaha", "Oklahoma City", "Albuquerque", "Denver", "Salt Lake City", "Phoenix",
+      "Los Angeles", "Kingman", "Las Vegas", "San Francisco", "Portland", "Seattle", "Butte",
+      "Dickinson", "Minneapolis", "Indianapolis", "Philadelphia", "Savannah", "Tampa", "Nashville", "St. Louis",
+    ],
+  },
+  homehub: {
+    headline: "We have EVERYTHING you need.",
+    subhead: "Mail Services • Personal Vehicle • Storage Lockers",
+    blurb: "Your Home Hub anchors your life on the road.",
+    paras: [
+      "Every OneHome member selects a Home Hub within the LineHaul Station network. Your Home Hub serves as your personal anchor — it’s where your mailbox lives, where your personal vehicle is securely parked, and where your belongings are stored.",
+      "It’s your address, your storage, and your place within the network. But the real power of OneHome is that home doesn’t stop there. The entire LineHaul Station network is your home — your Home Hub is just where your stuff is.",
+      "From secure covered or garage parking to private storage units and reliable mail services, your Home Hub gives you a place to manage your life — not just your route.",
+    ],
+  },
+  calc: {
+    headline: "The math might surprise you.",
+    subhead: "You could save $15,000–$20,000 per year.",
+    blurb: "See how your current housing costs compare to a OneHome membership.",
+    paras: [
+      "Many drivers spend $2,000–$2,500 per month maintaining a home they barely use. By switching to a OneHome 60-day membership, drivers in that range could save over $1,200 every month while upgrading their lifestyle on the road.",
+      "Enter your income, current housing costs, utilities, and other living expenses — and see what your life could look like with OneHome instead.",
+    ],
+  },
+  join: {
+    headline: "Join OneHome",
+    subhead: "This is a limited early-access program.",
+    blurb: "Join the interest list to learn more.",
+    paras: [
+      "OneHome is currently in pre-launch. By joining now, you’ll get early access to availability, program details, and next steps as locations come online.",
+      "LineHaul Station’s OneHome program is a national pre-sales effort. There are no contracts or payments required at this stage — you’re simply getting on the list so that when we’re ready, you’re first in line.",
+    ],
+  },
+};
+
 export default function AudiencePage({ audience }: { audience: AudienceKey }) {
   const a = audiences[audience];
   const ac = a.accent;
@@ -82,10 +206,18 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
         </Reveal>
         <div className="mt-7 flex flex-col gap-7 lg:flex-row lg:items-end lg:justify-between">
           <Reveal delay={230}>
-            <div className="font-script text-[clamp(24px,3.4vw,44px)] font-semibold" style={{ color: ac }}>
-              {a.sub}
-            </div>
-            <p className="mt-3 max-w-[52ch] text-pretty font-body text-[clamp(17px,1.8vw,21px)] leading-relaxed text-[#dadada]">
+            {audience === "drivers" ? (
+              <div className="font-script text-[clamp(20px,2.7vw,34px)] font-semibold leading-[1.3]" style={{ color: ac }}>
+                {ONEHOME.hero.verse.map((line, i) => (
+                  <span key={i} className="block">{line}</span>
+                ))}
+              </div>
+            ) : (
+              <div className="font-script text-[clamp(24px,3.4vw,44px)] font-semibold" style={{ color: ac }}>
+                {a.sub}
+              </div>
+            )}
+            <p className="mt-4 max-w-[52ch] text-pretty font-body text-[clamp(17px,1.8vw,21px)] leading-relaxed text-[#dadada]">
               {a.desc}
             </p>
           </Reveal>
@@ -377,41 +509,38 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
 
   /* (Services To Suit You list deleted — the Tour gallery is the single club-amenities visual.) */
 
-  /* ============ ★ AN OUNCE OF PREVENTION ★ (white) — LH Fleet Services, image cards ============ */
-  const fleetSection = a.outriders && (
-    <Section variant="light" className="py-[clamp(70px,11vh,140px)]">
-      <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
+  /* ============ §5 FLEET SERVICES (ink) — playbook copy, image cards ============ */
+  const fleetSection = audience === "drivers" && (
+    <Section variant="ink" className="py-[clamp(70px,11vh,140px)]">
+      <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
         <SectionHead
-          kicker={a.outriders.fleet.eyebrow}
-          title={<><span style={{ color: ac }}>★</span> {a.outriders.fleet.headline} <span style={{ color: ac }}>★</span></>}
+          title={<><span style={{ color: ac }}>★</span> {ONEHOME.fleet.headline} <span style={{ color: ac }}>★</span></>}
           accent={ac}
           size="xl"
-          tone="onLight"
         />
         <Reveal delay={120}>
-          <p className="text-pretty font-body text-[clamp(17px,1.8vw,20px)] leading-relaxed text-[#3a3733]">{a.outriders.fleet.intro}</p>
+          <div className="font-mono text-[12px] uppercase tracking-[0.16em]" style={{ color: ac }}>{ONEHOME.fleet.subhead}</div>
+          <p className="mt-3 text-pretty font-body text-[clamp(16px,1.6vw,19px)] leading-relaxed text-[#dadada]">{ONEHOME.fleet.para}</p>
         </Reveal>
       </div>
-      <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {a.outriders.fleet.items.map((it, i) => (
-          <Reveal key={it.name} delay={(i % 3) * 60} className="lift group overflow-hidden rounded-card border border-[#E2DDD6] bg-white">
+      <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+        {ONEHOME.fleet.cards.map((c, i) => (
+          <Reveal key={c.name} delay={(i % 5) * 50} className="lift group overflow-hidden rounded-card border border-chrome/15">
             <div className="relative aspect-[4/3] overflow-hidden bg-carbon">
               <Image
-                src={it.img}
-                alt={it.name}
+                src={c.img}
+                alt={c.name}
                 fill
                 loading="lazy"
                 className="img-grade object-cover transition-transform duration-700 group-hover:scale-105"
-                sizes="(max-width: 768px) 100vw, 33vw"
+                sizes="(max-width: 768px) 50vw, 20vw"
               />
-              <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_42%,rgba(11,11,11,0.82))]" />
+              <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_42%,rgba(11,11,11,0.85))]" />
               <div className="absolute inset-x-0 top-0 h-0.5 opacity-80" style={{ background: `linear-gradient(90deg, ${ac}, transparent)` }} aria-hidden />
-              <div className="absolute inset-x-0 bottom-0 flex items-center gap-2.5 p-4">
-                <span className="tnum font-mono text-[12px]" style={{ color: ac }}>{String(i + 1).padStart(2, "0")}</span>
-                <div className="font-display text-[15px] font-extrabold uppercase leading-tight text-white">{it.name}</div>
+              <div className="absolute inset-x-0 bottom-0 p-4">
+                <div className="font-display text-[14px] font-extrabold uppercase leading-tight text-white">{c.name}</div>
               </div>
             </div>
-            <p className="p-5 font-body text-[14px] leading-snug text-[#6a655e]">{it.note}</p>
           </Reveal>
         ))}
       </div>
@@ -458,28 +587,19 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
 
   /* (We're Ready To Roll band deleted — the webinar video is merged into Welcome To The Club above.) */
 
-  /* ============ ONEHOME CALCULATOR + EMPTY-HOME STORY (blueprint) — drivers; absorbs the Problem section ============ */
-  const calcStorySection = a.outriders && (
+  /* ============ §8 LIFESTYLE CALCULATOR (blueprint) — calculator + playbook lead-in ============ */
+  const calcStorySection = audience === "drivers" && (
     <Section variant="blueprint" id="numbers" className="py-[clamp(70px,11vh,140px)]">
       <div className="grid gap-[clamp(28px,4vw,56px)] lg:grid-cols-[1.25fr_0.75fr] lg:items-start">
         <div>
           <OneHomeCalculator accent={ac} />
         </div>
         <div className="lg:sticky lg:top-28">
-          <SectionHead kicker={a.problem.kicker} title={a.problem.headline} accent={ac} size="base" />
+          <h2 className="font-display text-[clamp(26px,3.4vw,44px)] font-black uppercase leading-[0.95] tracking-[-0.02em] text-white">{ONEHOME.calc.headline}</h2>
+          <p className="mt-3 font-mono text-[12px] uppercase tracking-[0.16em]" style={{ color: ac }}>{ONEHOME.calc.subhead}</p>
           <Reveal delay={120}>
-            <p className="mt-5 max-w-[46ch] text-pretty font-body text-[clamp(16px,1.7vw,20px)] leading-relaxed text-[#dadada]">
-              {a.problem.body}
-            </p>
-          </Reveal>
-          <Reveal delay={160}>
-            <div className="mt-6">
-              {a.problem.counters.map((c, i) => (
-                <div key={i} className="flex items-baseline gap-5 border-t border-chrome/15 py-4 first:border-t-0 first:pt-0">
-                  <CountUp value={c.big} style={{ color: ac }} className="tnum min-w-[92px] font-display text-[clamp(24px,3vw,36px)] font-black leading-none" />
-                  <span className="font-body text-[14px] leading-snug text-chrome">{c.label}</span>
-                </div>
-              ))}
+            <div className="mt-5 space-y-4 font-body text-[clamp(15px,1.5vw,18px)] leading-relaxed text-[#dadada]">
+              {ONEHOME.calc.paras.map((p, i) => <p key={i}>{p}</p>)}
             </div>
           </Reveal>
         </div>
@@ -575,25 +695,203 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
     </Section>
   );
 
+  /* ============ §2 CORE SALES BLOCK (white) — lead with money ============ */
+  const coreSection = audience === "drivers" && (
+    <Section variant="light" id="core" className="py-[clamp(70px,11vh,140px)]">
+      <div className="grid gap-x-16 gap-y-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
+        <div>
+          <div className="font-label text-[11px] uppercase tracking-[0.24em]" style={{ color: ac }}>{ONEHOME.core.kicker}</div>
+          <h2 className="mt-4 text-balance font-display text-[clamp(34px,5.6vw,84px)] font-black uppercase leading-[0.92] tracking-[-0.025em] text-ink">{ONEHOME.core.headline}</h2>
+          <p className="mt-5 font-script text-[clamp(20px,2.4vw,30px)] font-semibold" style={{ color: ac }}>{ONEHOME.core.subhead}</p>
+        </div>
+        <Reveal delay={120}>
+          <div className="space-y-4 font-body text-[clamp(16px,1.6vw,19px)] leading-relaxed text-[#3a3733]">
+            {ONEHOME.core.paras.map((p, i) => <p key={i}>{p}</p>)}
+          </div>
+          <p className="mt-6 font-display text-[clamp(18px,2vw,26px)] font-black uppercase leading-tight text-ink">{ONEHOME.core.blurb}</p>
+        </Reveal>
+      </div>
+    </Section>
+  );
+
+  /* ============ §3 VALUE STATEMENT + comparison table (ink) ============ */
+  const valueSection = audience === "drivers" && (
+    <Section variant="ink" className="py-[clamp(70px,11vh,140px)]">
+      <div className="grid gap-x-16 gap-y-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
+        <div>
+          <h2 className="text-balance font-display text-[clamp(30px,4.4vw,64px)] font-black uppercase leading-[0.95] tracking-[-0.02em] text-white">{ONEHOME.value.headline}</h2>
+          <div className="mt-6 font-mono text-[12px] uppercase tracking-[0.18em]" style={{ color: ac }}>{ONEHOME.value.subhead}</div>
+          <p className="mt-2 font-body text-[clamp(15px,1.5vw,18px)] text-chrome">{ONEHOME.value.prompt}</p>
+          <ul className="mt-5 space-y-2.5">
+            {ONEHOME.value.prompts.map((q) => (
+              <li key={q} className="flex items-baseline gap-3 font-body text-[15px] text-[#dadada]">
+                <span className="h-1.5 w-1.5 flex-none translate-y-[-2px] rounded-full" style={{ background: ac }} aria-hidden />
+                {q}
+              </li>
+            ))}
+          </ul>
+          <p className="mt-6 font-script text-[clamp(20px,2.4vw,30px)] font-semibold" style={{ color: ac }}>{ONEHOME.value.blurb}</p>
+        </div>
+        <Reveal delay={120} dir="right">
+          <div className="overflow-hidden rounded-[8px] border border-chrome/15">
+            <div className="grid grid-cols-2">
+              <div className="bg-ink2 px-5 py-3 font-mono text-[11px] uppercase tracking-[0.14em] text-chrome">Traditional Housing</div>
+              <div className="px-5 py-3 font-mono text-[11px] uppercase tracking-[0.14em] text-ink" style={{ background: ac }}>OneHome</div>
+            </div>
+            {ONEHOME.value.table.map((r) => (
+              <div key={r.trad} className="grid grid-cols-2 border-t border-chrome/12">
+                <div className="px-5 py-3.5 font-body text-[14px] leading-snug text-chrome">{r.trad}</div>
+                <div className="border-l border-chrome/12 px-5 py-3.5 font-body text-[14px] font-semibold leading-snug text-white">{r.one}</div>
+              </div>
+            ))}
+          </div>
+        </Reveal>
+      </div>
+    </Section>
+  );
+
+  /* ============ §4 AMENITIES (white) — 8 image cards; the single club-amenities section ============ */
+  const amenitiesSection = audience === "drivers" && (
+    <Section variant="light" className="py-[clamp(70px,11vh,140px)]">
+      <div className="grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
+        <SectionHead title={ONEHOME.amenities.headline} accent={ac} size="xl" tone="onLight" />
+        <Reveal delay={120}>
+          <p className="font-display text-[clamp(16px,1.7vw,20px)] font-bold uppercase tracking-[0.01em] text-ink">{ONEHOME.amenities.subhead}</p>
+          <p className="mt-3 font-body text-[clamp(15px,1.5vw,18px)] leading-relaxed text-[#3a3733]">{ONEHOME.amenities.intro}</p>
+        </Reveal>
+      </div>
+      <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {ONEHOME.amenities.cards.map((c, i) => (
+          <Reveal key={c.name} delay={(i % 4) * 60} className="lift group overflow-hidden rounded-card border border-[#E2DDD6] bg-white">
+            <div className="relative aspect-[4/3] overflow-hidden bg-carbon">
+              <Image src={c.img} alt={c.name} fill loading="lazy" className="img-grade object-cover transition-transform duration-700 group-hover:scale-105" sizes="(max-width: 768px) 50vw, 25vw" />
+              <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_45%,rgba(11,11,11,0.85))]" />
+              <div className="absolute inset-x-0 top-0 h-0.5 opacity-80" style={{ background: `linear-gradient(90deg, ${ac}, transparent)` }} aria-hidden />
+              <div className="absolute inset-x-0 bottom-0 p-4">
+                <div className="font-display text-[16px] font-extrabold uppercase leading-tight text-white">{c.name}</div>
+                <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.06em]" style={{ color: ac }}>{c.meta}</div>
+              </div>
+            </div>
+            <p className="p-4 font-body text-[13.5px] leading-snug text-[#6a655e]">{c.blurb}</p>
+          </Reveal>
+        ))}
+      </div>
+    </Section>
+  );
+
+  /* ============ §6 NETWORK / MAP (blueprint) — markets + West Memphis proof ============ */
+  const mapSection = audience === "drivers" && (
+    <Section variant="blueprint" className="py-[clamp(70px,11vh,140px)]">
+      <div className="grid gap-x-16 gap-y-10 lg:grid-cols-[1fr_0.9fr] lg:items-start">
+        <div>
+          <h2 className="text-balance font-display text-[clamp(34px,5.6vw,84px)] font-black uppercase leading-[0.92] tracking-[-0.025em] text-white">{ONEHOME.network.headline}</h2>
+          <p className="mt-4 font-mono text-[12px] uppercase tracking-[0.16em]" style={{ color: ac }}>{ONEHOME.network.subhead}</p>
+          <div className="mt-6 space-y-4 font-body text-[clamp(16px,1.6vw,19px)] leading-relaxed text-[#dadada]">
+            {ONEHOME.network.paras.map((p, i) => <p key={i}>{p}</p>)}
+          </div>
+          <p className="mt-5 font-script text-[clamp(20px,2.4vw,30px)] font-semibold" style={{ color: ac }}>{ONEHOME.network.blurb}</p>
+        </div>
+        <Reveal delay={120} dir="right" className="chrome-frame glint">
+          <div className="bg-ink/85 p-7 backdrop-blur">
+            <div className="font-label text-[10px] uppercase tracking-[0.2em]" style={{ color: ac }}>First Home Hub · Open Now</div>
+            <div className="mt-3 font-display text-[30px] font-black uppercase leading-none text-white">{a.memphis.address}</div>
+            <div className="tnum mt-1.5 font-mono text-[13px] text-chrome">{a.memphis.addressSub}</div>
+            <p className="mt-4 font-body text-[14px] leading-relaxed text-chrome">{a.memphis.body}</p>
+            <div className="chrome-rule mt-5" />
+            <div className="mt-5"><StatusChip chrome label="Live now" coord="35.14°N / 90.18°W" accent={ac} /></div>
+          </div>
+        </Reveal>
+      </div>
+      <div className="mt-12">
+        <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-chrome">Current planning markets</div>
+        <div className="mt-4 flex flex-wrap gap-2">
+          {ONEHOME.network.markets.map((m) => (
+            <span key={m} className="rounded-btn border border-chrome/20 bg-ink/50 px-3 py-1.5 font-mono text-[12px] text-chrome">{m}</span>
+          ))}
+        </div>
+      </div>
+    </Section>
+  );
+
+  /* ============ §7 HOME HUB / SERVICES (white) ============ */
+  const homeHubSection = audience === "drivers" && (
+    <Section variant="light" className="py-[clamp(70px,11vh,140px)]">
+      <div className="grid gap-x-16 gap-y-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+        <div>
+          <h2 className="text-balance font-display text-[clamp(30px,4.6vw,68px)] font-black uppercase leading-[0.95] tracking-[-0.02em] text-ink">{ONEHOME.homehub.headline}</h2>
+          <p className="mt-4 font-mono text-[12px] uppercase tracking-[0.16em]" style={{ color: ac }}>{ONEHOME.homehub.subhead}</p>
+          <p className="mt-5 font-script text-[clamp(20px,2.4vw,30px)] font-semibold" style={{ color: ac }}>{ONEHOME.homehub.blurb}</p>
+        </div>
+        <Reveal delay={120}>
+          <div className="space-y-4 font-body text-[clamp(16px,1.6vw,19px)] leading-relaxed text-[#3a3733]">
+            {ONEHOME.homehub.paras.map((p, i) => <p key={i}>{p}</p>)}
+          </div>
+        </Reveal>
+      </div>
+    </Section>
+  );
+
+  /* ============ §10 JOIN ONEHOME (gradient) — interest form, last ============ */
+  /* FLAG(JJ): the playbook lists Membership Director J.J. Swenson 602-858-8000 / jj@linehaulstation.com,
+     but lib/site.ts is 602-428-2222 / info@linehaulstation.com. Using the site's canonical values until resolved. */
+  const joinOneHomeSection = audience === "drivers" && (
+    <Section variant="gradient" accent={ac} id="contact" className="py-[clamp(70px,11vh,140px)]">
+      <div className="grid gap-[clamp(28px,4vw,64px)] lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+        <div className="lg:sticky lg:top-28">
+          <div className="font-label text-[11px] uppercase tracking-[0.24em]" style={{ color: ac }}>{ONEHOME.join.subhead}</div>
+          <h2 className="mt-3 font-display text-[clamp(34px,5vw,80px)] font-black uppercase leading-[0.92] tracking-[-0.025em] text-white">{ONEHOME.join.headline}</h2>
+          <Reveal delay={100}>
+            <div className="mt-5 max-w-[46ch] space-y-4 font-body text-[clamp(16px,1.6vw,20px)] leading-relaxed text-[#dadada]">
+              {ONEHOME.join.paras.map((p, i) => <p key={i}>{p}</p>)}
+            </div>
+          </Reveal>
+          <Reveal delay={140}>
+            <ChromeFrame className="mt-9">
+              <div className="grid grid-cols-1 gap-px overflow-hidden bg-chrome/10 sm:grid-cols-3 lg:grid-cols-1">
+                <a href={site.phoneHref} className="bg-ink/80 p-5 backdrop-blur transition-colors hover:bg-ink/95">
+                  <div className="font-mono text-[11px] uppercase tracking-[0.2em]" style={{ color: ac }}>Call</div>
+                  <div className="tnum mt-2 font-mono text-[15px] text-white">{site.phone}</div>
+                </a>
+                <a href={site.emailHref} className="bg-ink/80 p-5 backdrop-blur transition-colors hover:bg-ink/95">
+                  <div className="font-mono text-[11px] uppercase tracking-[0.2em]" style={{ color: ac }}>Email</div>
+                  <div className="mt-2 break-words font-mono text-[15px] text-white">{site.email}</div>
+                </a>
+                <div className="bg-ink/80 p-5 backdrop-blur">
+                  <div className="font-mono text-[11px] uppercase tracking-[0.2em]" style={{ color: ac }}>Visit</div>
+                  <div className="mt-2 font-mono text-[15px] text-white">West Memphis, AR</div>
+                  <div className="mt-1 font-mono text-[12px] text-chrome">{site.domainLabel}</div>
+                </div>
+              </div>
+            </ChromeFrame>
+          </Reveal>
+        </div>
+        <Reveal delay={120} dir="right">
+          <JoinForm accent={ac} accentDark={a.accentDark} submitLabel="Join OneHome" />
+        </Reveal>
+      </div>
+    </Section>
+  );
+
   return (
     <main className="min-h-screen bg-ink">
       <Nav accent={ac} active={a.key} />
       {hero}
 
-      {a.outriders ? (
-        /* DRIVERS — join cluster on top (welcome+video → membership → club tour → fleet → space),
-           then the OneHome calculator + empty-home story and proof below. No duplicated sections. */
+      {audience === "drivers" ? (
+        /* DRIVERS — OneHome Copy Playbook flow, then the Outriders free-membership block, then Join OneHome. */
         <>
+          {coreSection}
+          {valueSection}
+          {amenitiesSection}
+          {fleetSection}
+          {mapSection}
+          {homeHubSection}
+          {calcStorySection}
+          {/* secondary — Outriders Club (free membership), distinct from paid OneHome */}
           {storySection}
           {stepsSection}
-          {gallerySection}
-          {fleetSection}
           {spaceSection}
-          {calcStorySection}
-          {roadSection}
-          {howItWorksSection}
-          {memphisSection}
-          {networkSection}
+          {joinOneHomeSection}
         </>
       ) : (
         /* CARRIERS / BROKERS / SHIPPERS / GOVERNMENT — template order */
@@ -608,10 +906,10 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
           {gallerySection}
           {memphisSection}
           {networkSection}
+          {letsTalkSection}
         </>
       )}
 
-      {letsTalkSection}
       <Footer />
     </main>
   );

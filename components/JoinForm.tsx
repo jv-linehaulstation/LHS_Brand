@@ -32,9 +32,11 @@ const TEXT_FIELDS: Txt[] = [
 export default function JoinForm({
   accent = "#F07820",
   accentDark = "#C85A12",
+  submitLabel = "Join Free.",
 }: {
   accent?: string;
   accentDark?: string;
+  submitLabel?: string;
 } = {}) {
   const ACCENT = accent;
   const ACCENT_DARK = accentDark;
@@ -183,7 +185,7 @@ export default function JoinForm({
           className="mt-6 inline-flex w-full items-center justify-center gap-2.5 rounded-btn px-8 py-[18px] font-label text-[12px] uppercase tracking-[0.16em] text-ink transition hover:brightness-110 active:scale-[0.99]"
           style={{ background: `linear-gradient(135deg, ${ACCENT}, ${ACCENT_DARK})` }}
         >
-          Join Free. <span aria-hidden>→</span>
+          {submitLabel} <span aria-hidden>→</span>
         </button>
 
         <p className="mt-4 text-center font-body text-[13px] text-chrome">
