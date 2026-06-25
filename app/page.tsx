@@ -51,7 +51,7 @@ const PROGRAMS: {
 }[] = [
   { name: "FlexSpace", tagline: "It's YOUR Terminal Network.", blurb: "Shared-use terminal access sold in increments — Guest Pass, Proprietary Membership, or Dedicated Space. Carrier-facing.", accent: "#4878A8", href: "/carriers", coin: "steel", coinImg: "/assets/coin-flexspace.png" },
   { name: "OneHome", tagline: "Everywhere The Road Takes You.", blurb: "A private, resort-quality community network built exclusively for America's truckers. Driver-facing.", accent: "#F07820", href: "/drivers", coin: "fuel", coinImg: "/assets/coin-onehome.png" },
-  { name: "Outriders Club", tagline: "The Rig Carlton.", blurb: "A 25,000+ sq ft private drivers club — restaurant, fitness, showers, gaming, rooftop sky deck, and more.", accent: "#C8A060", href: "/join", coin: "gold" },
+  { name: "Outriders Club", tagline: "The Rig Carlton.", blurb: "A 25,000+ sq ft private drivers club — restaurant, fitness, showers, gaming, rooftop sky deck, and more.", accent: "#C8A060", href: "/join", coin: "gold", coinImg: "/assets/coin-outriders.png" },
 ];
 
 // Board advisors (pulled from /leadership) — shown small on the home page.
