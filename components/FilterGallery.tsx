@@ -39,7 +39,7 @@ const CHIPS: { key: string; label: string }[] = [
   { key: "facilities", label: "Facilities" },
 ];
 
-const LINE = "#E2DDD6";
+const LINE = "rgba(255,255,255,0.18)";  // dark hairline
 const CARBON = "#0B0B0B";
 
 export default function FilterGallery() {
@@ -87,7 +87,7 @@ export default function FilterGallery() {
               style={{
                 background: on ? "#F07820" : "transparent",
                 borderColor: on ? "#F07820" : LINE,
-                color: on ? CARBON : "#4a463f",
+                color: on ? CARBON : "#cfcfcf",
               }}
             >
               {c.label}

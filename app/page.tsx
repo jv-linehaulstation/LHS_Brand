@@ -22,9 +22,9 @@ const HERO_VIDEO =
 
 // Full-width gutter — ~100px on desktop, collapses cleanly on phones.
 const PAD = "gutter";
-const WHITE = "#F4F2EF";
-const CARBON = "#0B0B0B";
-const LINE_L = "#E2DDD6";
+const WHITE = "#0E0E10";  // dark-luxury skin: former cream section bg
+const CARBON = "#ffffff";  // dark-luxury skin: former dark heading text -> white
+const LINE_L = "rgba(255,255,255,0.12)";  // dark-luxury skin: hairline
 
 const SLIDES: Slide[] = [
   { src: "/assets/building-seq/01.jpg", label: "Terminal · Exterior" },
@@ -78,7 +78,7 @@ function Kick({ children, accent = "#F07820", center = false }: { children: Reac
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-ink">
+    <main className="min-h-screen bg-ink font-sans text-white">
       <GlassNav sectionLinks={[]} cta={{ href: "/join", label: "Join Free" }} />
 
       {/* ============ 1. HERO [B] — video, copy higher, fade into next ============ */}
@@ -98,7 +98,7 @@ export default function Home() {
             <span className="outline-head" style={{ ["--ac" as string]: "#F07820" }}>Coming.</span>
           </Reveal>
           <Reveal delay={180}>
-            <p className="mt-6 max-w-[56ch] text-pretty font-body text-[clamp(17px,1.8vw,22px)] leading-relaxed text-[#dadada]">
+            <p className="mt-6 max-w-[56ch] text-pretty text-[clamp(17px,1.8vw,22px)] leading-relaxed text-[#dadada]">
               A modern freight relay network built to get America&apos;s best drivers home — rested,
               respected, and proud of where they park.
             </p>
@@ -147,11 +147,11 @@ export default function Home() {
               <span style={{ color: CARBON }}>Built By People Who&apos;ve Done It </span>
               <span className="outline-head" style={{ ["--ac" as string]: "#F07820" }}>Before.</span>
             </h2>
-            <p className="mt-5 font-body text-[clamp(16px,1.5vw,19px)] font-medium leading-[1.5]" style={{ color: CARBON }}>
+            <p className="mt-5 text-[clamp(16px,1.5vw,19px)] font-medium leading-[1.5]" style={{ color: CARBON }}>
               LineHaul Station didn&apos;t start with trucks. It started with a question: why does the
               industry that moves America treat its best drivers the worst?
             </p>
-            <p className="mt-4 font-body text-[clamp(16px,1.5vw,17px)] leading-relaxed" style={{ color: "#3a3733" }}>
+            <p className="mt-4 text-[clamp(16px,1.5vw,17px)] leading-relaxed" style={{ color: "#dadada" }}>
               We&apos;re building the answer — real terminals, real amenities, and a national relay that
               lowers the cost of every mile while getting the best drivers home, rested and respected.
               The same standard runs through every Hub, Service Center, and word we write.
@@ -160,7 +160,7 @@ export default function Home() {
 
           {/* Col 2 — Jeff (contained square headshot), centered to balance the 3 cols */}
           <Reveal delay={80} className="flex flex-col lg:items-center lg:text-center">
-            <div className="font-mono text-[11px] uppercase tracking-[0.2em]" style={{ color: "#6a655e" }}>Founder</div>
+            <div className="font-mono text-[11px] uppercase tracking-[0.2em]" style={{ color: "#9a9a9a" }}>Founder</div>
             <ChromeFrame variant="dual" glint className="mt-5 w-full max-w-[280px]">
               <div className="relative aspect-square w-full overflow-hidden bg-carbon">
                 <Image src="https://static.wixstatic.com/media/84a10c_7dfa17aed1604937b1d1dd98258ee10a~mv2.png/v1/fill/w_640,h_800,al_c,q_90/Bio_JS-23-1.png" alt="Jeff Swenson, Founder & CEO" fill className="object-cover object-top" sizes="280px" />
@@ -168,7 +168,7 @@ export default function Home() {
             </ChromeFrame>
             <div className="mt-5 font-display text-[clamp(20px,2.2vw,26px)] font-black uppercase leading-tight" style={{ color: CARBON }}>Jeff Swenson</div>
             <div className="mt-1 font-mono text-[11px] uppercase tracking-[0.12em] text-fuel">Founder &amp; CEO</div>
-            <p className="mt-4 max-w-[42ch] font-body text-[clamp(16px,1.5vw,17px)] leading-relaxed lg:mx-auto" style={{ color: "#3a3733" }}>
+            <p className="mt-4 max-w-[42ch] text-[clamp(16px,1.5vw,17px)] leading-relaxed lg:mx-auto" style={{ color: "#dadada" }}>
               Jeff spent 35 years and more than $2&nbsp;billion building residential, commercial, and
               logistics real estate — then brought that standard to freight: treat the industry&apos;s best
               drivers with dignity and respect, and never compromise on quality.
@@ -181,7 +181,7 @@ export default function Home() {
 
           {/* Col 3 — Board Advisors (stacked) */}
           <Reveal delay={140}>
-            <div className="font-mono text-[11px] uppercase tracking-[0.2em]" style={{ color: "#6a655e" }}>Board Advisors</div>
+            <div className="font-mono text-[11px] uppercase tracking-[0.2em]" style={{ color: "#9a9a9a" }}>Board Advisors</div>
             <div className="mt-4 flex flex-col">
               {ADVISORS.map((p) => (
                 <div key={p.name} className="flex items-start gap-4 border-t py-4 first:border-t-0 first:pt-0" style={{ borderColor: LINE_L }}>
@@ -191,12 +191,12 @@ export default function Home() {
                   <div className="min-w-0">
                     <div className="font-display text-[15px] font-black uppercase leading-tight tracking-[0.02em]" style={{ color: CARBON }}>{p.name}</div>
                     <div className="mt-0.5 font-mono text-[10px] uppercase tracking-[0.1em] text-fuel">{p.cred}</div>
-                    <p className="mt-1.5 font-body text-[13px] leading-snug" style={{ color: "#5f5a53" }}>{p.bio}</p>
+                    <p className="mt-1.5 text-[13px] leading-snug" style={{ color: "#5f5a53" }}>{p.bio}</p>
                   </div>
                 </div>
               ))}
             </div>
-            <Link href="/leadership" className="mt-5 inline-flex items-center gap-2 font-mono text-[12px] uppercase tracking-[0.12em] transition-colors hover:text-fuel" style={{ color: "#6a655e" }}>
+            <Link href="/leadership" className="mt-5 inline-flex items-center gap-2 font-mono text-[12px] uppercase tracking-[0.12em] transition-colors hover:text-fuel" style={{ color: "#9a9a9a" }}>
               Meet the full team &amp; board <span aria-hidden>→</span>
             </Link>
           </Reveal>
@@ -214,7 +214,7 @@ export default function Home() {
               <span className="text-chrome-fill">Network.</span>
             </Reveal>
             <Reveal delay={100}>
-              <p className="mt-6 max-w-[42ch] font-body text-[clamp(16px,1.6vw,20px)] leading-relaxed text-[#dadada]">
+              <p className="mt-6 max-w-[42ch] text-[clamp(16px,1.6vw,20px)] leading-relaxed text-[#dadada]">
                 One shared-use network, three ways in — buy the space, come home to it, and belong to it.
                 Choose the program that fits how you move freight.
               </p>
@@ -242,7 +242,7 @@ export default function Home() {
                         <div className="font-display text-[clamp(24px,2.6vw,34px)] font-black uppercase leading-none text-white">{p.name}</div>
                         <div className="font-script text-[clamp(20px,2.2vw,26px)] font-semibold" style={{ color: p.accent }}>{p.tagline}</div>
                       </div>
-                      <p className="mt-4 max-w-[60ch] font-body text-[15px] leading-relaxed text-chrome">{p.blurb}</p>
+                      <p className="mt-4 max-w-[60ch] text-[15px] leading-relaxed text-chrome">{p.blurb}</p>
                       <span className="mt-5 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.16em] text-white">
                         Explore <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1" style={{ color: p.accent }}>→</span>
                       </span>
@@ -282,7 +282,7 @@ export default function Home() {
               <span className="text-steel-fill">Relay.</span>
             </Reveal>
             <Reveal delay={120}>
-              <p className="mt-6 max-w-[44ch] font-body text-[clamp(16px,1.6vw,20px)] leading-relaxed text-[#dadada]">
+              <p className="mt-6 max-w-[44ch] text-[clamp(16px,1.6vw,20px)] leading-relaxed text-[#dadada]">
                 The first Hub is open in West Memphis — one block off the I-40 / I-55 interchange.
                 Phase-one expansion is underway toward a national network of Hubs, Private Terminals,
                 and Service Centers.
@@ -321,7 +321,7 @@ export default function Home() {
               Build The Future Of Freight With Us.
             </Reveal>
             <Reveal delay={100}>
-              <p className="mt-5 max-w-[44ch] font-body text-[clamp(16px,1.6vw,20px)] leading-relaxed text-[#dadada]">
+              <p className="mt-5 max-w-[44ch] text-[clamp(16px,1.6vw,20px)] leading-relaxed text-[#dadada]">
                 Join the Outriders free, or reach the team direct — wherever you sit in the supply chain.
               </p>
             </Reveal>

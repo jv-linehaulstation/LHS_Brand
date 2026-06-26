@@ -100,7 +100,7 @@ export default function AudienceScroll() {
       <h3 className="mt-4 font-display text-[clamp(40px,6vw,92px)] font-black uppercase leading-[0.9] tracking-[-0.025em] text-white">
         {lane.label}
       </h3>
-      <div className="mt-5 max-w-[48ch] space-y-4 font-body text-[clamp(16px,1.7vw,20px)] leading-relaxed text-[#dadada]">
+      <div className="mt-5 max-w-[48ch] space-y-4 text-[clamp(16px,1.7vw,20px)] leading-relaxed text-[#dadada]">
         {lane.desc.map((para, j) => (
           <p key={j}>{para}</p>
         ))}
