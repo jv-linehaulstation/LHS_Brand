@@ -10,6 +10,15 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Page shell gutter — backgrounds stay full-bleed (this is padding, not a
+   wrapper), while content is centered and capped at 1450px. On wide screens the
+   (100% - 1450px)/2 term provides the centering margin; on narrower screens the
+   clamp gutter wins, so edge spacing is preserved. Replaces the old
+   px-[clamp(20px,6vw,100px)] gutter site-wide. */
+.gutter {
+  padding-inline: max(clamp(20px, 6vw, 100px), calc((100% - 1450px) / 2));
+}
+
 body {
   background: #0b0b0b;
   color: #ffffff;

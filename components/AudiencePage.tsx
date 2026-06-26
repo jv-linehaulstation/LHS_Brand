@@ -45,7 +45,7 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
 
   /* ============================ HERO — full-bleed, bottom-anchored ============================ */
   const hero = (
-    <section className="relative flex min-h-[92dvh] items-end overflow-hidden px-[clamp(20px,6vw,100px)] pb-14 pt-28">
+    <section className="relative flex min-h-[92dvh] items-end overflow-hidden gutter pb-14 pt-28">
       <ParallaxImage src={a.heroImage} alt={`${a.navLabel} — LineHaul Station`} priority strength={0.24} />
       <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(11,11,11,0.96)_0%,rgba(11,11,11,0.72)_55%,rgba(11,11,11,0.4)_100%)]" />
       <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(11,11,11,0.94),transparent_52%)]" />
@@ -196,7 +196,7 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
 
   /* ===================== ROAD DIVIDER (image) ===================== */
   const roadSection = (
-    <section className="relative overflow-hidden px-[clamp(20px,6vw,100px)] py-[clamp(96px,14vw,140px)] text-center">
+    <section className="relative overflow-hidden gutter py-[clamp(96px,14vw,140px)] text-center">
       <ParallaxImage src={a.roadImage ?? PHOTOS.truckSunset} alt={`${a.navLabel} — LineHaul Station`} strength={0.28} />
       <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,11,11,0.6),rgba(11,11,11,0.84))]" />
       <Reveal className="relative mx-auto max-w-4xl">

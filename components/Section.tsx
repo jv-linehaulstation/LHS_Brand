@@ -31,7 +31,7 @@ export default function Section({
   className?: string;
   id?: string;
 }) {
-  const base = "relative overflow-hidden px-[clamp(20px,6vw,100px)]";
+  const base = "relative overflow-hidden gutter";
 
   if (variant === "image" && image) {
     return (

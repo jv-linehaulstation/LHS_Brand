@@ -91,7 +91,7 @@ export default function JoinPage() {
       <Nav accent={ACCENT} active="join" />
 
       {/* ============================ HERO — full-bleed video ============================ */}
-      <section className="relative flex min-h-[92dvh] items-end overflow-hidden px-[clamp(20px,6vw,100px)] pb-14 pt-28">
+      <section className="relative flex min-h-[92dvh] items-end overflow-hidden gutter pb-14 pt-28">
         <BackgroundVideo
           src={HERO_VIDEO}
           poster={`${O}/gallery-3.jpg`}

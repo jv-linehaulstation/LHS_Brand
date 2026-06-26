@@ -64,7 +64,7 @@ export default function GlassNav({ accent = "#F07820" }: { accent?: string }) {
             : "border-b border-transparent bg-transparent"
         }`}
       >
-        <div className="flex items-center justify-between gap-4 px-[clamp(20px,6vw,100px)] py-3.5">
+        <div className="flex items-center justify-between gap-4 gutter py-3.5">
           <Link href="/" className="flex flex-none items-center" aria-label="LineHaul Station home">
             <Image
               src="/assets/logo-horz-light.png"
@@ -124,7 +124,7 @@ export default function GlassNav({ accent = "#F07820" }: { accent?: string }) {
         <div className="bloom" style={{ ["--bloom" as string]: `${accent}22` }} aria-hidden />
         <div className="blueprint pointer-events-none absolute inset-0 opacity-30" aria-hidden />
 
-        <div className="relative flex h-full flex-col px-[clamp(20px,6vw,100px)] py-5">
+        <div className="relative flex h-full flex-col gutter py-5">
           <div className="flex items-center justify-between">
             <Image
               src="/assets/logo-horz-light.png"

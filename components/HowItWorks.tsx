@@ -91,7 +91,7 @@ export default function HowItWorks({
   // ---- Static fallback (mobile / reduced-motion): stacked cards ----
   if (isStatic) {
     return (
-      <section className="bg-ink px-[clamp(20px,6vw,100px)] py-[clamp(64px,9vw,120px)]">
+      <section className="bg-ink gutter py-[clamp(64px,9vw,120px)]">
         {Heading}
         <div className="mt-9 grid gap-5">
           {steps.map((s, i) => (
@@ -112,7 +112,7 @@ export default function HowItWorks({
 
   // ---- Pinned sticky-scroll (mirrors AudienceScroll) ----
   return (
-    <section className="bg-ink px-[clamp(20px,6vw,100px)] py-[clamp(70px,11vh,140px)]">
+    <section className="bg-ink gutter py-[clamp(70px,11vh,140px)]">
       {Heading}
       <div className="mt-9 grid gap-[clamp(24px,4vw,64px)] lg:grid-cols-2">
         {/* sticky media — fills the viewport height; swaps to the active step */}

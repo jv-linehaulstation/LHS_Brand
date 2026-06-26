@@ -49,7 +49,7 @@ export default function LeadershipPage() {
       <Nav active="leadership" />
 
       {/* HERO (image) — full-bleed, bottom-anchored */}
-      <section className="relative flex min-h-[88dvh] items-end overflow-hidden px-[clamp(20px,6vw,100px)] pb-14 pt-28">
+      <section className="relative flex min-h-[88dvh] items-end overflow-hidden gutter pb-14 pt-28">
         <ParallaxImage src={PHOTOS.buildingExterior} alt="A LineHaul Station Hub building exterior by day" priority strength={0.22} />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(11,11,11,0.96)_0%,rgba(11,11,11,0.74)_52%,rgba(11,11,11,0.42)_100%)]" />
         <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(11,11,11,0.94),transparent_50%)]" />

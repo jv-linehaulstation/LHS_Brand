@@ -5,7 +5,7 @@ import { site } from "@/lib/site";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-chrome/15 bg-ink px-[clamp(20px,6vw,100px)] py-12">
+    <footer className="border-t border-chrome/15 bg-ink gutter py-12">
       <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
         <div className="max-w-sm">
           <Image

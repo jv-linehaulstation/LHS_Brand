@@ -21,7 +21,7 @@ const HERO_VIDEO =
   "https://storage.googleapis.com/msgsndr/vFbdhIphhRpcrSlf4VJF/media/69554d56cb5b716ba310c3dd.mp4";
 
 // Full-width gutter — ~100px on desktop, collapses cleanly on phones.
-const PAD = "px-[clamp(20px,6vw,100px)]";
+const PAD = "gutter";
 const WHITE = "#F4F2EF";
 const CARBON = "#0B0B0B";
 const LINE_L = "#E2DDD6";

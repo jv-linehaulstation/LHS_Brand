@@ -78,7 +78,7 @@ export default function WideSlider({ slides, accent = "#F07820" }: { slides: Sli
 
       {/* thumbnails OVERLAID on the slide bottom */}
       <div
-        className="no-scrollbar absolute inset-x-0 bottom-[clamp(16px,3vw,36px)] z-10 flex justify-start gap-2.5 overflow-x-auto px-[clamp(20px,6vw,100px)] sm:justify-center"
+        className="no-scrollbar absolute inset-x-0 bottom-[clamp(16px,3vw,36px)] z-10 flex justify-start gap-2.5 overflow-x-auto gutter sm:justify-center"
         role="tablist"
         aria-label="Gallery thumbnails"
       >

@@ -15,7 +15,7 @@ import { ONEHOME } from "@/lib/onehome";
 import { audiences } from "@/lib/audiences";
 import { site } from "@/lib/site";
 
-const PAD = "px-[clamp(20px,6vw,100px)]";
+const PAD = "gutter";
 const WHITE = "#F4F2EF";
 const CARBON = "#0B0B0B";
 const LINE_L = "#E2DDD6";
