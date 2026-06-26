@@ -160,7 +160,7 @@ export default function OneHomePage() {
       </section>
 
       {/* ============ 2. WELCOME TO THE CLUB — story + Vimeo (no portrait) [approved, untouched] ============ */}
-      <section id="welcome" className={`relative overflow-hidden ${PAD} py-[clamp(80px,12vh,160px)]`} style={{ background: ELEV }}>
+      <section id="welcome" className={`relative overflow-hidden ${PAD} pt-[clamp(80px,12vh,160px)] pb-[clamp(80px,12vh,160px)] sm:pb-[clamp(190px,21vw,310px)]`} style={{ background: ELEV }}>
         <div className="bloom" style={{ ["--bloom" as string]: "rgba(208,40,60,0.10)" }} aria-hidden />
         <div className="relative grid gap-[clamp(32px,5vw,72px)] lg:grid-cols-2 lg:items-center">
           <Reveal>
@@ -190,8 +190,13 @@ export default function OneHomePage() {
         </div>
       </section>
 
+      {/* Free Membership steps — image boxes straddling the Welcome ↔ form seam (sm+) */}
+      <div id="membership" className="gutter relative z-20 mt-12 mb-12 sm:-mt-[clamp(110px,13vw,200px)] sm:-mb-[clamp(150px,17vw,250px)]">
+        <StepGrid items={MEMBERSHIP} badge={(i) => `Step #${i + 1}`} accent={ac} />
+      </div>
+
       {/* ============ 3. JOIN FREE — Outriders Club register (the ONE form on the page) ============ */}
-      <section id="join-free" className={`relative overflow-hidden ${PAD} py-[clamp(70px,11vh,140px)]`} style={{ background: BURG }}>
+      <section id="join-free" className={`relative overflow-hidden ${PAD} pt-[clamp(70px,11vh,140px)] sm:pt-[clamp(180px,21vw,300px)] pb-[clamp(70px,11vh,140px)]`} style={{ background: BURG }}>
         <div className="bloom" style={{ ["--bloom" as string]: "rgba(208,40,60,0.10)" }} aria-hidden />
         <div className="relative grid gap-[clamp(28px,4vw,64px)] lg:grid-cols-[0.92fr_1.08fr] lg:items-start">
           <div className="lg:sticky lg:top-28">
@@ -221,20 +226,6 @@ export default function OneHomePage() {
           <Reveal dir="right">
             <JoinForm accent={ac} accentDark={ad} submitLabel="Join Free." successTitle="Welcome to the Outriders." />
           </Reveal>
-        </div>
-      </section>
-
-      {/* ============ 3b. FREE MEMBERSHIP — 3 steps as image boxes (right after the form) ============ */}
-      <section id="membership" className={`bg-ink ${PAD} py-[clamp(70px,11vh,140px)]`}>
-        <Reveal className="max-w-3xl">
-          <div className="font-label text-[13px] uppercase tracking-[0.24em]" style={{ color: ac }}>{a.outriders!.join.eyebrow}</div>
-          <h2 className="mt-4 font-display text-[clamp(37px,5.75vw,87px)] font-black uppercase leading-[0.92] tracking-[-0.025em] text-white">
-            {a.outriders!.join.headline.split("/")[0].trim()}{" "}
-            <span style={{ color: ac }}>{a.outriders!.join.headline.split("/")[1].trim()}</span>
-          </h2>
-        </Reveal>
-        <div className="mt-12">
-          <StepGrid items={MEMBERSHIP} badge={(i) => `Step #${i + 1}`} accent={ac} />
         </div>
       </section>
 
@@ -303,25 +294,27 @@ export default function OneHomePage() {
         </div>
       </section>
 
-      {/* ============ 7. THREE WAYS TO GET SPACE — big title + image boxes ============ */}
+      {/* ============ 7. THREE WAYS TO GET SPACE — big title + Join Free on the same line + image boxes ============ */}
       <section id="space" className={`bg-ink ${PAD} py-[clamp(70px,11vh,140px)]`}>
-        <Reveal className="max-w-3xl">
-          <div className="font-label text-[13px] uppercase tracking-[0.24em]" style={{ color: ac }}>The Outriders Club</div>
-          <h2 className="mt-4 font-display text-[clamp(37px,5.75vw,87px)] font-black uppercase leading-[0.92] tracking-[-0.025em] text-white">
-            Three Ways To <span style={{ color: ac }}>Get Space.</span>
-          </h2>
-        </Reveal>
+        <div className="flex flex-wrap items-end justify-between gap-x-8 gap-y-6">
+          <Reveal className="max-w-3xl">
+            <div className="font-label text-[13px] uppercase tracking-[0.24em]" style={{ color: ac }}>The Outriders Club</div>
+            <h2 className="mt-4 font-display text-[clamp(37px,5.75vw,87px)] font-black uppercase leading-[0.92] tracking-[-0.025em] text-white">
+              Three Ways To <span style={{ color: ac }}>Get Space.</span>
+            </h2>
+          </Reveal>
+          <Reveal delay={120} className="flex-none">
+            <MagneticButton strength={0.3}>
+              <a href="#join-free" className={`group ${PILL} text-ink shadow-[0_14px_30px_rgba(0,0,0,0.45)] hover:brightness-[1.06]`} style={{ background: `linear-gradient(135deg, ${ac}, ${ad})` }}>
+                Join Free
+                <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+              </a>
+            </MagneticButton>
+          </Reveal>
+        </div>
         <div className="mt-12">
           <StepGrid items={SPACE} badge={(i) => String(i + 1).padStart(2, "0")} accent={ac} />
         </div>
-        <Reveal delay={120} className="mt-10">
-          <MagneticButton strength={0.3}>
-            <a href="#join-free" className={`group ${PILL} text-ink shadow-[0_14px_30px_rgba(0,0,0,0.45)] hover:brightness-[1.06]`} style={{ background: `linear-gradient(135deg, ${ac}, ${ad})` }}>
-              Join Free
-              <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">→</span>
-            </a>
-          </MagneticButton>
-        </Reveal>
       </section>
 
       {/* ============ 8. WE HAVE EVERYTHING YOU NEED — Home Hub + Fleet tiles + "Everything included" column ============ */}
