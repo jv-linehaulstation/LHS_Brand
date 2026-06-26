@@ -82,48 +82,52 @@ export default function AmenityShowcase({
   }
 
   // ---- Pinned sticky-scroll showcase ----
+  // The media breaks out of the (1690px) content column to ~49vw and bleeds to
+  // the left viewport edge, overlapping the column — matching the reference.
   return (
-    <div className="mt-14 grid gap-[clamp(24px,4vw,64px)] lg:grid-cols-2">
-      {/* sticky media — cross-fades to the active amenity */}
-      <div className="lg:sticky lg:top-0 lg:h-[100svh] lg:self-start lg:py-[8vh]">
-        <div className="relative h-full min-h-[60vh] overflow-hidden rounded-card border border-[#E2DDD6]">
+    <div className="mt-14 lg:mx-[calc(50%_-_50vw)] lg:w-screen lg:[overflow-x:clip]">
+      <div className="lg:grid lg:grid-cols-[49vw_minmax(0,1fr)] lg:items-start">
+        {/* sticky media (~49vw) — cross-fades to the active amenity */}
+        <div className="lg:sticky lg:top-0 lg:h-[100svh] lg:self-start lg:py-[6vh]">
+          <div className="relative h-full min-h-[60vh] overflow-hidden rounded-card border border-[#E2DDD6] lg:rounded-l-none lg:rounded-r-[20px] lg:border-l-0">
+            {items.map((it, i) => (
+              <div
+                key={it.name}
+                className="absolute inset-0 transition-[opacity,transform] duration-700 ease-out"
+                style={{ opacity: i === active ? 1 : 0, transform: i === active ? "scale(1)" : "scale(1.05)" }}
+              >
+                <Image src={it.img} alt={i === active ? `${it.name} — OneHome by LineHaul Station` : ""} fill priority={i === 0} className="img-grade object-cover" sizes="(max-width: 1024px) 100vw, 49vw" />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_58%,rgba(11,11,11,0.55))]" />
+              </div>
+            ))}
+            <div className="absolute inset-x-5 bottom-5 flex items-center gap-3">
+              <span className="tnum font-mono text-[12px] text-white">{counter(active)}</span>
+              <span className="flex flex-1 gap-1.5" aria-hidden>
+                {items.map((_, i) => (
+                  <span key={i} className="h-[3px] flex-1 rounded-full transition-colors duration-300" style={{ background: i === active ? accent : "rgba(255,255,255,0.3)" }} />
+                ))}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* scrolling content — aligned to the right edge of the 1690 content column */}
+        <div className="px-1 lg:pl-[clamp(28px,3.5vw,72px)] lg:pr-[max(clamp(20px,6vw,100px),calc((100vw_-_1690px)/2))]">
           {items.map((it, i) => (
             <div
               key={it.name}
-              className="absolute inset-0 transition-[opacity,transform] duration-700 ease-out"
-              style={{ opacity: i === active ? 1 : 0, transform: i === active ? "scale(1)" : "scale(1.05)" }}
+              ref={(el) => { blocks.current[i] = el; }}
+              data-index={i}
+              className="flex min-h-[80vh] flex-col justify-center transition-opacity duration-500"
+              style={{ opacity: i === active ? 1 : 0.32 }}
             >
-              <Image src={it.img} alt={i === active ? `${it.name} — OneHome by LineHaul Station` : ""} fill priority={i === 0} className="img-grade object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
-              <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_58%,rgba(11,11,11,0.55))]" />
+              <span className="tnum font-mono text-[13px] tracking-[0.1em]" style={{ color: accentDark }}>{counter(i)}</span>
+              <h3 className="mt-3 font-display text-[clamp(34px,5vw,76px)] font-black uppercase leading-[0.9] tracking-[-0.025em]" style={{ color: CARBON }}>{it.name}</h3>
+              <div className="mt-3 font-mono text-[12px] uppercase tracking-[0.14em]" style={{ color: accentDark }}>{it.meta}</div>
+              <p className="mt-5 max-w-[44ch] font-body text-[clamp(16px,1.7vw,20px)] leading-relaxed" style={{ color: "#3a3733" }}>{it.blurb}</p>
             </div>
           ))}
-          <div className="absolute inset-x-5 bottom-5 flex items-center gap-3">
-            <span className="tnum font-mono text-[12px] text-white">{counter(active)}</span>
-            <span className="flex flex-1 gap-1.5" aria-hidden>
-              {items.map((_, i) => (
-                <span key={i} className="h-[3px] flex-1 rounded-full transition-colors duration-300" style={{ background: i === active ? accent : "rgba(255,255,255,0.3)" }} />
-              ))}
-            </span>
-          </div>
         </div>
-      </div>
-
-      {/* scrolling content — one block per amenity */}
-      <div>
-        {items.map((it, i) => (
-          <div
-            key={it.name}
-            ref={(el) => { blocks.current[i] = el; }}
-            data-index={i}
-            className="flex min-h-[80vh] flex-col justify-center transition-opacity duration-500"
-            style={{ opacity: i === active ? 1 : 0.32 }}
-          >
-            <span className="tnum font-mono text-[13px] tracking-[0.1em]" style={{ color: accentDark }}>{counter(i)}</span>
-            <h3 className="mt-3 font-display text-[clamp(34px,5vw,76px)] font-black uppercase leading-[0.9] tracking-[-0.025em]" style={{ color: CARBON }}>{it.name}</h3>
-            <div className="mt-3 font-mono text-[12px] uppercase tracking-[0.14em]" style={{ color: accentDark }}>{it.meta}</div>
-            <p className="mt-5 max-w-[44ch] font-body text-[clamp(16px,1.7vw,20px)] leading-relaxed" style={{ color: "#3a3733" }}>{it.blurb}</p>
-          </div>
-        ))}
       </div>
     </div>
   );

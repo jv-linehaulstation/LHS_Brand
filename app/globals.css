@@ -16,7 +16,7 @@ html {
    clamp gutter wins, so edge spacing is preserved. Replaces the old
    px-[clamp(20px,6vw,100px)] gutter site-wide. */
 .gutter {
-  padding-inline: max(clamp(20px, 6vw, 100px), calc((100% - 1450px) / 2));
+  padding-inline: max(clamp(20px, 6vw, 100px), calc((100% - 1690px) / 2));
 }
 
 body {

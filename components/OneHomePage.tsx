@@ -255,7 +255,7 @@ export default function OneHomePage() {
       </section>
 
       {/* ============ 6. AMENITIES — one calm section (Fluid-Glass pass upgrades to a pinned showcase) (off-white) ============ */}
-      <section id="amenities" className={`${PAD} py-[clamp(80px,12vh,160px)]`} style={{ background: WHITE }}>
+      <section id="amenities" className={`overflow-x-clip ${PAD} py-[clamp(80px,12vh,160px)]`} style={{ background: WHITE }}>
         <Reveal className="max-w-3xl">
           <div className="font-label text-[11px] uppercase tracking-[0.24em]" style={{ color: ad }}>{ONEHOME.amenities.subhead}</div>
           <h2 className="mt-4 text-balance font-display text-[clamp(34px,5.6vw,84px)] font-black uppercase leading-[0.92] tracking-[-0.025em]" style={{ color: CARBON }}>{ONEHOME.amenities.headline}</h2>
