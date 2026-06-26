@@ -22,7 +22,7 @@ html {
 /* Peeking-card carousel — side padding so the first/last card can center,
    with the neighbours peeking at the edges. Card width must match. */
 .peek-pad {
-  padding-inline: max(20px, calc((100% - clamp(260px, 74vw, 560px)) / 2));
+  padding-inline: max(20px, calc((100% - clamp(280px, 72vw, 940px)) / 2));
 }
 
 body {

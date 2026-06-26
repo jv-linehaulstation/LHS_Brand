@@ -11,11 +11,13 @@ import JoinForm from "@/components/JoinForm";
 import AmenityShowcase from "@/components/onehome/AmenityShowcase";
 import BuildingCarousel from "@/components/onehome/BuildingCarousel";
 import QuoteCarousel from "@/components/onehome/QuoteCarousel";
+import ComparisonTable from "@/components/onehome/ComparisonTable";
+import MembershipReveal from "@/components/onehome/MembershipReveal";
 import NewsletterForm from "@/components/onehome/NewsletterForm";
 import FAQ, { type QA } from "@/components/FAQ";
 import { CoinImage, ChromeFrame, StatusChip } from "@/components/Bits";
 import { ONEHOME } from "@/lib/onehome";
-import { audiences } from "@/lib/audiences";
+import { audiences, PHOTOS } from "@/lib/audiences";
 import { site } from "@/lib/site";
 
 /* ============ "Luxe" dark-luxury skin ============ */
@@ -49,15 +51,29 @@ const BUILDINGS = [
 // §9 Membership + Space — condensed to one tight line each (JJ: "too much info").
 // PENDING(JJ): the exact hover-reveal (image preview follows the cursor) lands
 // once the reference site URL is provided.
+// TODO(JJ): dedicated imagery for the membership/Space steps. Using club +
+// building renderings until then.
 const MEMBERSHIP = [
-  { n: "01", title: "Free Membership", line: "Always 100% free — agree to the Code of Conduct and you're in." },
-  { n: "02", title: "Create Your Profile", line: "Unlock member features and career-changing information." },
-  { n: "03", title: "Get Others Excited!", line: "Three ways to get Space — earn it, request it, or purchase it." },
+  { n: "01", title: "Free Membership", line: "Always 100% free — agree to the Code of Conduct and you're in.", img: "/assets/amenities/grill.jpg" },
+  { n: "02", title: "Create Your Profile", line: "Unlock member features and career-changing information.", img: "/assets/amenities/digital-den.jpg" },
+  { n: "03", title: "Get Others Excited!", line: "Three ways to get Space — earn it, request it, or purchase it.", img: "/assets/amenities/sky-deck.jpg" },
 ];
 const SPACE = [
-  { n: "01", title: "Earn Your Space", line: "Sponsor ten great drivers → a lifetime of free Space." },
-  { n: "02", title: "Request Your Space", line: "Use The LineHaul List to find a carrier or fleet that backs you." },
-  { n: "03", title: "Purchase Your Space", line: "Special pricing for anyone with a steering wheel in their hand." },
+  { n: "01", title: "Earn Your Space", line: "Sponsor ten great drivers → a lifetime of free Space.", img: "/assets/building-seq/05.jpg" },
+  { n: "02", title: "Request Your Space", line: "Use The LineHaul List to find a carrier or fleet that backs you.", img: "/assets/building-seq/02.jpg" },
+  { n: "03", title: "Purchase Your Space", line: "Special pricing for anyone with a steering wheel in their hand.", img: "/assets/building-seq/07.jpg" },
+];
+
+// §7 "We have EVERYTHING you need" — Home Hub + Fleet merged as image tiles.
+// TODO(JJ): dedicated Home Hub (mail/parking/storage) + Fleet bay photos.
+const EVERYTHING_TILES = [
+  { group: "Home Hub", label: "Mail Services", line: "A real mailing address on the road.", img: PHOTOS.clubShop },
+  { group: "Home Hub", label: "Personal Vehicle", line: "Secure covered parking for your car.", img: PHOTOS.gateHouse },
+  { group: "Home Hub", label: "Storage Lockers", line: "Private storage for your belongings.", img: PHOTOS.laundry },
+  { group: "Fleet Services", label: "Repairs", line: "On-site repair to get you rolling.", img: PHOTOS.fleetEntry1 },
+  { group: "Fleet Services", label: "Maintenance", line: "Preventive service on your schedule.", img: PHOTOS.fleetExit },
+  { group: "Fleet Services", label: "Inspections", line: "DOT-ready, compliant, and quick.", img: PHOTOS.fleetEntry2 },
+  { group: "Fleet Services", label: "Truck Wash", line: "Keep the rig sharp between hauls.", img: PHOTOS.truckWashEntry },
 ];
 
 // §10 — three founding-member quote cards. Honest framing (the program is
@@ -199,25 +215,24 @@ export default function OneHomePage() {
         </Reveal>
 
         {/* the MAIN OneHome calculator lives here — no separate Lifestyle Calculator section */}
-        <div id="calculator" className="mx-auto mt-14 grid max-w-6xl gap-[clamp(28px,4vw,56px)] lg:grid-cols-[1.25fr_0.75fr] lg:items-start">
+        <div id="calculator" className="mx-auto mt-14 grid max-w-6xl gap-[clamp(28px,4vw,56px)] lg:grid-cols-[1.25fr_0.75fr] lg:items-stretch">
           <Reveal>
             <OneHomeCalculator accent={ac} accentDark={ad} />
           </Reveal>
-          <div className="lg:sticky lg:top-28">
-            <Reveal>
+          {/* right column — a glass card stretched to the calculator's height */}
+          <Reveal delay={120} className="lg:h-full">
+            <div className="glass-strong flex h-full flex-col rounded-[20px] p-7 sm:p-9">
               {/* Luxe stat chip */}
-              <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.05] px-4 py-2">
+              <div className="inline-flex w-fit items-center gap-2 rounded-full border border-white/15 bg-white/[0.05] px-4 py-2">
                 <span className="font-display text-[18px] font-black" style={{ color: ac }}>$15K+</span>
                 <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-chrome">saved / yr</span>
               </div>
-              <div className="mt-5 max-w-[58ch] space-y-4 text-[clamp(15px,1.5vw,18px)] leading-relaxed" style={{ color: MUT }}>
+              <div className="mt-5 space-y-4 text-[clamp(15px,1.5vw,18px)] leading-relaxed" style={{ color: MUT }}>
                 {ONEHOME.core.paras.map((p, i) => <p key={i}>{p}</p>)}
               </div>
-            </Reveal>
-            <Reveal delay={100}>
-              <p className="mt-6 font-display text-[clamp(18px,2vw,26px)] font-black uppercase leading-tight text-white">{ONEHOME.core.blurb}</p>
-            </Reveal>
-          </div>
+              <p className="mt-auto pt-6 font-display text-[clamp(18px,2vw,26px)] font-black uppercase leading-tight text-white">{ONEHOME.core.blurb}</p>
+            </div>
+          </Reveal>
         </div>
       </section>
 
@@ -241,24 +256,8 @@ export default function OneHomePage() {
             <p className="mt-auto pt-8 text-[clamp(18px,2vw,24px)] font-light italic" style={{ color: ac }}>{ONEHOME.value.blurb}</p>
           </Reveal>
 
-          <Reveal delay={120} dir="right">
-            <div className="flex h-full flex-col rounded-[20px] border p-6 sm:p-8" style={{ borderColor: CARD2, background: CARD }}>
-              <div className="flex items-center justify-between font-label text-[10px] uppercase tracking-[0.18em]">
-                <span className="text-chrome line-through decoration-ember/70 decoration-2">Traditional Housing</span>
-                <span className="rounded-full px-3 py-1 text-ink" style={{ background: ac }}>OneHome</span>
-              </div>
-              <ul className="mt-5 flex flex-1 flex-col">
-                {ONEHOME.value.table.map((r) => (
-                  <li key={r.trad} className="flex flex-1 flex-col justify-center gap-1 border-t border-white/8 py-3.5 first:border-t-0 first:pt-0">
-                    <span className="flex items-baseline gap-2.5 text-[clamp(15px,1.5vw,17px)] font-semibold leading-snug text-white">
-                      <span aria-hidden style={{ color: ac }}>✓</span>
-                      {r.one}
-                    </span>
-                    <span className="pl-[1.4em] text-[13px] leading-snug text-chrome/80 line-through decoration-ember/60">{r.trad}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          <Reveal delay={120} dir="right" className="lg:h-full">
+            <ComparisonTable rows={ONEHOME.value.table} accent={ac} />
           </Reveal>
         </div>
       </section>
@@ -280,34 +279,44 @@ export default function OneHomePage() {
         </Reveal>
       </section>
 
-      {/* ============ 7. WE HAVE EVERYTHING YOU NEED — Home Hub + Fleet combined, scroll-zoom ============ */}
-      <section id="everything" className="relative flex min-h-[92vh] items-center overflow-hidden">
-        <ScrollScale from={1.06} to={1.22}>
-          <Image src="/assets/building-seq/01.jpg" alt="A LineHaul Station terminal — your Home Hub" fill className="img-grade object-cover" sizes="100vw" />
-        </ScrollScale>
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(11,11,11,0.94),rgba(11,11,11,0.58)_72%)]" />
-        <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(11,11,11,0.72),transparent_55%)]" />
-        <div className={`relative w-full ${PAD} py-[clamp(70px,11vh,140px)]`}>
-          <Reveal className="max-w-2xl">
-            <h2 className="text-balance font-display text-[clamp(34px,5.6vw,80px)] font-black uppercase leading-[0.92] tracking-[-0.025em] text-white">{ONEHOME.homehub.headline}</h2>
-            <p className="mt-3 text-[clamp(18px,2vw,24px)] font-light italic" style={{ color: ac }}>{ONEHOME.homehub.blurb}</p>
-          </Reveal>
-          <div className="mt-8 grid max-w-3xl gap-4 sm:grid-cols-2">
-            <Reveal delay={100}>
-              <div className="glass-strong h-full rounded-[20px] p-7">
-                <div className="font-mono text-[12px] uppercase tracking-[0.16em]" style={{ color: ac }}>{ONEHOME.homehub.subhead}</div>
-                <div className="mt-2 font-display text-[20px] font-black uppercase tracking-[0.01em] text-white">Your Home Hub</div>
-                <p className="mt-3 text-[clamp(15px,1.5vw,17px)] leading-relaxed text-[#e2e2e2]">{ONEHOME.homehub.paras[0]}</p>
-              </div>
-            </Reveal>
-            <Reveal delay={160}>
-              <div className="glass-strong h-full rounded-[20px] p-7">
-                <div className="font-mono text-[12px] uppercase tracking-[0.16em]" style={{ color: ac }}>{ONEHOME.fleet.subhead}</div>
-                <div className="mt-2 font-display text-[20px] font-black uppercase tracking-[0.01em] text-white">Fleet Services</div>
-                <p className="mt-3 text-[clamp(15px,1.5vw,17px)] leading-relaxed text-[#e2e2e2]">{ONEHOME.fleet.para}</p>
-              </div>
+      {/* ============ 7. WE HAVE EVERYTHING YOU NEED — Home Hub + Fleet as image tiles, scroll-zoom hero ============ */}
+      <section id="everything">
+        {/* scroll-zoom hero band */}
+        <div className="relative h-[clamp(340px,52vh,600px)] overflow-hidden">
+          <ScrollScale from={1.06} to={1.22}>
+            <Image src="/assets/building-seq/01.jpg" alt="A LineHaul Station terminal — your Home Hub" fill className="img-grade object-cover" sizes="100vw" />
+          </ScrollScale>
+          <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(11,11,11,0.96),rgba(11,11,11,0.4)_62%)]" />
+          <div className={`relative flex h-full items-end ${PAD} pb-[clamp(28px,5vw,64px)]`}>
+            <Reveal className="max-w-2xl">
+              <h2 className="text-balance font-display text-[clamp(34px,5.6vw,80px)] font-black uppercase leading-[0.92] tracking-[-0.025em] text-white">{ONEHOME.homehub.headline}</h2>
+              <p className="mt-3 text-[clamp(18px,2vw,24px)] font-light italic" style={{ color: ac }}>{ONEHOME.homehub.blurb}</p>
             </Reveal>
           </div>
+        </div>
+        {/* image tiles — Home Hub (3) + Fleet Services (4) */}
+        <div className={`${PAD} py-[clamp(56px,9vh,110px)]`} style={{ background: ELEV }}>
+          {["Home Hub", "Fleet Services"].map((group, gi) => (
+            <div key={group} className={gi === 1 ? "mt-12" : ""}>
+              <div className="font-mono text-[12px] uppercase tracking-[0.16em]" style={{ color: ac }}>{group}</div>
+              <div className={`mt-5 grid gap-4 ${gi === 0 ? "sm:grid-cols-3" : "sm:grid-cols-2 lg:grid-cols-4"}`}>
+                {EVERYTHING_TILES.filter((t) => t.group === group).map((t, i) => (
+                  <Reveal key={t.label} delay={i * 60}>
+                    <figure className="group overflow-hidden rounded-[16px] border" style={{ borderColor: CARD2, background: CARD }}>
+                      <div className="relative aspect-[4/3] overflow-hidden">
+                        <Image src={t.img} alt={t.label} fill loading="lazy" className="img-grade object-cover transition-transform duration-700 ease-out motion-safe:group-hover:scale-105" sizes="(max-width: 768px) 50vw, 24vw" />
+                        <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_50%,rgba(11,11,11,0.72))]" />
+                      </div>
+                      <figcaption className="p-4">
+                        <div className="font-display text-[15px] font-black uppercase tracking-[0.01em] text-white">{t.label}</div>
+                        <div className="mt-1 text-[13px] leading-snug" style={{ color: MUT }}>{t.line}</div>
+                      </figcaption>
+                    </figure>
+                  </Reveal>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -354,26 +363,14 @@ export default function OneHomePage() {
             <span style={{ color: ac }}>{a.outriders!.join.headline.split("/")[1].trim()}</span>
           </h2>
         </Reveal>
-        <div className="mt-12 grid gap-x-12 gap-y-12 lg:grid-cols-2">
-          {[
-            { label: "Free Membership", items: MEMBERSHIP },
-            { label: "Three Ways To Get Space", items: SPACE },
-          ].map((group) => (
-            <Reveal key={group.label}>
-              <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-chrome">{group.label}</div>
-              <ul className="mt-5">
-                {group.items.map((it) => (
-                  <li key={it.n} className="group flex items-start gap-4 border-t border-white/10 py-5 transition-colors first:border-t-0 first:pt-0 hover:bg-white/[0.03]">
-                    <span className="tnum mt-0.5 font-mono text-[13px]" style={{ color: ac }}>{it.n}</span>
-                    <div>
-                      <div className="font-display text-[clamp(18px,2.1vw,24px)] font-black uppercase leading-tight tracking-[0.01em] text-white transition-colors group-hover:text-[var(--ac)]" style={{ ["--ac" as string]: ac }}>{it.title}</div>
-                      <p className="mt-1.5 max-w-[44ch] text-[15px] leading-snug text-chrome">{it.line}</p>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
-          ))}
+        <div className="mt-12">
+          <MembershipReveal
+            groups={[
+              { label: "Free Membership", items: MEMBERSHIP },
+              { label: "Three Ways To Get Space", items: SPACE },
+            ]}
+            accent={ac}
+          />
         </div>
         <Reveal delay={120} className="mt-10">
           <MagneticButton strength={0.3}>

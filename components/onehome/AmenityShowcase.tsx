@@ -62,7 +62,7 @@ export default function AmenityShowcase({
     return (
       <div className="mt-12 grid gap-6">
         {items.map((it, i) => (
-          <div key={it.name} className="overflow-hidden rounded-[20px] border border-white/12 bg-[#16161A]">
+          <div key={it.name} className="overflow-hidden border border-white/12 bg-[#16161A]">
             <div className="relative aspect-[16/10]">
               <Image src={it.img} alt={it.name} fill loading="lazy" className="img-grade object-cover" sizes="100vw" />
               <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_60%,rgba(11,11,11,0.4))]" />
@@ -89,7 +89,9 @@ export default function AmenityShowcase({
       <div className="lg:grid lg:grid-cols-[49vw_minmax(0,1fr)] lg:items-start">
         {/* sticky media (~49vw) — cross-fades to the active amenity */}
         <div className="lg:sticky lg:top-0 lg:h-[100svh] lg:self-start lg:py-[6vh]">
-          <div className="relative h-full min-h-[60vh] overflow-hidden rounded-card border border-white/12 lg:rounded-l-none lg:rounded-r-[20px] lg:border-l-0">
+          {/* TODO(JJ): higher-res amenity photos (≥2400px, ideally portrait) — current
+              gallery assets are ~1500px and look soft at this 49vw display size. */}
+          <div className="relative h-full min-h-[60vh] overflow-hidden border border-white/12 lg:border-l-0">
             {items.map((it, i) => (
               <div
                 key={it.name}

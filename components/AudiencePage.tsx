@@ -223,35 +223,9 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
   );
 
   /* ============ CAPABILITIES / AMENITIES (white) — non-drivers (drivers use Services) ============ */
-  const capabilitiesSection = a.amenities ? (
-    <Section variant="light" className="py-[clamp(70px,11vh,140px)]">
-      <div className="grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
-        <SectionHead kicker={a.amenities.eyebrow} title={a.amenities.headline} accent={ac} size="xl" tone="onLight" />
-        <Reveal delay={120}>
-          <p className="text-pretty font-body text-[clamp(18px,1.9vw,21px)] leading-relaxed text-[#3a3733]">{a.amenities.intro}</p>
-        </Reveal>
-      </div>
-      <div className="mt-10 grid auto-rows-[170px] grid-cols-2 gap-3 sm:auto-rows-[212px] md:grid-cols-4">
-        {a.amenities.tiles.map((t, i) => {
-          const span = i === 0 ? "col-span-2 row-span-2" : i === 5 ? "col-span-2" : "col-span-1";
-          return (
-            <Reveal key={i} delay={(i % 4) * 60} className={`group relative overflow-hidden rounded-card border border-chrome/15 ${span}`}>
-              <Image src={t.img} alt={t.title} fill className="img-grade object-cover transition-transform duration-700 group-hover:scale-105" sizes="(max-width: 768px) 50vw, 25vw" />
-              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,11,11,0.05),rgba(11,11,11,0.5)_55%,rgba(11,11,11,0.92))]" />
-              <div className="absolute inset-x-0 top-0 h-0.5 opacity-70" style={{ background: `linear-gradient(90deg, ${ac}, transparent)` }} />
-              <div className="absolute inset-x-0 bottom-0 p-4">
-                <div className={`font-display font-extrabold uppercase leading-tight text-white ${i === 0 ? "text-[20px]" : "text-[15px]"}`}>{t.title}</div>
-                <p className="mt-1 font-body text-[13px] leading-snug text-[#dcdcdc]">{t.blurb}</p>
-              </div>
-            </Reveal>
-          );
-        })}
-      </div>
-      <Reveal delay={120}>
-        <p className="mt-8 font-script text-[clamp(22px,3vw,34px)] font-semibold" style={{ color: ac }}>{a.amenities.footnote}</p>
-      </Reveal>
-    </Section>
-  ) : (
+  // Non-drivers template only (drivers has its own OneHomePage). The old
+  // a.amenities tiles branch was dead here and has been removed.
+  const capabilitiesSection = (
     <Section variant="light" className="py-[clamp(70px,11vh,140px)]">
       <SectionHead kicker={a.featuresEyebrow} title={a.featuresTitle} accent={ac} size="xl" tone="onLight" />
       <div className="mt-10 grid gap-4 lg:grid-cols-2">

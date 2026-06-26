@@ -63,19 +63,19 @@ export default function BuildingCarousel({
           <div
             key={s.name}
             ref={(el) => { cards.current[i] = el; }}
-            className="w-[clamp(260px,74vw,560px)] flex-none snap-center"
+            className="w-[clamp(280px,72vw,940px)] flex-none snap-center"
           >
             <figure
               className="overflow-hidden rounded-[20px] border transition-[opacity,transform] duration-500 ease-out"
               style={{
                 borderColor: "#1C1C20",
                 background: "#16161A",
-                opacity: i === active ? 1 : 0.5,
-                transform: i === active ? "scale(1)" : "scale(0.95)",
+                opacity: i === active ? 1 : 0.45,
+                transform: i === active ? "scale(1)" : "scale(0.93)",
               }}
             >
-              <div className="relative aspect-[16/11] overflow-hidden">
-                <Image src={s.src} alt={s.name} fill loading="lazy" className="img-grade object-cover" sizes="(max-width: 1024px) 80vw, 560px" />
+              <div className="relative aspect-[4/3] overflow-hidden">
+                <Image src={s.src} alt={s.name} fill loading="lazy" className="img-grade object-cover" sizes="(max-width: 1024px) 80vw, 940px" />
                 <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_55%,rgba(11,11,11,0.5))]" />
               </div>
             </figure>

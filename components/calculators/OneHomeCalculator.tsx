@@ -79,8 +79,7 @@ export default function OneHomeCalculator({
         </h2>
       </div>
 
-      <div className="chrome-frame">
-        <div className="bg-panel p-6 sm:p-9">
+      <div className="glass-strong h-full rounded-[20px] p-6 sm:p-9">
           {/* RESULT */}
           <div className="rounded-card border border-chrome/15 bg-ink2 p-6 sm:p-8">
             <div className="font-label text-[10px] uppercase tracking-[0.2em] text-chrome">
@@ -92,12 +91,12 @@ export default function OneHomeCalculator({
             >
               {money(yrSave)}
             </div>
-            <div className="mt-2 font-body text-[16px] text-[#d8d8d8]">
+            <div className="mt-2 text-[16px] text-[#d8d8d8]">
               That&apos;s <b className="text-white">{money(moSave)}</b> a month you stop
               paying for a place you&apos;re rarely in.
             </div>
             <div className="mt-4 flex flex-wrap items-baseline justify-between gap-2 border-t border-chrome/10 pt-4">
-              <span className="font-body text-[15px] text-chrome">
+              <span className="text-[15px] text-chrome">
                 Invest it 30 years at 7% →
               </span>
               <span className="font-display text-[28px] font-black text-white">
@@ -184,7 +183,7 @@ export default function OneHomeCalculator({
                 />
               ))}
             </div>
-            <p className="mt-3 font-body text-[14px] text-chrome">
+            <p className="mt-3 text-[14px] text-chrome">
               A traditional lease bills you for every square. OneHome lights up only the
               ones you use — <b className="text-white">{days}</b> nights, not 365.
             </p>
@@ -224,7 +223,7 @@ export default function OneHomeCalculator({
                 {money(rent)}
                 <span className="text-[16px] text-chrome">/mo</span>
               </div>
-              <div className="mt-1 font-body text-[13px] text-chrome">
+              <div className="mt-1 text-[13px] text-chrome">
                 Billed all 12 months — even the {365 - days} you&apos;re away
               </div>
               <div className="my-4 h-px bg-chrome/10" />
@@ -234,7 +233,7 @@ export default function OneHomeCalculator({
               <div className="mt-1 font-display text-[26px] font-black text-white">
                 {money(aptNight)}
               </div>
-              <div className="font-body text-[12px] text-chrome">
+              <div className="text-[12px] text-chrome">
                 per night you&apos;re actually there
               </div>
             </div>
@@ -250,7 +249,7 @@ export default function OneHomeCalculator({
                 {money(oh.std)}
                 <span className="text-[16px] text-chrome">/mo</span>
               </div>
-              <div className="mt-1 font-body text-[13px] text-chrome">
+              <div className="mt-1 text-[13px] text-chrome">
                 Base membership · {days} days/yr · month-to-month
               </div>
               <div className="my-4 h-px bg-chrome/10" />
@@ -260,7 +259,7 @@ export default function OneHomeCalculator({
               <div className="mt-1 font-display text-[26px] font-black text-white">
                 {money(ohNight)}
               </div>
-              <div className="font-body text-[12px] text-chrome">
+              <div className="text-[12px] text-chrome">
                 per night, furnished &amp; staffed
               </div>
               <div
@@ -271,11 +270,10 @@ export default function OneHomeCalculator({
               </div>
             </div>
           </div>
-          <p className="mt-5 font-body text-[13px] italic text-chrome">
+          <p className="mt-5 text-[13px] italic text-chrome">
             Base membership shown. Add OneHome services for $295/mo — private storage
             locker, covered parking, and a permanent mailing address — if you want them.
           </p>
-        </div>
       </div>
     </section>
   );
