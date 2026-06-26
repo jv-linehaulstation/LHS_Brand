@@ -143,7 +143,7 @@ export default function MembershipReveal({
         </div>
       </div>
 
-      <div className="grid gap-x-12 gap-y-10 sm:grid-cols-2">
+      <div className={groups.length > 1 ? "grid gap-x-12 gap-y-10 sm:grid-cols-2" : "max-w-3xl"}>
         {groups.map((g) => (
           <div key={g.label}>
             <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-chrome">{g.label}</div>
