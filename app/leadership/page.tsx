@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Nav from "@/components/Nav";
-import Footer from "@/components/Footer";
+import GlassNav from "@/components/GlassNav";
+import LuxeFooter from "@/components/LuxeFooter";
 import Section from "@/components/Section";
 import Contact from "@/components/Contact";
 import Reveal from "@/components/motion/Reveal";
@@ -46,7 +46,7 @@ const advisors = [
 export default function LeadershipPage() {
   return (
     <main className="min-h-screen bg-ink">
-      <Nav active="leadership" />
+      <GlassNav accent={FUEL} sectionLinks={[]} cta={{ href: "/join", label: "Join Free" }} />
 
       {/* HERO (image) — full-bleed, bottom-anchored */}
       <section className="relative flex min-h-[88dvh] items-end overflow-hidden gutter pb-14 pt-28">
@@ -228,7 +228,7 @@ export default function LeadershipPage() {
         headline="Let's Build The Future Of Freight."
         body="Whether you're a driver, carrier, broker, shipper, or partner in the public sector, the LineHaul Station team would like to hear from you."
       />
-      <Footer />
+      <LuxeFooter accent={FUEL} />
     </main>
   );
 }

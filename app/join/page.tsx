@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Nav from "@/components/Nav";
-import Footer from "@/components/Footer";
+import GlassNav from "@/components/GlassNav";
+import LuxeFooter from "@/components/LuxeFooter";
 import Contact from "@/components/Contact";
 import Section from "@/components/Section";
 import Reveal from "@/components/motion/Reveal";
@@ -88,7 +88,7 @@ const FAQS: QA[] = [
 export default function JoinPage() {
   return (
     <main className="min-h-screen bg-ink">
-      <Nav accent={ACCENT} active="join" />
+      <GlassNav accent={ACCENT} sectionLinks={[]} cta={{ href: "#contact", label: "Join Free" }} />
 
       {/* ============================ HERO — full-bleed video ============================ */}
       <section className="relative flex min-h-[92dvh] items-end overflow-hidden gutter pb-14 pt-28">
@@ -303,7 +303,7 @@ export default function JoinPage() {
         accent={ACCENT}
         accentDark={ACCENT_DARK}
       />
-      <Footer />
+      <LuxeFooter accent={ACCENT} />
     </main>
   );
 }

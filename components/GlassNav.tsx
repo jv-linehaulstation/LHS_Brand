@@ -14,13 +14,23 @@ import { site } from "@/lib/site";
  * links appear instantly; no scroll-jank). Client component: scroll state +
  * overlay open state + body scroll-lock.
  */
-const SECTION_LINKS = [
+const DRIVERS_SECTION_LINKS = [
   { href: "#core", label: "The Math" },
   { href: "#amenities", label: "Amenities" },
   { href: "#calculator", label: "Calculator" },
 ];
 
-export default function GlassNav({ accent = "#F07820" }: { accent?: string }) {
+type LinkItem = { href: string; label: string };
+
+export default function GlassNav({
+  accent = "#F07820",
+  sectionLinks = DRIVERS_SECTION_LINKS,
+  cta = { href: "#join-free", label: "Join Free" },
+}: {
+  accent?: string;
+  sectionLinks?: LinkItem[];
+  cta?: LinkItem;
+}) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -76,7 +86,7 @@ export default function GlassNav({ accent = "#F07820" }: { accent?: string }) {
           </Link>
 
           <nav className="hidden items-center gap-8 md:flex">
-            {SECTION_LINKS.map((l) => (
+            {sectionLinks.map((l) => (
               <a
                 key={l.href}
                 href={l.href}
@@ -89,12 +99,12 @@ export default function GlassNav({ accent = "#F07820" }: { accent?: string }) {
           </nav>
 
           <div className="flex flex-none items-center gap-2.5">
-            {/* Free Outriders Club register — distinct from the paid OneHome program */}
+            {/* page-appropriate CTA — same Luxe style across the site */}
             <a
-              href="#join-free"
+              href={cta.href}
               className="hidden rounded-full border border-white/30 px-4 py-[9px] font-label text-[12px] uppercase tracking-[0.14em] text-white transition-colors hover:border-white/60 sm:inline-flex"
             >
-              Join Free
+              {cta.label}
             </a>
             <button
               type="button"

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import Nav from "@/components/Nav";
-import Footer from "@/components/Footer";
+import GlassNav from "@/components/GlassNav";
+import LuxeFooter from "@/components/LuxeFooter";
 import Reveal from "@/components/motion/Reveal";
 import CountUp from "@/components/motion/CountUp";
 import ParallaxImage from "@/components/motion/ParallaxImage";
@@ -79,7 +79,7 @@ function Kick({ children, accent = "#F07820", center = false }: { children: Reac
 export default function Home() {
   return (
     <main className="min-h-screen bg-ink">
-      <Nav />
+      <GlassNav sectionLinks={[]} cta={{ href: "/join", label: "Join Free" }} />
 
       {/* ============ 1. HERO [B] — video, copy higher, fade into next ============ */}
       <section className={`relative flex min-h-[100dvh] items-center overflow-hidden ${PAD} pb-24 pt-32`}>
@@ -353,7 +353,7 @@ export default function Home() {
         </div>
       </section>
 
-      <Footer />
+      <LuxeFooter />
     </main>
   );
 }

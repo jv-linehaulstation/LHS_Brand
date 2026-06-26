@@ -1,6 +1,6 @@
 import Image from "next/image";
-import Nav from "@/components/Nav";
-import Footer from "@/components/Footer";
+import GlassNav from "@/components/GlassNav";
+import LuxeFooter from "@/components/LuxeFooter";
 import Section from "@/components/Section";
 import Reveal from "@/components/motion/Reveal";
 import CountUp from "@/components/motion/CountUp";
@@ -354,7 +354,7 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
      playbook's Membership Director contact is not used anywhere on the site. */
   return (
     <main className="min-h-screen bg-ink">
-      <Nav accent={ac} active={a.key} />
+      <GlassNav accent={ac} sectionLinks={[]} cta={{ href: "#contact", label: "Connect With Us" }} />
       {hero}
 
       {/* CARRIERS / BROKERS / SHIPPERS / GOVERNMENT — template order.
@@ -371,7 +371,7 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
       {networkSection}
       {letsTalkSection}
 
-      <Footer />
+      <LuxeFooter accent={ac} />
     </main>
   );
 }
