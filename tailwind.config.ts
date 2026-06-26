@@ -52,6 +52,8 @@ const config: Config = {
         display: ["var(--font-archivo)", "system-ui", "sans-serif"],
         label: ["var(--font-michroma)", "system-ui", "sans-serif"],
         body: ["var(--font-newsreader)", "Georgia", "serif"],
+        // Outfit — the no-serif body face for the dark "Luxe" /drivers skin.
+        sans: ["var(--font-outfit)", "system-ui", "sans-serif"],
         script: ["var(--font-caveat)", "cursive"],
         mono: ["var(--font-jetbrains)", "monospace"],
       },

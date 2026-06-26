@@ -47,7 +47,7 @@ export default function FAQ({ items, accent = "#F07820" }: { items: QA[]; accent
               style={{ gridTemplateRows: isOpen ? "1fr" : "0fr" }}
             >
               <div className="overflow-hidden">
-                <p className="max-w-[60ch] pb-7 pl-10 font-body text-[clamp(16px,1.7vw,18px)] leading-relaxed text-[#d8d8d8]">
+                <p className="max-w-[60ch] pb-7 pl-10 text-[clamp(16px,1.7vw,18px)] leading-relaxed text-[#d8d8d8]">
                   {item.a}
                 </p>
               </div>

@@ -1,4 +1,4 @@
-import { Archivo, Michroma, Newsreader, Caveat, JetBrains_Mono } from "next/font/google";
+import { Archivo, Michroma, Newsreader, Caveat, JetBrains_Mono, Outfit } from "next/font/google";
 
 // Web substitutes for the licensed foundry faces:
 // Azo Sans Black → Archivo · Eurostile Extd → Michroma · FreightText → Newsreader
@@ -40,4 +40,13 @@ export const jetbrains = JetBrains_Mono({
   display: "swap",
 });
 
-export const fontVars = `${archivo.variable} ${michroma.variable} ${newsreader.variable} ${caveat.variable} ${jetbrains.variable}`;
+// Outfit — clean geometric sans used as the body face on the dark "Luxe" /drivers
+// skin (no serif). The rest of the site keeps Newsreader unless rolled out later.
+export const outfit = Outfit({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-outfit",
+  display: "swap",
+});
+
+export const fontVars = `${archivo.variable} ${michroma.variable} ${newsreader.variable} ${caveat.variable} ${jetbrains.variable} ${outfit.variable}`;

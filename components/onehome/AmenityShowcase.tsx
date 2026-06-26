@@ -12,7 +12,7 @@ import { useEffect, useRef, useState } from "react";
  */
 type Item = { name: string; meta: string; blurb: string; img: string };
 
-const CARBON = "#0B0B0B";
+const CARBON = "#ffffff"; // dark "Luxe" skin: amenity names render light on the dark section
 
 export default function AmenityShowcase({
   items,
@@ -62,18 +62,18 @@ export default function AmenityShowcase({
     return (
       <div className="mt-12 grid gap-6">
         {items.map((it, i) => (
-          <div key={it.name} className="overflow-hidden rounded-card border border-[#E2DDD6]">
+          <div key={it.name} className="overflow-hidden rounded-[20px] border border-white/12 bg-[#16161A]">
             <div className="relative aspect-[16/10]">
               <Image src={it.img} alt={it.name} fill loading="lazy" className="img-grade object-cover" sizes="100vw" />
               <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_60%,rgba(11,11,11,0.4))]" />
             </div>
-            <div className="bg-white p-6">
+            <div className="p-6">
               <div className="flex items-baseline gap-3">
                 <span className="tnum font-mono text-[12px]" style={{ color: accentDark }}>{counter(i)}</span>
                 <h3 className="font-display text-[24px] font-black uppercase leading-none" style={{ color: CARBON }}>{it.name}</h3>
               </div>
               <div className="mt-2 font-mono text-[11px] uppercase tracking-[0.12em]" style={{ color: accentDark }}>{it.meta}</div>
-              <p className="mt-3 font-body text-[16px] leading-snug" style={{ color: "#3a3733" }}>{it.blurb}</p>
+              <p className="mt-3 font-body text-[16px] leading-snug" style={{ color: "#a9a9a9" }}>{it.blurb}</p>
             </div>
           </div>
         ))}
@@ -89,7 +89,7 @@ export default function AmenityShowcase({
       <div className="lg:grid lg:grid-cols-[49vw_minmax(0,1fr)] lg:items-start">
         {/* sticky media (~49vw) — cross-fades to the active amenity */}
         <div className="lg:sticky lg:top-0 lg:h-[100svh] lg:self-start lg:py-[6vh]">
-          <div className="relative h-full min-h-[60vh] overflow-hidden rounded-card border border-[#E2DDD6] lg:rounded-l-none lg:rounded-r-[20px] lg:border-l-0">
+          <div className="relative h-full min-h-[60vh] overflow-hidden rounded-card border border-white/12 lg:rounded-l-none lg:rounded-r-[20px] lg:border-l-0">
             {items.map((it, i) => (
               <div
                 key={it.name}
@@ -124,7 +124,7 @@ export default function AmenityShowcase({
               <span className="tnum font-mono text-[13px] tracking-[0.1em]" style={{ color: accentDark }}>{counter(i)}</span>
               <h3 className="mt-3 font-display text-[clamp(34px,5vw,76px)] font-black uppercase leading-[0.9] tracking-[-0.025em]" style={{ color: CARBON }}>{it.name}</h3>
               <div className="mt-3 font-mono text-[12px] uppercase tracking-[0.14em]" style={{ color: accentDark }}>{it.meta}</div>
-              <p className="mt-5 max-w-[44ch] font-body text-[clamp(16px,1.7vw,20px)] leading-relaxed" style={{ color: "#3a3733" }}>{it.blurb}</p>
+              <p className="mt-5 max-w-[44ch] font-body text-[clamp(16px,1.7vw,20px)] leading-relaxed" style={{ color: "#a9a9a9" }}>{it.blurb}</p>
             </div>
           ))}
         </div>
