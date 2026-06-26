@@ -160,7 +160,7 @@ export default function OneHomePage() {
       </section>
 
       {/* ============ 2. WELCOME TO THE CLUB — story + Vimeo (no portrait) [approved, untouched] ============ */}
-      <section id="welcome" className={`relative overflow-hidden ${PAD} pt-[clamp(80px,12vh,160px)] pb-[clamp(80px,12vh,160px)] sm:pb-[clamp(190px,21vw,310px)]`} style={{ background: ELEV }}>
+      <section id="welcome" className={`relative overflow-hidden ${PAD} pt-[clamp(80px,12vh,160px)] pb-[clamp(80px,12vh,160px)] sm:pb-[clamp(230px,26vw,380px)]`} style={{ background: ELEV }}>
         <div className="bloom" style={{ ["--bloom" as string]: "rgba(208,40,60,0.10)" }} aria-hidden />
         <div className="relative grid gap-[clamp(32px,5vw,72px)] lg:grid-cols-2 lg:items-center">
           <Reveal>
@@ -188,15 +188,22 @@ export default function OneHomePage() {
             </div>
           </Reveal>
         </div>
+        {/* the brand line, centered below the Outriders story */}
+        <Reveal className="relative mt-[clamp(48px,6vw,90px)] text-center">
+          <h2 className="mx-auto max-w-[22ch] font-display text-[clamp(34px,5vw,72px)] font-black uppercase leading-[0.94] tracking-[-0.025em] text-white">
+            {a.outriders!.join.headline.split("/")[0].trim()}{" "}
+            <span style={{ color: ac }}>{a.outriders!.join.headline.split("/")[1].trim()}</span>
+          </h2>
+        </Reveal>
       </section>
 
       {/* Free Membership steps — image boxes straddling the Welcome ↔ form seam (sm+) */}
-      <div id="membership" className="gutter relative z-20 mt-12 mb-12 sm:-mt-[clamp(110px,13vw,200px)] sm:-mb-[clamp(150px,17vw,250px)]">
+      <div id="membership" className="gutter relative z-20 mt-12 mb-12 sm:-mt-[clamp(50px,6vw,100px)] sm:-mb-[clamp(180px,22vw,320px)]">
         <StepGrid items={MEMBERSHIP} badge={(i) => `Step #${i + 1}`} accent={ac} />
       </div>
 
       {/* ============ 3. JOIN FREE — Outriders Club register (the ONE form on the page) ============ */}
-      <section id="join-free" className={`relative overflow-hidden ${PAD} pt-[clamp(70px,11vh,140px)] sm:pt-[clamp(180px,21vw,300px)] pb-[clamp(70px,11vh,140px)]`} style={{ background: BURG }}>
+      <section id="join-free" className={`relative overflow-hidden ${PAD} pt-[clamp(70px,11vh,140px)] sm:pt-[clamp(250px,29vw,450px)] pb-[clamp(70px,11vh,140px)]`} style={{ background: BURG }}>
         <div className="bloom" style={{ ["--bloom" as string]: "rgba(208,40,60,0.10)" }} aria-hidden />
         <div className="relative grid gap-[clamp(28px,4vw,64px)] lg:grid-cols-[0.92fr_1.08fr] lg:items-start">
           <div className="lg:sticky lg:top-28">
