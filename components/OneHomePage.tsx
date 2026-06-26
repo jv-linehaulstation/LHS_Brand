@@ -354,8 +354,8 @@ export default function OneHomePage() {
         </div>
       </section>
 
-      {/* ============ 9. MEMBERSHIP + SPACE — condensed. PENDING(JJ): hover-reveal URL ============ */}
-      <section id="membership" className={`bg-ink ${PAD} py-[clamp(70px,11vh,140px)]`}>
+      {/* ============ 9. MEMBERSHIP + SPACE — hover-list image reveal (vincentetdussault ref) ============ */}
+      <section id="membership" className={`overflow-x-clip bg-ink ${PAD} py-[clamp(70px,11vh,140px)]`}>
         <Reveal className="max-w-3xl">
           <div className="font-label text-[11px] uppercase tracking-[0.24em]" style={{ color: ac }}>{a.outriders!.join.eyebrow}</div>
           <h2 className="mt-4 font-display text-[clamp(32px,5vw,76px)] font-black uppercase leading-[0.92] tracking-[-0.025em] text-white">
