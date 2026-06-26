@@ -45,7 +45,7 @@ const advisors = [
 
 export default function LeadershipPage() {
   return (
-    <main className="min-h-screen bg-ink">
+    <main className="min-h-screen bg-ink font-sans text-white">
       <GlassNav accent={FUEL} sectionLinks={[]} cta={{ href: "/join", label: "Join Free" }} />
 
       {/* HERO (image) — full-bleed, bottom-anchored */}
@@ -73,7 +73,7 @@ export default function LeadershipPage() {
           </Reveal>
           <div className="mt-7 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <Reveal delay={150}>
-              <p className="max-w-[54ch] text-pretty font-body text-[clamp(18px,1.9vw,22px)] leading-relaxed text-[#dadada]">
+              <p className="max-w-[54ch] text-pretty text-[clamp(18px,1.9vw,22px)] leading-relaxed text-[#dadada]">
                 LineHaul Station is led by a founder and a board with decades across
                 transportation, finance, real estate, and logistics — and one shared
                 standard: never compromise on quality.
@@ -95,7 +95,7 @@ export default function LeadershipPage() {
       </section>
 
       {/* FOUNDER (light) — founder's letter, white beat like the homepage Who-We-Are */}
-      <Section variant="light" id="founder" className="py-[clamp(70px,11vh,140px)]">
+      <Section variant="panel" id="founder" className="py-[clamp(70px,11vh,140px)]">
         <div className="grid gap-12 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
           <Reveal>
             <ChromeFrame variant="dual" glint>
@@ -115,10 +115,10 @@ export default function LeadershipPage() {
           </Reveal>
 
           <Reveal delay={120}>
-            <SectionHead kicker="Founder & CEO" title="Jeff Swenson" accent={FUEL} size="xl" maxW="max-w-full" tone="onLight" />
-            <p className="mt-6 max-w-[58ch] text-pretty font-body text-[clamp(18px,1.9vw,21px)] leading-relaxed text-[#3a3733]">
+            <SectionHead kicker="Founder & CEO" title="Jeff Swenson" accent={FUEL} size="xl" maxW="max-w-full" />
+            <p className="mt-6 max-w-[58ch] text-pretty text-[clamp(18px,1.9vw,21px)] leading-relaxed text-[#dadada]">
               A seasoned entrepreneur, Jeff has held leadership roles in the planning,
-              design, sales, and construction of more than <strong className="text-ink">$2 billion</strong>{" "}
+              design, sales, and construction of more than <strong className="text-white">$2 billion</strong>{" "}
               of urban residential, commercial, and logistics real estate over the past
               35 years — projects united by one theme: enhancing how people and companies
               live, work, and play. He is the editorial standard behind the brand voice:
@@ -127,11 +127,11 @@ export default function LeadershipPage() {
             </p>
 
             {/* Pull-quote (full panel, no side stripe) */}
-            <figure className="mt-7 rounded-card border border-[#E2DDD6] bg-white p-7">
+            <figure className="mt-7 rounded-card border border-white/10 bg-[#16161A] p-7">
               <div className="font-display text-[44px] font-black leading-none text-fuel" aria-hidden>
                 &ldquo;
               </div>
-              <blockquote className="-mt-3 font-body text-[clamp(19px,2.1vw,24px)] italic leading-relaxed text-[#2a2724]">
+              <blockquote className="-mt-3 text-[clamp(19px,2.1vw,24px)] italic leading-relaxed text-[#2a2724]">
                 Our CEO is a fantastic chef — and he refuses to compromise on quality. The
                 same standard runs through every terminal, every amenity, and every word.
               </blockquote>
@@ -145,13 +145,13 @@ export default function LeadershipPage() {
                 href="https://www.linkedin.com/in/jeff-swenson-2744606"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-btn border border-[#E2DDD6] px-5 py-3 font-label text-[10px] uppercase tracking-[0.16em] text-ink transition-colors hover:border-fuel hover:text-fuel"
+                className="rounded-btn border border-white/10 px-5 py-3 font-label text-[10px] uppercase tracking-[0.16em] text-white transition-colors hover:border-fuel hover:text-fuel"
               >
                 LinkedIn
               </a>
               <a
                 href="mailto:js@linehaulstation.com"
-                className="rounded-btn border border-[#E2DDD6] px-5 py-3 font-label text-[10px] uppercase tracking-[0.16em] text-ink transition-colors hover:border-fuel hover:text-fuel"
+                className="rounded-btn border border-white/10 px-5 py-3 font-label text-[10px] uppercase tracking-[0.16em] text-white transition-colors hover:border-fuel hover:text-fuel"
               >
                 js@linehaulstation.com
               </a>
@@ -205,7 +205,7 @@ export default function LeadershipPage() {
                     </div>
                   </div>
                   <div className="p-6">
-                    <p className="font-body text-[16px] leading-relaxed text-chrome">{p.bio}</p>
+                    <p className="text-[16px] leading-relaxed text-chrome">{p.bio}</p>
                   </div>
                 </div>
               </ChromeFrame>

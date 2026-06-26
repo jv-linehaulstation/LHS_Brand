@@ -87,7 +87,7 @@ const FAQS: QA[] = [
 
 export default function JoinPage() {
   return (
-    <main className="min-h-screen bg-ink">
+    <main className="min-h-screen bg-ink font-sans text-white">
       <GlassNav accent={ACCENT} sectionLinks={[]} cta={{ href: "#contact", label: "Join Free" }} />
 
       {/* ============================ HERO — full-bleed video ============================ */}
@@ -126,7 +126,7 @@ export default function JoinPage() {
               <div className="font-script text-[clamp(26px,3.6vw,46px)] font-semibold" style={{ color: ACCENT }}>
                 Be your best with The Outriders.
               </div>
-              <p className="mt-3 max-w-[52ch] text-pretty font-body text-[clamp(17px,1.8vw,21px)] leading-relaxed text-[#dadada]">
+              <p className="mt-3 max-w-[52ch] text-pretty text-[clamp(17px,1.8vw,21px)] leading-relaxed text-[#dadada]">
                 Leave isolation in the dust and join the country&apos;s best pro drivers —
                 a private club at every Hub, and a community that has your back on every lane.
                 Driver memberships are <span className="text-white">completely free.</span>
@@ -165,7 +165,7 @@ export default function JoinPage() {
       </section>
 
       {/* ====================== WHY JOIN / STORY (light) — white editorial beat ====================== */}
-      <Section variant="light" id="why" className="py-[clamp(70px,11vh,140px)]">
+      <Section variant="panel" id="why" className="py-[clamp(70px,11vh,140px)]">
         <div className="grid gap-x-14 gap-y-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
           <div>
             <SectionHead
@@ -174,24 +174,24 @@ export default function JoinPage() {
               accent={ACCENT}
               size="xl"
               maxW="max-w-full"
-              tone="onLight"
+             
             />
             <Reveal delay={120}>
-              <p className="mt-7 max-w-[54ch] text-pretty font-body text-[clamp(18px,1.9vw,22px)] leading-relaxed text-[#3a3733]">
+              <p className="mt-7 max-w-[54ch] text-pretty text-[clamp(18px,1.9vw,22px)] leading-relaxed text-[#dadada]">
                 The Outriders Club is both a physical drivers&apos; club at every LineHaul
                 Station Hub and an exclusive membership. On-site you&apos;ll find a restaurant,
                 fitness center, showers, gaming, and outdoor patios — plus the driver app,
                 apparel shop, exclusive discount codes, and special events.
               </p>
             </Reveal>
-            <div className="mt-9 space-y-px overflow-hidden rounded-card border border-[#E2DDD6] bg-[#E2DDD6]">
+            <div className="mt-9 space-y-px overflow-hidden rounded-card border border-white/10 bg-white/10">
               {VALUES.map((v, i) => (
-                <Reveal key={v.n} delay={140 + i * 80} className="bg-white p-6 sm:p-7">
+                <Reveal key={v.n} delay={140 + i * 80} className="bg-[#16161A] p-6 sm:p-7">
                   <div className="flex items-baseline gap-5">
                     <span className="tnum font-mono text-[13px]" style={{ color: ACCENT }}>{v.n}</span>
                     <div>
-                      <div className="font-display text-[19px] font-extrabold uppercase leading-tight text-ink">{v.t}</div>
-                      <p className="mt-2 font-body text-[15px] leading-relaxed text-[#6a655e]">{v.p}</p>
+                      <div className="font-display text-[19px] font-extrabold uppercase leading-tight text-white">{v.t}</div>
+                      <p className="mt-2 text-[15px] leading-relaxed text-chrome">{v.p}</p>
                     </div>
                   </div>
                 </Reveal>
@@ -224,7 +224,7 @@ export default function JoinPage() {
         <div className="grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
           <SectionHead kicker="Inside The Club" title="A First-Class Place To Belong." accent={ACCENT} size="xl" />
           <Reveal delay={120}>
-            <p className="text-pretty font-body text-[clamp(18px,1.9vw,21px)] leading-relaxed text-[#dadada]">
+            <p className="text-pretty text-[clamp(18px,1.9vw,21px)] leading-relaxed text-[#dadada]">
               Restaurant and sports bar, the Overdrive fitness center, the Gamer&apos;s Den,
               a rooftop Sky Deck, the gear shop — every amenity earned by the drivers who
               keep America moving.
@@ -248,7 +248,7 @@ export default function JoinPage() {
               maxW="max-w-full"
             />
             <Reveal delay={120}>
-              <p className="mt-6 max-w-[48ch] text-pretty font-body text-[clamp(18px,1.9vw,21px)] leading-relaxed text-[#dadada]">
+              <p className="mt-6 max-w-[48ch] text-pretty text-[clamp(18px,1.9vw,21px)] leading-relaxed text-[#dadada]">
                 It takes a minute and costs nothing. Tell us how you move freight and
                 we&apos;ll get you set up with the club, the app, and first-Hub news.
               </p>

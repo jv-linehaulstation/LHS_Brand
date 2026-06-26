@@ -29,7 +29,7 @@ export default function Contact({
         <h2 className="mx-auto mt-7 max-w-5xl text-balance font-display text-[clamp(38px,6.5vw,92px)] font-black uppercase leading-[0.9] tracking-[-0.025em] text-white">
           {headline}
         </h2>
-        <p className="mx-auto mt-6 max-w-2xl text-pretty font-body text-[clamp(18px,1.8vw,22px)] leading-relaxed text-[#ededed]">
+        <p className="mx-auto mt-6 max-w-2xl text-pretty text-[clamp(18px,1.8vw,22px)] leading-relaxed text-[#ededed]">
           {body}
         </p>
         <div className="mt-9 flex flex-wrap justify-center gap-3.5">

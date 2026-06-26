@@ -3,6 +3,7 @@ import GlassNav from "@/components/GlassNav";
 import LuxeFooter from "@/components/LuxeFooter";
 import Section from "@/components/Section";
 import Reveal from "@/components/motion/Reveal";
+import Spotlight from "@/components/onehome/Spotlight";
 import CountUp from "@/components/motion/CountUp";
 import ParallaxImage from "@/components/motion/ParallaxImage";
 import { PrimaryCTA, GhostCTA } from "@/components/CTA";
@@ -88,7 +89,7 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
             <div className="font-script text-[clamp(24px,3.4vw,44px)] font-semibold" style={{ color: ac }}>
               {a.sub}
             </div>
-            <p className="mt-4 max-w-[52ch] text-pretty font-body text-[clamp(17px,1.8vw,21px)] leading-relaxed text-[#dadada]">
+            <p className="mt-4 max-w-[52ch] text-pretty text-[clamp(17px,1.8vw,21px)] leading-relaxed text-[#dadada]">
               {a.desc}
             </p>
           </Reveal>
@@ -147,25 +148,25 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
 
   /* ========================= PROBLEM (white) — editorial split ========================= */
   const problemSection = (
-    <Section variant="light" id="problem" className="py-[clamp(70px,11vh,140px)]">
+    <Section variant="panel" id="problem" className="py-[clamp(70px,11vh,140px)]">
       <div className="grid gap-x-16 gap-y-12 lg:grid-cols-[1.2fr_0.8fr] lg:items-start">
         <div>
-          <SectionHead kicker={a.problem.kicker} title={a.problem.headline} accent={ac} size="xl" tone="onLight" />
+          <SectionHead kicker={a.problem.kicker} title={a.problem.headline} accent={ac} size="xl" />
           <Reveal delay={120}>
-            <p className="mt-7 max-w-[54ch] text-pretty font-body text-[clamp(18px,1.9vw,22px)] leading-relaxed text-[#3a3733]">
+            <p className="mt-7 max-w-[54ch] text-pretty text-[clamp(18px,1.9vw,22px)] leading-relaxed text-[#dadada]">
               {a.problem.body}
             </p>
           </Reveal>
         </div>
-        <Reveal delay={140} dir="right" className="rounded-card border border-[#E2DDD6] bg-white p-7 sm:p-9 lg:-mt-6">
+        <Reveal delay={140} dir="right" className="rounded-card border border-white/10 bg-[#16161A] p-7 sm:p-9 lg:-mt-6">
           {a.problem.counters.map((c, i) => (
-            <div key={i} className="flex items-baseline gap-6 border-t border-[#E2DDD6] py-5 first:border-t-0 first:pt-0">
+            <div key={i} className="flex items-baseline gap-6 border-t border-white/10 py-5 first:border-t-0 first:pt-0">
               <CountUp
                 value={c.big}
                 style={{ color: ac }}
                 className="tnum min-w-[120px] font-display text-[clamp(30px,4vw,42px)] font-black leading-none"
               />
-              <span className="font-body text-[15px] leading-snug text-[#6a655e]">{c.label}</span>
+              <span className="text-[15px] leading-snug text-chrome">{c.label}</span>
             </div>
           ))}
         </Reveal>
@@ -226,21 +227,23 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
   // Non-drivers template only (drivers has its own OneHomePage). The old
   // a.amenities tiles branch was dead here and has been removed.
   const capabilitiesSection = (
-    <Section variant="light" className="py-[clamp(70px,11vh,140px)]">
-      <SectionHead kicker={a.featuresEyebrow} title={a.featuresTitle} accent={ac} size="xl" tone="onLight" />
+    <Section variant="panel" className="py-[clamp(70px,11vh,140px)]">
+      <SectionHead kicker={a.featuresEyebrow} title={a.featuresTitle} accent={ac} size="xl" />
       <div className="mt-10 grid gap-4 lg:grid-cols-2">
         {a.features.map((f, i) => (
-          <Reveal key={i} delay={(i % 2) * 80} className="lift group rounded-card border border-[#E2DDD6] bg-white p-6 sm:p-7">
-            <div className="flex items-start gap-5">
-              <span className="tnum mt-1 font-mono text-[14px]" style={{ color: ac }}>{String(i + 1).padStart(2, "0")}</span>
-              <div className="flex-1">
-                <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-                  <div className="font-display text-[19px] font-extrabold uppercase tracking-[0.01em] text-ink">{f.title}</div>
-                  <div className="font-mono text-[11px]" style={{ color: ac }}>{f.tag}</div>
+          <Reveal key={i} delay={(i % 2) * 80}>
+            <Spotlight className="group relative h-full overflow-hidden rounded-card border border-white/10 bg-[#16161A] p-6 sm:p-7" glow={`${ac}26`}>
+              <div className="relative z-[3] flex items-start gap-5">
+                <span className="tnum mt-1 font-mono text-[14px]" style={{ color: ac }}>{String(i + 1).padStart(2, "0")}</span>
+                <div className="flex-1">
+                  <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                    <div className="font-display text-[19px] font-extrabold uppercase tracking-[0.01em] text-white">{f.title}</div>
+                    <div className="font-mono text-[11px]" style={{ color: ac }}>{f.tag}</div>
+                  </div>
+                  <p className="mt-3 text-[15px] leading-relaxed text-chrome">{f.blurb}</p>
                 </div>
-                <p className="mt-3 font-body text-[15px] leading-relaxed text-[#6a655e]">{f.blurb}</p>
               </div>
-            </div>
+            </Spotlight>
           </Reveal>
         ))}
       </div>
@@ -272,7 +275,7 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
       <div className="grid gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
         <Reveal>
           <SectionHead title={a.memphis.headline} accent={ac} size="xl" />
-          <p className="mt-6 max-w-[54ch] text-pretty font-body text-[clamp(18px,1.9vw,21px)] leading-relaxed text-[#e2e2e2]">
+          <p className="mt-6 max-w-[54ch] text-pretty text-[clamp(18px,1.9vw,21px)] leading-relaxed text-[#e2e2e2]">
             {a.memphis.body}
           </p>
           <div className="mt-7 grid grid-cols-3 gap-3">
@@ -313,7 +316,7 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
         <div className="lg:sticky lg:top-28">
           <SectionHead kicker={a.form.eyebrow} title={a.form.headline} accent={ac} size="xl" maxW="max-w-full" />
           <Reveal delay={100}>
-            <p className="mt-5 max-w-[44ch] text-pretty font-body text-[clamp(16px,1.6vw,20px)] leading-relaxed text-[#dadada]">
+            <p className="mt-5 max-w-[44ch] text-pretty text-[clamp(16px,1.6vw,20px)] leading-relaxed text-[#dadada]">
               {a.form.body}
             </p>
           </Reveal>
@@ -353,7 +356,7 @@ export default function AudiencePage({ audience }: { audience: AudienceKey }) {
   /* Contact pulls from lib/site.ts (the canonical site contact). Per JJ, the OneHome
      playbook's Membership Director contact is not used anywhere on the site. */
   return (
-    <main className="min-h-screen bg-ink">
+    <main className="min-h-screen bg-ink font-sans text-white">
       <GlassNav accent={ac} sectionLinks={[]} cta={{ href: "#contact", label: "Connect With Us" }} />
       {hero}
 
