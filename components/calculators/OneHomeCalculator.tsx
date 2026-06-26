@@ -67,18 +67,7 @@ export default function OneHomeCalculator({
 
   return (
     <section>
-      <div className="mb-10">
-        <div className="font-label text-[11px] uppercase tracking-[0.24em]" style={{ color: onLight ? accentDark : undefined }}>
-          <span className={onLight ? "" : "text-steel"}>Run Your Own Numbers</span>
-        </div>
-        <h2
-          className="mt-3 font-display text-[clamp(28px,4vw,46px)] font-black uppercase tracking-[-0.01em]"
-          style={{ color: onLight ? "#0B0B0B" : "#ffffff" }}
-        >
-          What OneHome Puts Back In Your Pocket
-        </h2>
-      </div>
-
+      {/* The section provides the heading; the calculator is just the glass card. */}
       <div className="glass-strong h-full rounded-[20px] p-6 sm:p-9">
           {/* RESULT */}
           <div className="rounded-card border border-chrome/15 bg-ink2 p-6 sm:p-8">

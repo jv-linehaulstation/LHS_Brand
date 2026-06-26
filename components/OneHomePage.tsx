@@ -8,7 +8,6 @@ import Reveal from "@/components/motion/Reveal";
 import MagneticButton from "@/components/motion/MagneticButton";
 import OneHomeCalculator from "@/components/calculators/OneHomeCalculator";
 import JoinForm from "@/components/JoinForm";
-import AmenityShowcase from "@/components/onehome/AmenityShowcase";
 import BuildingCarousel from "@/components/onehome/BuildingCarousel";
 import QuoteCarousel from "@/components/onehome/QuoteCarousel";
 import ComparisonTable from "@/components/onehome/ComparisonTable";
@@ -31,28 +30,19 @@ const MUT = "#a9a9a9"; // muted body text on dark (AA on #0E0E10)
 const HERO_VIDEO =
   "https://storage.googleapis.com/msgsndr/vFbdhIphhRpcrSlf4VJF/media/69554d56cb5b716ba310c3dd.mp4";
 
-const AMENITY_IMG = [
-  "/assets/amenities/grill.jpg",
-  "/assets/amenities/sky-deck.jpg",
-  "/assets/amenities/digital-den.jpg",
-  "/assets/amenities/fitness.jpg",
-  "/assets/amenities/laundry.jpg",
-  "/assets/amenities/gear-shop.jpg",
-  "/assets/amenities/pool-spa.jpg",
-  "/assets/amenities/camp-k9.jpg",
+// Amenities carousel slides — the 8 club amenities (TODO(JJ): ≥2400px photos).
+const AMENITY_SLIDES = [
+  { src: PHOTOS.clubDining, name: "Member's Grill", spec: "great food • entertainment • relax" },
+  { src: PHOTOS.skydeck, name: "Sky Deck", spec: "outdoor firepits • water features • star gazing" },
+  { src: PHOTOS.gamerDen1, name: "Digital Den", spec: "gamer's center • billiards • trap & skeet" },
+  { src: PHOTOS.fitness, name: "Fitness Studio", spec: "cardio • weights • showers • lockers" },
+  { src: PHOTOS.laundry, name: "Laundry & More", spec: "washers • dryers • daily essentials" },
+  { src: PHOTOS.gearShop, name: "Gear Shop", spec: "logo apparel • accessories • sundries" },
+  { src: PHOTOS.waterFeature, name: "Resort Pool & Spa", spec: "outdoor pool • hot tubs • sun & fun" },
+  { src: PHOTOS.clubPatio, name: "Camp K9", spec: "dog park • relief stations • driver-friendly" },
 ];
 
-const BUILDINGS = [
-  { src: "/assets/building-seq/02.jpg", name: "The First Hub", spec: "West Memphis, AR · I-40 / I-55" },
-  { src: "/assets/building-seq/07.jpg", name: "Aerial · The Network", spec: "133 spaces · 24/7 access" },
-  { src: "/assets/building-seq/05.jpg", name: "Arrival & Gatehouse", spec: "Gated · secure · driver-first" },
-];
-
-// §9 Membership + Space — condensed to one tight line each (JJ: "too much info").
-// PENDING(JJ): the exact hover-reveal (image preview follows the cursor) lands
-// once the reference site URL is provided.
-// TODO(JJ): dedicated imagery for the membership/Space steps. Using club +
-// building renderings until then.
+// Membership steps + Space ways — hover-reveal lists. TODO(JJ): one image per item.
 const MEMBERSHIP = [
   { n: "01", title: "Free Membership", line: "Always 100% free — agree to the Code of Conduct and you're in.", img: "/assets/amenities/grill.jpg" },
   { n: "02", title: "Create Your Profile", line: "Unlock member features and career-changing information.", img: "/assets/amenities/digital-den.jpg" },
@@ -64,8 +54,7 @@ const SPACE = [
   { n: "03", title: "Purchase Your Space", line: "Special pricing for anyone with a steering wheel in their hand.", img: "/assets/building-seq/07.jpg" },
 ];
 
-// §7 "We have EVERYTHING you need" — Home Hub + Fleet merged as image tiles.
-// TODO(JJ): dedicated Home Hub (mail/parking/storage) + Fleet bay photos.
+// Home Hub + Fleet merged as image tiles. TODO(JJ): dedicated tile photos.
 const EVERYTHING_TILES = [
   { group: "Home Hub", label: "Mail Services", line: "A real mailing address on the road.", img: PHOTOS.clubShop },
   { group: "Home Hub", label: "Personal Vehicle", line: "Secure covered parking for your car.", img: PHOTOS.gateHouse },
@@ -76,20 +65,16 @@ const EVERYTHING_TILES = [
   { group: "Fleet Services", label: "Truck Wash", line: "Keep the rig sharp between hauls.", img: PHOTOS.truckWashEntry },
   { group: "Fleet Services", label: "Cross Dock", line: "Transload and stage freight on site.", img: PHOTOS.crossDock },
 ];
-// Detailed Fleet menu (kept from the live page) — shown as a compact line.
 const FLEET_DETAIL = "Tire Pressure Management · Pre & Post-Trip Inspection · DOT Annual Inspection · Tractor/Trailer Service · Routine PM Repairs";
 
-// Optional "everything included" categorized club menu (the 8 showcase tiles stay
-// the hero; this keeps the full live-page menu so nothing is lost).
+// "Everything included" categorized club menu (the carousel is the hero).
 const CLUB_MENU = [
   { cat: "Food & Drink", items: ["Member's Grill & Bar", "Coffee & Juice Bar", "Grab-and-Go Market", "Snacks & Provisions"] },
   { cat: "Entertainment", items: ["Digital Den & Gaming", "Billiards & Game Tables", "Trap & Skeet", "Sky Deck & Firepits"] },
   { cat: "Amenities", items: ["Fitness Studio", "Resort Pool & Spa", "Sauna & Wellness", "Barbershop", "Laundry & More", "Gear Shop", "Conference Center", "Camp K9"] },
 ];
 
-// §10 — three founding-member quote cards. Honest framing (the program is
-// pre-launch): the OneHome promise, not fabricated named drivers + stock faces.
-// TODO(JJ): replace with real driver testimonials + photos + 5.0 ratings.
+// Founding-member quote cards — honest framing (pre-launch). TODO(JJ): real testimonials.
 const QUOTES = [
   { quote: "Stop paying for a home you rarely use. Pay only for the days you need.", name: "The financial case", role: "Founding-member program" },
   { quote: "It's like giving yourself a $15,000–$20,000 raise without an extra mile.", name: "Annual savings", role: "Founding-member program" },
@@ -98,7 +83,7 @@ const QUOTES = [
   { quote: "From truck stops to something far better — club-level living for drivers.", name: "The lifestyle", role: "Founding-member program" },
 ];
 
-// §11 FAQ — money-first, OneHome-specific. TODO(JJ): confirm final answers.
+// FAQ — money-first, OneHome-specific. TODO(JJ): confirm final answers.
 const FAQ_ITEMS: QA[] = [
   { q: "How does “pay only for the days you use” work?", a: "You choose how many days a year you actually need a Home Hub and pay only for those — not 365 days of rent on a place you’re rarely in. Start around 60 days and grow your membership whenever you’re ready." },
   { q: "Is the driver membership really free?", a: "Yes. The Outriders Club driver membership is 100% free — agree to the Code of Conduct and you’re in. OneHome (your paid Home Hub access) is separate and priced by the days you use, with no mortgage, lease, or year-round rent." },
@@ -153,8 +138,8 @@ export default function OneHomePage() {
           </Reveal>
           <Reveal delay={350} className="mt-8 flex flex-wrap items-center gap-3.5">
             <MagneticButton strength={0.35}>
-              <a href="#join" className={`group ${PILL} text-ink shadow-[0_14px_34px_rgba(0,0,0,0.5)] hover:brightness-[1.08]`} style={{ background: `linear-gradient(135deg, ${ac}, ${ad})` }}>
-                Join OneHome
+              <a href="#join-free" className={`group ${PILL} text-ink shadow-[0_14px_34px_rgba(0,0,0,0.5)] hover:brightness-[1.08]`} style={{ background: `linear-gradient(135deg, ${ac}, ${ad})` }}>
+                Join Free
                 <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">→</span>
               </a>
             </MagneticButton>
@@ -171,7 +156,7 @@ export default function OneHomePage() {
         </a>
       </section>
 
-      {/* ============ 2. WELCOME TO THE CLUB — story + Vimeo (no portrait) ============ */}
+      {/* ============ 2. WELCOME TO THE CLUB — story + Vimeo (no portrait) [approved, untouched] ============ */}
       <section id="welcome" className={`relative overflow-hidden ${PAD} py-[clamp(80px,12vh,160px)]`} style={{ background: ELEV }}>
         <div className="bloom" style={{ ["--bloom" as string]: "rgba(208,40,60,0.10)" }} aria-hidden />
         <div className="relative grid gap-[clamp(32px,5vw,72px)] lg:grid-cols-2 lg:items-center">
@@ -204,7 +189,7 @@ export default function OneHomePage() {
         </div>
       </section>
 
-      {/* ============ 2b. JOIN FREE — Outriders Club register (FREE), distinct from paid OneHome ============ */}
+      {/* ============ 3. JOIN FREE — Outriders Club register (the ONE form on the page) ============ */}
       <section id="join-free" className={`relative overflow-hidden ${PAD} py-[clamp(70px,11vh,140px)]`} style={{ background: BURG }}>
         <div className="bloom" style={{ ["--bloom" as string]: "rgba(208,40,60,0.10)" }} aria-hidden />
         <div className="relative grid gap-[clamp(28px,4vw,64px)] lg:grid-cols-[0.92fr_1.08fr] lg:items-start">
@@ -228,8 +213,8 @@ export default function OneHomePage() {
               ))}
             </ul>
             <p className="mt-6 font-mono text-[12px] text-chrome">
-              Looking for the paid home program?{" "}
-              <a href="#join" className="underline transition-colors hover:text-white" style={{ color: ac }}>Join OneHome ↓</a>
+              Want the paid home program?{" "}
+              <a href="#core" className="underline transition-colors hover:text-white" style={{ color: ac }}>See the OneHome math ↓</a>
             </p>
           </div>
           <Reveal dir="right">
@@ -238,17 +223,7 @@ export default function OneHomePage() {
         </div>
       </section>
 
-      {/* ============ 3. BUILDING PREVIEWS — framed rounded cards (carousel in the interactions pass) ============ */}
-      <section id="buildings" className={`bg-ink ${PAD} py-[clamp(70px,11vh,140px)]`}>
-        <Reveal className="mx-auto max-w-2xl text-center">
-          <div className="font-label text-[11px] uppercase tracking-[0.24em]" style={{ color: ac }}>Our Featured Hubs</div>
-          <h2 className="mt-4 text-balance font-display text-[clamp(32px,5vw,68px)] font-black uppercase leading-[0.95] tracking-[-0.025em] text-white">Building Previews</h2>
-          <p className="mt-4 text-[clamp(15px,1.6vw,18px)] leading-relaxed" style={{ color: MUT }}>A first look at the network — gated, secure, and built driver-first.</p>
-        </Reveal>
-        <BuildingCarousel slides={BUILDINGS} accent={ac} />
-      </section>
-
-      {/* ============ 4. HERE'S A NEW & BETTER OPTION — Core Sales + MAIN calculator (burgundy-dark) ============ */}
+      {/* ============ 4. HERE'S A NEW & BETTER OPTION — stacked: hook → wide calculator → body ============ */}
       <section id="core" className={`relative overflow-hidden ${PAD} py-[clamp(80px,12vh,160px)]`} style={{ background: BURG }}>
         <Reveal className="mx-auto max-w-5xl text-center">
           <div className="font-label text-[11px] uppercase tracking-[0.24em]" style={{ color: ac }}>{ONEHOME.core.kicker}</div>
@@ -259,29 +234,23 @@ export default function OneHomePage() {
           <p className="mx-auto mt-6 max-w-[44ch] text-[clamp(18px,2vw,24px)] font-medium leading-snug text-[#e2e2e2]">{ONEHOME.core.subhead}</p>
         </Reveal>
 
-        {/* the MAIN OneHome calculator lives here — no separate Lifestyle Calculator section */}
-        <div id="calculator" className="mx-auto mt-14 grid max-w-6xl gap-[clamp(28px,4vw,56px)] lg:grid-cols-[1.25fr_0.75fr] lg:items-stretch">
-          <Reveal>
+        {/* wide, focal glass calculator (the only calculator) */}
+        <Reveal className="mx-auto mt-12 max-w-6xl">
+          <div id="calculator">
             <OneHomeCalculator accent={ac} accentDark={ad} />
-          </Reveal>
-          {/* right column — a glass card stretched to the calculator's height */}
-          <Reveal delay={120} className="lg:h-full">
-            <div className="glass-strong flex h-full flex-col rounded-[20px] p-7 sm:p-9">
-              {/* Luxe stat chip */}
-              <div className="inline-flex w-fit items-center gap-2 rounded-full border border-white/15 bg-white/[0.05] px-4 py-2">
-                <span className="font-display text-[18px] font-black" style={{ color: ac }}>$15K+</span>
-                <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-chrome">saved / yr</span>
-              </div>
-              <div className="mt-5 space-y-4 text-[clamp(15px,1.5vw,18px)] leading-relaxed" style={{ color: MUT }}>
-                {ONEHOME.core.paras.map((p, i) => <p key={i}>{p}</p>)}
-              </div>
-              <p className="mt-auto pt-6 font-display text-[clamp(18px,2vw,26px)] font-black uppercase leading-tight text-white">{ONEHOME.core.blurb}</p>
-            </div>
-          </Reveal>
-        </div>
+          </div>
+        </Reveal>
+
+        {/* the playbook's revised Core Sales copy, below the calculator */}
+        <Reveal className="mx-auto mt-12 max-w-3xl">
+          <div className="space-y-4 text-[clamp(16px,1.6vw,19px)] leading-relaxed" style={{ color: "#dadada" }}>
+            {ONEHOME.core.paras.map((p, i) => <p key={i}>{p}</p>)}
+          </div>
+          <p className="mt-6 font-display text-[clamp(20px,2.4vw,30px)] font-black uppercase leading-tight text-white">{ONEHOME.core.blurb}</p>
+        </Reveal>
       </section>
 
-      {/* ============ 5. FOR A LOT LESS MONEY — prompts + strikethrough comparison, equal height ============ */}
+      {/* ============ 5. FOR A LOT LESS MONEY — prompts + interactive strikethrough comparison ============ */}
       <section id="value" className={`${PAD} py-[clamp(70px,11vh,140px)]`} style={{ background: ELEV }}>
         <Reveal as="h2" className="max-w-[20ch] text-balance font-display text-[clamp(32px,4.8vw,68px)] font-black uppercase leading-[0.95] tracking-[-0.02em] text-white">
           {ONEHOME.value.headline}
@@ -300,25 +269,43 @@ export default function OneHomePage() {
             </ul>
             <p className="mt-auto pt-8 text-[clamp(18px,2vw,24px)] font-light italic" style={{ color: ac }}>{ONEHOME.value.blurb}</p>
           </Reveal>
-
           <Reveal delay={120} dir="right" className="lg:h-full">
             <ComparisonTable rows={ONEHOME.value.table} accent={ac} />
           </Reveal>
         </div>
       </section>
 
-      {/* ============ 6. AMENITIES — pinned scroll showcase (49vw media) ============ */}
-      <section id="amenities" className={`overflow-x-clip bg-ink ${PAD} py-[clamp(80px,12vh,160px)]`}>
+      {/* ============ 6. NOTHING TO LOSE / EVERYTHING TO GAIN — free-membership hover-reveal ============ */}
+      <section id="membership" className={`overflow-x-clip bg-ink ${PAD} py-[clamp(70px,11vh,140px)]`}>
+        <Reveal className="max-w-3xl">
+          <div className="font-label text-[11px] uppercase tracking-[0.24em]" style={{ color: ac }}>{a.outriders!.join.eyebrow}</div>
+          <h2 className="mt-4 font-display text-[clamp(32px,5vw,76px)] font-black uppercase leading-[0.92] tracking-[-0.025em] text-white">
+            {a.outriders!.join.headline.split("/")[0].trim()}{" "}
+            <span style={{ color: ac }}>{a.outriders!.join.headline.split("/")[1].trim()}</span>
+          </h2>
+        </Reveal>
+        <div className="mt-12">
+          <MembershipReveal groups={[{ label: "Free Membership", items: MEMBERSHIP }]} accent={ac} />
+        </div>
+        <Reveal delay={120} className="mt-10">
+          <MagneticButton strength={0.3}>
+            <a href="#join-free" className={`group ${PILL} text-ink shadow-[0_14px_30px_rgba(0,0,0,0.45)] hover:brightness-[1.06]`} style={{ background: `linear-gradient(135deg, ${ac}, ${ad})` }}>
+              Join Free
+              <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+            </a>
+          </MagneticButton>
+        </Reveal>
+      </section>
+
+      {/* ============ 7. AMENITIES — peeking-card carousel + everything-included list ============ */}
+      <section id="amenities" className={`bg-ink ${PAD} py-[clamp(80px,12vh,160px)]`}>
         <Reveal className="mx-auto max-w-2xl text-center">
-          <div className="font-label text-[11px] uppercase tracking-[0.24em]" style={{ color: ac }}>{ONEHOME.amenities.subhead}</div>
+          <div className="font-label text-[11px] uppercase tracking-[0.24em]" style={{ color: ac }}>The Outriders Club</div>
           <h2 className="mt-4 text-balance font-display text-[clamp(34px,5.6vw,84px)] font-black uppercase leading-[0.92] tracking-[-0.025em] text-white">{ONEHOME.amenities.headline}</h2>
           <p className="mt-5 text-[clamp(16px,1.7vw,20px)] leading-relaxed" style={{ color: MUT }}>{ONEHOME.amenities.intro}</p>
         </Reveal>
-        <AmenityShowcase
-          items={ONEHOME.amenities.cards.map((c, i) => ({ name: c.name, meta: c.meta, blurb: c.blurb, img: AMENITY_IMG[i] }))}
-          accent={ac}
-          accentDark={ac}
-        />
+        <BuildingCarousel slides={AMENITY_SLIDES} accent={ac} />
+
         {/* "Everything included" — the full club menu so nothing from the live page is lost */}
         <Reveal className="mt-[clamp(48px,7vw,96px)] border-t border-white/10 pt-[clamp(36px,5vw,64px)]">
           <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-chrome">Everything included</div>
@@ -343,9 +330,8 @@ export default function OneHomePage() {
         </Reveal>
       </section>
 
-      {/* ============ 7. WE HAVE EVERYTHING YOU NEED — Home Hub + Fleet as image tiles, scroll-zoom hero ============ */}
+      {/* ============ 8. WE HAVE EVERYTHING YOU NEED — Home Hub + Fleet image tiles, scroll-zoom hero ============ */}
       <section id="everything">
-        {/* scroll-zoom hero band */}
         <div className="relative h-[clamp(340px,52vh,600px)] overflow-hidden">
           <ScrollScale from={1.06} to={1.22}>
             <Image src="/assets/building-seq/01.jpg" alt="A LineHaul Station terminal — your Home Hub" fill className="img-grade object-cover" sizes="100vw" />
@@ -358,7 +344,6 @@ export default function OneHomePage() {
             </Reveal>
           </div>
         </div>
-        {/* image tiles — Home Hub (3) + Fleet Services (5) */}
         <div className={`${PAD} py-[clamp(56px,9vh,110px)]`} style={{ background: ELEV }}>
           {["Home Hub", "Fleet Services"].map((group, gi) => (
             <div key={group} className={gi === 1 ? "mt-12" : ""}>
@@ -389,7 +374,7 @@ export default function OneHomePage() {
         </div>
       </section>
 
-      {/* ============ 8. NETWORK / MAP — markets + West Memphis proof, once ============ */}
+      {/* ============ 9. NETWORK / MAP — markets + West Memphis proof, once ============ */}
       <section id="network" className={`${PAD} py-[clamp(70px,11vh,140px)]`} style={{ background: ELEV }}>
         <div className="grid gap-x-16 gap-y-10 lg:grid-cols-[1fr_0.9fr] lg:items-start">
           <div>
@@ -423,35 +408,21 @@ export default function OneHomePage() {
         </div>
       </section>
 
-      {/* ============ 9. MEMBERSHIP + SPACE — hover-list image reveal (vincentetdussault ref) ============ */}
-      <section id="membership" className={`overflow-x-clip bg-ink ${PAD} py-[clamp(70px,11vh,140px)]`}>
+      {/* ============ 10. SPACE — three ways to get Space, hover-reveal ============ */}
+      <section id="space" className={`overflow-x-clip bg-ink ${PAD} py-[clamp(70px,11vh,140px)]`}>
         <Reveal className="max-w-3xl">
-          <div className="font-label text-[11px] uppercase tracking-[0.24em]" style={{ color: ac }}>{a.outriders!.join.eyebrow}</div>
-          <h2 className="mt-4 font-display text-[clamp(32px,5vw,76px)] font-black uppercase leading-[0.92] tracking-[-0.025em] text-white">
-            {a.outriders!.join.headline.split("/")[0].trim()}{" "}
-            <span style={{ color: ac }}>{a.outriders!.join.headline.split("/")[1].trim()}</span>
-          </h2>
+          <div className="font-label text-[11px] uppercase tracking-[0.24em]" style={{ color: ac }}>Three ways to get Space</div>
+          <h2 className="mt-3 font-display text-[clamp(48px,9vw,120px)] font-black uppercase leading-[0.86] tracking-[-0.03em] text-white">{a.outriders!.join.waysTitle}</h2>
+          <p className="mt-5 max-w-[52ch] text-[clamp(16px,1.7vw,20px)] leading-relaxed text-[#dadada]">
+            Space is your place in the network — secure parking, trailer drop, and terminal access at every LineHaul Station Hub. Here are the three ways to get it.
+          </p>
         </Reveal>
         <div className="mt-12">
-          <MembershipReveal
-            groups={[
-              { label: "Free Membership", items: MEMBERSHIP },
-              { label: "Three Ways To Get Space", items: SPACE },
-            ]}
-            accent={ac}
-          />
+          <MembershipReveal groups={[{ label: "Three Ways To Get Space", items: SPACE }]} accent={ac} />
         </div>
-        <Reveal delay={120} className="mt-10">
-          <MagneticButton strength={0.3}>
-            <a href="/join" className={`group ${PILL} text-ink shadow-[0_14px_30px_rgba(0,0,0,0.45)] hover:brightness-[1.06]`} style={{ background: `linear-gradient(135deg, ${ac}, ${ad})` }}>
-              Join Free
-              <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">→</span>
-            </a>
-          </MagneticButton>
-        </Reveal>
       </section>
 
-      {/* ============ 10. TESTIMONIALS — warm driver photo + play + quote cards ============ */}
+      {/* ============ 11. TESTIMONIALS — warm driver photo + play + quote cards ============ */}
       <section id="stories" className="relative overflow-hidden">
         <div className="relative h-[clamp(360px,52vh,560px)]">
           <ParallaxImage src={a.heroImage} alt="A driver at sunset — LineHaul Station" strength={0.2} />
@@ -471,7 +442,7 @@ export default function OneHomePage() {
         </div>
       </section>
 
-      {/* ============ 11. FAQ — Luxe accordion ============ */}
+      {/* ============ 12. FAQ — Luxe accordion ============ */}
       <section id="faq" className={`${PAD} py-[clamp(70px,11vh,140px)]`} style={{ background: ELEV }}>
         <Reveal className="mx-auto max-w-2xl text-center">
           <div className="font-label text-[11px] uppercase tracking-[0.24em]" style={{ color: ac }}>Good to know</div>
@@ -482,39 +453,33 @@ export default function OneHomePage() {
         </div>
       </section>
 
-      {/* ============ 12. CLOSING CTA + Join OneHome form — over a full-bleed parallax image ============ */}
-      <section id="join" className="relative overflow-hidden">
+      {/* ============ 13. CLOSING CTA — buttons only, scroll to the single form ============ */}
+      <section id="closing" className="relative overflow-hidden">
         <ParallaxImage src={a.roadImage ?? a.heroImage} alt="A truck on the open road at sunset — LineHaul Station" strength={0.24} />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(11,11,11,0.96),rgba(11,11,11,0.74)_60%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(11,11,11,0.96),rgba(11,11,11,0.5)_70%)]" />
         <div className="bloom" style={{ ["--bloom" as string]: `${ac}22` }} aria-hidden />
-        <div className={`relative grid gap-[clamp(28px,4vw,64px)] ${PAD} py-[clamp(80px,12vh,160px)] lg:grid-cols-[0.9fr_1.1fr] lg:items-start`}>
-          <div className="lg:sticky lg:top-28">
+        <div className={`relative ${PAD} py-[clamp(90px,14vh,180px)]`}>
+          <Reveal className="mx-auto max-w-3xl text-center">
             <div className="font-label text-[11px] uppercase tracking-[0.24em]" style={{ color: ac }}>{ONEHOME.join.subhead}</div>
-            <Reveal as="h2" className="mt-3 text-balance font-display text-[clamp(36px,5.6vw,88px)] font-black uppercase leading-[0.9] tracking-[-0.03em] text-white">{a.closerHeadline}</Reveal>
-            <Reveal delay={100}>
-              <p className="mt-6 max-w-[46ch] text-[clamp(16px,1.7vw,21px)] leading-relaxed text-[#dadada]">{a.closerBody}</p>
-            </Reveal>
-            <Reveal delay={140} className="mt-8 flex flex-wrap items-center gap-3.5">
+            <h2 className="mx-auto mt-4 max-w-[18ch] text-balance font-display text-[clamp(36px,6vw,96px)] font-black uppercase leading-[0.9] tracking-[-0.03em] text-white">{a.closerHeadline}</h2>
+            <p className="mx-auto mt-6 max-w-[46ch] text-[clamp(16px,1.7vw,21px)] leading-relaxed text-[#dadada]">{a.closerBody}</p>
+            <div className="mt-9 flex flex-wrap items-center justify-center gap-3.5">
+              <MagneticButton strength={0.35}>
+                <a href="#join-free" className={`group ${PILL} text-ink shadow-[0_14px_34px_rgba(0,0,0,0.5)] hover:brightness-[1.08]`} style={{ background: `linear-gradient(135deg, ${ac}, ${ad})` }}>
+                  Join Free
+                  <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                </a>
+              </MagneticButton>
               <a href={site.phoneHref} className={`group ${PILL} border border-white/40 bg-white/[0.04] text-white backdrop-blur-sm hover:border-[var(--ac)]`} style={{ ["--ac" as string]: ac }}>
                 Schedule a Call
                 <span aria-hidden style={{ color: ac }}>→</span>
               </a>
-              <a href={site.emailHref} className="font-mono text-[13px] text-chrome underline transition-colors hover:text-white">or email {site.email}</a>
-            </Reveal>
-          </div>
-          <Reveal delay={120} dir="right">
-            <JoinForm
-              accent={ac}
-              accentDark={ad}
-              submitLabel="Join OneHome"
-              successTitle="You're on the OneHome list."
-              successBody="Thanks — you're in line for early access. Watch your phone: we'll share availability, program details, and West Memphis founding-rate news as locations come online."
-            />
+            </div>
           </Reveal>
         </div>
       </section>
 
-      {/* ============ 13. FOOTER — dark architectural image + Quick Links / Explore / Newsletter ============ */}
+      {/* ============ 14. FOOTER — dark architectural image + Quick Links / Explore / Newsletter ============ */}
       <footer className="relative overflow-hidden">
         <ScrollScale from={1.04} to={1.16}>
           <Image src="/assets/building-seq/07.jpg" alt="A LineHaul Station Hub from above" fill className="img-grade object-cover" sizes="100vw" />
@@ -541,7 +506,7 @@ export default function OneHomePage() {
               <a href="/" className="w-fit font-label text-[11px] uppercase tracking-[0.12em] text-chrome transition-colors hover:text-fuel">Home</a>
               <a href="/carriers" className="w-fit font-label text-[11px] uppercase tracking-[0.12em] text-chrome transition-colors hover:text-fuel">Carriers</a>
               <a href="/leadership" className="w-fit font-label text-[11px] uppercase tracking-[0.12em] text-chrome transition-colors hover:text-fuel">Leadership</a>
-              <a href="#join" className="w-fit font-label text-[11px] uppercase tracking-[0.12em] text-fuel transition-colors hover:brightness-125">Join OneHome</a>
+              <a href="#join-free" className="w-fit font-label text-[11px] uppercase tracking-[0.12em] text-fuel transition-colors hover:brightness-125">Join Free</a>
             </div>
             <div className="max-w-sm">
               <div className="font-label text-[9px] uppercase tracking-[0.2em] text-[#8f8f8f]">Newsletter</div>

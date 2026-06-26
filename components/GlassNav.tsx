@@ -99,7 +99,7 @@ export default function GlassNav({ accent = "#F07820" }: { accent?: string }) {
             </a>
             <MagneticButton strength={0.4} className="hidden sm:inline-block">
               <a
-                href="#join"
+                href="#core"
                 className="rounded-full px-5 py-[10px] font-label text-[10px] uppercase tracking-[0.14em] text-ink shadow-[0_8px_20px_rgba(0,0,0,0.35)] transition hover:brightness-110 active:scale-[0.97]"
                 style={{ background: `linear-gradient(135deg, ${accent}, ${accent}cc)` }}
               >
