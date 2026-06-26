@@ -6,16 +6,19 @@ import LuxeFooter from "@/components/LuxeFooter";
 import Contact from "@/components/Contact";
 import Reveal from "@/components/motion/Reveal";
 import { DataTag } from "@/components/Bits";
-import { allPosts } from "@/lib/blog";
+import { getAllPosts } from "@/lib/blog";
 
 const FUEL = "#F07820";
 
+// Rebuild from Supabase at most once a minute (ISR).
+export const revalidate = 60;
+
 export const metadata: Metadata = {
-  title: "The Dispatch | LineHaul Station",
+  title: "Blog | LineHaul Station",
   description:
-    "The Dispatch — stories from the lane on driver quality of life, the shared-use terminal network, and the future of freight, from the team at LineHaul Station.",
+    "The LineHaul Station blog — stories from the lane on driver quality of life, the shared-use terminal network, and the future of freight, from the team at LineHaul Station.",
   openGraph: {
-    title: "The Dispatch | LineHaul Station",
+    title: "Blog | LineHaul Station",
     description:
       "Stories from the lane on driver quality of life, shared-use terminals, and the future of freight.",
     type: "website",
@@ -23,8 +26,29 @@ export const metadata: Metadata = {
   },
 };
 
-export default function BlogIndex() {
+export default async function BlogIndex() {
+  const allPosts = await getAllPosts();
   const [featured, ...rest] = allPosts;
+
+  if (!featured) {
+    return (
+      <main className="min-h-screen bg-ink">
+        <GlassNav sectionLinks={[]} cta={{ href: "/join", label: "Join Free" }} />
+        <section className="gutter pb-24 pt-40">
+          <span className="font-label text-[10px] uppercase tracking-[0.2em] text-chrome">
+            Blog
+          </span>
+          <h1 className="mt-5 font-display text-[clamp(36px,6vw,72px)] font-black uppercase leading-[0.9] text-white">
+            Stories Are On The Way.
+          </h1>
+          <p className="mt-6 max-w-[52ch] font-body text-[18px] leading-relaxed text-chrome">
+            No posts published yet. Check back soon.
+          </p>
+        </section>
+        <LuxeFooter />
+      </main>
+    );
+  }
 
   return (
     <main className="min-h-screen bg-ink">
@@ -38,7 +62,7 @@ export default function BlogIndex() {
             <span className="font-mono text-[12px] text-fuel">★</span>
             <span className="measure h-px w-10 text-fuel opacity-50" aria-hidden />
             <span className="font-label text-[10px] uppercase tracking-[0.2em] text-chrome">
-              The Dispatch
+              Blog
             </span>
           </div>
           <h1 className="mt-5 max-w-[18ch] text-balance font-display text-[clamp(40px,7vw,104px)] font-black uppercase leading-[0.88] tracking-[-0.025em] text-white">

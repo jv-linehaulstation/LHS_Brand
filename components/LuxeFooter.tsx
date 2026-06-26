@@ -43,7 +43,7 @@ export default function LuxeFooter({ accent = "#F07820" }: { accent?: string }) 
             <div className="font-label text-[10px] uppercase tracking-[0.2em] text-[#8f8f8f]">Explore</div>
             <Link href="/" className={linkCls}>Home</Link>
             <Link href="/leadership" className={linkCls}>Leadership</Link>
-            <Link href="/blog" className={linkCls}>The Dispatch</Link>
+            <Link href="/blog" className={linkCls}>Blog</Link>
             <Link href="/join" className="w-fit font-label text-[13px] uppercase tracking-[0.12em] text-fuel transition-colors hover:brightness-125">Join The Outriders</Link>
           </div>
 

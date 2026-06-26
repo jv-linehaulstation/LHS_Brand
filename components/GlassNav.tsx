@@ -61,7 +61,7 @@ export default function GlassNav({
     { href: "/", label: "Home" },
     ...AUDIENCE_ORDER.map((k) => ({ href: `/${k}`, label: audiences[k].navLabel })),
     { href: "/leadership", label: "Leadership" },
-    { href: "/blog", label: "The Dispatch" },
+    { href: "/blog", label: "Blog" },
     { href: "/join", label: "Outriders Club" },
   ];
 

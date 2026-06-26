@@ -6,7 +6,11 @@ next-env.d.ts
 .DS_Store
 *.pem
 .env*
+!.env.local.example
 npm-debug.log*
+*.log
+build.log
+dev.log
 .vercel
 *.tsbuildinfo
 

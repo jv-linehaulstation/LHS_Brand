@@ -6,20 +6,27 @@ import GlassNav from "@/components/GlassNav";
 import LuxeFooter from "@/components/LuxeFooter";
 import Contact from "@/components/Contact";
 import Reveal from "@/components/motion/Reveal";
-import ParallaxImage from "@/components/motion/ParallaxImage";
 import { DataTag } from "@/components/Bits";
 import BlogBody from "@/components/BlogBody";
-import { posts, getPost, relatedPosts } from "@/lib/blog";
+import { getPost, getRelatedPosts, getAllSlugs } from "@/lib/blog";
 
 const FUEL = "#F07820";
 
-export function generateStaticParams() {
-  return posts.map((p) => ({ slug: p.slug }));
+// Rebuild from Supabase at most once a minute; render new slugs on demand.
+export const revalidate = 60;
+export const dynamicParams = true;
+
+export async function generateStaticParams() {
+  return (await getAllSlugs()).map((slug) => ({ slug }));
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
-  const post = getPost(params.slug);
-  if (!post) return { title: "The Dispatch | LineHaul Station" };
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  const post = await getPost(params.slug);
+  if (!post) return { title: "Blog | LineHaul Station" };
   const url = `https://www.linehaulstation.com/blog/${post.slug}`;
   return {
     title: post.seoTitle,
@@ -42,11 +49,15 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   };
 }
 
-export default function PostPage({ params }: { params: { slug: string } }) {
-  const post = getPost(params.slug);
+export default async function PostPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const post = await getPost(params.slug);
   if (!post) notFound();
 
-  const related = relatedPosts(post.slug, 2);
+  const related = await getRelatedPosts(post.slug, 2);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -76,40 +87,52 @@ export default function PostPage({ params }: { params: { slug: string } }) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      {/* HERO — full-bleed image, bottom-anchored title */}
-      <section className="relative flex min-h-[72dvh] items-end overflow-hidden gutter pb-12 pt-28">
-        <ParallaxImage src={post.hero} alt={post.heroAlt} priority strength={0.2} />
-        <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(11,11,11,0.95)_4%,rgba(11,11,11,0.55)_46%,rgba(11,11,11,0.4)_100%)]" />
+      {/* HERO — the title-card image carries the headline; no competing
+          text overlay sits on top of it, so the title stays readable. */}
+      <section className="relative overflow-hidden gutter pb-2 pt-28">
         <div className="blueprint pointer-events-none absolute inset-0 opacity-15" />
-        <div className="relative w-full max-w-[80ch]">
-          <Reveal>
-            <Link
-              href="/blog"
-              className="inline-flex items-center gap-2 font-label text-[10px] uppercase tracking-[0.18em] text-chrome transition-colors hover:text-white"
-            >
-              <span>←</span> The Dispatch
-            </Link>
-            <div className="mt-5 flex items-center gap-3">
-              <span className="font-label text-[10px] uppercase tracking-[0.2em] text-fuel">
-                {post.kicker}
-              </span>
-              <DataTag className="!text-[12px]">
-                {post.dateLabel} · {post.readTime}
-              </DataTag>
+        <Reveal className="relative">
+          <Link
+            href="/blog"
+            className="inline-flex items-center gap-2 font-label text-[10px] uppercase tracking-[0.18em] text-chrome transition-colors hover:text-white"
+          >
+            <span>←</span> Blog
+          </Link>
+          <div className="mt-5 flex flex-wrap items-center gap-3">
+            <span className="font-label text-[10px] uppercase tracking-[0.2em] text-fuel">
+              {post.kicker}
+            </span>
+            <DataTag className="!text-[12px]">
+              {post.dateLabel} · {post.readTime}
+            </DataTag>
+          </div>
+          {/* Canonical heading for SEO/accessibility — the headline is
+              rendered visually inside the hero image above. */}
+          <h1 className="sr-only">{post.title}</h1>
+        </Reveal>
+
+        <Reveal className="relative mt-6">
+          <figure className="chrome-frame glint overflow-hidden rounded-card">
+            <div className="relative aspect-[16/9] overflow-hidden bg-carbon">
+              <Image
+                src={post.hero}
+                alt={post.heroAlt}
+                fill
+                priority
+                className="img-grade object-cover"
+                sizes="(max-width: 1024px) 100vw, 80vw"
+              />
             </div>
-            <h1 className="mt-4 text-balance font-display text-[clamp(34px,6vw,84px)] font-black uppercase leading-[0.9] tracking-[-0.025em] text-white">
-              {post.title}
-            </h1>
-            <p className="mt-5 font-mono text-[12px] uppercase tracking-[0.12em] text-chrome">
-              By {post.byline}
-            </p>
-          </Reveal>
-        </div>
+          </figure>
+          <figcaption className="mt-4 font-mono text-[12px] uppercase tracking-[0.12em] text-chrome">
+            By {post.byline}
+          </figcaption>
+        </Reveal>
       </section>
 
       {/* ARTICLE BODY */}
       <section className="gutter py-[clamp(56px,9vh,110px)]">
-        <BlogBody blocks={post.body} />
+        <BlogBody markdown={post.body} />
 
         {/* In-article CTA buttons */}
         <Reveal className="mx-auto mt-12 flex max-w-[68ch] flex-wrap gap-3.5">
