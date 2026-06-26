@@ -9,6 +9,7 @@ import MagneticButton from "@/components/motion/MagneticButton";
 import OneHomeCalculator from "@/components/calculators/OneHomeCalculator";
 import JoinForm from "@/components/JoinForm";
 import TestimonialCarousel, { type Voice } from "@/components/onehome/TestimonialCarousel";
+import AmenityShowcase from "@/components/onehome/AmenityShowcase";
 import { CoinImage, ChromeFrame, StatusChip } from "@/components/Bits";
 import { ONEHOME } from "@/lib/onehome";
 import { audiences } from "@/lib/audiences";
@@ -261,31 +262,13 @@ export default function OneHomePage() {
           <p className="mt-5 max-w-[60ch] font-body text-[clamp(16px,1.7vw,20px)] leading-relaxed" style={{ color: "#3a3733" }}>{ONEHOME.amenities.intro}</p>
         </Reveal>
 
-        <div className="mt-14 space-y-[clamp(36px,5vw,72px)]">
-          {ONEHOME.amenities.cards.map((c, i) => {
-            const flip = i % 2 === 1;
-            return (
-              <Reveal key={c.name} className="grid items-center gap-x-[clamp(28px,4vw,64px)] gap-y-5 lg:grid-cols-2">
-                <div className={`group relative overflow-hidden rounded-card border border-[#E2DDD6] ${flip ? "lg:order-2" : ""}`}>
-                  <div className="relative aspect-[16/10] overflow-hidden">
-                    <Image src={AMENITY_IMG[i]} alt={`${c.name} — OneHome by LineHaul Station`} fill loading="lazy" className="img-grade object-cover transition-transform duration-700 ease-out motion-safe:group-hover:scale-105" sizes="(max-width: 1024px) 100vw, 50vw" />
-                    <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_60%,rgba(11,11,11,0.4))]" />
-                  </div>
-                </div>
-                <div>
-                  <div className="flex items-baseline gap-3">
-                    <span className="tnum font-mono text-[13px]" style={{ color: ad }}>{String(i + 1).padStart(2, "0")}</span>
-                    <h3 className="font-display text-[clamp(26px,3.2vw,44px)] font-black uppercase leading-none tracking-[-0.01em]" style={{ color: CARBON }}>{c.name}</h3>
-                  </div>
-                  <div className="mt-2.5 font-mono text-[11px] uppercase tracking-[0.12em]" style={{ color: ad }}>{c.meta}</div>
-                  <p className="mt-4 max-w-[52ch] text-pretty font-body text-[clamp(16px,1.6vw,19px)] leading-snug" style={{ color: "#3a3733" }}>{c.blurb}</p>
-                </div>
-              </Reveal>
-            );
-          })}
-        </div>
+        <AmenityShowcase
+          items={ONEHOME.amenities.cards.map((c, i) => ({ name: c.name, meta: c.meta, blurb: c.blurb, img: AMENITY_IMG[i] }))}
+          accent={ac}
+          accentDark={ad}
+        />
         <Reveal>
-          <p className="mt-14 font-script text-[clamp(22px,3vw,36px)] font-semibold" style={{ color: ad }}>{a.amenities?.footnote}</p>
+          <p className="mt-16 font-script text-[clamp(22px,3vw,36px)] font-semibold" style={{ color: ad }}>{a.amenities?.footnote}</p>
         </Reveal>
       </section>
 
