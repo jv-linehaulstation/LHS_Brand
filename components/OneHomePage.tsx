@@ -9,6 +9,8 @@ import MagneticButton from "@/components/motion/MagneticButton";
 import OneHomeCalculator from "@/components/calculators/OneHomeCalculator";
 import JoinForm from "@/components/JoinForm";
 import AmenityShowcase from "@/components/onehome/AmenityShowcase";
+import BuildingCarousel from "@/components/onehome/BuildingCarousel";
+import QuoteCarousel from "@/components/onehome/QuoteCarousel";
 import NewsletterForm from "@/components/onehome/NewsletterForm";
 import FAQ, { type QA } from "@/components/FAQ";
 import { CoinImage, ChromeFrame, StatusChip } from "@/components/Bits";
@@ -65,6 +67,8 @@ const QUOTES = [
   { quote: "Stop paying for a home you rarely use. Pay only for the days you need.", name: "The financial case", role: "Founding-member program" },
   { quote: "It's like giving yourself a $15,000–$20,000 raise without an extra mile.", name: "Annual savings", role: "Founding-member program" },
   { quote: "Choose your Home Hub — then the whole network is your home.", name: "How it works", role: "Founding-member program" },
+  { quote: "Most drivers use their home under 100 days a year, but pay for all 365.", name: "The 365 vs 100 problem", role: "Founding-member program" },
+  { quote: "From truck stops to something far better — club-level living for drivers.", name: "The lifestyle", role: "Founding-member program" },
 ];
 
 // §11 FAQ — money-first, OneHome-specific. TODO(JJ): confirm final answers.
@@ -180,25 +184,7 @@ export default function OneHomePage() {
           <h2 className="mt-4 text-balance font-display text-[clamp(32px,5vw,68px)] font-black uppercase leading-[0.95] tracking-[-0.025em] text-white">Building Previews</h2>
           <p className="mt-4 text-[clamp(15px,1.6vw,18px)] leading-relaxed" style={{ color: MUT }}>A first look at the network — gated, secure, and built driver-first.</p>
         </Reveal>
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {BUILDINGS.map((b, i) => (
-            <Reveal key={b.name} delay={i * 80} className={i === 1 ? "lg:-mt-8" : ""}>
-              <figure className="group overflow-hidden rounded-[20px] border" style={{ borderColor: CARD2, background: CARD }}>
-                <div className="relative aspect-[4/5] overflow-hidden">
-                  <Image src={b.src} alt={b.name} fill loading="lazy" className="img-grade object-cover transition-transform duration-700 ease-out motion-safe:group-hover:scale-105" sizes="(max-width: 1024px) 100vw, 33vw" />
-                  <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_55%,rgba(11,11,11,0.55))]" />
-                </div>
-                <figcaption className="flex items-center justify-between gap-3 px-5 py-4">
-                  <div>
-                    <div className="font-display text-[16px] font-black uppercase tracking-[0.01em] text-white">{b.name}</div>
-                    <div className="mt-1 font-mono text-[11px] tracking-[0.04em]" style={{ color: MUT }}>{b.spec}</div>
-                  </div>
-                  <span className="tnum font-mono text-[12px]" style={{ color: ac }}>{String(i + 1).padStart(2, "0")} / {String(BUILDINGS.length).padStart(2, "0")}</span>
-                </figcaption>
-              </figure>
-            </Reveal>
-          ))}
-        </div>
+        <BuildingCarousel slides={BUILDINGS} accent={ac} />
       </section>
 
       {/* ============ 4. HERE'S A NEW & BETTER OPTION — Core Sales + MAIN calculator (burgundy-dark) ============ */}
@@ -413,18 +399,9 @@ export default function OneHomePage() {
           </div>
         </div>
         <div className={`bg-ink ${PAD} pb-[clamp(70px,11vh,140px)] pt-[clamp(28px,5vw,64px)]`}>
-          <div className="grid gap-4 md:grid-cols-3">
-            {QUOTES.map((qc, i) => (
-              <Reveal key={i} delay={i * 70} className="flex h-full flex-col rounded-[20px] border p-7" style={{ borderColor: CARD2, background: CARD }}>
-                <div className="text-[40px] leading-none" style={{ color: ac }} aria-hidden>&ldquo;</div>
-                <blockquote className="-mt-2 text-[clamp(17px,1.9vw,21px)] font-medium leading-snug text-white">{qc.quote}</blockquote>
-                <div className="mt-auto pt-6">
-                  <div className="font-display text-[14px] font-black uppercase tracking-[0.02em] text-white">{qc.name}</div>
-                  <div className="mt-0.5 font-mono text-[11px] uppercase tracking-[0.1em] text-chrome">{qc.role}</div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
+          <Reveal>
+            <QuoteCarousel items={QUOTES} accent={ac} />
+          </Reveal>
         </div>
       </section>
 
