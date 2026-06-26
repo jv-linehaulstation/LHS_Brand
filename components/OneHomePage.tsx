@@ -14,6 +14,7 @@ import BuildingCarousel from "@/components/onehome/BuildingCarousel";
 import QuoteCarousel from "@/components/onehome/QuoteCarousel";
 import ComparisonTable from "@/components/onehome/ComparisonTable";
 import StepGrid from "@/components/onehome/StepGrid";
+import Spotlight from "@/components/onehome/Spotlight";
 import NewsletterForm from "@/components/onehome/NewsletterForm";
 import FAQ, { type QA } from "@/components/FAQ";
 import { CoinImage, ChromeFrame, StatusChip } from "@/components/Bits";
@@ -160,7 +161,7 @@ export default function OneHomePage() {
       </section>
 
       {/* ============ 2. WELCOME TO THE CLUB — story + Vimeo (no portrait) [approved, untouched] ============ */}
-      <section id="welcome" className={`relative overflow-hidden ${PAD} pt-[clamp(80px,12vh,160px)] pb-[clamp(80px,12vh,160px)] sm:pb-[clamp(230px,26vw,380px)]`} style={{ background: ELEV }}>
+      <section id="welcome" className={`relative overflow-hidden ${PAD} pt-[clamp(80px,12vh,160px)] pb-[clamp(80px,12vh,160px)] sm:pb-[clamp(100px,12vw,170px)]`} style={{ background: ELEV }}>
         <div className="bloom" style={{ ["--bloom" as string]: "rgba(208,40,60,0.10)" }} aria-hidden />
         <div className="relative grid gap-[clamp(32px,5vw,72px)] lg:grid-cols-2 lg:items-center">
           <Reveal>
@@ -188,22 +189,26 @@ export default function OneHomePage() {
             </div>
           </Reveal>
         </div>
-        {/* the brand line, centered below the Outriders story */}
+        {/* the brand line, centered below the Outriders story — styled like the Core hook */}
         <Reveal className="relative mt-[clamp(48px,6vw,90px)] text-center">
-          <h2 className="mx-auto max-w-[22ch] font-display text-[clamp(34px,5vw,72px)] font-black uppercase leading-[0.94] tracking-[-0.025em] text-white">
+          <div className="font-label text-[13px] uppercase tracking-[0.24em]" style={{ color: ac }}>Three quick steps. Zero cost.</div>
+          <h2 className="mx-auto mt-6 max-w-[16ch] text-balance font-display text-[clamp(46px,6.9vw,110px)] font-black uppercase leading-[0.92] tracking-[-0.025em] text-white">
             {a.outriders!.join.headline.split("/")[0].trim()}{" "}
-            <span style={{ color: ac }}>{a.outriders!.join.headline.split("/")[1].trim()}</span>
+            <span className="outline-head" style={{ ["--ac" as string]: ac }}>{a.outriders!.join.headline.split("/")[1].trim()}.</span>
           </h2>
+          <p className="mx-auto mt-6 max-w-[44ch] text-[clamp(21px,2.3vw,28px)] font-medium leading-snug text-[#e2e2e2]">
+            Joining the Outriders Club is 100% free — and unlocks your Home Hub, full club access, and founding-member OneHome pricing.
+          </p>
         </Reveal>
       </section>
 
       {/* Free Membership steps — image boxes straddling the Welcome ↔ form seam (sm+) */}
-      <div id="membership" className="gutter relative z-20 mt-12 mb-12 sm:-mt-[clamp(50px,6vw,100px)] sm:-mb-[clamp(180px,22vw,320px)]">
+      <div id="membership" className="gutter relative z-20 mt-12 mb-12 sm:-mt-[clamp(60px,9vw,130px)] sm:-mb-[clamp(160px,20vw,290px)]">
         <StepGrid items={MEMBERSHIP} badge={(i) => `Step #${i + 1}`} accent={ac} />
       </div>
 
       {/* ============ 3. JOIN FREE — Outriders Club register (the ONE form on the page) ============ */}
-      <section id="join-free" className={`relative overflow-hidden ${PAD} pt-[clamp(70px,11vh,140px)] sm:pt-[clamp(250px,29vw,450px)] pb-[clamp(70px,11vh,140px)]`} style={{ background: BURG }}>
+      <section id="join-free" className={`relative overflow-hidden ${PAD} pt-[clamp(70px,11vh,140px)] sm:pt-[clamp(240px,28vw,420px)] pb-[clamp(70px,11vh,140px)]`} style={{ background: BURG }}>
         <div className="bloom" style={{ ["--bloom" as string]: "rgba(208,40,60,0.10)" }} aria-hidden />
         <div className="relative grid gap-[clamp(28px,4vw,64px)] lg:grid-cols-[0.92fr_1.08fr] lg:items-start">
           <div className="lg:sticky lg:top-28">
@@ -348,16 +353,16 @@ export default function OneHomePage() {
                   <div className={`mt-5 grid gap-4 ${gi === 0 ? "sm:grid-cols-3" : "sm:grid-cols-2 lg:grid-cols-3"}`}>
                     {EVERYTHING_TILES.filter((t) => t.group === group).map((t, i) => (
                       <Reveal key={t.label} delay={i * 60}>
-                        <figure className="group overflow-hidden rounded-[16px] border" style={{ borderColor: CARD2, background: CARD }}>
+                        <Spotlight className="group overflow-hidden rounded-[16px] border" glow={`${ac}26`} style={{ borderColor: CARD2, background: CARD }}>
                           <div className="relative aspect-[4/3] overflow-hidden">
                             <Image src={t.img} alt={t.label} fill loading="lazy" className="img-grade object-cover transition-transform duration-700 ease-out motion-safe:group-hover:scale-105" sizes="(max-width: 768px) 50vw, 28vw" />
                             <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_50%,rgba(11,11,11,0.72))]" />
                           </div>
-                          <figcaption className="p-4">
+                          <figcaption className="relative z-[3] p-4">
                             <div className="font-display text-[20px] font-black uppercase tracking-[0.01em] text-white">{t.label}</div>
                             <div className="mt-1 text-[18px] leading-snug" style={{ color: MUT }}>{t.line}</div>
                           </figcaption>
-                        </figure>
+                        </Spotlight>
                       </Reveal>
                     ))}
                   </div>

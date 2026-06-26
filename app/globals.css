@@ -636,3 +636,41 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .overlay-link { opacity: 1; animation: none; }
 }
+
+/* ============================================================
+   Mouse-reactive cards — pointer spotlight + hover lift.
+   Used via the <Spotlight> wrapper (sets --mx/--my on hover).
+   Disabled for reduced-motion and coarse (touch) pointers.
+   ============================================================ */
+.spotlight {
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.4s ease, box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.spotlight::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 2;
+  background: radial-gradient(
+    240px circle at var(--mx, 50%) var(--my, 50%),
+    var(--glow, rgba(240, 120, 32, 0.16)),
+    transparent 62%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .spotlight:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255, 255, 255, 0.22);
+    box-shadow: 0 24px 50px -24px rgba(0, 0, 0, 0.7);
+  }
+  .spotlight:hover::after { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .spotlight { transition: none; }
+  .spotlight:hover { transform: none; box-shadow: none; }
+  .spotlight::after { display: none; }
+}

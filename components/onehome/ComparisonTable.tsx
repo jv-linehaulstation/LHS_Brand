@@ -48,17 +48,14 @@ export default function ComparisonTable({ rows, accent = "#F07820" }: { rows: Ro
         {rows.map((r, i) => (
           <div
             key={r.one}
-            className="grid flex-1 grid-cols-2 transition-[opacity,transform] duration-500 ease-out"
+            className="group grid flex-1 grid-cols-2 transition-[opacity,transform] duration-500 ease-out"
             style={{ opacity: shown ? 1 : 0, transform: shown ? "none" : "translateY(10px)", transitionDelay: `${i * 70}ms` }}
           >
-            <div className="flex items-center border-r border-t border-white/8 px-5 py-3.5 text-[clamp(15px,1.61vw,17px)] leading-snug text-chrome/70">
-              <span className="line-through decoration-ember/60 decoration-1">{r.trad}</span>
+            <div className="flex items-center border-r border-t border-white/8 px-5 py-3.5 text-[clamp(15px,1.61vw,17px)] leading-snug text-chrome/70 transition-colors duration-300 group-hover:bg-white/[0.02]">
+              <span className="line-through decoration-ember/60 decoration-1 transition-opacity duration-300 group-hover:opacity-60">{r.trad}</span>
             </div>
-            <div
-              className="flex items-center gap-2.5 border-t border-white/8 px-5 py-3.5 text-[clamp(15px,1.61vw,17px)] font-semibold leading-snug text-white"
-              style={{ background: `${accent}12` }}
-            >
-              <span aria-hidden className="flex-none" style={{ color: accent }}>✓</span>
+            <div className="flex items-center gap-2.5 border-t border-white/8 bg-[var(--ac-base)] px-5 py-3.5 text-[clamp(15px,1.61vw,17px)] font-semibold leading-snug text-white transition-colors duration-300 group-hover:bg-[var(--ac-soft)]" style={{ ["--ac-base" as string]: `${accent}12`, ["--ac-soft" as string]: `${accent}22` }}>
+              <span aria-hidden className="flex-none transition-transform duration-300 ease-out group-hover:scale-125" style={{ color: accent }}>✓</span>
               {r.one}
             </div>
           </div>
