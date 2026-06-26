@@ -195,7 +195,7 @@ export default function LeadershipPage() {
                       src={p.img}
                       alt={p.name}
                       fill
-                      className="img-grade object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                      className="img-grade object-cover object-center transition-transform duration-700 motion-safe:group-hover:scale-105"
                       sizes="(max-width: 768px) 100vw, 33vw"
                     />
                     <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_45%,rgba(11,11,11,0.85))]" />

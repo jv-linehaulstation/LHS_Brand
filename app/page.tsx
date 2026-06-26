@@ -70,7 +70,7 @@ const STATS = [
 
 function Kick({ children, accent = "#F07820", center = false }: { children: React.ReactNode; accent?: string; center?: boolean }) {
   return (
-    <div className={`flex items-center gap-3 font-mono text-[12px] uppercase tracking-[0.28em] ${center ? "justify-center" : ""}`} style={{ color: accent }}>
+    <div className={`flex items-center gap-3 font-label text-[11px] uppercase tracking-[0.22em] ${center ? "justify-center" : ""}`} style={{ color: accent }}>
       <span className="h-px w-7" style={{ background: accent }} aria-hidden /> {children}
     </div>
   );
@@ -151,7 +151,7 @@ export default function Home() {
               LineHaul Station didn&apos;t start with trucks. It started with a question: why does the
               industry that moves America treat its best drivers the worst?
             </p>
-            <p className="mt-4 font-body text-[clamp(14px,1.35vw,16px)] leading-relaxed" style={{ color: "#3a3733" }}>
+            <p className="mt-4 font-body text-[clamp(16px,1.5vw,17px)] leading-relaxed" style={{ color: "#3a3733" }}>
               We&apos;re building the answer — real terminals, real amenities, and a national relay that
               lowers the cost of every mile while getting the best drivers home, rested and respected.
               The same standard runs through every Hub, Service Center, and word we write.
@@ -168,7 +168,7 @@ export default function Home() {
             </ChromeFrame>
             <div className="mt-5 font-display text-[clamp(20px,2.2vw,26px)] font-black uppercase leading-tight" style={{ color: CARBON }}>Jeff Swenson</div>
             <div className="mt-1 font-mono text-[11px] uppercase tracking-[0.12em] text-fuel">Founder &amp; CEO</div>
-            <p className="mt-4 max-w-[42ch] font-body text-[clamp(14px,1.35vw,16px)] leading-relaxed lg:mx-auto" style={{ color: "#3a3733" }}>
+            <p className="mt-4 max-w-[42ch] font-body text-[clamp(16px,1.5vw,17px)] leading-relaxed lg:mx-auto" style={{ color: "#3a3733" }}>
               Jeff spent 35 years and more than $2&nbsp;billion building residential, commercial, and
               logistics real estate — then brought that standard to freight: treat the industry&apos;s best
               drivers with dignity and respect, and never compromise on quality.
@@ -189,9 +189,9 @@ export default function Home() {
                     <Image src={p.img} alt={p.name} fill loading="lazy" className="object-cover" sizes="56px" />
                   </div>
                   <div className="min-w-0">
-                    <div className="font-display text-[15px] font-black uppercase leading-tight" style={{ color: CARBON }}>{p.name}</div>
+                    <div className="font-display text-[15px] font-black uppercase leading-tight tracking-[0.02em]" style={{ color: CARBON }}>{p.name}</div>
                     <div className="mt-0.5 font-mono text-[10px] uppercase tracking-[0.1em] text-fuel">{p.cred}</div>
-                    <p className="mt-1.5 font-body text-[12.5px] leading-snug" style={{ color: "#6a655e" }}>{p.bio}</p>
+                    <p className="mt-1.5 font-body text-[13px] leading-snug" style={{ color: "#5f5a53" }}>{p.bio}</p>
                   </div>
                 </div>
               ))}

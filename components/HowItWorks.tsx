@@ -60,7 +60,7 @@ export default function HowItWorks({
   const Heading = (
     <>
       {kicker && (
-        <div className="flex items-center gap-3 font-mono text-[12px] uppercase tracking-[0.28em]" style={{ color: accent }}>
+        <div className="flex items-center gap-3 font-label text-[11px] uppercase tracking-[0.22em]" style={{ color: accent }}>
           <span className="h-px w-7" style={{ background: accent }} aria-hidden /> {kicker}
         </div>
       )}

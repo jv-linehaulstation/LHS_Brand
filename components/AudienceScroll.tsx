@@ -92,10 +92,10 @@ export default function AudienceScroll() {
 
   const Block = (lane: Lane, i: number) => (
     <>
-      <div className="flex items-center gap-3 font-mono text-[12px] uppercase tracking-[0.22em]" style={{ color: lane.accent }}>
-        <span className="tnum">{String(i + 1).padStart(3, "0")} / {String(N).padStart(3, "0")}</span>
+      <div className="flex items-center gap-3 font-mono text-[12px] uppercase tracking-[0.22em]">
+        <span className="tnum" style={{ color: lane.accent }}>{String(i + 1).padStart(3, "0")} / {String(N).padStart(3, "0")}</span>
         <span className="h-px w-7" style={{ background: lane.accent }} aria-hidden />
-        {lane.sub}
+        <span className="text-chrome">{lane.sub}</span>
       </div>
       <h3 className="mt-4 font-display text-[clamp(40px,6vw,92px)] font-black uppercase leading-[0.9] tracking-[-0.025em] text-white">
         {lane.label}

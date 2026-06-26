@@ -20,7 +20,7 @@ export function DataTag({
 }) {
   return (
     <span
-      className={`tnum inline-flex items-center gap-2 font-mono text-[11px] tracking-[0.04em] text-chrome ${className}`}
+      className={`tnum inline-flex items-center gap-2 font-mono text-[11px] tracking-[0.08em] text-chrome ${className}`}
       style={accent ? { color: accent } : undefined}
     >
       {children}

@@ -33,10 +33,14 @@ export default function JoinForm({
   accent = "#F07820",
   accentDark = "#C85A12",
   submitLabel = "Join Free.",
+  successTitle = "Welcome to the Outriders.",
+  successBody,
 }: {
   accent?: string;
   accentDark?: string;
   submitLabel?: string;
+  successTitle?: string;
+  successBody?: string;
 } = {}) {
   const ACCENT = accent;
   const ACCENT_DARK = accentDark;
@@ -92,12 +96,12 @@ export default function JoinForm({
             ✓
           </div>
           <h3 className="mt-5 font-display text-[clamp(24px,3vw,32px)] font-black uppercase text-white">
-            Welcome to the Outriders.
+            {successTitle}
           </h3>
           <p className="mx-auto mt-3 max-w-md font-body text-[16px] leading-relaxed text-[#d8d8d8]">
             {values.firstName ? `Thanks, ${values.firstName}. ` : ""}
-            Your membership is in. Watch your phone — we&apos;ll be in touch with your
-            Outriders Club details and first-Hub news.
+            {successBody ??
+              "Your membership is in. Watch your phone — we'll be in touch with your Outriders Club details and first-Hub news."}
           </p>
           <a
             href={site.phoneHref}

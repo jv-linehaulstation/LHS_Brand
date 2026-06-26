@@ -103,7 +103,7 @@ export default function FlexSpaceCalculator({ accent = "#4878A8" }: { accent?: s
           </div>
 
           {/* TRUCKS */}
-          <div className="mt-7 flex items-center gap-4">
+          <div className="mt-7 flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-4">
             <span className="whitespace-nowrap font-label text-[10px] uppercase tracking-[0.18em] text-chrome">
               Trucks Needing Access
             </span>
@@ -125,7 +125,7 @@ export default function FlexSpaceCalculator({ accent = "#4878A8" }: { accent?: s
 
           {/* DAYS (disabled for dedicated) */}
           <div
-            className="mt-5 flex items-center gap-4 transition-opacity"
+            className="mt-5 flex flex-col gap-2 transition-opacity sm:flex-row sm:items-center sm:gap-4"
             style={{ opacity: isDed ? 0.4 : 1 }}
           >
             <span className="whitespace-nowrap font-label text-[10px] uppercase tracking-[0.18em] text-chrome">

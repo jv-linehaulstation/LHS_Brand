@@ -26,7 +26,7 @@ export default function Footer() {
         </div>
 
         <nav className="flex flex-col gap-2.5">
-          <div className="font-label text-[9px] uppercase tracking-[0.2em] text-[#6a6a6a]">
+          <div className="font-label text-[9px] uppercase tracking-[0.2em] text-[#8f8f8f]">
             Find Your Lane
           </div>
           {AUDIENCE_ORDER.map((key) => (
@@ -53,7 +53,7 @@ export default function Footer() {
         </nav>
 
         <div className="flex flex-col gap-2 font-mono text-[13px] text-[#d8d8d8]">
-          <div className="font-label text-[9px] uppercase tracking-[0.2em] text-[#6a6a6a]">
+          <div className="font-label text-[9px] uppercase tracking-[0.2em] text-[#8f8f8f]">
             Connect
           </div>
           <a href={site.phoneHref} className="tnum w-fit transition-colors hover:text-fuel">
@@ -66,7 +66,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="mt-10 flex flex-col gap-2 border-t border-chrome/10 pt-6 font-label text-[9px] uppercase tracking-[0.2em] text-[#6a6a6a] sm:flex-row sm:items-center sm:justify-between">
+      <div className="mt-10 flex flex-col gap-2 border-t border-chrome/10 pt-6 font-label text-[9px] uppercase tracking-[0.2em] text-[#8f8f8f] sm:flex-row sm:items-center sm:justify-between">
         <span>{site.tagline}</span>
         <span>© {new Date().getFullYear()} LineHaul Station, LLC</span>
       </div>

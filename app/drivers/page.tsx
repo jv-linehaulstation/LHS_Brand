@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import AudiencePage from "@/components/AudiencePage";
+import OneHomePage from "@/components/OneHomePage";
 
 export const metadata: Metadata = {
   title: "OneHome by LineHaul Station | For Drivers",
@@ -8,5 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <AudiencePage audience="drivers" />;
+  return <OneHomePage />;
 }

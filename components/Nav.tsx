@@ -41,7 +41,7 @@ export default function Nav({
           />
         </Link>
 
-        <nav className="no-scrollbar order-3 -mx-2 flex w-full flex-nowrap items-center overflow-x-auto sm:order-none sm:mx-0 sm:w-auto sm:flex-wrap sm:overflow-visible">
+        <nav className="no-scrollbar order-3 -mx-2 flex w-full flex-nowrap items-center overflow-x-auto [mask-image:linear-gradient(to_right,#000_84%,transparent)] sm:order-none sm:mx-0 sm:w-auto sm:flex-wrap sm:overflow-visible sm:[mask-image:none]">
           {tabs.map((t) => {
             const isActive = active === t.key;
             return (

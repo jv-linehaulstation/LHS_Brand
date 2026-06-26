@@ -563,3 +563,61 @@ body {
     animation: none !important;
   }
 }
+
+/* ===================================================================
+   FLUID GLASS — frosted translucent surfaces + scroll-motion helpers.
+   Direction: backdrop-blur 14–20px · white 6–10% fill · 1px chrome
+   hairline · soft inner highlight → reads as "warm chrome + glass."
+   Reserved for structural surfaces (nav, calculator, amenity cards,
+   comparison table, stat chips) — never as decorative wallpaper.
+   =================================================================== */
+.glass {
+  background: rgba(255, 255, 255, 0.06);
+  -webkit-backdrop-filter: blur(16px) saturate(1.1);
+  backdrop-filter: blur(16px) saturate(1.1);
+  border: 1px solid rgba(176, 176, 176, 0.18);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 12px 40px rgba(0, 0, 0, 0.35);
+}
+/* Heavier carbon-tinted glass for panels that sit over busy media. */
+.glass-strong {
+  background: rgba(18, 18, 18, 0.55);
+  -webkit-backdrop-filter: blur(20px) saturate(1.1);
+  backdrop-filter: blur(20px) saturate(1.1);
+  border: 1px solid rgba(176, 176, 176, 0.2);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 16px 50px rgba(0, 0, 0, 0.45);
+}
+/* Glass over warm-white (light) sections — carbon tint so it still reads
+   as glass rather than a flat white box. */
+.glass-onlight {
+  background: rgba(11, 11, 11, 0.035);
+  -webkit-backdrop-filter: blur(14px) saturate(1.05);
+  backdrop-filter: blur(14px) saturate(1.05);
+  border: 1px solid rgba(11, 11, 11, 0.1);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.55),
+    0 12px 30px rgba(11, 11, 11, 0.08);
+}
+/* Solid fallbacks where backdrop-filter is unsupported (legibility first). */
+@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+  .glass { background: rgba(20, 20, 20, 0.92); }
+  .glass-strong { background: rgba(16, 16, 16, 0.95); }
+  .glass-onlight { background: rgba(244, 242, 239, 0.97); }
+}
+
+/* Full-screen overlay menu (GlassNav) — staggered link rise. */
+@keyframes overlayLinkIn {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: none; }
+}
+.overlay-link {
+  opacity: 0;
+  animation: overlayLinkIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: calc(var(--i, 0) * 70ms + 120ms);
+}
+@media (prefers-reduced-motion: reduce) {
+  .overlay-link { opacity: 1; animation: none; }
+}

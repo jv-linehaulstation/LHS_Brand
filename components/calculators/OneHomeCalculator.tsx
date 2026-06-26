@@ -38,7 +38,16 @@ const fmtM = (n: number) =>
 // future value of an annuity: a yearly contribution for y years at rate r
 const fv = (a: number, y: number, r: number) => a * ((Math.pow(1 + r, y) - 1) / r);
 
-export default function OneHomeCalculator({ accent = "#F07820" }: { accent?: string }) {
+export default function OneHomeCalculator({
+  accent = "#F07820",
+  accentDark = "#C85A12",
+  onLight = false,
+}: {
+  accent?: string;
+  accentDark?: string;
+  /** Render the intro heading for a light (off-white) section instead of dark. */
+  onLight?: boolean;
+}) {
   const [dayIdx, setDayIdx] = useState(4); // → 60 days
   const [rent, setRent] = useState(1800);
 
@@ -57,12 +66,15 @@ export default function OneHomeCalculator({ accent = "#F07820" }: { accent?: str
   );
 
   return (
-    <section id="calculator">
+    <section>
       <div className="mb-10">
-        <div className="font-label text-[11px] uppercase tracking-[0.24em] text-steel">
-          Run Your Own Numbers
+        <div className="font-label text-[11px] uppercase tracking-[0.24em]" style={{ color: onLight ? accentDark : undefined }}>
+          <span className={onLight ? "" : "text-steel"}>Run Your Own Numbers</span>
         </div>
-        <h2 className="mt-3 font-display text-[clamp(28px,4vw,46px)] font-black uppercase tracking-[-0.01em] text-white">
+        <h2
+          className="mt-3 font-display text-[clamp(28px,4vw,46px)] font-black uppercase tracking-[-0.01em]"
+          style={{ color: onLight ? "#0B0B0B" : "#ffffff" }}
+        >
           What OneHome Puts Back In Your Pocket
         </h2>
       </div>
@@ -130,7 +142,7 @@ export default function OneHomeCalculator({ accent = "#F07820" }: { accent?: str
             className="mt-3 w-full"
             style={{ accentColor: accent }}
           />
-          <div className="mt-2 flex justify-between font-mono text-[10px] text-[#6a6a6a]">
+          <div className="mt-2 flex justify-between font-mono text-[10px] text-chrome">
             {STOPS.map((s, i) => (
               <button
                 key={s}
@@ -179,7 +191,7 @@ export default function OneHomeCalculator({ accent = "#F07820" }: { accent?: str
           </div>
 
           {/* RENT TUNER */}
-          <div className="mt-7 flex items-center gap-4">
+          <div className="mt-7 flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-4">
             <span className="whitespace-nowrap font-label text-[10px] uppercase tracking-[0.18em] text-chrome">
               Your Rent / Mortgage
             </span>
