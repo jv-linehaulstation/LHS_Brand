@@ -243,7 +243,7 @@ export default function NetworkMap() {
         style={{ zIndex: 0 }}
       />
       {/* legend */}
-      <div className="pointer-events-none absolute bottom-3 left-3 z-[500] flex flex-col gap-1.5 rounded-card border border-chrome/20 bg-ink/80 px-3 py-2.5 font-mono text-[11px] text-chrome backdrop-blur-sm">
+      <div className="pointer-events-none absolute bottom-3 left-3 z-[500] flex flex-col gap-1.5 rounded-card border border-chrome/20 bg-ink/80 px-3 py-2.5 font-mono text-[13px] text-chrome backdrop-blur-sm">
         <span className="flex items-center gap-2">
           <i className="inline-block h-2.5 w-2.5 rounded-full" style={{ background: FUEL }} /> Open now
         </span>

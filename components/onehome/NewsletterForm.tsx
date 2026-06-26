@@ -33,7 +33,7 @@ export default function NewsletterForm({ accent = "#F07820" }: { accent?: string
 
   if (done) {
     return (
-      <p className="font-sans text-[14px] leading-relaxed text-chrome">
+      <p className="font-sans text-[16px] leading-relaxed text-chrome">
         You&apos;re on the list — we&apos;ll send launch and West Memphis founding-rate news.
       </p>
     );
@@ -48,11 +48,11 @@ export default function NewsletterForm({ accent = "#F07820" }: { accent?: string
         onChange={(e) => setEmail(e.target.value)}
         placeholder="Your email"
         aria-label="Email address"
-        className="min-w-0 flex-1 bg-transparent font-sans text-[14px] text-white outline-none placeholder:text-[#7a7a7a]"
+        className="min-w-0 flex-1 bg-transparent font-sans text-[16px] text-white outline-none placeholder:text-[#7a7a7a]"
       />
       <button
         type="submit"
-        className="flex-none rounded-full px-4 py-2 font-label text-[10px] uppercase tracking-[0.14em] text-ink transition hover:brightness-110"
+        className="flex-none rounded-full px-4 py-2 font-label text-[12px] uppercase tracking-[0.14em] text-ink transition hover:brightness-110"
         style={{ background: accent }}
       >
         Subscribe

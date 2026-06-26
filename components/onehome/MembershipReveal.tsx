@@ -23,7 +23,7 @@ export default function MembershipReveal({
     <div className={groups.length > 1 ? "grid gap-x-12 gap-y-10 sm:grid-cols-2" : "max-w-3xl"}>
       {groups.map((g) => (
         <div key={g.label}>
-          <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-chrome">{g.label}</div>
+          <div className="font-mono text-[13px] uppercase tracking-[0.18em] text-chrome">{g.label}</div>
           <ul className="mt-4">
             {g.items.map((it) => {
               const key = g.label + it.n;
@@ -43,10 +43,10 @@ export default function MembershipReveal({
                     style={{ background: accent, transform: on ? "scaleY(1)" : "scaleY(0)", transformOrigin: "center" }}
                     aria-hidden
                   />
-                  <span className="tnum pl-4 font-mono text-[13px] transition-colors" style={{ color: on ? accent : "#7a7a7a" }}>{it.n}</span>
+                  <span className="tnum pl-4 font-mono text-[15px] transition-colors" style={{ color: on ? accent : "#7a7a7a" }}>{it.n}</span>
                   <span className="flex-1">
-                    <span className="block font-display text-[clamp(20px,2.6vw,36px)] font-black uppercase leading-[1.05] tracking-[-0.01em] transition-colors" style={{ color: on ? accent : "#ffffff" }}>{it.title}</span>
-                    <span className="mt-1 block max-w-[46ch] text-[14px] leading-snug text-chrome">{it.line}</span>
+                    <span className="block font-display text-[clamp(23px,2.99vw,41px)] font-black uppercase leading-[1.05] tracking-[-0.01em] transition-colors" style={{ color: on ? accent : "#ffffff" }}>{it.title}</span>
+                    <span className="mt-1 block max-w-[46ch] text-[16px] leading-snug text-chrome">{it.line}</span>
                   </span>
                 </li>
               );

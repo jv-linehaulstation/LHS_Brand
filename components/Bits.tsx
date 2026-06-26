@@ -20,7 +20,7 @@ export function DataTag({
 }) {
   return (
     <span
-      className={`tnum inline-flex items-center gap-2 font-mono text-[11px] tracking-[0.08em] text-chrome ${className}`}
+      className={`tnum inline-flex items-center gap-2 font-mono text-[13px] tracking-[0.08em] text-chrome ${className}`}
       style={accent ? { color: accent } : undefined}
     >
       {children}
@@ -53,9 +53,9 @@ export function StatusChip({
   const inner = (
     <>
       {dot}
-      <span className="font-label text-[10px] uppercase tracking-[0.18em] text-white">{label}</span>
+      <span className="font-label text-[12px] uppercase tracking-[0.18em] text-white">{label}</span>
       {coord && (
-        <span className="tnum hidden font-mono text-[11px] text-chrome sm:inline">{coord}</span>
+        <span className="tnum hidden font-mono text-[13px] text-chrome sm:inline">{coord}</span>
       )}
     </>
   );
@@ -159,10 +159,10 @@ export function Coin({
  * carried by the rule/index, not by a tracked all-caps eyebrow on every block.
  */
 const HEAD_SIZE = {
-  base: "text-[clamp(34px,5vw,68px)]",
+  base: "text-[clamp(39px,5.75vw,78px)]",
   // Matches the homepage section <h2> scale so inner pages read as the same site.
-  xl: "text-[clamp(34px,5.6vw,84px)]",
-  display: "text-[clamp(48px,8.5vw,118px)]",
+  xl: "text-[clamp(39px,6.44vw,97px)]",
+  display: "text-[clamp(55px,9.77vw,136px)]",
 } as const;
 
 export function SectionHead({
@@ -196,7 +196,7 @@ export function SectionHead({
           className={`mb-5 flex items-center gap-3 ${align === "center" ? "justify-center" : ""}`}
         >
           {index && (
-            <span className="tnum font-mono text-[13px]" style={{ color: accent }}>
+            <span className="tnum font-mono text-[15px]" style={{ color: accent }}>
               {index}
             </span>
           )}
@@ -206,7 +206,7 @@ export function SectionHead({
             aria-hidden
           />
           {kicker && (
-            <span className={`font-label text-[11px] uppercase tracking-[0.22em] ${kickerColor}`}>
+            <span className={`font-label text-[13px] uppercase tracking-[0.22em] ${kickerColor}`}>
               {kicker}
             </span>
           )}

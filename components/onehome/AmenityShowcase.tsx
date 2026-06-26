@@ -69,11 +69,11 @@ export default function AmenityShowcase({
             </div>
             <div className="p-6">
               <div className="flex items-baseline gap-3">
-                <span className="tnum font-mono text-[12px]" style={{ color: accentDark }}>{counter(i)}</span>
-                <h3 className="font-display text-[24px] font-black uppercase leading-none" style={{ color: CARBON }}>{it.name}</h3>
+                <span className="tnum font-mono text-[14px]" style={{ color: accentDark }}>{counter(i)}</span>
+                <h3 className="font-display text-[28px] font-black uppercase leading-none" style={{ color: CARBON }}>{it.name}</h3>
               </div>
-              <div className="mt-2 font-mono text-[11px] uppercase tracking-[0.12em]" style={{ color: accentDark }}>{it.meta}</div>
-              <p className="mt-3 font-body text-[16px] leading-snug" style={{ color: "#a9a9a9" }}>{it.blurb}</p>
+              <div className="mt-2 font-mono text-[13px] uppercase tracking-[0.12em]" style={{ color: accentDark }}>{it.meta}</div>
+              <p className="mt-3 font-body text-[18px] leading-snug" style={{ color: "#a9a9a9" }}>{it.blurb}</p>
             </div>
           </div>
         ))}
@@ -103,7 +103,7 @@ export default function AmenityShowcase({
               </div>
             ))}
             <div className="absolute inset-x-5 bottom-5 flex items-center gap-3">
-              <span className="tnum font-mono text-[12px] text-white">{counter(active)}</span>
+              <span className="tnum font-mono text-[14px] text-white">{counter(active)}</span>
               <span className="flex flex-1 gap-1.5" aria-hidden>
                 {items.map((_, i) => (
                   <span key={i} className="h-[3px] flex-1 rounded-full transition-colors duration-300" style={{ background: i === active ? accent : "rgba(255,255,255,0.3)" }} />
@@ -123,10 +123,10 @@ export default function AmenityShowcase({
               className="flex min-h-[80vh] flex-col justify-center transition-opacity duration-500"
               style={{ opacity: i === active ? 1 : 0.32 }}
             >
-              <span className="tnum font-mono text-[13px] tracking-[0.1em]" style={{ color: accentDark }}>{counter(i)}</span>
-              <h3 className="mt-3 font-display text-[clamp(34px,5vw,76px)] font-black uppercase leading-[0.9] tracking-[-0.025em]" style={{ color: CARBON }}>{it.name}</h3>
-              <div className="mt-3 font-mono text-[12px] uppercase tracking-[0.14em]" style={{ color: accentDark }}>{it.meta}</div>
-              <p className="mt-5 max-w-[44ch] font-body text-[clamp(16px,1.7vw,20px)] leading-relaxed" style={{ color: "#a9a9a9" }}>{it.blurb}</p>
+              <span className="tnum font-mono text-[15px] tracking-[0.1em]" style={{ color: accentDark }}>{counter(i)}</span>
+              <h3 className="mt-3 font-display text-[clamp(39px,5.75vw,87px)] font-black uppercase leading-[0.9] tracking-[-0.025em]" style={{ color: CARBON }}>{it.name}</h3>
+              <div className="mt-3 font-mono text-[14px] uppercase tracking-[0.14em]" style={{ color: accentDark }}>{it.meta}</div>
+              <p className="mt-5 max-w-[44ch] font-body text-[clamp(18px,1.95vw,23px)] leading-relaxed" style={{ color: "#a9a9a9" }}>{it.blurb}</p>
             </div>
           ))}
         </div>

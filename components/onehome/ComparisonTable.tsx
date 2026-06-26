@@ -35,10 +35,10 @@ export default function ComparisonTable({ rows, accent = "#F07820" }: { rows: Ro
     <div ref={ref} className="flex h-full flex-col overflow-hidden rounded-[20px] border" style={{ borderColor: "#1C1C20", background: "#16161A" }}>
       {/* column headers */}
       <div className="grid grid-cols-2">
-        <div className="border-b border-r border-white/10 px-5 py-4 font-label text-[11px] uppercase tracking-[0.16em] text-chrome">
+        <div className="border-b border-r border-white/10 px-5 py-4 font-label text-[13px] uppercase tracking-[0.16em] text-chrome">
           Traditional Housing
         </div>
-        <div className="border-b border-white/10 px-5 py-4 font-label text-[11px] uppercase tracking-[0.16em] text-ink" style={{ background: accent }}>
+        <div className="border-b border-white/10 px-5 py-4 font-label text-[13px] uppercase tracking-[0.16em] text-ink" style={{ background: accent }}>
           OneHome
         </div>
       </div>
@@ -51,11 +51,11 @@ export default function ComparisonTable({ rows, accent = "#F07820" }: { rows: Ro
             className="grid flex-1 grid-cols-2 transition-[opacity,transform] duration-500 ease-out"
             style={{ opacity: shown ? 1 : 0, transform: shown ? "none" : "translateY(10px)", transitionDelay: `${i * 70}ms` }}
           >
-            <div className="flex items-center border-r border-t border-white/8 px-5 py-3.5 text-[clamp(13px,1.4vw,15px)] leading-snug text-chrome/70">
+            <div className="flex items-center border-r border-t border-white/8 px-5 py-3.5 text-[clamp(15px,1.61vw,17px)] leading-snug text-chrome/70">
               <span className="line-through decoration-ember/60 decoration-1">{r.trad}</span>
             </div>
             <div
-              className="flex items-center gap-2.5 border-t border-white/8 px-5 py-3.5 text-[clamp(13px,1.4vw,15px)] font-semibold leading-snug text-white"
+              className="flex items-center gap-2.5 border-t border-white/8 px-5 py-3.5 text-[clamp(15px,1.61vw,17px)] font-semibold leading-snug text-white"
               style={{ background: `${accent}12` }}
             >
               <span aria-hidden className="flex-none" style={{ color: accent }}>✓</span>

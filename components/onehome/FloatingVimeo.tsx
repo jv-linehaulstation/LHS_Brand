@@ -96,7 +96,7 @@ export default function FloatingVimeo({ src, title }: { src: string; title: stri
               try { playerRef.current?.pause(); } catch { /* noop */ }
             }}
             aria-label="Close floating video"
-            className="absolute right-1.5 top-1.5 grid h-7 w-7 place-items-center rounded-full border border-white/30 bg-black/55 font-mono text-[13px] text-white backdrop-blur-sm transition-colors hover:border-white/70"
+            className="absolute right-1.5 top-1.5 grid h-7 w-7 place-items-center rounded-full border border-white/30 bg-black/55 font-mono text-[15px] text-white backdrop-blur-sm transition-colors hover:border-white/70"
           >
             ✕
           </button>
@@ -105,7 +105,7 @@ export default function FloatingVimeo({ src, title }: { src: string; title: stri
       {/* inline slot keeps its space + shows a hint while the player is docked */}
       {floating && (
         <div className="absolute inset-0 grid place-items-center rounded-[19px] border border-white/10 bg-carbon/50">
-          <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-chrome">Playing in the corner ↘</span>
+          <span className="font-mono text-[13px] uppercase tracking-[0.16em] text-chrome">Playing in the corner ↘</span>
         </div>
       )}
     </div>

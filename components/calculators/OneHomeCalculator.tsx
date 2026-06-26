@@ -71,24 +71,24 @@ export default function OneHomeCalculator({
       <div className="glass-strong h-full rounded-[20px] p-6 sm:p-9">
           {/* RESULT */}
           <div className="rounded-card border border-chrome/15 bg-ink2 p-6 sm:p-8">
-            <div className="font-label text-[10px] uppercase tracking-[0.2em] text-chrome">
+            <div className="font-label text-[12px] uppercase tracking-[0.2em] text-chrome">
               Back In Your Pocket Every Year
             </div>
             <div
-              className="mt-1 font-display text-[clamp(44px,8vw,72px)] font-black leading-none"
+              className="mt-1 font-display text-[clamp(51px,9.2vw,83px)] font-black leading-none"
               style={{ color: accent }}
             >
               {money(yrSave)}
             </div>
-            <div className="mt-2 text-[16px] text-[#d8d8d8]">
+            <div className="mt-2 text-[18px] text-[#d8d8d8]">
               That&apos;s <b className="text-white">{money(moSave)}</b> a month you stop
               paying for a place you&apos;re rarely in.
             </div>
             <div className="mt-4 flex flex-wrap items-baseline justify-between gap-2 border-t border-chrome/10 pt-4">
-              <span className="text-[15px] text-chrome">
+              <span className="text-[17px] text-chrome">
                 Invest it 30 years at 7% →
               </span>
-              <span className="font-display text-[28px] font-black text-white">
+              <span className="font-display text-[32px] font-black text-white">
                 {longGame}
               </span>
             </div>
@@ -97,24 +97,24 @@ export default function OneHomeCalculator({
           {/* DAYS HOME */}
           <div className="mt-7 flex items-end justify-between gap-4">
             <div>
-              <div className="font-label text-[10px] uppercase tracking-[0.2em] text-chrome">
+              <div className="font-label text-[12px] uppercase tracking-[0.2em] text-chrome">
                 Days Home Per Year
               </div>
               <div className="mt-1 flex items-baseline gap-2.5">
                 <span
-                  className="font-display text-[40px] font-black leading-none"
+                  className="font-display text-[46px] font-black leading-none"
                   style={{ color: accent }}
                 >
                   {days}
                 </span>
-                <span className="font-mono text-[11px] leading-tight text-chrome">
+                <span className="font-mono text-[13px] leading-tight text-chrome">
                   Days
                   <br />
                   at your Home Hub
                 </span>
               </div>
             </div>
-            <div className="rounded-btn border border-chrome/20 bg-carbon px-3.5 py-2 text-right font-mono text-[12px] text-chrome">
+            <div className="rounded-btn border border-chrome/20 bg-carbon px-3.5 py-2 text-right font-mono text-[14px] text-chrome">
               On the road <b className="text-white">{365 - days}</b> days a year
             </div>
           </div>
@@ -130,7 +130,7 @@ export default function OneHomeCalculator({
             className="mt-3 w-full"
             style={{ accentColor: accent }}
           />
-          <div className="mt-2 flex justify-between font-mono text-[10px] text-chrome">
+          <div className="mt-2 flex justify-between font-mono text-[12px] text-chrome">
             {STOPS.map((s, i) => (
               <button
                 key={s}
@@ -146,10 +146,10 @@ export default function OneHomeCalculator({
           {/* YEAR METER */}
           <div className="mt-7">
             <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
-              <span className="font-label text-[10px] uppercase tracking-[0.2em] text-chrome">
+              <span className="font-label text-[12px] uppercase tracking-[0.2em] text-chrome">
                 Your Year — One Square Per Day
               </span>
-              <span className="flex items-center gap-4 font-mono text-[11px] text-chrome">
+              <span className="flex items-center gap-4 font-mono text-[13px] text-chrome">
                 <span className="flex items-center gap-1.5">
                   <i className="inline-block h-2.5 w-2.5 rounded-[2px]" style={{ background: accent }} />
                   Home
@@ -172,7 +172,7 @@ export default function OneHomeCalculator({
                 />
               ))}
             </div>
-            <p className="mt-3 text-[14px] text-chrome">
+            <p className="mt-3 text-[16px] text-chrome">
               A traditional lease bills you for every square. OneHome lights up only the
               ones you use — <b className="text-white">{days}</b> nights, not 365.
             </p>
@@ -180,7 +180,7 @@ export default function OneHomeCalculator({
 
           {/* RENT TUNER */}
           <div className="mt-7 flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-4">
-            <span className="whitespace-nowrap font-label text-[10px] uppercase tracking-[0.18em] text-chrome">
+            <span className="whitespace-nowrap font-label text-[12px] uppercase tracking-[0.18em] text-chrome">
               Your Rent / Mortgage
             </span>
             <input
@@ -194,35 +194,35 @@ export default function OneHomeCalculator({
               className="w-full"
               style={{ accentColor: accent }}
             />
-            <span className="whitespace-nowrap font-mono text-[13px] text-white">
+            <span className="whitespace-nowrap font-mono text-[15px] text-white">
               {money(rent)}/mo
             </span>
           </div>
 
           {/* COMPARISON */}
-          <div className="mt-8 font-label text-[10px] uppercase tracking-[0.2em] text-chrome">
+          <div className="mt-8 font-label text-[12px] uppercase tracking-[0.2em] text-chrome">
             Side By Side — Per Month
           </div>
           <div className="mt-3 grid gap-4 sm:grid-cols-2">
             <div className="rounded-card border border-chrome/15 bg-carbon p-6">
-              <div className="font-label text-[9px] uppercase tracking-[0.16em] text-chrome">
+              <div className="font-label text-[10px] uppercase tracking-[0.16em] text-chrome">
                 A Home That Sits Empty
               </div>
-              <div className="mt-1 font-display text-[34px] font-black text-white">
+              <div className="mt-1 font-display text-[39px] font-black text-white">
                 {money(rent)}
-                <span className="text-[16px] text-chrome">/mo</span>
+                <span className="text-[18px] text-chrome">/mo</span>
               </div>
-              <div className="mt-1 text-[13px] text-chrome">
+              <div className="mt-1 text-[15px] text-chrome">
                 Billed all 12 months — even the {365 - days} you&apos;re away
               </div>
               <div className="my-4 h-px bg-chrome/10" />
-              <div className="font-label text-[9px] uppercase tracking-[0.16em] text-chrome">
+              <div className="font-label text-[10px] uppercase tracking-[0.16em] text-chrome">
                 What Each Night Home Costs
               </div>
-              <div className="mt-1 font-display text-[26px] font-black text-white">
+              <div className="mt-1 font-display text-[30px] font-black text-white">
                 {money(aptNight)}
               </div>
-              <div className="text-[12px] text-chrome">
+              <div className="text-[14px] text-chrome">
                 per night you&apos;re actually there
               </div>
             </div>
@@ -231,35 +231,35 @@ export default function OneHomeCalculator({
               className="rounded-card border bg-carbon p-6"
               style={{ borderColor: `${accent}66`, borderTopWidth: 2, borderTopColor: accent }}
             >
-              <div className="font-label text-[9px] uppercase tracking-[0.16em]" style={{ color: accent }}>
+              <div className="font-label text-[10px] uppercase tracking-[0.16em]" style={{ color: accent }}>
                 OneHome Membership
               </div>
-              <div className="mt-1 font-display text-[34px] font-black text-white">
+              <div className="mt-1 font-display text-[39px] font-black text-white">
                 {money(oh.std)}
-                <span className="text-[16px] text-chrome">/mo</span>
+                <span className="text-[18px] text-chrome">/mo</span>
               </div>
-              <div className="mt-1 text-[13px] text-chrome">
+              <div className="mt-1 text-[15px] text-chrome">
                 Base membership · {days} days/yr · month-to-month
               </div>
               <div className="my-4 h-px bg-chrome/10" />
-              <div className="font-label text-[9px] uppercase tracking-[0.16em] text-chrome">
+              <div className="font-label text-[10px] uppercase tracking-[0.16em] text-chrome">
                 What Each Night Home Costs
               </div>
-              <div className="mt-1 font-display text-[26px] font-black text-white">
+              <div className="mt-1 font-display text-[30px] font-black text-white">
                 {money(ohNight)}
               </div>
-              <div className="text-[12px] text-chrome">
+              <div className="text-[14px] text-chrome">
                 per night, furnished &amp; staffed
               </div>
               <div
-                className="mt-4 inline-block rounded-btn px-3 py-1.5 font-mono text-[11px] text-ink"
+                className="mt-4 inline-block rounded-btn px-3 py-1.5 font-mono text-[13px] text-ink"
                 style={{ background: accent }}
               >
                 West Memphis founding rate: {money(oh.yr1)}/mo
               </div>
             </div>
           </div>
-          <p className="mt-5 text-[13px] italic text-chrome">
+          <p className="mt-5 text-[15px] italic text-chrome">
             Base membership shown. Add OneHome services for $295/mo — private storage
             locker, covered parking, and a permanent mailing address — if you want them.
           </p>

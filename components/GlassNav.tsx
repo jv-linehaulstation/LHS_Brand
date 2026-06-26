@@ -80,7 +80,7 @@ export default function GlassNav({ accent = "#F07820" }: { accent?: string }) {
               <a
                 key={l.href}
                 href={l.href}
-                className="uline font-label text-[11px] uppercase tracking-[0.16em] text-chrome transition-colors hover:text-white"
+                className="uline font-label text-[13px] uppercase tracking-[0.16em] text-chrome transition-colors hover:text-white"
                 style={{ ["--ac" as string]: accent }}
               >
                 {l.label}
@@ -92,7 +92,7 @@ export default function GlassNav({ accent = "#F07820" }: { accent?: string }) {
             {/* Free Outriders Club register — distinct from the paid OneHome program */}
             <a
               href="#join-free"
-              className="hidden rounded-full border border-white/30 px-4 py-[9px] font-label text-[10px] uppercase tracking-[0.14em] text-white transition-colors hover:border-white/60 sm:inline-flex"
+              className="hidden rounded-full border border-white/30 px-4 py-[9px] font-label text-[12px] uppercase tracking-[0.14em] text-white transition-colors hover:border-white/60 sm:inline-flex"
             >
               Join Free
             </a>
@@ -134,7 +134,7 @@ export default function GlassNav({ accent = "#F07820" }: { accent?: string }) {
               type="button"
               onClick={() => setOpen(false)}
               aria-label="Close menu"
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-chrome/30 font-mono text-[18px] text-chrome transition-colors hover:border-chrome/60 hover:text-white"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-chrome/30 font-mono text-[21px] text-chrome transition-colors hover:border-chrome/60 hover:text-white"
             >
               ✕
             </button>
@@ -147,11 +147,11 @@ export default function GlassNav({ accent = "#F07820" }: { accent?: string }) {
                   key={l.href}
                   href={l.href}
                   onClick={() => setOpen(false)}
-                  className="overlay-link group flex w-fit items-center gap-4 font-display text-[clamp(32px,7vw,68px)] font-black uppercase leading-[1.04] tracking-[-0.02em] text-white transition-colors hover:text-[var(--ac)]"
+                  className="overlay-link group flex w-fit items-center gap-4 font-display text-[clamp(37px,8.05vw,78px)] font-black uppercase leading-[1.04] tracking-[-0.02em] text-white transition-colors hover:text-[var(--ac)]"
                   style={{ ["--ac" as string]: accent, ["--i" as string]: i }}
                 >
                   <span
-                    className="font-mono text-[12px] font-normal tracking-[0.1em] opacity-50 transition-opacity group-hover:opacity-100"
+                    className="font-mono text-[14px] font-normal tracking-[0.1em] opacity-50 transition-opacity group-hover:opacity-100"
                     style={{ color: accent }}
                   >
                     {String(i + 1).padStart(2, "0")}
@@ -161,7 +161,7 @@ export default function GlassNav({ accent = "#F07820" }: { accent?: string }) {
               ))}
           </nav>
 
-          <div className="flex flex-wrap items-center justify-between gap-4 border-t border-chrome/15 pt-5 font-mono text-[12px] text-chrome">
+          <div className="flex flex-wrap items-center justify-between gap-4 border-t border-chrome/15 pt-5 font-mono text-[14px] text-chrome">
             <a href={site.phoneHref} className="tnum transition-colors hover:text-white">
               {site.phone}
             </a>

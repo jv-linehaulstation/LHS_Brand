@@ -67,11 +67,11 @@ export default function TestimonialCarousel({
         aria-hidden
       />
       <div className="relative flex items-center justify-between">
-        <span className="tnum font-mono text-[13px] tracking-[0.1em]" style={{ color: accent }}>
+        <span className="tnum font-mono text-[15px] tracking-[0.1em]" style={{ color: accent }}>
           {String(i + 1).padStart(2, "0")} <span className="text-chrome">/ {String(n).padStart(2, "0")}</span>
         </span>
         {active.badge && (
-          <span className="rounded-full border border-chrome/25 px-3 py-1 font-label text-[9px] uppercase tracking-[0.18em] text-chrome">
+          <span className="rounded-full border border-chrome/25 px-3 py-1 font-label text-[10px] uppercase tracking-[0.18em] text-chrome">
             {active.badge}
           </span>
         )}
@@ -79,22 +79,22 @@ export default function TestimonialCarousel({
 
       {/* Cross-fade region — keyed so React remounts and re-runs the entrance. */}
       <div key={i} className="motion-safe:animate-[fadeIn_.5s_ease]">
-        <blockquote className="mt-6 max-w-[34ch] text-balance font-body text-[clamp(20px,2.6vw,30px)] font-medium leading-[1.35] text-white">
+        <blockquote className="mt-6 max-w-[34ch] text-balance font-body text-[clamp(23px,2.99vw,35px)] font-medium leading-[1.35] text-white">
           “{active.quote}”
         </blockquote>
         <div className="mt-7 flex items-center gap-4">
           <span
-            className="flex h-12 w-12 flex-none items-center justify-center rounded-full font-display text-[15px] font-black text-ink"
+            className="flex h-12 w-12 flex-none items-center justify-center rounded-full font-display text-[17px] font-black text-ink"
             style={{ background: `linear-gradient(135deg, ${accent}, ${accent}bb)` }}
             aria-hidden
           >
             {active.initials}
           </span>
           <div>
-            <div className="font-display text-[15px] font-black uppercase tracking-[0.02em] text-white">
+            <div className="font-display text-[17px] font-black uppercase tracking-[0.02em] text-white">
               {active.name}
             </div>
-            <div className="mt-0.5 font-mono text-[11px] uppercase tracking-[0.1em] text-chrome">
+            <div className="mt-0.5 font-mono text-[13px] uppercase tracking-[0.1em] text-chrome">
               {active.role}
             </div>
           </div>

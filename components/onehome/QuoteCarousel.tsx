@@ -30,11 +30,11 @@ export default function QuoteCarousel({ items, accent = "#F07820" }: { items: Q[
             className="flex flex-none basis-[86%] snap-start flex-col rounded-[20px] border p-7 sm:basis-[calc((100%_-_2rem)/3)]"
             style={{ borderColor: "#1C1C20", background: "#16161A" }}
           >
-            <div className="text-[40px] leading-none" style={{ color: accent }} aria-hidden>&ldquo;</div>
-            <blockquote className="-mt-2 text-[clamp(16px,1.8vw,20px)] font-medium leading-snug text-white">{q.quote}</blockquote>
+            <div className="text-[46px] leading-none" style={{ color: accent }} aria-hidden>&ldquo;</div>
+            <blockquote className="-mt-2 text-[clamp(18px,2.07vw,23px)] font-medium leading-snug text-white">{q.quote}</blockquote>
             <div className="mt-auto pt-6">
-              <div className="font-display text-[14px] font-black uppercase tracking-[0.02em] text-white">{q.name}</div>
-              <div className="mt-0.5 font-mono text-[11px] uppercase tracking-[0.1em] text-chrome">{q.role}</div>
+              <div className="font-display text-[16px] font-black uppercase tracking-[0.02em] text-white">{q.name}</div>
+              <div className="mt-0.5 font-mono text-[13px] uppercase tracking-[0.1em] text-chrome">{q.role}</div>
             </div>
           </div>
         ))}

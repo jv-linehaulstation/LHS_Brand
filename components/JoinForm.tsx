@@ -95,17 +95,17 @@ export default function JoinForm({
           >
             ✓
           </div>
-          <h3 className="mt-5 font-display text-[clamp(24px,3vw,32px)] font-black uppercase text-white">
+          <h3 className="mt-5 font-display text-[clamp(28px,3.45vw,37px)] font-black uppercase text-white">
             {successTitle}
           </h3>
-          <p className="mx-auto mt-3 max-w-md text-[16px] leading-relaxed text-[#d8d8d8]">
+          <p className="mx-auto mt-3 max-w-md text-[18px] leading-relaxed text-[#d8d8d8]">
             {values.firstName ? `Thanks, ${values.firstName}. ` : ""}
             {successBody ??
               "Your membership is in. Watch your phone — we'll be in touch with your Outriders Club details and first-Hub news."}
           </p>
           <a
             href={site.phoneHref}
-            className="mt-6 inline-flex items-center gap-2 font-mono text-[13px] text-chrome underline transition-colors hover:text-white"
+            className="mt-6 inline-flex items-center gap-2 font-mono text-[15px] text-chrome underline transition-colors hover:text-white"
           >
             Questions? Call {site.phone}
           </a>
@@ -115,7 +115,7 @@ export default function JoinForm({
   }
 
   const fieldCls =
-    "w-full rounded-btn border border-steel/30 bg-carbon px-4 py-3 text-[15px] text-white outline-none transition-colors placeholder:text-[#6a6a6a] focus:border-[var(--ac)]";
+    "w-full rounded-btn border border-steel/30 bg-carbon px-4 py-3 text-[17px] text-white outline-none transition-colors placeholder:text-[#6a6a6a] focus:border-[var(--ac)]";
 
   return (
     <form onSubmit={submit} className="chrome-frame" style={{ ["--ac" as string]: ACCENT }}>
@@ -123,7 +123,7 @@ export default function JoinForm({
         <div className="grid gap-4 sm:grid-cols-2">
           {TEXT_FIELDS.map((f) => (
             <div key={f.name} className={f.half ? "" : "sm:col-span-2"}>
-              <label className="mb-1.5 block font-label text-[9px] uppercase tracking-[0.18em] text-chrome">
+              <label className="mb-1.5 block font-label text-[10px] uppercase tracking-[0.18em] text-chrome">
                 {f.label}
                 {f.required ? " *" : ""}
               </label>
@@ -138,7 +138,7 @@ export default function JoinForm({
           ))}
 
           <div className="sm:col-span-2">
-            <label className="mb-1.5 block font-label text-[9px] uppercase tracking-[0.18em] text-chrome">
+            <label className="mb-1.5 block font-label text-[10px] uppercase tracking-[0.18em] text-chrome">
               Member Type *
             </label>
             <select
@@ -155,7 +155,7 @@ export default function JoinForm({
           </div>
         </div>
 
-        <label className="mt-5 flex cursor-pointer items-start gap-3 text-[14px] text-[#d8d8d8]">
+        <label className="mt-5 flex cursor-pointer items-start gap-3 text-[16px] text-[#d8d8d8]">
           <input
             type="checkbox"
             checked={sms}
@@ -168,7 +168,7 @@ export default function JoinForm({
             apply; reply STOP to opt out.
           </span>
         </label>
-        <label className="mt-3 flex cursor-pointer items-start gap-3 text-[14px] text-[#d8d8d8]">
+        <label className="mt-3 flex cursor-pointer items-start gap-3 text-[16px] text-[#d8d8d8]">
           <input
             type="checkbox"
             checked={terms}
@@ -182,17 +182,17 @@ export default function JoinForm({
           </span>
         </label>
 
-        {error && <p className="mt-4 font-mono text-[12px] text-ember">{error}</p>}
+        {error && <p className="mt-4 font-mono text-[14px] text-ember">{error}</p>}
 
         <button
           type="submit"
-          className="mt-6 inline-flex w-full items-center justify-center gap-2.5 rounded-btn px-8 py-[18px] font-label text-[12px] uppercase tracking-[0.16em] text-ink transition hover:brightness-110 active:scale-[0.99]"
+          className="mt-6 inline-flex w-full items-center justify-center gap-2.5 rounded-btn px-8 py-[18px] font-label text-[14px] uppercase tracking-[0.16em] text-ink transition hover:brightness-110 active:scale-[0.99]"
           style={{ background: `linear-gradient(135deg, ${ACCENT}, ${ACCENT_DARK})` }}
         >
           {submitLabel} <span aria-hidden>→</span>
         </button>
 
-        <p className="mt-4 text-center text-[13px] text-chrome">
+        <p className="mt-4 text-center text-[15px] text-chrome">
           Driver memberships are completely free. Prefer to talk first?{" "}
           <a href={site.phoneHref} className="underline hover:text-white">
             Call {site.phone}

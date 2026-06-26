@@ -105,9 +105,9 @@ export default function BuildingCarousel({
           ←
         </button>
         <div className="min-w-[220px] text-center">
-          <div className="font-display text-[clamp(15px,1.8vw,19px)] font-black uppercase tracking-[0.01em] text-white">{slides[active].name}</div>
-          <div className="mt-1.5 font-mono text-[11px] tracking-[0.04em]" style={{ color: "#a9a9a9" }}>{slides[active].spec}</div>
-          <div className="mt-1 font-mono text-[11px]" style={{ color: accent }}>{String(active + 1).padStart(2, "0")} / {String(n).padStart(2, "0")}</div>
+          <div className="font-display text-[clamp(17px,2.07vw,22px)] font-black uppercase tracking-[0.01em] text-white">{slides[active].name}</div>
+          <div className="mt-1.5 font-mono text-[13px] tracking-[0.04em]" style={{ color: "#a9a9a9" }}>{slides[active].spec}</div>
+          <div className="mt-1 font-mono text-[13px]" style={{ color: accent }}>{String(active + 1).padStart(2, "0")} / {String(n).padStart(2, "0")}</div>
         </div>
         <button
           type="button"
