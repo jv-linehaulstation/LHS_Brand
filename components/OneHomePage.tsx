@@ -67,7 +67,8 @@ const EVERYTHING_TILES = [
 ];
 const FLEET_DETAIL = "Tire Pressure Management · Pre & Post-Trip Inspection · DOT Annual Inspection · Tractor/Trailer Service · Routine PM Repairs";
 
-// "Everything included" categorized club menu (the carousel is the hero).
+// "Everything included" categorized club menu (lives in the Home-Hub section's
+// right column so nothing from the live club menu is lost).
 const CLUB_MENU = [
   { cat: "Food & Drink", items: ["Member's Grill & Bar", "Coffee & Juice Bar", "Grab-and-Go Market", "Snacks & Provisions"] },
   { cat: "Entertainment", items: ["Digital Den & Gaming", "Billiards & Game Tables", "Trap & Skeet", "Sky Deck & Firepits"] },
@@ -250,7 +251,20 @@ export default function OneHomePage() {
         </Reveal>
       </section>
 
-      {/* ============ 5. FOR A LOT LESS MONEY — prompts + interactive strikethrough comparison ============ */}
+      {/* ============ 5. THE OUTRIDERS CLUB — amenities peeking-card carousel (starts on slide 2) ============ */}
+      <section id="amenities" className={`bg-ink ${PAD} py-[clamp(80px,12vh,160px)]`}>
+        <Reveal className="mx-auto max-w-2xl text-center">
+          <div className="font-label text-[11px] uppercase tracking-[0.24em]" style={{ color: ac }}>The Outriders Club</div>
+          <h2 className="mt-4 text-balance font-display text-[clamp(34px,5.6vw,84px)] font-black uppercase leading-[0.92] tracking-[-0.025em] text-white">{ONEHOME.amenities.headline}</h2>
+          <p className="mt-5 text-[clamp(16px,1.7vw,20px)] leading-relaxed" style={{ color: MUT }}>{ONEHOME.amenities.intro}</p>
+        </Reveal>
+        <BuildingCarousel slides={AMENITY_SLIDES} accent={ac} initialIndex={1} />
+        <Reveal>
+          <p className="mt-[clamp(40px,6vw,80px)] text-center text-[clamp(20px,2.6vw,30px)] font-light italic" style={{ color: ac }}>{a.amenities?.footnote}</p>
+        </Reveal>
+      </section>
+
+      {/* ============ 6. FOR A LOT LESS MONEY — prompts + interactive strikethrough comparison ============ */}
       <section id="value" className={`${PAD} py-[clamp(70px,11vh,140px)]`} style={{ background: ELEV }}>
         <Reveal as="h2" className="max-w-[20ch] text-balance font-display text-[clamp(32px,4.8vw,68px)] font-black uppercase leading-[0.95] tracking-[-0.02em] text-white">
           {ONEHOME.value.headline}
@@ -275,7 +289,7 @@ export default function OneHomePage() {
         </div>
       </section>
 
-      {/* ============ 6. NOTHING TO LOSE / EVERYTHING TO GAIN — free-membership hover-reveal ============ */}
+      {/* ============ 7. NOTHING TO LOSE / EVERYTHING TO GAIN — membership + Space, one section, hover-reveal ============ */}
       <section id="membership" className={`overflow-x-clip bg-ink ${PAD} py-[clamp(70px,11vh,140px)]`}>
         <Reveal className="max-w-3xl">
           <div className="font-label text-[11px] uppercase tracking-[0.24em]" style={{ color: ac }}>{a.outriders!.join.eyebrow}</div>
@@ -285,7 +299,13 @@ export default function OneHomePage() {
           </h2>
         </Reveal>
         <div className="mt-12">
-          <MembershipReveal groups={[{ label: "Free Membership", items: MEMBERSHIP }]} accent={ac} />
+          <MembershipReveal
+            groups={[
+              { label: "Free Membership", items: MEMBERSHIP },
+              { label: "Three Ways To Get Space", items: SPACE },
+            ]}
+            accent={ac}
+          />
         </div>
         <Reveal delay={120} className="mt-10">
           <MagneticButton strength={0.3}>
@@ -297,40 +317,7 @@ export default function OneHomePage() {
         </Reveal>
       </section>
 
-      {/* ============ 7. AMENITIES — peeking-card carousel + everything-included list ============ */}
-      <section id="amenities" className={`bg-ink ${PAD} py-[clamp(80px,12vh,160px)]`}>
-        <Reveal className="mx-auto max-w-2xl text-center">
-          <div className="font-label text-[11px] uppercase tracking-[0.24em]" style={{ color: ac }}>The Outriders Club</div>
-          <h2 className="mt-4 text-balance font-display text-[clamp(34px,5.6vw,84px)] font-black uppercase leading-[0.92] tracking-[-0.025em] text-white">{ONEHOME.amenities.headline}</h2>
-          <p className="mt-5 text-[clamp(16px,1.7vw,20px)] leading-relaxed" style={{ color: MUT }}>{ONEHOME.amenities.intro}</p>
-        </Reveal>
-        <BuildingCarousel slides={AMENITY_SLIDES} accent={ac} />
-
-        {/* "Everything included" — the full club menu so nothing from the live page is lost */}
-        <Reveal className="mt-[clamp(48px,7vw,96px)] border-t border-white/10 pt-[clamp(36px,5vw,64px)]">
-          <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-chrome">Everything included</div>
-          <div className="mt-6 grid gap-x-10 gap-y-8 sm:grid-cols-3">
-            {CLUB_MENU.map((g) => (
-              <div key={g.cat}>
-                <div className="font-display text-[16px] font-black uppercase tracking-[0.01em]" style={{ color: ac }}>{g.cat}</div>
-                <ul className="mt-3 space-y-2">
-                  {g.items.map((it) => (
-                    <li key={it} className="flex items-baseline gap-2.5 text-[14px] text-chrome">
-                      <span className="h-1 w-1 flex-none translate-y-[-2px] rounded-full" style={{ background: ac }} aria-hidden />
-                      {it}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </Reveal>
-        <Reveal>
-          <p className="mt-[clamp(40px,6vw,80px)] text-center text-[clamp(20px,2.6vw,30px)] font-light italic" style={{ color: ac }}>{a.amenities?.footnote}</p>
-        </Reveal>
-      </section>
-
-      {/* ============ 8. WE HAVE EVERYTHING YOU NEED — Home Hub + Fleet image tiles, scroll-zoom hero ============ */}
+      {/* ============ 8. WE HAVE EVERYTHING YOU NEED — Home Hub + Fleet tiles + "Everything included" column ============ */}
       <section id="everything">
         <div className="relative h-[clamp(340px,52vh,600px)] overflow-hidden">
           <ScrollScale from={1.06} to={1.22}>
@@ -345,36 +332,63 @@ export default function OneHomePage() {
           </div>
         </div>
         <div className={`${PAD} py-[clamp(56px,9vh,110px)]`} style={{ background: ELEV }}>
-          {["Home Hub", "Fleet Services"].map((group, gi) => (
-            <div key={group} className={gi === 1 ? "mt-12" : ""}>
-              <div className="font-mono text-[12px] uppercase tracking-[0.16em]" style={{ color: ac }}>{group}</div>
-              <div className={`mt-5 grid gap-4 ${gi === 0 ? "sm:grid-cols-3" : "sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5"}`}>
-                {EVERYTHING_TILES.filter((t) => t.group === group).map((t, i) => (
-                  <Reveal key={t.label} delay={i * 60}>
-                    <figure className="group overflow-hidden rounded-[16px] border" style={{ borderColor: CARD2, background: CARD }}>
-                      <div className="relative aspect-[4/3] overflow-hidden">
-                        <Image src={t.img} alt={t.label} fill loading="lazy" className="img-grade object-cover transition-transform duration-700 ease-out motion-safe:group-hover:scale-105" sizes="(max-width: 768px) 50vw, 20vw" />
-                        <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_50%,rgba(11,11,11,0.72))]" />
-                      </div>
-                      <figcaption className="p-4">
-                        <div className="font-display text-[15px] font-black uppercase tracking-[0.01em] text-white">{t.label}</div>
-                        <div className="mt-1 text-[13px] leading-snug" style={{ color: MUT }}>{t.line}</div>
-                      </figcaption>
-                    </figure>
-                  </Reveal>
-                ))}
-              </div>
-              {gi === 1 && (
-                <p className="mt-5 font-mono text-[12px] leading-relaxed" style={{ color: MUT }}>
-                  <span style={{ color: ac }}>Also: </span>{FLEET_DETAIL}
-                </p>
-              )}
+          <div className="grid gap-x-12 gap-y-12 lg:grid-cols-[minmax(0,1fr)_300px] xl:grid-cols-[minmax(0,1fr)_340px]">
+            {/* left — the image tiles */}
+            <div>
+              {["Home Hub", "Fleet Services"].map((group, gi) => (
+                <div key={group} className={gi === 1 ? "mt-12" : ""}>
+                  <div className="font-mono text-[12px] uppercase tracking-[0.16em]" style={{ color: ac }}>{group}</div>
+                  <div className={`mt-5 grid gap-4 ${gi === 0 ? "sm:grid-cols-3" : "sm:grid-cols-2 lg:grid-cols-3"}`}>
+                    {EVERYTHING_TILES.filter((t) => t.group === group).map((t, i) => (
+                      <Reveal key={t.label} delay={i * 60}>
+                        <figure className="group overflow-hidden rounded-[16px] border" style={{ borderColor: CARD2, background: CARD }}>
+                          <div className="relative aspect-[4/3] overflow-hidden">
+                            <Image src={t.img} alt={t.label} fill loading="lazy" className="img-grade object-cover transition-transform duration-700 ease-out motion-safe:group-hover:scale-105" sizes="(max-width: 768px) 50vw, 28vw" />
+                            <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_50%,rgba(11,11,11,0.72))]" />
+                          </div>
+                          <figcaption className="p-4">
+                            <div className="font-display text-[15px] font-black uppercase tracking-[0.01em] text-white">{t.label}</div>
+                            <div className="mt-1 text-[13px] leading-snug" style={{ color: MUT }}>{t.line}</div>
+                          </figcaption>
+                        </figure>
+                      </Reveal>
+                    ))}
+                  </div>
+                  {gi === 1 && (
+                    <p className="mt-5 font-mono text-[12px] leading-relaxed" style={{ color: MUT }}>
+                      <span style={{ color: ac }}>Also: </span>{FLEET_DETAIL}
+                    </p>
+                  )}
+                </div>
+              ))}
             </div>
-          ))}
+
+            {/* right — the full "Everything included" club menu */}
+            <Reveal dir="right" className="lg:sticky lg:top-28 lg:self-start">
+              <div className="rounded-[20px] border p-6 sm:p-7" style={{ borderColor: CARD2, background: CARD }}>
+                <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-chrome">Everything included</div>
+                <div className="mt-5 grid gap-6 sm:grid-cols-3 lg:grid-cols-1">
+                  {CLUB_MENU.map((g) => (
+                    <div key={g.cat}>
+                      <div className="font-display text-[15px] font-black uppercase tracking-[0.01em]" style={{ color: ac }}>{g.cat}</div>
+                      <ul className="mt-2.5 space-y-1.5">
+                        {g.items.map((it) => (
+                          <li key={it} className="flex items-baseline gap-2.5 text-[13px] leading-snug text-chrome">
+                            <span className="h-1 w-1 flex-none translate-y-[-2px] rounded-full" style={{ background: ac }} aria-hidden />
+                            {it}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </Reveal>
+          </div>
         </div>
       </section>
 
-      {/* ============ 9. NETWORK / MAP — markets + West Memphis proof, once ============ */}
+      {/* ============ 9. NETWORK / MAP — Everywhere the Road Takes You + Memphis map ============ */}
       <section id="network" className={`${PAD} py-[clamp(70px,11vh,140px)]`} style={{ background: ELEV }}>
         <div className="grid gap-x-16 gap-y-10 lg:grid-cols-[1fr_0.9fr] lg:items-start">
           <div>
@@ -388,13 +402,20 @@ export default function OneHomePage() {
             </Reveal>
           </div>
           <Reveal delay={120} dir="right">
-            <div className="rounded-[20px] border p-7" style={{ borderColor: CARD2, background: CARD }}>
-              <div className="font-label text-[10px] uppercase tracking-[0.2em]" style={{ color: ac }}>First Home Hub · Open Now</div>
-              <div className="mt-3 font-display text-[30px] font-black uppercase leading-none text-white">{a.memphis.address}</div>
-              <div className="tnum mt-1.5 font-mono text-[13px] text-chrome">{a.memphis.addressSub}</div>
-              <p className="mt-4 text-[14px] leading-relaxed" style={{ color: MUT }}>{a.memphis.body}</p>
-              <div className="chrome-rule mt-5" />
-              <div className="mt-5"><StatusChip chrome label="Live now" coord="35.14°N / 90.18°W" accent={ac} /></div>
+            <div className="space-y-5">
+              {/* West Memphis location map */}
+              <div className="relative overflow-hidden rounded-[20px] border" style={{ borderColor: CARD2, background: CARD }}>
+                <Image src="/assets/marketing/map-memphis.png" alt="West Memphis Hub — one block off the I-40 / I-55 interchange" width={500} height={345} className="h-auto w-full" sizes="(max-width: 1024px) 100vw, 40vw" />
+                <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/5" />
+              </div>
+              <div className="rounded-[20px] border p-7" style={{ borderColor: CARD2, background: CARD }}>
+                <div className="font-label text-[10px] uppercase tracking-[0.2em]" style={{ color: ac }}>First Home Hub · Open Now</div>
+                <div className="mt-3 font-display text-[30px] font-black uppercase leading-none text-white">{a.memphis.address}</div>
+                <div className="tnum mt-1.5 font-mono text-[13px] text-chrome">{a.memphis.addressSub}</div>
+                <p className="mt-4 text-[14px] leading-relaxed" style={{ color: MUT }}>{a.memphis.body}</p>
+                <div className="chrome-rule mt-5" />
+                <div className="mt-5"><StatusChip chrome label="Live now" coord="35.14°N / 90.18°W" accent={ac} /></div>
+              </div>
             </div>
           </Reveal>
         </div>
@@ -408,21 +429,7 @@ export default function OneHomePage() {
         </div>
       </section>
 
-      {/* ============ 10. SPACE — three ways to get Space, hover-reveal ============ */}
-      <section id="space" className={`overflow-x-clip bg-ink ${PAD} py-[clamp(70px,11vh,140px)]`}>
-        <Reveal className="max-w-3xl">
-          <div className="font-label text-[11px] uppercase tracking-[0.24em]" style={{ color: ac }}>Three ways to get Space</div>
-          <h2 className="mt-3 font-display text-[clamp(48px,9vw,120px)] font-black uppercase leading-[0.86] tracking-[-0.03em] text-white">{a.outriders!.join.waysTitle}</h2>
-          <p className="mt-5 max-w-[52ch] text-[clamp(16px,1.7vw,20px)] leading-relaxed text-[#dadada]">
-            Space is your place in the network — secure parking, trailer drop, and terminal access at every LineHaul Station Hub. Here are the three ways to get it.
-          </p>
-        </Reveal>
-        <div className="mt-12">
-          <MembershipReveal groups={[{ label: "Three Ways To Get Space", items: SPACE }]} accent={ac} />
-        </div>
-      </section>
-
-      {/* ============ 11. TESTIMONIALS — warm driver photo + play + quote cards ============ */}
+      {/* ============ 10. TESTIMONIALS — warm driver photo + play + quote cards ============ */}
       <section id="stories" className="relative overflow-hidden">
         <div className="relative h-[clamp(360px,52vh,560px)]">
           <ParallaxImage src={a.heroImage} alt="A driver at sunset — LineHaul Station" strength={0.2} />
@@ -442,7 +449,7 @@ export default function OneHomePage() {
         </div>
       </section>
 
-      {/* ============ 12. FAQ — Luxe accordion ============ */}
+      {/* ============ 11. FAQ — Luxe accordion ============ */}
       <section id="faq" className={`${PAD} py-[clamp(70px,11vh,140px)]`} style={{ background: ELEV }}>
         <Reveal className="mx-auto max-w-2xl text-center">
           <div className="font-label text-[11px] uppercase tracking-[0.24em]" style={{ color: ac }}>Good to know</div>
@@ -453,33 +460,7 @@ export default function OneHomePage() {
         </div>
       </section>
 
-      {/* ============ 13. CLOSING CTA — buttons only, scroll to the single form ============ */}
-      <section id="closing" className="relative overflow-hidden">
-        <ParallaxImage src={a.roadImage ?? a.heroImage} alt="A truck on the open road at sunset — LineHaul Station" strength={0.24} />
-        <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(11,11,11,0.96),rgba(11,11,11,0.5)_70%)]" />
-        <div className="bloom" style={{ ["--bloom" as string]: `${ac}22` }} aria-hidden />
-        <div className={`relative ${PAD} py-[clamp(90px,14vh,180px)]`}>
-          <Reveal className="mx-auto max-w-3xl text-center">
-            <div className="font-label text-[11px] uppercase tracking-[0.24em]" style={{ color: ac }}>{ONEHOME.join.subhead}</div>
-            <h2 className="mx-auto mt-4 max-w-[18ch] text-balance font-display text-[clamp(36px,6vw,96px)] font-black uppercase leading-[0.9] tracking-[-0.03em] text-white">{a.closerHeadline}</h2>
-            <p className="mx-auto mt-6 max-w-[46ch] text-[clamp(16px,1.7vw,21px)] leading-relaxed text-[#dadada]">{a.closerBody}</p>
-            <div className="mt-9 flex flex-wrap items-center justify-center gap-3.5">
-              <MagneticButton strength={0.35}>
-                <a href="#join-free" className={`group ${PILL} text-ink shadow-[0_14px_34px_rgba(0,0,0,0.5)] hover:brightness-[1.08]`} style={{ background: `linear-gradient(135deg, ${ac}, ${ad})` }}>
-                  Join Free
-                  <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">→</span>
-                </a>
-              </MagneticButton>
-              <a href={site.phoneHref} className={`group ${PILL} border border-white/40 bg-white/[0.04] text-white backdrop-blur-sm hover:border-[var(--ac)]`} style={{ ["--ac" as string]: ac }}>
-                Schedule a Call
-                <span aria-hidden style={{ color: ac }}>→</span>
-              </a>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ============ 14. FOOTER — dark architectural image + Quick Links / Explore / Newsletter ============ */}
+      {/* ============ 12. FOOTER — dark architectural image + Quick Links / Explore / Newsletter ============ */}
       <footer className="relative overflow-hidden">
         <ScrollScale from={1.04} to={1.16}>
           <Image src="/assets/building-seq/07.jpg" alt="A LineHaul Station Hub from above" fill className="img-grade object-cover" sizes="100vw" />

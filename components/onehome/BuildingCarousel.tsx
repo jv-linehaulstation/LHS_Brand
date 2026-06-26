@@ -16,13 +16,15 @@ type Slide = { src: string; name: string; spec: string };
 export default function BuildingCarousel({
   slides,
   accent = "#F07820",
+  initialIndex = 0,
 }: {
   slides: Slide[];
   accent?: string;
+  initialIndex?: number;
 }) {
   const trackRef = useRef<HTMLDivElement | null>(null);
   const cards = useRef<(HTMLDivElement | null)[]>([]);
-  const [active, setActive] = useState(0);
+  const [active, setActive] = useState(initialIndex);
   const n = slides.length;
 
   const onScroll = () => {
@@ -44,7 +46,15 @@ export default function BuildingCarousel({
   };
 
   useEffect(() => {
+    // Center the requested initial card without scrolling the page (set the
+    // track's own scrollLeft, not scrollIntoView), then sync the active state.
+    const track = trackRef.current;
+    const el = cards.current[initialIndex];
+    if (track && el && initialIndex > 0) {
+      track.scrollLeft = el.offsetLeft + el.offsetWidth / 2 - track.clientWidth / 2;
+    }
     onScroll();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const goTo = (idx: number) => {
