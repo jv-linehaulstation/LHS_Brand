@@ -47,9 +47,9 @@ const AMENITY_SLIDES = [
 
 // Membership steps + Space ways — hover-reveal lists. TODO(JJ): one image per item.
 const MEMBERSHIP = [
-  { n: "01", title: "Free Membership", line: "Always 100% free — agree to the Code of Conduct and you're in.", img: "/assets/amenities/grill.jpg" },
-  { n: "02", title: "Create Your Profile", line: "Unlock member features and career-changing information.", img: "/assets/amenities/digital-den.jpg" },
-  { n: "03", title: "Get Others Excited!", line: "Three ways to get Space — earn it, request it, or purchase it.", img: "/assets/amenities/sky-deck.jpg" },
+  { n: "01", title: "Free Membership", line: "Always 100% free — agree to the Code of Conduct and you're in.", img: "/assets/steps/step-1.png" },
+  { n: "02", title: "Create Your Profile", line: "Unlock member features and career-changing information.", img: "/assets/steps/step-2.png" },
+  { n: "03", title: "Get Others Excited!", line: "Three ways to get Space — earn it, request it, or purchase it.", img: "/assets/steps/step-3.png" },
 ];
 const SPACE = [
   { n: "01", title: "Earn Your Space", line: "Sponsor ten great drivers → a lifetime of free Space.", img: "/assets/building-seq/05.jpg" },
