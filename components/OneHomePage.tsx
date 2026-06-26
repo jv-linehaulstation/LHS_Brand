@@ -13,7 +13,7 @@ import FloatingVimeo from "@/components/onehome/FloatingVimeo";
 import BuildingCarousel from "@/components/onehome/BuildingCarousel";
 import QuoteCarousel from "@/components/onehome/QuoteCarousel";
 import ComparisonTable from "@/components/onehome/ComparisonTable";
-import MembershipReveal from "@/components/onehome/MembershipReveal";
+import StepGrid from "@/components/onehome/StepGrid";
 import NewsletterForm from "@/components/onehome/NewsletterForm";
 import FAQ, { type QA } from "@/components/FAQ";
 import { CoinImage, ChromeFrame, StatusChip } from "@/components/Bits";
@@ -224,6 +224,20 @@ export default function OneHomePage() {
         </div>
       </section>
 
+      {/* ============ 3b. FREE MEMBERSHIP — 3 steps as image boxes (right after the form) ============ */}
+      <section id="membership" className={`bg-ink ${PAD} py-[clamp(70px,11vh,140px)]`}>
+        <Reveal className="max-w-3xl">
+          <div className="font-label text-[13px] uppercase tracking-[0.24em]" style={{ color: ac }}>{a.outriders!.join.eyebrow}</div>
+          <h2 className="mt-4 font-display text-[clamp(37px,5.75vw,87px)] font-black uppercase leading-[0.92] tracking-[-0.025em] text-white">
+            {a.outriders!.join.headline.split("/")[0].trim()}{" "}
+            <span style={{ color: ac }}>{a.outriders!.join.headline.split("/")[1].trim()}</span>
+          </h2>
+        </Reveal>
+        <div className="mt-12">
+          <StepGrid items={MEMBERSHIP} badge={(i) => `Step #${i + 1}`} accent={ac} />
+        </div>
+      </section>
+
       {/* ============ 4. HERE'S A NEW & BETTER OPTION — stacked: hook → wide calculator → body ============ */}
       <section id="core" className={`relative overflow-hidden ${PAD} py-[clamp(80px,12vh,160px)]`} style={{ background: BURG }}>
         <Reveal className="mx-auto max-w-5xl text-center">
@@ -242,8 +256,8 @@ export default function OneHomePage() {
           </div>
         </Reveal>
 
-        {/* the playbook's revised Core Sales copy, below the calculator (same width) */}
-        <Reveal className="mx-auto mt-12 max-w-6xl">
+        {/* the playbook's revised Core Sales copy, below the calculator (same width, centered) */}
+        <Reveal className="mx-auto mt-12 max-w-6xl text-center">
           <div className="space-y-4 text-[clamp(18px,1.84vw,22px)] leading-relaxed" style={{ color: "#dadada" }}>
             {ONEHOME.core.paras.map((p, i) => <p key={i}>{p}</p>)}
           </div>
@@ -289,23 +303,16 @@ export default function OneHomePage() {
         </div>
       </section>
 
-      {/* ============ 7. NOTHING TO LOSE / EVERYTHING TO GAIN — membership + Space, one section, hover-reveal ============ */}
-      <section id="membership" className={`overflow-x-clip bg-ink ${PAD} py-[clamp(70px,11vh,140px)]`}>
+      {/* ============ 7. THREE WAYS TO GET SPACE — big title + image boxes ============ */}
+      <section id="space" className={`bg-ink ${PAD} py-[clamp(70px,11vh,140px)]`}>
         <Reveal className="max-w-3xl">
-          <div className="font-label text-[13px] uppercase tracking-[0.24em]" style={{ color: ac }}>{a.outriders!.join.eyebrow}</div>
+          <div className="font-label text-[13px] uppercase tracking-[0.24em]" style={{ color: ac }}>The Outriders Club</div>
           <h2 className="mt-4 font-display text-[clamp(37px,5.75vw,87px)] font-black uppercase leading-[0.92] tracking-[-0.025em] text-white">
-            {a.outriders!.join.headline.split("/")[0].trim()}{" "}
-            <span style={{ color: ac }}>{a.outriders!.join.headline.split("/")[1].trim()}</span>
+            Three Ways To <span style={{ color: ac }}>Get Space.</span>
           </h2>
         </Reveal>
         <div className="mt-12">
-          <MembershipReveal
-            groups={[
-              { label: "Free Membership", items: MEMBERSHIP },
-              { label: "Three Ways To Get Space", items: SPACE },
-            ]}
-            accent={ac}
-          />
+          <StepGrid items={SPACE} badge={(i) => String(i + 1).padStart(2, "0")} accent={ac} />
         </div>
         <Reveal delay={120} className="mt-10">
           <MagneticButton strength={0.3}>
@@ -337,7 +344,7 @@ export default function OneHomePage() {
             <div>
               {["Home Hub", "Fleet Services"].map((group, gi) => (
                 <div key={group} className={gi === 1 ? "mt-12" : ""}>
-                  <div className="font-mono text-[14px] uppercase tracking-[0.16em]" style={{ color: ac }}>{group}</div>
+                  <div className="font-mono text-[17px] uppercase tracking-[0.16em]" style={{ color: ac }}>{group}</div>
                   <div className={`mt-5 grid gap-4 ${gi === 0 ? "sm:grid-cols-3" : "sm:grid-cols-2 lg:grid-cols-3"}`}>
                     {EVERYTHING_TILES.filter((t) => t.group === group).map((t, i) => (
                       <Reveal key={t.label} delay={i * 60}>
@@ -347,15 +354,15 @@ export default function OneHomePage() {
                             <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_50%,rgba(11,11,11,0.72))]" />
                           </div>
                           <figcaption className="p-4">
-                            <div className="font-display text-[17px] font-black uppercase tracking-[0.01em] text-white">{t.label}</div>
-                            <div className="mt-1 text-[15px] leading-snug" style={{ color: MUT }}>{t.line}</div>
+                            <div className="font-display text-[20px] font-black uppercase tracking-[0.01em] text-white">{t.label}</div>
+                            <div className="mt-1 text-[18px] leading-snug" style={{ color: MUT }}>{t.line}</div>
                           </figcaption>
                         </figure>
                       </Reveal>
                     ))}
                   </div>
                   {gi === 1 && (
-                    <p className="mt-5 font-mono text-[14px] leading-relaxed" style={{ color: MUT }}>
+                    <p className="mt-5 font-mono text-[17px] leading-relaxed" style={{ color: MUT }}>
                       <span style={{ color: ac }}>Also: </span>{FLEET_DETAIL}
                     </p>
                   )}
@@ -366,14 +373,14 @@ export default function OneHomePage() {
             {/* right — the full "Everything included" club menu */}
             <Reveal dir="right" className="lg:sticky lg:top-28 lg:self-start">
               <div className="rounded-[20px] border p-6 sm:p-7" style={{ borderColor: CARD2, background: CARD }}>
-                <div className="font-mono text-[13px] uppercase tracking-[0.18em] text-chrome">Everything included</div>
+                <div className="font-mono text-[16px] uppercase tracking-[0.18em] text-chrome">Everything included</div>
                 <div className="mt-5 grid gap-6 sm:grid-cols-3 lg:grid-cols-1">
                   {CLUB_MENU.map((g) => (
                     <div key={g.cat}>
-                      <div className="font-display text-[17px] font-black uppercase tracking-[0.01em]" style={{ color: ac }}>{g.cat}</div>
+                      <div className="font-display text-[20px] font-black uppercase tracking-[0.01em]" style={{ color: ac }}>{g.cat}</div>
                       <ul className="mt-2.5 space-y-1.5">
                         {g.items.map((it) => (
-                          <li key={it} className="flex items-baseline gap-2.5 text-[15px] leading-snug text-chrome">
+                          <li key={it} className="flex items-baseline gap-2.5 text-[18px] leading-snug text-chrome">
                             <span className="h-1 w-1 flex-none translate-y-[-2px] rounded-full" style={{ background: ac }} aria-hidden />
                             {it}
                           </li>

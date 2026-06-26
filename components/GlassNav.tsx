@@ -147,15 +147,9 @@ export default function GlassNav({ accent = "#F07820" }: { accent?: string }) {
                   key={l.href}
                   href={l.href}
                   onClick={() => setOpen(false)}
-                  className="overlay-link group flex w-fit items-center gap-4 font-display text-[clamp(37px,8.05vw,78px)] font-black uppercase leading-[1.04] tracking-[-0.02em] text-white transition-colors hover:text-[var(--ac)]"
+                  className="overlay-link group flex w-fit items-center font-display text-[clamp(37px,8.05vw,78px)] font-black uppercase leading-[1.04] tracking-[-0.02em] text-white transition-colors hover:text-[var(--ac)]"
                   style={{ ["--ac" as string]: accent, ["--i" as string]: i }}
                 >
-                  <span
-                    className="font-mono text-[14px] font-normal tracking-[0.1em] opacity-50 transition-opacity group-hover:opacity-100"
-                    style={{ color: accent }}
-                  >
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
                   {l.label}
                 </Link>
               ))}
