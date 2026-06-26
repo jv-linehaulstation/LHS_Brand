@@ -36,6 +36,20 @@ const AMENITY_IMG = [
   "/assets/amenities/camp-k9.jpg",
 ];
 
+// Off-grid amenities collage — per-card layout variation (span, orientation,
+// edge-bleed into the gutter, vertical-offset stagger, parallax speed, floating
+// caption side). All lg:* only → clean single-column stack on mobile.
+const A_LAYOUT = [
+  { img: "lg:col-span-7", copy: "lg:col-span-5 lg:col-start-8", aspect: "aspect-[4/3]", bleed: "lg:-ml-[5vw]", off: "", speed: 0.08, cap: "left-5" },
+  { img: "lg:col-span-6 lg:col-start-7", copy: "lg:col-span-5 lg:col-start-1 lg:row-start-1", aspect: "aspect-[3/4]", bleed: "lg:-mr-[5vw]", off: "lg:-mt-[5vw]", speed: 0.16, cap: "right-5" },
+  { img: "lg:col-span-6", copy: "lg:col-span-5 lg:col-start-8", aspect: "aspect-[5/4]", bleed: "", off: "lg:mt-[3vw]", speed: 0.1, cap: "left-5" },
+  { img: "lg:col-span-7 lg:col-start-6", copy: "lg:col-span-5 lg:col-start-1 lg:row-start-1", aspect: "aspect-[16/10]", bleed: "lg:-mr-[6vw]", off: "", speed: 0.17, cap: "right-5" },
+  { img: "lg:col-span-5", copy: "lg:col-span-6 lg:col-start-7", aspect: "aspect-[3/4]", bleed: "lg:-ml-[5vw]", off: "lg:-mt-[4vw]", speed: 0.12, cap: "left-5" },
+  { img: "lg:col-span-6 lg:col-start-7", copy: "lg:col-span-5 lg:col-start-1 lg:row-start-1", aspect: "aspect-[4/3]", bleed: "", off: "lg:mt-[3vw]", speed: 0.09, cap: "right-5" },
+  { img: "lg:col-span-7", copy: "lg:col-span-5 lg:col-start-8", aspect: "aspect-[5/4]", bleed: "lg:-ml-[6vw]", off: "", speed: 0.15, cap: "left-5" },
+  { img: "lg:col-span-6 lg:col-start-7", copy: "lg:col-span-5 lg:col-start-1 lg:row-start-1", aspect: "aspect-[3/4]", bleed: "lg:-mr-[5vw]", off: "lg:-mt-[4vw]", speed: 0.11, cap: "right-5" },
+] as const;
+
 // In-their-words carousel — see TestimonialCarousel: these are the OneHome
 // PROMISE (playbook-approved lines), not fabricated named drivers. TODO(JJ):
 // replace with real founding-member testimonials + photos before launch.
@@ -215,8 +229,9 @@ export default function OneHomePage() {
         </div>
       </section>
 
-      {/* ============ 4. AMENITIES — asymmetric, staggered, hover zoom + label slide-up (white) ============ */}
-      <section id="amenities" className={`${PAD} py-[clamp(80px,12vh,160px)]`} style={{ background: WHITE }}>
+      {/* ============ 4. AMENITIES — off-grid collage: edge-bleed, stagger, multi-speed
+          parallax, floating mono captions, zoom-on-hover (off-white) ============ */}
+      <section id="amenities" className={`relative overflow-hidden ${PAD} py-[clamp(80px,12vh,160px)]`} style={{ background: WHITE }}>
         <Reveal className="max-w-3xl">
           <div className="font-label text-[11px] uppercase tracking-[0.24em]" style={{ color: ad }}>
             {ONEHOME.amenities.subhead}
@@ -229,45 +244,39 @@ export default function OneHomePage() {
           </p>
         </Reveal>
 
-        <div className="mt-16 space-y-[clamp(40px,6vw,88px)]">
+        <div className="mt-16 flex flex-col gap-[clamp(48px,7vw,116px)] lg:mt-24">
           {ONEHOME.amenities.cards.map((c, i) => {
-            const flip = i % 2 === 1;
-            const offset = i % 3 === 1 ? "lg:translate-y-8" : i % 3 === 2 ? "lg:-translate-y-4" : "";
+            const L = A_LAYOUT[i];
             return (
-              <Reveal key={c.name} className="grid items-center gap-x-[clamp(28px,4vw,72px)] gap-y-6 lg:grid-cols-12">
-                {/* Image — varied span, staggered offset, zoom + label slide-up on hover */}
-                <div
-                  className={`group relative overflow-hidden rounded-card border border-[#E2DDD6] ${
-                    flip ? "lg:order-2 lg:col-span-7 lg:col-start-6" : "lg:col-span-7"
-                  } ${offset}`}
-                >
-                  <div className={`relative overflow-hidden ${i === 0 ? "aspect-[5/4]" : flip ? "aspect-[4/3]" : "aspect-[16/10]"}`}>
-                    <Image
-                      src={AMENITY_IMG[i]}
-                      alt={`${c.name} — OneHome by LineHaul Station`}
-                      fill
-                      loading="lazy"
-                      className="img-grade object-cover transition-transform duration-[800ms] ease-out motion-safe:group-hover:scale-[1.07]"
-                      sizes="(max-width: 1024px) 100vw, 55vw"
-                    />
-                    <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_45%,rgba(11,11,11,0.72))]" />
+              <Reveal key={c.name} className={`grid items-center gap-x-[clamp(24px,3vw,56px)] gap-y-7 lg:grid-cols-12 ${L.off}`}>
+                {/* Image — parallax drift (varied speed), edge-bleed, floating caption, hover zoom */}
+                <figure className={`group relative ${L.img} ${L.bleed}`}>
+                  <div className={`relative overflow-hidden rounded-card border border-[#E2DDD6] ${L.aspect}`}>
+                    <ParallaxLayer speed={L.speed} className="absolute -inset-y-[9%] inset-x-0">
+                      <Image
+                        src={AMENITY_IMG[i]}
+                        alt={`${c.name} — OneHome by LineHaul Station`}
+                        fill
+                        loading="lazy"
+                        className="img-grade object-cover transition-transform duration-[900ms] ease-out motion-safe:group-hover:scale-[1.08]"
+                        sizes="(max-width: 1024px) 100vw, 55vw"
+                      />
+                    </ParallaxLayer>
+                    <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_58%,rgba(11,11,11,0.5))]" />
                     <div className="absolute inset-x-0 top-0 h-0.5 opacity-80" style={{ background: `linear-gradient(90deg, ${ac}, transparent)` }} aria-hidden />
-                    {/* label slides up on hover */}
-                    <div className="absolute inset-x-0 bottom-0 p-5 transition-all duration-500 motion-safe:translate-y-2 motion-safe:opacity-0 motion-safe:group-hover:translate-y-0 motion-safe:group-hover:opacity-100">
-                      <div className="font-mono text-[11px] uppercase tracking-[0.16em]" style={{ color: ac }}>{c.meta}</div>
-                    </div>
                   </div>
-                </div>
+                  {/* floating mono caption — half off the image edge */}
+                  <figcaption className={`absolute -bottom-3.5 ${L.cap} z-10 inline-flex items-center gap-2 rounded-btn bg-ink/90 px-3 py-2 font-mono text-[11px] uppercase tracking-[0.12em] text-white backdrop-blur`}>
+                    <span className="tnum" style={{ color: ac }}>{String(i + 1).padStart(2, "0")}</span>
+                    <span className="text-chrome">{c.meta}</span>
+                  </figcaption>
+                </figure>
 
                 {/* Copy */}
-                <div className={`${flip ? "lg:order-1 lg:col-span-5" : "lg:col-span-5 lg:col-start-8"}`}>
-                  <div className="flex items-baseline gap-3">
-                    <span className="tnum font-mono text-[13px]" style={{ color: ad }}>{String(i + 1).padStart(2, "0")}</span>
-                    <h3 className="font-display text-[clamp(26px,3.2vw,42px)] font-black uppercase leading-none tracking-[-0.01em]" style={{ color: CARBON }}>{c.name}</h3>
-                  </div>
-                  <div className="mt-2.5 font-mono text-[11px] uppercase tracking-[0.12em]" style={{ color: ad }}>{c.meta}</div>
+                <div className={L.copy}>
+                  <h3 className="font-display text-[clamp(26px,3.4vw,48px)] font-black uppercase leading-[0.95] tracking-[-0.01em]" style={{ color: CARBON }}>{c.name}</h3>
                   <p className="mt-4 text-pretty font-body text-[clamp(16px,1.6vw,19px)] font-semibold leading-snug" style={{ color: CARBON }}>{c.blurb}</p>
-                  <div className="mt-3 max-w-[60ch] space-y-3 text-pretty font-body text-[clamp(15px,1.5vw,17px)] leading-relaxed" style={{ color: "#3a3733" }}>
+                  <div className="mt-3 max-w-[52ch] space-y-3 text-pretty font-body text-[clamp(15px,1.5vw,17px)] leading-relaxed" style={{ color: "#3a3733" }}>
                     {c.full.map((p, j) => <p key={j}>{p}</p>)}
                   </div>
                 </div>
@@ -276,7 +285,7 @@ export default function OneHomePage() {
           })}
         </div>
         <Reveal>
-          <p className="mt-14 font-script text-[clamp(22px,3vw,36px)] font-semibold" style={{ color: ad }}>{a.amenities?.footnote}</p>
+          <p className="mt-16 font-script text-[clamp(22px,3vw,36px)] font-semibold" style={{ color: ad }}>{a.amenities?.footnote}</p>
         </Reveal>
       </section>
 
