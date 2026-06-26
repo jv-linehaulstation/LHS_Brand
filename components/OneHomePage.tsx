@@ -8,6 +8,8 @@ import Reveal from "@/components/motion/Reveal";
 import MagneticButton from "@/components/motion/MagneticButton";
 import OneHomeCalculator from "@/components/calculators/OneHomeCalculator";
 import JoinForm from "@/components/JoinForm";
+import NetworkMap from "@/components/NetworkMap";
+import FloatingVimeo from "@/components/onehome/FloatingVimeo";
 import BuildingCarousel from "@/components/onehome/BuildingCarousel";
 import QuoteCarousel from "@/components/onehome/QuoteCarousel";
 import ComparisonTable from "@/components/onehome/ComparisonTable";
@@ -117,7 +119,7 @@ export default function OneHomePage() {
           <div className="scan-once h-full w-full" style={{ ["--ac" as string]: ac }} />
         </div>
 
-        <ParallaxLayer speed={-0.06} className="relative w-full">
+        <ParallaxLayer speed={-0.06} className="relative flex w-full flex-col items-center text-center">
           <Reveal>
             <StatusChip chrome label="West Memphis Hub — Open Now" coord="I-40 / I-55" accent={ac} />
           </Reveal>
@@ -178,9 +180,7 @@ export default function OneHomePage() {
           <Reveal delay={120}>
             <p className="text-[clamp(15px,1.5vw,18px)] leading-relaxed text-chrome">{a.outriders!.webinar.body}</p>
             <ChromeFrame variant="steel" className="mt-5 rounded-[20px] [&>*]:rounded-[19px]">
-              <div className="relative aspect-video overflow-hidden rounded-[19px] bg-carbon">
-                <iframe src={a.outriders!.webinar.video} title="LineHaul Station — Monthly Webinar with Jeff Swenson" loading="lazy" allow="fullscreen; picture-in-picture" className="absolute inset-0 h-full w-full" />
-              </div>
+              <FloatingVimeo src={a.outriders!.webinar.video} title="LineHaul Station — Monthly Webinar with Jeff Swenson" />
             </ChromeFrame>
             <div className="mt-4">
               <div className="font-display text-[16px] font-black uppercase leading-tight tracking-[0.02em] text-white">Jeffrey J. Swenson</div>
@@ -242,8 +242,8 @@ export default function OneHomePage() {
           </div>
         </Reveal>
 
-        {/* the playbook's revised Core Sales copy, below the calculator */}
-        <Reveal className="mx-auto mt-12 max-w-3xl">
+        {/* the playbook's revised Core Sales copy, below the calculator (same width) */}
+        <Reveal className="mx-auto mt-12 max-w-6xl">
           <div className="space-y-4 text-[clamp(16px,1.6vw,19px)] leading-relaxed" style={{ color: "#dadada" }}>
             {ONEHOME.core.paras.map((p, i) => <p key={i}>{p}</p>)}
           </div>
@@ -389,7 +389,7 @@ export default function OneHomePage() {
       </section>
 
       {/* ============ 9. NETWORK / MAP — Everywhere the Road Takes You + Memphis map ============ */}
-      <section id="network" className={`${PAD} py-[clamp(70px,11vh,140px)]`} style={{ background: ELEV }}>
+      <section id="network" className={`overflow-x-clip ${PAD} py-[clamp(70px,11vh,140px)]`} style={{ background: ELEV }}>
         <div className="grid gap-x-16 gap-y-10 lg:grid-cols-[1fr_0.9fr] lg:items-start">
           <div>
             <Reveal as="h2" className="text-balance font-display text-[clamp(34px,5.6vw,84px)] font-black uppercase leading-[0.92] tracking-[-0.025em] text-white">{ONEHOME.network.headline}</Reveal>
@@ -399,15 +399,20 @@ export default function OneHomePage() {
                 {ONEHOME.network.paras.map((p, i) => <p key={i}>{p}</p>)}
               </div>
               <p className="mt-5 text-[clamp(18px,2vw,24px)] font-light italic" style={{ color: ac }}>{ONEHOME.network.blurb}</p>
+              <div className="mt-8">
+                <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-chrome">Current planning markets</div>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {ONEHOME.network.markets.map((m) => (
+                    <span key={m} className="rounded-full border border-white/12 bg-white/[0.03] px-3.5 py-1.5 font-mono text-[12px]" style={{ color: MUT }}>{m}</span>
+                  ))}
+                </div>
+              </div>
             </Reveal>
           </div>
           <Reveal delay={120} dir="right">
             <div className="space-y-5">
-              {/* West Memphis location map */}
-              <div className="relative overflow-hidden rounded-[20px] border" style={{ borderColor: CARD2, background: CARD }}>
-                <Image src="/assets/marketing/map-memphis.png" alt="West Memphis Hub — one block off the I-40 / I-55 interchange" width={500} height={345} className="h-auto w-full" sizes="(max-width: 1024px) 100vw, 40vw" />
-                <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/5" />
-              </div>
+              {/* national Hub network map (dark, interactive) */}
+              <NetworkMap />
               <div className="rounded-[20px] border p-7" style={{ borderColor: CARD2, background: CARD }}>
                 <div className="font-label text-[10px] uppercase tracking-[0.2em]" style={{ color: ac }}>First Home Hub · Open Now</div>
                 <div className="mt-3 font-display text-[30px] font-black uppercase leading-none text-white">{a.memphis.address}</div>
@@ -418,14 +423,6 @@ export default function OneHomePage() {
               </div>
             </div>
           </Reveal>
-        </div>
-        <div className="mt-12">
-          <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-chrome">Current planning markets</div>
-          <div className="mt-4 flex flex-wrap gap-2">
-            {ONEHOME.network.markets.map((m) => (
-              <span key={m} className="rounded-full border border-white/12 bg-white/[0.03] px-3.5 py-1.5 font-mono text-[12px]" style={{ color: MUT }}>{m}</span>
-            ))}
-          </div>
         </div>
       </section>
 

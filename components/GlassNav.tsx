@@ -5,13 +5,12 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { audiences, AUDIENCE_ORDER } from "@/lib/audiences";
 import { site } from "@/lib/site";
-import MagneticButton from "@/components/motion/MagneticButton";
 
 /**
  * Fluid-Glass top nav. Transparent over the hero, then frosts on scroll
  * (backdrop-blur + faint white fill + hairline chrome border). A full-screen
- * overlay menu reveals the wayfinding lanes with a staggered rise. The CTA is
- * explicit per the playbook — "Join OneHome." Reduced-motion safe (the overlay
+ * overlay menu reveals the wayfinding lanes with a staggered rise. The single
+ * bar CTA is "Join Free" (the free Outriders register). Reduced-motion safe (the overlay
  * links appear instantly; no scroll-jank). Client component: scroll state +
  * overlay open state + body scroll-lock.
  */
@@ -61,7 +60,7 @@ export default function GlassNav({ accent = "#F07820" }: { accent?: string }) {
         className={`fixed inset-x-0 top-0 z-50 transition-colors duration-500 ${
           scrolled
             ? "glass-strong border-b border-chrome/15"
-            : "border-b border-transparent bg-transparent"
+            : "border-b border-transparent bg-ink/20 backdrop-blur-sm"
         }`}
       >
         <div className="flex items-center justify-between gap-4 gutter py-3.5">
@@ -72,7 +71,7 @@ export default function GlassNav({ accent = "#F07820" }: { accent?: string }) {
               width={210}
               height={37}
               priority
-              className="h-[34px] w-auto"
+              className="h-[44px] w-auto"
             />
           </Link>
 
@@ -97,15 +96,6 @@ export default function GlassNav({ accent = "#F07820" }: { accent?: string }) {
             >
               Join Free
             </a>
-            <MagneticButton strength={0.4} className="hidden sm:inline-block">
-              <a
-                href="#core"
-                className="rounded-full px-5 py-[10px] font-label text-[10px] uppercase tracking-[0.14em] text-ink shadow-[0_8px_20px_rgba(0,0,0,0.35)] transition hover:brightness-110 active:scale-[0.97]"
-                style={{ background: `linear-gradient(135deg, ${accent}, ${accent}cc)` }}
-              >
-                Join OneHome
-              </a>
-            </MagneticButton>
             <button
               type="button"
               onClick={() => setOpen(true)}
