@@ -359,9 +359,12 @@ export const audiences: Record<AudienceKey, Audience> = {
       eyebrow: "100% free · Outriders Club",
       headline: "Claim your free driver membership",
       body: "Full Outriders Club access, your Home Hub, and OneHome pricing. No cost, no catch.",
+      // Driver-segmentation fields (the rendered register is JoinForm, which also
+      // captures Member Type — Company Driver / Owner Operator / Fleet or Carrier /
+      // Freight Broker / Private Fleet — as a select).
       fields: baseFields([
-        { name: "homeBase", label: "Home base / region", half: true },
-        { name: "carrier", label: "Carrier (optional)", half: true },
+        { name: "company", label: "Company", half: true },
+        { name: "truckCount", label: "Truck Count", type: "number", half: true },
       ]),
       consent: "I agree to the Driver Code of Conduct — that's all it takes.",
       success: {

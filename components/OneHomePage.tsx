@@ -74,6 +74,17 @@ const EVERYTHING_TILES = [
   { group: "Fleet Services", label: "Maintenance", line: "Preventive service on your schedule.", img: PHOTOS.fleetExit },
   { group: "Fleet Services", label: "Inspections", line: "DOT-ready, compliant, and quick.", img: PHOTOS.fleetEntry2 },
   { group: "Fleet Services", label: "Truck Wash", line: "Keep the rig sharp between hauls.", img: PHOTOS.truckWashEntry },
+  { group: "Fleet Services", label: "Cross Dock", line: "Transload and stage freight on site.", img: PHOTOS.crossDock },
+];
+// Detailed Fleet menu (kept from the live page) — shown as a compact line.
+const FLEET_DETAIL = "Tire Pressure Management · Pre & Post-Trip Inspection · DOT Annual Inspection · Tractor/Trailer Service · Routine PM Repairs";
+
+// Optional "everything included" categorized club menu (the 8 showcase tiles stay
+// the hero; this keeps the full live-page menu so nothing is lost).
+const CLUB_MENU = [
+  { cat: "Food & Drink", items: ["Member's Grill & Bar", "Coffee & Juice Bar", "Grab-and-Go Market", "Snacks & Provisions"] },
+  { cat: "Entertainment", items: ["Digital Den & Gaming", "Billiards & Game Tables", "Trap & Skeet", "Sky Deck & Firepits"] },
+  { cat: "Amenities", items: ["Fitness Studio", "Resort Pool & Spa", "Sauna & Wellness", "Barbershop", "Laundry & More", "Gear Shop", "Conference Center", "Camp K9"] },
 ];
 
 // §10 — three founding-member quote cards. Honest framing (the program is
@@ -193,6 +204,40 @@ export default function OneHomePage() {
         </div>
       </section>
 
+      {/* ============ 2b. JOIN FREE — Outriders Club register (FREE), distinct from paid OneHome ============ */}
+      <section id="join-free" className={`relative overflow-hidden ${PAD} py-[clamp(70px,11vh,140px)]`} style={{ background: BURG }}>
+        <div className="bloom" style={{ ["--bloom" as string]: "rgba(208,40,60,0.10)" }} aria-hidden />
+        <div className="relative grid gap-[clamp(28px,4vw,64px)] lg:grid-cols-[0.92fr_1.08fr] lg:items-start">
+          <div className="lg:sticky lg:top-28">
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.05] px-4 py-2">
+              <span className="h-1.5 w-1.5 rounded-full" style={{ background: ac }} aria-hidden />
+              <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-chrome">100% Free · Outriders Club</span>
+            </div>
+            <h2 className="mt-5 text-balance font-display text-[clamp(34px,5.2vw,76px)] font-black uppercase leading-[0.92] tracking-[-0.025em] text-white">
+              Claim Your Free <span style={{ color: ac }}>Driver Membership.</span>
+            </h2>
+            <p className="mt-5 max-w-[48ch] text-[clamp(16px,1.7vw,20px)] leading-relaxed text-[#dadada]">
+              The Outriders Club driver membership is 100% free — agree to the Code of Conduct and you&apos;re in. Full club access and founding-member OneHome pricing, at every Hub.
+            </p>
+            <ul className="mt-6 space-y-3">
+              {["Always free — no cost, no catch.", "Access every Hub across the network.", "Lock in founding-member OneHome pricing."].map((b) => (
+                <li key={b} className="flex items-baseline gap-3 text-[15px] text-[#dadada]">
+                  <span aria-hidden style={{ color: ac }}>✓</span>
+                  {b}
+                </li>
+              ))}
+            </ul>
+            <p className="mt-6 font-mono text-[12px] text-chrome">
+              Looking for the paid home program?{" "}
+              <a href="#join" className="underline transition-colors hover:text-white" style={{ color: ac }}>Join OneHome ↓</a>
+            </p>
+          </div>
+          <Reveal dir="right">
+            <JoinForm accent={ac} accentDark={ad} submitLabel="Join Free." successTitle="Welcome to the Outriders." />
+          </Reveal>
+        </div>
+      </section>
+
       {/* ============ 3. BUILDING PREVIEWS — framed rounded cards (carousel in the interactions pass) ============ */}
       <section id="buildings" className={`bg-ink ${PAD} py-[clamp(70px,11vh,140px)]`}>
         <Reveal className="mx-auto max-w-2xl text-center">
@@ -274,8 +319,27 @@ export default function OneHomePage() {
           accent={ac}
           accentDark={ac}
         />
+        {/* "Everything included" — the full club menu so nothing from the live page is lost */}
+        <Reveal className="mt-[clamp(48px,7vw,96px)] border-t border-white/10 pt-[clamp(36px,5vw,64px)]">
+          <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-chrome">Everything included</div>
+          <div className="mt-6 grid gap-x-10 gap-y-8 sm:grid-cols-3">
+            {CLUB_MENU.map((g) => (
+              <div key={g.cat}>
+                <div className="font-display text-[16px] font-black uppercase tracking-[0.01em]" style={{ color: ac }}>{g.cat}</div>
+                <ul className="mt-3 space-y-2">
+                  {g.items.map((it) => (
+                    <li key={it} className="flex items-baseline gap-2.5 text-[14px] text-chrome">
+                      <span className="h-1 w-1 flex-none translate-y-[-2px] rounded-full" style={{ background: ac }} aria-hidden />
+                      {it}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </Reveal>
         <Reveal>
-          <p className="mt-16 text-center text-[clamp(20px,2.6vw,30px)] font-light italic" style={{ color: ac }}>{a.amenities?.footnote}</p>
+          <p className="mt-[clamp(40px,6vw,80px)] text-center text-[clamp(20px,2.6vw,30px)] font-light italic" style={{ color: ac }}>{a.amenities?.footnote}</p>
         </Reveal>
       </section>
 
@@ -294,17 +358,17 @@ export default function OneHomePage() {
             </Reveal>
           </div>
         </div>
-        {/* image tiles — Home Hub (3) + Fleet Services (4) */}
+        {/* image tiles — Home Hub (3) + Fleet Services (5) */}
         <div className={`${PAD} py-[clamp(56px,9vh,110px)]`} style={{ background: ELEV }}>
           {["Home Hub", "Fleet Services"].map((group, gi) => (
             <div key={group} className={gi === 1 ? "mt-12" : ""}>
               <div className="font-mono text-[12px] uppercase tracking-[0.16em]" style={{ color: ac }}>{group}</div>
-              <div className={`mt-5 grid gap-4 ${gi === 0 ? "sm:grid-cols-3" : "sm:grid-cols-2 lg:grid-cols-4"}`}>
+              <div className={`mt-5 grid gap-4 ${gi === 0 ? "sm:grid-cols-3" : "sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5"}`}>
                 {EVERYTHING_TILES.filter((t) => t.group === group).map((t, i) => (
                   <Reveal key={t.label} delay={i * 60}>
                     <figure className="group overflow-hidden rounded-[16px] border" style={{ borderColor: CARD2, background: CARD }}>
                       <div className="relative aspect-[4/3] overflow-hidden">
-                        <Image src={t.img} alt={t.label} fill loading="lazy" className="img-grade object-cover transition-transform duration-700 ease-out motion-safe:group-hover:scale-105" sizes="(max-width: 768px) 50vw, 24vw" />
+                        <Image src={t.img} alt={t.label} fill loading="lazy" className="img-grade object-cover transition-transform duration-700 ease-out motion-safe:group-hover:scale-105" sizes="(max-width: 768px) 50vw, 20vw" />
                         <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_50%,rgba(11,11,11,0.72))]" />
                       </div>
                       <figcaption className="p-4">
@@ -315,6 +379,11 @@ export default function OneHomePage() {
                   </Reveal>
                 ))}
               </div>
+              {gi === 1 && (
+                <p className="mt-5 font-mono text-[12px] leading-relaxed" style={{ color: MUT }}>
+                  <span style={{ color: ac }}>Also: </span>{FLEET_DETAIL}
+                </p>
+              )}
             </div>
           ))}
         </div>

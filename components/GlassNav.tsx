@@ -89,11 +89,18 @@ export default function GlassNav({ accent = "#F07820" }: { accent?: string }) {
             ))}
           </nav>
 
-          <div className="flex flex-none items-center gap-3">
+          <div className="flex flex-none items-center gap-2.5">
+            {/* Free Outriders Club register — distinct from the paid OneHome program */}
+            <a
+              href="#join-free"
+              className="hidden rounded-full border border-white/30 px-4 py-[9px] font-label text-[10px] uppercase tracking-[0.14em] text-white transition-colors hover:border-white/60 sm:inline-flex"
+            >
+              Join Free
+            </a>
             <MagneticButton strength={0.4} className="hidden sm:inline-block">
               <a
                 href="#join"
-                className="rounded-btn px-5 py-[11px] font-label text-[10px] uppercase tracking-[0.14em] text-ink shadow-[0_8px_20px_rgba(0,0,0,0.35)] transition hover:brightness-110 active:scale-[0.97]"
+                className="rounded-full px-5 py-[10px] font-label text-[10px] uppercase tracking-[0.14em] text-ink shadow-[0_8px_20px_rgba(0,0,0,0.35)] transition hover:brightness-110 active:scale-[0.97]"
                 style={{ background: `linear-gradient(135deg, ${accent}, ${accent}cc)` }}
               >
                 Join OneHome

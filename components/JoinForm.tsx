@@ -13,7 +13,7 @@ import { site } from "@/lib/site";
 const MEMBER_TYPES = [
   "Company Driver",
   "Owner Operator",
-  "For-Hire Carrier",
+  "Fleet or Carrier",
   "Freight Broker",
   "Private Fleet",
 ];
@@ -98,7 +98,7 @@ export default function JoinForm({
           <h3 className="mt-5 font-display text-[clamp(24px,3vw,32px)] font-black uppercase text-white">
             {successTitle}
           </h3>
-          <p className="mx-auto mt-3 max-w-md font-body text-[16px] leading-relaxed text-[#d8d8d8]">
+          <p className="mx-auto mt-3 max-w-md text-[16px] leading-relaxed text-[#d8d8d8]">
             {values.firstName ? `Thanks, ${values.firstName}. ` : ""}
             {successBody ??
               "Your membership is in. Watch your phone — we'll be in touch with your Outriders Club details and first-Hub news."}
@@ -115,7 +115,7 @@ export default function JoinForm({
   }
 
   const fieldCls =
-    "w-full rounded-btn border border-steel/30 bg-carbon px-4 py-3 font-body text-[15px] text-white outline-none transition-colors placeholder:text-[#6a6a6a] focus:border-[var(--ac)]";
+    "w-full rounded-btn border border-steel/30 bg-carbon px-4 py-3 text-[15px] text-white outline-none transition-colors placeholder:text-[#6a6a6a] focus:border-[var(--ac)]";
 
   return (
     <form onSubmit={submit} className="chrome-frame" style={{ ["--ac" as string]: ACCENT }}>
@@ -155,7 +155,7 @@ export default function JoinForm({
           </div>
         </div>
 
-        <label className="mt-5 flex cursor-pointer items-start gap-3 font-body text-[14px] text-[#d8d8d8]">
+        <label className="mt-5 flex cursor-pointer items-start gap-3 text-[14px] text-[#d8d8d8]">
           <input
             type="checkbox"
             checked={sms}
@@ -168,7 +168,7 @@ export default function JoinForm({
             apply; reply STOP to opt out.
           </span>
         </label>
-        <label className="mt-3 flex cursor-pointer items-start gap-3 font-body text-[14px] text-[#d8d8d8]">
+        <label className="mt-3 flex cursor-pointer items-start gap-3 text-[14px] text-[#d8d8d8]">
           <input
             type="checkbox"
             checked={terms}
@@ -192,7 +192,7 @@ export default function JoinForm({
           {submitLabel} <span aria-hidden>→</span>
         </button>
 
-        <p className="mt-4 text-center font-body text-[13px] text-chrome">
+        <p className="mt-4 text-center text-[13px] text-chrome">
           Driver memberships are completely free. Prefer to talk first?{" "}
           <a href={site.phoneHref} className="underline hover:text-white">
             Call {site.phone}
