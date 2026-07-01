@@ -117,7 +117,8 @@ export async function getAllPosts(): Promise<Post[]> {
 
 /** A single published post by slug, or null. */
 export async function getPost(slug: string): Promise<Post | null> {
-  if (!hasEnv()) return seedPosts().find((p) => p.slug === slug) ?? null;
+  const fromSeed = () => seedPosts().find((p) => p.slug === slug) ?? null;
+  if (!hasEnv()) return fromSeed();
   try {
     const { data, error } = await anon()
       .from("posts")
@@ -125,10 +126,15 @@ export async function getPost(slug: string): Promise<Post | null> {
       .eq("slug", slug)
       .eq("published", true)
       .maybeSingle();
-    if (error || !data) return null;
+    // An infra error (e.g. the posts table isn't created/seeded yet) falls back
+    // to the seed — matching getAllPosts — so configuring Supabase before the
+    // schema exists doesn't 404 the bundled articles. A clean miss (no error,
+    // no row) is a genuine 404.
+    if (error) return fromSeed();
+    if (!data) return null;
     return mapRow(data as Row);
   } catch {
-    return null;
+    return fromSeed();
   }
 }
 
