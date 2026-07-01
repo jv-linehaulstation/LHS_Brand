@@ -71,7 +71,12 @@
       "Bash(node /tmp/shotv.mjs http://localhost:3000/ /tmp/v-case.png 600 1440)",
       "Bash(node /tmp/shotv.mjs http://localhost:3000/ /tmp/v-prob.png 2050 1440)",
       "Bash(node /tmp/shotv.mjs http://localhost:3000/ /tmp/v-bento.png 2950 1440)",
-      "Bash(node /tmp/shotv.mjs http://localhost:3000/ /tmp/v-lane.png 3850 1440)"
+      "Bash(node /tmp/shotv.mjs http://localhost:3000/ /tmp/v-lane.png 3850 1440)",
+      "Bash(grep -o -E \".{0,40}[Ss]teel.?[Bb]lue.{0,120}\" reference/brand-system-v2.html)",
+      "Bash(grep -o -E \"Steel Blue Crown · Stops.{0,600}\" reference/brand-system-v2.html)",
+      "Bash(python3 -)",
+      "Bash(node *)",
+      "Skill(run)"
     ]
   }
 }
