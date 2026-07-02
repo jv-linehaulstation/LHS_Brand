@@ -36,32 +36,33 @@ Restart `npm run dev` after changing `tailwind.config.ts`, fonts, or `next.confi
 - `/carriers` — FlexSpace (fleet blue) · per-tier cost calculator
 - `/brokers` (steel) · `/shippers` (green) · `/government` (gold)
 - `/leadership` — founder + board advisors
-- `/blog` — **Blog** index (featured post + card grid; ISR from Supabase)
-- `/blog/[slug]` — article template (ISR from Supabase, seed fallback)
-- `/admin` — Supabase-auth blog CMS (login + create/edit/delete posts)
+- `/blog` — **Blog** index (featured post + card grid; ISR from Payload)
+- `/blog/[slug]` — article template (ISR from Payload, seed fallback)
+- `/admin` — **Payload CMS** admin (login + create/edit/delete posts)
+- `/api/*`, `/api/graphql` — Payload REST + GraphQL (auto-mounted)
 - `/join` — Outriders Club free-membership register
 
 ## Structure
 ```
-app/                route segments + layout (Loader mounted here) + globals.css
-app/blog/           Blog index (page.tsx) + [slug]/page.tsx article template (async/ISR)
-app/admin/          Supabase-auth blog CMS: login/, page.tsx (list), new/, [id]/ (edit),
-                    actions.ts (save/delete/signOut), data.ts (admin reads)
+app/(frontend)/     the marketing site — its own root layout.tsx (Loader) + globals.css.
+                    page.tsx (home) + blog/, drivers/, carriers/, brokers/, shippers/,
+                    government/, leadership/, join/. Route group → URLs are unchanged.
+app/(payload)/      Payload admin (admin/[[...segments]]) + REST/GraphQL (api/*) + its
+                    own root layout. Auto-generated; don't hand-edit the route files.
+payload.config.ts   Payload config — Postgres adapter (Supabase, `payload` schema),
+                    collections, lexical editor. Loaded via @payload-config alias.
+collections/        Posts.ts (blog; Markdown `body`) + Users.ts (admin auth).
 components/         GlassNav + LuxeFooter (the LIVE site chrome — used on every page),
                     Section (bg variants), CTA, Contact, LeadForm, AudiencePage
                     (shared 5-page template), NetworkMap, Loader, BlogBody (Markdown)
-components/admin/   PostForm, AdminHeader, SetupNotice
 components/motion/  Reveal (scroll entrance), CountUp (counters), ParallaxImage
 components/calculators/  OneHomeCalculator, FlexSpaceCalculator
 lib/audiences.ts    ALL per-audience copy + photo assignments (single source of content)
-lib/blog.ts         PUBLIC blog data layer — async Supabase reads + seed fallback
+lib/blog.ts         PUBLIC blog data layer — Payload Local API reads + seed fallback
 lib/blog-seed.json  the 9 bundled posts (Markdown body); seed source + build fallback
-lib/supabase/       server.ts (cookie client + hasSupabaseEnv) · client.ts (browser)
 lib/site.ts         phone/email + CTA targets + GHL webhook (NEXT_PUBLIC_GHL_WEBHOOK_URL)
 lib/fonts.ts        next/font setup (web substitutes for the licensed faces)
-middleware.ts       refreshes Supabase session + guards /admin
-supabase/schema.sql posts table + RLS (run once in Supabase SQL Editor)
-scripts/            export-seed.mjs (blocks→Markdown), seed-blog.mjs (upsert to Supabase)
+scripts/seed-blog.ts  imports blog-seed.json into Payload (upsert by slug); `npm run blog:seed`
 public/assets/      logos, building renders (photos/), amenity photos (amenities/),
                     blog/ (1600×900 post hero images), badge
 ```
@@ -69,27 +70,37 @@ public/assets/      logos, building renders (photos/), amenity photos (amenities
 > `Nav.tsx` / `Footer.tsx` are legacy and **not imported anywhere** — don't wire
 > new links into them; edit `GlassNav` (overlay `overlayLinks`) and `LuxeFooter`.
 
-### Blog — how it works (Supabase-backed)
-- **Source of truth is Supabase** (table `posts`), edited via **`/admin`** (login +
-  create/edit/delete, Markdown body). `lib/blog.ts` reads published posts with a
-  cookie-free anon client (ISR `revalidate = 60`). **Do NOT hand-edit posts in
-  code** — use `/admin`.
-- **Fallback:** when the Supabase env vars are absent, `lib/blog.ts` serves
-  `lib/blog-seed.json` so local dev and the production build always work. `/admin`
-  shows a setup checklist until configured.
+### Blog — how it works (Payload CMS)
+- **Source of truth is Payload** (collection `posts`), edited via **`/admin`** (Payload's
+  own admin UI + auth). `lib/blog.ts` reads published posts through the Payload **Local
+  API** (`getPayload`, ISR `revalidate = 60`). **Do NOT hand-edit posts in code** — use
+  `/admin`. Payload stores data in the **Supabase Postgres** DB, in its own `payload`
+  schema (isolated from any existing Supabase `public` tables).
+- **Body stays Markdown** (a `textarea` field), so `components/BlogBody.tsx` rendering is
+  unchanged. (Future option: switch to Payload's Lexical rich-text — would require
+  converting stored bodies + rewriting BlogBody.)
+- **Fallback:** when `DATABASE_URI`/`PAYLOAD_SECRET` are absent (or a DB read throws),
+  `lib/blog.ts` serves `lib/blog-seed.json` so local dev and the build always work.
 - `components/BlogBody.tsx` renders the Markdown body (react-markdown + remark-gfm)
   mapped to brand styles: `##`/`###` headings, `- `/`1.` lists, `**bold**`, `*italic*`,
   `[label](/internal-or-https)`, `>` quotes. Internal links use `next/link`.
 - `dateLabel` and `readTime` are **derived** (date format + word count) — not stored.
 - The `[slug]` hero shows the **title-card image** (the title is baked into the image);
   it does NOT overlay a second `<h1>` (kept `sr-only` for SEO). Heroes live in
-  `public/assets/blog/<slug>.png` (1600×900). Article JSON-LD + OG/Twitter auto-emitted.
+  `public/assets/blog/<slug>.png` (1600×900) and the `hero` field stores that path (no
+  media upload). Article JSON-LD + OG/Twitter auto-emitted.
 
-**First-time Supabase setup:** copy `.env.local.example` → `.env.local` and fill keys ·
-run `supabase/schema.sql` in the SQL Editor · add an admin user (Auth → Users) ·
-`npm run blog:seed` to load the 9 posts · restart dev. Env vars: `NEXT_PUBLIC_SUPABASE_URL`,
-`NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY` (seed only, server-side).
-Regenerate the seed from code with `npm run blog:export`.
+**First-time setup:** copy `.env.local.example` → `.env.local`; set `PAYLOAD_SECRET`
+(random hex) and `DATABASE_URI` (Supabase → Settings → Database → Connect). In dev,
+Payload auto-creates its `payload` schema on first run. Then `npm run blog:seed` loads the
+9 posts, and create the first admin at `/admin` (first-user screen). Note: `type: module`
+is set in package.json (required by Payload's ESM tooling).
+
+**Deploy note (Vercel):** use the Supabase **Session pooler** URI for `DATABASE_URI`
+(IPv4 — the direct `db.<ref>.supabase.co` host is IPv6-only and won't connect from
+Vercel). Set `DATABASE_URI` + `PAYLOAD_SECRET` in Vercel env. The `payload` schema
+already exists (created in dev), so production reads work without a migration step; if you
+later change collections, generate a migration (`npm run payload:migrate`).
 
 ## Brand rules (non-negotiable)
 - **Colors:** Carbon `#0B0B0B`/`#1A1A1A`, Chrome `#B0B0B0`, Fuel Orange `#F07820`

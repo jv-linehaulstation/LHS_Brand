@@ -104,7 +104,12 @@ async function main() {
   process.exit(0);
 }
 
-main().catch((err) => {
+// Top-level await: `payload run` awaits the module import, so the async work
+// must resolve at module scope (not in a fire-and-forget promise) or the
+// process exits before it finishes.
+try {
+  await main();
+} catch (err) {
   console.error(err);
   process.exit(1);
-});
+}

@@ -2,6 +2,7 @@
   "name": "lhs-homepage",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "description": "LineHaul Station — primary landing page + 5 audience pages, built on the LHS Brand System.",
   "scripts": {
     "predev": "pkill -f 'next dev' 2>/dev/null || true; pkill -f next-server 2>/dev/null || true; sleep 1 || true",
@@ -9,10 +10,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "blog:seed": "node --env-file=.env.local --import tsx scripts/seed-blog.ts",
-    "payload": "node --env-file=.env.local --import tsx node_modules/payload/bin.js",
-    "payload:types": "npm run payload -- generate:types",
-    "payload:migrate": "npm run payload -- migrate"
+    "blog:seed": "node node_modules/payload/bin.js run scripts/seed-blog.ts",
+    "payload": "node node_modules/payload/bin.js",
+    "payload:types": "node node_modules/payload/bin.js generate:types",
+    "payload:migrate": "node node_modules/payload/bin.js migrate"
   },
   "dependencies": {
     "@payloadcms/db-postgres": "^3.85.2",

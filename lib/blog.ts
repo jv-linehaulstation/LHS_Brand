@@ -121,7 +121,7 @@ export async function getAllPosts(): Promise<Post[]> {
       limit: 1000,
       depth: 0,
     });
-    return docs.map((d) => mapDoc(d as Record<string, unknown>));
+    return docs.map((d) => mapDoc(d as unknown as Record<string, unknown>));
   } catch {
     return seedPosts();
   }
@@ -140,7 +140,7 @@ export async function getPost(slug: string): Promise<Post | null> {
       depth: 0,
     });
     if (docs.length === 0) return null;
-    return mapDoc(docs[0] as Record<string, unknown>);
+    return mapDoc(docs[0] as unknown as Record<string, unknown>);
   } catch {
     return fromSeed();
   }
