@@ -421,6 +421,13 @@ html[data-theme="dark"] .lhs-navhub {
   border-bottom: 1px solid rgba(176, 176, 176, 0.12);
   margin-bottom: 8px;
 }
+.lhs-navhub__logo {
+  display: block;
+  height: 22px;
+  width: auto;
+  object-fit: contain;
+  margin-bottom: 18px;
+}
 .lhs-navhub__label {
   font-family: "Michroma", sans-serif;
   font-size: 8px;
@@ -567,7 +574,7 @@ html[data-theme="dark"] .list-header__title {
   text-transform: uppercase;
   letter-spacing: -0.01em;
 }
-html[data-theme="dark"] .list-header__create-new-button {
+html[data-theme="dark"] .list-create-new-doc__create-new-button {
   background: linear-gradient(135deg, #fbb04a, #c85a12);
   color: #0b0b0b;
   border: none;
@@ -578,11 +585,11 @@ html[data-theme="dark"] .list-header__create-new-button {
   font-size: 0;
   padding: 10px 16px;
 }
-html[data-theme="dark"] .list-header__create-new-button::after {
+html[data-theme="dark"] .list-create-new-doc__create-new-button::after {
   content: "+ Add New Post";
   font-size: 9px;
 }
-html[data-theme="dark"] .list-header__create-new-button:hover {
+html[data-theme="dark"] .list-create-new-doc__create-new-button:hover {
   filter: brightness(1.08);
 }
 
