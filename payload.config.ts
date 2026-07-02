@@ -9,6 +9,7 @@ import { Media } from "./collections/Media";
 import { Posts } from "./collections/Posts";
 import { Testimonials } from "./collections/Testimonials";
 import { Users } from "./collections/Users";
+import { DriversPage } from "./globals/DriversPage";
 import { SiteSettings } from "./globals/SiteSettings";
 
 export default buildConfig({
@@ -39,7 +40,7 @@ export default buildConfig({
     },
   },
   collections: [Posts, Testimonials, Media, Users],
-  globals: [SiteSettings],
+  globals: [SiteSettings, DriversPage],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {
