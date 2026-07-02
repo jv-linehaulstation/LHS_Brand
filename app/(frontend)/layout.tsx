@@ -20,8 +20,12 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={fontVars}>
-      <body className="bg-ink font-body text-white antialiased">
+    <html lang="en" className={fontVars} suppressHydrationWarning>
+      {/* suppressHydrationWarning: browser extensions (e.g. the one that adds
+          inject_newsvd="true") mutate <body> before React hydrates, which is
+          harmless but trips the hydration check. This only silences attribute
+          mismatches on this element, not on its children. */}
+      <body className="bg-ink font-body text-white antialiased" suppressHydrationWarning>
         <Loader />
         <SmoothScroll />
         {children}
