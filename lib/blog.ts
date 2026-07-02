@@ -1,10 +1,11 @@
-// Public data layer for the Blog. Reads from Supabase when configured, and
-// falls back to the bundled seed (lib/blog-seed.json) otherwise — so local
-// dev and the production build work before any keys are set. Admin reads and
-// writes live in app/admin/actions.ts (they require a signed-in session).
+// Public data layer for the Blog. Reads from Payload (Local API) when the CMS
+// is configured, and falls back to the bundled seed (lib/blog-seed.json)
+// otherwise — so local dev and the production build work before DATABASE_URI /
+// PAYLOAD_SECRET are set.
 //
-// To add or edit posts once Supabase is connected, use /admin — not this file.
-import { createClient as createSupabaseClient } from "@supabase/supabase-js";
+// To add or edit posts once Payload is connected, use /admin — not this file.
+import config from "@payload-config";
+import { getPayload } from "payload";
 import seed from "./blog-seed.json";
 
 export type Post = {
@@ -24,8 +25,8 @@ export type Post = {
   published: boolean;
 };
 
-// Shape of a row in the Supabase `posts` table (and the seed JSON).
-type Row = {
+// Shape of a row in the bundled seed JSON (snake_case, legacy Supabase export).
+type SeedRow = {
   slug: string;
   title: string;
   kicker: string;
@@ -40,21 +41,8 @@ type Row = {
   published: boolean;
 };
 
-function hasEnv(): boolean {
-  return Boolean(
-    process.env.NEXT_PUBLIC_SUPABASE_URL &&
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-  );
-}
-
-// A cookie-free anon client — safe in Server Components and at build time
-// (generateStaticParams). RLS limits anon reads to published posts.
-function anon() {
-  return createSupabaseClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    { auth: { persistSession: false } }
-  );
+function payloadConfigured(): boolean {
+  return Boolean(process.env.DATABASE_URI && process.env.PAYLOAD_SECRET);
 }
 
 function formatDateLabel(date: string): string {
@@ -73,7 +61,29 @@ function readTimeFor(body: string): string {
   return `${Math.max(1, Math.round(words / 200))} min read`;
 }
 
-function mapRow(r: Row): Post {
+// A Payload `posts` doc → the public Post shape.
+function mapDoc(d: Record<string, unknown>): Post {
+  const body = String(d.body ?? "");
+  const date = String(d.date ?? "").slice(0, 10); // ISO timestamp → YYYY-MM-DD
+  return {
+    slug: String(d.slug ?? ""),
+    title: String(d.title ?? ""),
+    kicker: String(d.kicker ?? ""),
+    excerpt: String(d.excerpt ?? ""),
+    byline: String(d.byline ?? "LineHaul Station"),
+    date,
+    dateLabel: formatDateLabel(date),
+    readTime: readTimeFor(body),
+    hero: String(d.hero ?? ""),
+    heroAlt: String(d.heroAlt ?? ""),
+    seoTitle: String(d.seoTitle ?? d.title ?? ""),
+    keywords: Array.isArray(d.keywords) ? (d.keywords as string[]) : [],
+    body,
+    published: Boolean(d.published),
+  };
+}
+
+function mapSeed(r: SeedRow): Post {
   return {
     slug: r.slug,
     title: r.title,
@@ -93,23 +103,25 @@ function mapRow(r: Row): Post {
 }
 
 function seedPosts(): Post[] {
-  return (seed as Row[])
-    .map(mapRow)
+  return (seed as SeedRow[])
+    .map(mapSeed)
     .filter((p) => p.published)
     .sort((a, b) => (a.date < b.date ? 1 : -1));
 }
 
 /** All published posts, newest first. */
 export async function getAllPosts(): Promise<Post[]> {
-  if (!hasEnv()) return seedPosts();
+  if (!payloadConfigured()) return seedPosts();
   try {
-    const { data, error } = await anon()
-      .from("posts")
-      .select("*")
-      .eq("published", true)
-      .order("date", { ascending: false });
-    if (error || !data) return seedPosts();
-    return (data as Row[]).map(mapRow);
+    const payload = await getPayload({ config });
+    const { docs } = await payload.find({
+      collection: "posts",
+      where: { published: { equals: true } },
+      sort: "-date",
+      limit: 1000,
+      depth: 0,
+    });
+    return docs.map((d) => mapDoc(d as Record<string, unknown>));
   } catch {
     return seedPosts();
   }
@@ -118,21 +130,17 @@ export async function getAllPosts(): Promise<Post[]> {
 /** A single published post by slug, or null. */
 export async function getPost(slug: string): Promise<Post | null> {
   const fromSeed = () => seedPosts().find((p) => p.slug === slug) ?? null;
-  if (!hasEnv()) return fromSeed();
+  if (!payloadConfigured()) return fromSeed();
   try {
-    const { data, error } = await anon()
-      .from("posts")
-      .select("*")
-      .eq("slug", slug)
-      .eq("published", true)
-      .maybeSingle();
-    // An infra error (e.g. the posts table isn't created/seeded yet) falls back
-    // to the seed — matching getAllPosts — so configuring Supabase before the
-    // schema exists doesn't 404 the bundled articles. A clean miss (no error,
-    // no row) is a genuine 404.
-    if (error) return fromSeed();
-    if (!data) return null;
-    return mapRow(data as Row);
+    const payload = await getPayload({ config });
+    const { docs } = await payload.find({
+      collection: "posts",
+      where: { and: [{ slug: { equals: slug } }, { published: { equals: true } }] },
+      limit: 1,
+      depth: 0,
+    });
+    if (docs.length === 0) return null;
+    return mapDoc(docs[0] as Record<string, unknown>);
   } catch {
     return fromSeed();
   }
