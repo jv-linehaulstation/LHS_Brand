@@ -1,5 +1,6 @@
 "use client";
 
+import type React from "react";
 import { useEffect, useRef, useState } from "react";
 
 type Dir = "up" | "left" | "right" | "none";
@@ -31,7 +32,7 @@ export default function Reveal({
   dir?: Dir;
   className?: string;
   style?: React.CSSProperties;
-  as?: keyof JSX.IntrinsicElements;
+  as?: keyof React.JSX.IntrinsicElements;
 }) {
   const ref = useRef<HTMLElement | null>(null);
   // Visible by default so SSR / no-JS / hydration all paint the real content.
@@ -87,7 +88,7 @@ export default function Reveal({
   const hidden = phase === "hidden";
   const animating = phase !== "static";
 
-  const Comp = Tag as keyof JSX.IntrinsicElements;
+  const Comp = Tag as keyof React.JSX.IntrinsicElements;
   const Any = Comp as React.ElementType;
 
   return (

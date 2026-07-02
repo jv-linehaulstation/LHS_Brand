@@ -78,5 +78,8 @@
       "Bash(node *)",
       "Skill(run)"
     ]
-  }
+  },
+  "enabledMcpjsonServers": [
+    "supabase"
+  ]
 }

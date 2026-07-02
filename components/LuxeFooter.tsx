@@ -44,6 +44,8 @@ export default function LuxeFooter({ accent = "#F07820" }: { accent?: string }) 
             <Link href="/" className={linkCls}>Home</Link>
             <Link href="/leadership" className={linkCls}>Leadership</Link>
             <Link href="/blog" className={linkCls}>Blog</Link>
+            {/* Standalone self-contained brand-system bundle — plain <a> for a full page load */}
+            <a href="/brand-system" className={linkCls}>Brand System</a>
             <Link href="/join" className="w-fit font-label text-[13px] uppercase tracking-[0.12em] text-fuel transition-colors hover:brightness-125">Join The Outriders</Link>
           </div>
 

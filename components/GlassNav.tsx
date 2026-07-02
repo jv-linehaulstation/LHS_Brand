@@ -164,6 +164,17 @@ export default function GlassNav({
                   {l.label}
                 </Link>
               ))}
+            {open && (
+              // Standalone self-contained brand-system bundle — plain <a> forces a full page load
+              <a
+                href="/brand-system"
+                onClick={() => setOpen(false)}
+                className="overlay-link group flex w-fit items-center font-display text-[clamp(37px,8.05vw,78px)] font-black uppercase leading-[1.04] tracking-[-0.02em] text-white transition-colors hover:text-[var(--ac)]"
+                style={{ ["--ac" as string]: accent, ["--i" as string]: overlayLinks.length }}
+              >
+                Brand System
+              </a>
+            )}
           </nav>
 
           <div className="flex flex-wrap items-center justify-between gap-4 border-t border-chrome/15 pt-5 font-mono text-[14px] text-chrome">

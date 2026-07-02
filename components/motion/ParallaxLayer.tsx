@@ -1,5 +1,6 @@
 "use client";
 
+import type React from "react";
 import { useEffect, useRef } from "react";
 
 /**
@@ -19,7 +20,7 @@ export default function ParallaxLayer({
   children: React.ReactNode;
   speed?: number;
   className?: string;
-  as?: keyof JSX.IntrinsicElements;
+  as?: keyof React.JSX.IntrinsicElements;
 }) {
   const ref = useRef<HTMLElement | null>(null);
 
