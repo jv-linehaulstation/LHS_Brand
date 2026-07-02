@@ -11,8 +11,18 @@ import { Users } from "./collections/Users";
 export default buildConfig({
   admin: {
     user: Users.slug,
+    theme: "dark", // carbon aesthetic — matches the LHS brand
     meta: {
       titleSuffix: "· LineHaul Station",
+    },
+    importMap: {
+      baseDir: process.cwd(),
+    },
+    components: {
+      graphics: {
+        Logo: "/components/payload/Logo.tsx#Logo",
+        Icon: "/components/payload/Icon.tsx#Icon",
+      },
     },
   },
   collections: [Posts, Users],

@@ -1,1 +1,165 @@
-/* Payload admin custom styles — override hook. Intentionally minimal. */
+/* =========================================================================
+   LineHaul Station — Payload admin theme
+   Carbon surfaces · Chrome text · Fuel Orange accent · brand type.
+   Overrides Payload's CSS variables (scoped to the admin only).
+   ========================================================================= */
+
+@import url("https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800;900&family=Michroma&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@300;400;500;600;700&display=swap");
+
+/* ---- Palette + type tokens (dark carbon ramp) ------------------------- */
+html[data-theme="dark"] {
+  /* Brand fonts */
+  --font-body: "Outfit", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-serif: "Newsreader", Georgia, "Times New Roman", serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", monospace;
+
+  /* Surfaces: carbon (dark) → chrome → white as elevation rises */
+  --theme-bg: #0b0b0b;
+  --theme-text: #f2f2f2;
+  --theme-input-bg: #141414;
+  --theme-border-color: rgba(176, 176, 176, 0.16);
+  --theme-overlay: rgba(11, 11, 11, 0.72);
+
+  --theme-elevation-0: #0b0b0b;
+  --theme-elevation-50: #141414;
+  --theme-elevation-100: #1a1a1a;
+  --theme-elevation-150: #1f1f1f;
+  --theme-elevation-200: #262626;
+  --theme-elevation-250: #2e2e2e;
+  --theme-elevation-300: #383838;
+  --theme-elevation-350: #424242;
+  --theme-elevation-400: #4d4d4d;
+  --theme-elevation-450: #5a5a5a;
+  --theme-elevation-500: #6b6b6b;
+  --theme-elevation-550: #7d7d7d;
+  --theme-elevation-600: #8f8f8f;
+  --theme-elevation-650: #9c9c9c;
+  --theme-elevation-700: #a8a8a8;
+  --theme-elevation-750: #b0b0b0; /* Chrome */
+  --theme-elevation-800: #c4c4c4;
+  --theme-elevation-850: #d6d6d6;
+  --theme-elevation-900: #e8e8e8;
+  --theme-elevation-950: #f3f3f3;
+  --theme-elevation-1000: #ffffff;
+
+  /* Remap Payload's "blue" accent ramp → Fuel Orange (#F07820).
+     Links, focus rings, active states, checkboxes, etc. inherit this. */
+  --color-blue-50: #fef3ea;
+  --color-blue-100: #fce6d3;
+  --color-blue-150: #fbd8bb;
+  --color-blue-200: #f9c9a2;
+  --color-blue-250: #f7b989;
+  --color-blue-300: #f5aa70;
+  --color-blue-350: #f39a57;
+  --color-blue-400: #f28b3e;
+  --color-blue-450: #f18230;
+  --color-blue-500: #f07820; /* Fuel Orange */
+  --color-blue-550: #e06e1c;
+  --color-blue-600: #c86218;
+  --color-blue-650: #b15614;
+  --color-blue-700: #984a11;
+  --color-blue-750: #7e3d0e;
+  --color-blue-800: #66310b;
+  --color-blue-850: #4e2508;
+  --color-blue-900: #371a05;
+  --color-blue-950: #200e02;
+}
+
+/* ---- Typography ------------------------------------------------------- */
+html[data-theme="dark"] body {
+  font-family: var(--font-body);
+  letter-spacing: 0.01em;
+}
+
+html[data-theme="dark"] h1,
+html[data-theme="dark"] h2,
+html[data-theme="dark"] h3,
+html[data-theme="dark"] .step-nav,
+html[data-theme="dark"] .doc-header__title,
+html[data-theme="dark"] .list-header h1 {
+  font-family: var(--font-archivo, "Archivo"), sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+/* Uppercase nav group labels + field labels get the Michroma "spec" treatment */
+html[data-theme="dark"] .nav-group__toggle,
+html[data-theme="dark"] .nav__label {
+  font-family: "Michroma", var(--font-body);
+  font-size: 10px !important;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--theme-elevation-600);
+}
+
+/* ---- Primary actions: Fuel Orange ------------------------------------ */
+html[data-theme="dark"] .btn--style-primary {
+  --bg-color: #f07820;
+  --color: #0b0b0b;
+  --hover-bg: #ff8a33;
+  --hover-color: #0b0b0b;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+/* Publish/save-status indicator + links */
+html[data-theme="dark"] a:not(.btn):not(.nav__link) {
+  color: #f5aa70;
+}
+html[data-theme="dark"] a:not(.btn):not(.nav__link):hover {
+  color: #f07820;
+}
+
+/* Active nav item — fuel accent bar + brighter label */
+html[data-theme="dark"] .nav__link.active,
+html[data-theme="dark"] .nav__link[aria-current="page"] {
+  color: #ffffff;
+  box-shadow: inset 3px 0 0 0 #f07820;
+  background: linear-gradient(
+    90deg,
+    rgba(240, 120, 32, 0.14),
+    transparent 60%
+  );
+}
+
+/* Focus rings in fuel orange for keyboard users */
+html[data-theme="dark"] *:focus-visible {
+  outline: 2px solid #f07820;
+  outline-offset: 1px;
+}
+
+/* ---- Chrome details --------------------------------------------------- */
+/* Sidebar + top bar sit a touch above the canvas for depth */
+html[data-theme="dark"] .nav {
+  background: #0e0e0e;
+  border-right: 1px solid var(--theme-border-color);
+}
+
+/* Login screen: center the logo with a little breathing room + fuel divider */
+html[data-theme="dark"] .login__brand,
+html[data-theme="dark"] .create-first-user {
+  --logo-width: 240px;
+}
+html[data-theme="dark"] .login .graphic-logo,
+html[data-theme="dark"] .login__wrap .graphic-logo {
+  margin-bottom: 28px;
+}
+
+/* Cards / table surfaces */
+html[data-theme="dark"] .table,
+html[data-theme="dark"] .cell-wrap,
+html[data-theme="dark"] .collection-list {
+  border-color: var(--theme-border-color);
+}
+
+/* Buttons: crisper radius to match the brand's rounded-btn feel */
+html[data-theme="dark"] .btn {
+  border-radius: 8px;
+}
+
+/* Data/mono contexts (code, JSON, IDs) use JetBrains Mono */
+html[data-theme="dark"] code,
+html[data-theme="dark"] .code-editor,
+html[data-theme="dark"] textarea {
+  font-family: var(--font-mono);
+}
