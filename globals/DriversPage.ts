@@ -4,24 +4,25 @@ import type { GlobalConfig } from "payload";
 // NEXT_PUBLIC_SERVER_URL to the deployed Vercel domain in production.
 const SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL || "http://localhost:3000";
 
-// Full editable copy of the /drivers page, one tab per rendered section
-// (mirrors the numbered section comments in components/OneHomePage.tsx).
-// Read via lib/driversPage.ts (Local API + fallback to the current hardcoded
-// copy in lib/onehome.ts ONEHOME + lib/audiences.ts audiences.drivers).
-// The live /drivers page does NOT read this — it is wired only into the
-// /drivers-cms-test review route via components/OneHomePageCmsTest.tsx.
+// Full editable copy of the /drivers page as a Payload `blocks` field — a native
+// block editor (Add Block picker, drag-to-reorder, per-block delete/duplicate).
+// Each block = one rendered section; block `slug` values match the SectionType
+// slugs the resolver + renderer key on (lib/driversPageShape.ts,
+// components/OneHomePageCmsTest.tsx). Field names inside each block are unchanged
+// from the previous tabs version — the resolver depends on them.
 //
-// Two-tone headline convention: fields noted "split on /" render the text
-// before the slash in white and the text after it in the accent colour, e.g.
-// "Nothing To Lose / Everything To Gain". Keep the slash.
+// Read via lib/driversPage.ts. Only /drivers-cms-test reads this; the live
+// /drivers page is untouched.
+//
+// Two-tone headline convention: fields noted "split on /" render the text before
+// the slash in white and the text after it in the accent colour. Keep the slash.
 export const DriversPage: GlobalConfig = {
   slug: "drivers-page",
   label: "Drivers Page",
   admin: {
     group: "Drivers Page",
     // Live Preview: render /drivers-cms-test in an iframe next to the form and
-    // update it in real time as fields change (no save). This global is a single
-    // instance, so the URL is static — no dynamic slug needed.
+    // update it in real time as fields change (no save).
     livePreview: {
       url: () => `${SERVER_URL}/drivers-cms-test`,
       breakpoints: [
@@ -34,13 +35,20 @@ export const DriversPage: GlobalConfig = {
   access: { read: () => true },
   fields: [
     {
-      type: "tabs",
-      tabs: [
-        // ---- 1. Hero ------------------------------------------------------
+      name: "sections",
+      type: "blocks",
+      minRows: 1,
+      admin: {
+        description:
+          "Sections render in the order shown here — drag to reorder. Removing a block hides that entire section from the live page. Each section is designed to appear once; adding duplicates of a block may look odd since sections have unique styling.",
+      },
+      blocks: [
+        // ---- 1. Hero -------------------------------------------------------
         {
-          label: "1 · Hero",
+          slug: "hero",
+          labels: { singular: "Hero", plural: "Hero" },
           fields: [
-            { name: "heroVideoUrl", type: "text", admin: { description: "Full-bleed background video (mp4 URL)." } },
+            { name: "heroVideoUrl", type: "text", admin: { description: "The full-bleed top section (H1, verse, video). Background video mp4 URL." } },
             { name: "eyebrow", type: "text" },
             { name: "heroPunch", type: "text", admin: { description: "The H1." } },
             {
@@ -56,11 +64,12 @@ export const DriversPage: GlobalConfig = {
             { name: "scrollHint", type: "text" },
           ],
         },
-        // ---- 2. Welcome / Story ------------------------------------------
+        // ---- 2. Welcome / Story -------------------------------------------
         {
-          label: "2 · Welcome",
+          slug: "welcome",
+          labels: { singular: "Welcome / Story", plural: "Welcome / Story" },
           fields: [
-            { name: "coinImage", type: "upload", relationTo: "media", admin: { description: "Outriders coin (optional). Falls back to /assets/coin-outriders.png." } },
+            { name: "coinImage", type: "upload", relationTo: "media", admin: { description: "The story + webinar section. Outriders coin (optional); falls back to /assets/coin-outriders.png." } },
             { name: "storyEyebrow", type: "text" },
             { name: "storyHeadline", type: "text", admin: { description: 'e.g. "Welcome to the Club".' } },
             {
@@ -80,16 +89,17 @@ export const DriversPage: GlobalConfig = {
             },
           ],
         },
-        // ---- 3. Membership Steps -----------------------------------------
+        // ---- 3. Membership Steps ------------------------------------------
         {
-          label: "3 · Membership Steps",
+          slug: "membershipSteps",
+          labels: { singular: "Membership Steps", plural: "Membership Steps" },
           fields: [
             {
               name: "membershipSteps",
               type: "array",
               minRows: 3,
               maxRows: 3,
-              admin: { description: "The 3 free-membership steps." },
+              admin: { description: "The 3 free-membership steps (image boxes)." },
               fields: [
                 { name: "title", type: "text", required: true },
                 { name: "line", type: "text", required: true },
@@ -98,14 +108,15 @@ export const DriversPage: GlobalConfig = {
             },
           ],
         },
-        // ---- 4. Join Free band -------------------------------------------
+        // ---- 4. Join Free band --------------------------------------------
         {
-          label: "4 · Join Free",
+          slug: "joinFree",
+          labels: { singular: "Join Free band", plural: "Join Free band" },
           fields: [
             {
               name: "joinFreeHeadline",
               type: "text",
-              admin: { description: 'Two-tone, split on "/": e.g. "Claim Your Free / Driver Membership.".' },
+              admin: { description: 'The register band. Two-tone, split on "/": e.g. "Claim Your Free / Driver Membership.".' },
             },
             { name: "joinFreeBody", type: "textarea" },
             {
@@ -117,11 +128,12 @@ export const DriversPage: GlobalConfig = {
             },
           ],
         },
-        // ---- 5. Core / The Math ------------------------------------------
+        // ---- 5. Core / The Math -------------------------------------------
         {
-          label: "5 · Core / Math",
+          slug: "core",
+          labels: { singular: "Core / The Math", plural: "Core / The Math" },
           fields: [
-            { name: "coreKicker", type: "text" },
+            { name: "coreKicker", type: "text", admin: { description: "The hook + savings calculator section (calculator math stays in code)." } },
             {
               name: "coreHeadline",
               type: "text",
@@ -138,9 +150,10 @@ export const DriversPage: GlobalConfig = {
         },
         // ---- 6. Amenities -------------------------------------------------
         {
-          label: "6 · Amenities",
+          slug: "amenities",
+          labels: { singular: "Amenities", plural: "Amenities" },
           fields: [
-            { name: "amenitiesHeadline", type: "text" },
+            { name: "amenitiesHeadline", type: "text", admin: { description: "The Outriders Club amenities carousel." } },
             { name: "amenitiesIntro", type: "textarea" },
             {
               name: "amenitySlides",
@@ -157,11 +170,12 @@ export const DriversPage: GlobalConfig = {
             { name: "amenitiesFootnote", type: "text", admin: { description: 'e.g. Members call the 25,000 sq ft private drivers club "The Rig Carlton."' } },
           ],
         },
-        // ---- 7. Value Comparison -----------------------------------------
+        // ---- 7. Value Comparison ------------------------------------------
         {
-          label: "7 · Value",
+          slug: "value",
+          labels: { singular: "Value Comparison", plural: "Value Comparison" },
           fields: [
-            { name: "valueHeadline", type: "text" },
+            { name: "valueHeadline", type: "text", admin: { description: "Prompts + Traditional-vs-OneHome comparison." } },
             { name: "valueSubhead", type: "text" },
             { name: "valuePrompt", type: "text" },
             {
@@ -187,12 +201,13 @@ export const DriversPage: GlobalConfig = {
         },
         // ---- 8. Space -----------------------------------------------------
         {
-          label: "8 · Space",
+          slug: "space",
+          labels: { singular: "Space (3 ways)", plural: "Space (3 ways)" },
           fields: [
             {
               name: "spaceHeadline",
               type: "text",
-              admin: { description: 'Two-tone, split on "/": e.g. "Three Ways To / Get Space.".' },
+              admin: { description: 'The 3-ways-to-get-Space section. Two-tone, split on "/": e.g. "Three Ways To / Get Space.".' },
             },
             {
               name: "spaceSteps",
@@ -208,11 +223,12 @@ export const DriversPage: GlobalConfig = {
             },
           ],
         },
-        // ---- 9. Everything / Home Hub ------------------------------------
+        // ---- 9. Everything / Home Hub -------------------------------------
         {
-          label: "9 · Home Hub",
+          slug: "homeHub",
+          labels: { singular: "Home Hub + Fleet", plural: "Home Hub + Fleet" },
           fields: [
-            { name: "homeHubHeadline", type: "text" },
+            { name: "homeHubHeadline", type: "text", admin: { description: "Home Hub + Fleet Services tiles + the included menu." } },
             { name: "homeHubBlurb", type: "text" },
             {
               name: "everythingTiles",
@@ -243,9 +259,10 @@ export const DriversPage: GlobalConfig = {
         },
         // ---- 10. Network --------------------------------------------------
         {
-          label: "10 · Network",
+          slug: "network",
+          labels: { singular: "Network / Map", plural: "Network / Map" },
           fields: [
-            { name: "networkHeadline", type: "text" },
+            { name: "networkHeadline", type: "text", admin: { description: "Network copy + Memphis map (map rendering stays in code)." } },
             { name: "networkSubhead", type: "text" },
             {
               name: "networkParas",
@@ -266,7 +283,8 @@ export const DriversPage: GlobalConfig = {
         },
         // ---- 11. FAQ ------------------------------------------------------
         {
-          label: "11 · FAQ",
+          slug: "faq",
+          labels: { singular: "FAQ", plural: "FAQ" },
           fields: [
             {
               name: "faqItems",

@@ -567,208 +567,285 @@ export interface SiteSetting {
 export interface DriversPage {
   id: number;
   /**
-   * Full-bleed background video (mp4 URL).
+   * Sections render in the order shown here — drag to reorder. Removing a block hides that entire section from the live page. Each section is designed to appear once; adding duplicates of a block may look odd since sections have unique styling.
    */
-  heroVideoUrl?: string | null;
-  eyebrow?: string | null;
-  /**
-   * The H1.
-   */
-  heroPunch?: string | null;
-  /**
-   * The 4-line "Truck doesn't fit in the driveway..." verse.
-   */
-  verseLines?:
-    | {
-        line: string;
-        id?: string | null;
-      }[]
-    | null;
-  heroBlurb?: string | null;
-  heroNote?: string | null;
-  scrollHint?: string | null;
-  /**
-   * Outriders coin (optional). Falls back to /assets/coin-outriders.png.
-   */
-  coinImage?: (number | null) | Media;
-  storyEyebrow?: string | null;
-  /**
-   * e.g. "Welcome to the Club".
-   */
-  storyHeadline?: string | null;
-  /**
-   * The rendered story paragraphs (first one is the large lead).
-   */
-  storyParas?:
-    | {
-        paragraph: string;
-        id?: string | null;
-      }[]
-    | null;
-  webinarBody?: string | null;
-  /**
-   * Vimeo player URL.
-   */
-  webinarVideoUrl?: string | null;
-  founderName?: string | null;
-  founderTitle?: string | null;
-  /**
-   * Two-tone, split on "/": e.g. "Nothing To Lose / Everything To Gain".
-   */
-  joinHeadline?: string | null;
-  /**
-   * The 3 free-membership steps.
-   */
-  membershipSteps?:
-    | {
-        title: string;
-        line: string;
-        image?: (number | null) | Media;
-        id?: string | null;
-      }[]
-    | null;
-  /**
-   * Two-tone, split on "/": e.g. "Claim Your Free / Driver Membership.".
-   */
-  joinFreeHeadline?: string | null;
-  joinFreeBody?: string | null;
-  joinFreeBullets?:
-    | {
-        bullet: string;
-        id?: string | null;
-      }[]
-    | null;
-  coreKicker?: string | null;
-  /**
-   * Two-tone, split on "/": e.g. "Here's A New & / Better Option.".
-   */
-  coreHeadline?: string | null;
-  coreSubhead?: string | null;
-  coreParas?:
-    | {
-        paragraph: string;
-        id?: string | null;
-      }[]
-    | null;
-  coreBlurb?: string | null;
-  amenitiesHeadline?: string | null;
-  amenitiesIntro?: string | null;
-  /**
-   * The 8 club amenities carousel slides.
-   */
-  amenitySlides?:
-    | {
-        image?: (number | null) | Media;
-        name: string;
-        spec: string;
-        id?: string | null;
-      }[]
-    | null;
-  /**
-   * e.g. Members call the 25,000 sq ft private drivers club "The Rig Carlton."
-   */
-  amenitiesFootnote?: string | null;
-  valueHeadline?: string | null;
-  valueSubhead?: string | null;
-  valuePrompt?: string | null;
-  valuePrompts?:
-    | {
-        question: string;
-        id?: string | null;
-      }[]
-    | null;
-  valueBlurb?: string | null;
-  /**
-   * Feeds ComparisonTable — Traditional vs OneHome.
-   */
-  comparisonRows?:
-    | {
-        traditional: string;
-        oneHome: string;
-        id?: string | null;
-      }[]
-    | null;
-  /**
-   * Two-tone, split on "/": e.g. "Three Ways To / Get Space.".
-   */
-  spaceHeadline?: string | null;
-  /**
-   * The 3 ways to get Space.
-   */
-  spaceSteps?:
-    | {
-        title: string;
-        line: string;
-        image?: (number | null) | Media;
-        id?: string | null;
-      }[]
-    | null;
-  homeHubHeadline?: string | null;
-  homeHubBlurb?: string | null;
-  /**
-   * Home Hub + Fleet Services image tiles.
-   */
-  everythingTiles?:
-    | {
-        group: 'Home Hub' | 'Fleet Services';
-        label: string;
-        line: string;
-        image?: (number | null) | Media;
-        id?: string | null;
-      }[]
-    | null;
-  /**
-   * The "Also: Tire Pressure Management ..." line.
-   */
-  fleetDetail?: string | null;
-  /**
-   * The "Everything included" categorized menu.
-   */
-  clubMenu?:
-    | {
-        category: string;
-        items?:
-          | {
-              item: string;
-              id?: string | null;
-            }[]
-          | null;
-        id?: string | null;
-      }[]
-    | null;
-  networkHeadline?: string | null;
-  networkSubhead?: string | null;
-  networkParas?:
-    | {
-        paragraph: string;
-        id?: string | null;
-      }[]
-    | null;
-  networkBlurb?: string | null;
-  /**
-   * The city names shown as pills.
-   */
-  planningMarkets?:
-    | {
-        market: string;
-        id?: string | null;
-      }[]
-    | null;
-  /**
-   * e.g. "1212 MLK Dr".
-   */
-  hubAddress?: string | null;
-  /**
-   * e.g. "West Memphis, AR — I-40 / I-55".
-   */
-  hubAddressSub?: string | null;
-  hubBody?: string | null;
-  faqItems?:
-    | {
-        question: string;
-        answer: string;
-        id?: string | null;
-      }[]
+  sections?:
+    | (
+        | {
+            /**
+             * The full-bleed top section (H1, verse, video). Background video mp4 URL.
+             */
+            heroVideoUrl?: string | null;
+            eyebrow?: string | null;
+            /**
+             * The H1.
+             */
+            heroPunch?: string | null;
+            /**
+             * The 4-line "Truck doesn't fit in the driveway..." verse.
+             */
+            verseLines?:
+              | {
+                  line: string;
+                  id?: string | null;
+                }[]
+              | null;
+            heroBlurb?: string | null;
+            heroNote?: string | null;
+            scrollHint?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'hero';
+          }
+        | {
+            /**
+             * The story + webinar section. Outriders coin (optional); falls back to /assets/coin-outriders.png.
+             */
+            coinImage?: (number | null) | Media;
+            storyEyebrow?: string | null;
+            /**
+             * e.g. "Welcome to the Club".
+             */
+            storyHeadline?: string | null;
+            /**
+             * The rendered story paragraphs (first one is the large lead).
+             */
+            storyParas?:
+              | {
+                  paragraph: string;
+                  id?: string | null;
+                }[]
+              | null;
+            webinarBody?: string | null;
+            /**
+             * Vimeo player URL.
+             */
+            webinarVideoUrl?: string | null;
+            founderName?: string | null;
+            founderTitle?: string | null;
+            /**
+             * Two-tone, split on "/": e.g. "Nothing To Lose / Everything To Gain".
+             */
+            joinHeadline?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'welcome';
+          }
+        | {
+            /**
+             * The 3 free-membership steps (image boxes).
+             */
+            membershipSteps?:
+              | {
+                  title: string;
+                  line: string;
+                  image?: (number | null) | Media;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'membershipSteps';
+          }
+        | {
+            /**
+             * The register band. Two-tone, split on "/": e.g. "Claim Your Free / Driver Membership.".
+             */
+            joinFreeHeadline?: string | null;
+            joinFreeBody?: string | null;
+            joinFreeBullets?:
+              | {
+                  bullet: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'joinFree';
+          }
+        | {
+            /**
+             * The hook + savings calculator section (calculator math stays in code).
+             */
+            coreKicker?: string | null;
+            /**
+             * Two-tone, split on "/": e.g. "Here's A New & / Better Option.".
+             */
+            coreHeadline?: string | null;
+            coreSubhead?: string | null;
+            coreParas?:
+              | {
+                  paragraph: string;
+                  id?: string | null;
+                }[]
+              | null;
+            coreBlurb?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'core';
+          }
+        | {
+            /**
+             * The Outriders Club amenities carousel.
+             */
+            amenitiesHeadline?: string | null;
+            amenitiesIntro?: string | null;
+            /**
+             * The 8 club amenities carousel slides.
+             */
+            amenitySlides?:
+              | {
+                  image?: (number | null) | Media;
+                  name: string;
+                  spec: string;
+                  id?: string | null;
+                }[]
+              | null;
+            /**
+             * e.g. Members call the 25,000 sq ft private drivers club "The Rig Carlton."
+             */
+            amenitiesFootnote?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'amenities';
+          }
+        | {
+            /**
+             * Prompts + Traditional-vs-OneHome comparison.
+             */
+            valueHeadline?: string | null;
+            valueSubhead?: string | null;
+            valuePrompt?: string | null;
+            valuePrompts?:
+              | {
+                  question: string;
+                  id?: string | null;
+                }[]
+              | null;
+            valueBlurb?: string | null;
+            /**
+             * Feeds ComparisonTable — Traditional vs OneHome.
+             */
+            comparisonRows?:
+              | {
+                  traditional: string;
+                  oneHome: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'value';
+          }
+        | {
+            /**
+             * The 3-ways-to-get-Space section. Two-tone, split on "/": e.g. "Three Ways To / Get Space.".
+             */
+            spaceHeadline?: string | null;
+            /**
+             * The 3 ways to get Space.
+             */
+            spaceSteps?:
+              | {
+                  title: string;
+                  line: string;
+                  image?: (number | null) | Media;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'space';
+          }
+        | {
+            /**
+             * Home Hub + Fleet Services tiles + the included menu.
+             */
+            homeHubHeadline?: string | null;
+            homeHubBlurb?: string | null;
+            /**
+             * Home Hub + Fleet Services image tiles.
+             */
+            everythingTiles?:
+              | {
+                  group: 'Home Hub' | 'Fleet Services';
+                  label: string;
+                  line: string;
+                  image?: (number | null) | Media;
+                  id?: string | null;
+                }[]
+              | null;
+            /**
+             * The "Also: Tire Pressure Management ..." line.
+             */
+            fleetDetail?: string | null;
+            /**
+             * The "Everything included" categorized menu.
+             */
+            clubMenu?:
+              | {
+                  category: string;
+                  items?:
+                    | {
+                        item: string;
+                        id?: string | null;
+                      }[]
+                    | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'homeHub';
+          }
+        | {
+            /**
+             * Network copy + Memphis map (map rendering stays in code).
+             */
+            networkHeadline?: string | null;
+            networkSubhead?: string | null;
+            networkParas?:
+              | {
+                  paragraph: string;
+                  id?: string | null;
+                }[]
+              | null;
+            networkBlurb?: string | null;
+            /**
+             * The city names shown as pills.
+             */
+            planningMarkets?:
+              | {
+                  market: string;
+                  id?: string | null;
+                }[]
+              | null;
+            /**
+             * e.g. "1212 MLK Dr".
+             */
+            hubAddress?: string | null;
+            /**
+             * e.g. "West Memphis, AR — I-40 / I-55".
+             */
+            hubAddressSub?: string | null;
+            hubBody?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'network';
+          }
+        | {
+            faqItems?:
+              | {
+                  question: string;
+                  answer: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'faq';
+          }
+      )[]
     | null;
   updatedAt?: string | null;
   createdAt?: string | null;
@@ -811,143 +888,213 @@ export interface SiteSettingsSelect<T extends boolean = true> {
  * via the `definition` "drivers-page_select".
  */
 export interface DriversPageSelect<T extends boolean = true> {
-  heroVideoUrl?: T;
-  eyebrow?: T;
-  heroPunch?: T;
-  verseLines?:
+  sections?:
     | T
     | {
-        line?: T;
-        id?: T;
-      };
-  heroBlurb?: T;
-  heroNote?: T;
-  scrollHint?: T;
-  coinImage?: T;
-  storyEyebrow?: T;
-  storyHeadline?: T;
-  storyParas?:
-    | T
-    | {
-        paragraph?: T;
-        id?: T;
-      };
-  webinarBody?: T;
-  webinarVideoUrl?: T;
-  founderName?: T;
-  founderTitle?: T;
-  joinHeadline?: T;
-  membershipSteps?:
-    | T
-    | {
-        title?: T;
-        line?: T;
-        image?: T;
-        id?: T;
-      };
-  joinFreeHeadline?: T;
-  joinFreeBody?: T;
-  joinFreeBullets?:
-    | T
-    | {
-        bullet?: T;
-        id?: T;
-      };
-  coreKicker?: T;
-  coreHeadline?: T;
-  coreSubhead?: T;
-  coreParas?:
-    | T
-    | {
-        paragraph?: T;
-        id?: T;
-      };
-  coreBlurb?: T;
-  amenitiesHeadline?: T;
-  amenitiesIntro?: T;
-  amenitySlides?:
-    | T
-    | {
-        image?: T;
-        name?: T;
-        spec?: T;
-        id?: T;
-      };
-  amenitiesFootnote?: T;
-  valueHeadline?: T;
-  valueSubhead?: T;
-  valuePrompt?: T;
-  valuePrompts?:
-    | T
-    | {
-        question?: T;
-        id?: T;
-      };
-  valueBlurb?: T;
-  comparisonRows?:
-    | T
-    | {
-        traditional?: T;
-        oneHome?: T;
-        id?: T;
-      };
-  spaceHeadline?: T;
-  spaceSteps?:
-    | T
-    | {
-        title?: T;
-        line?: T;
-        image?: T;
-        id?: T;
-      };
-  homeHubHeadline?: T;
-  homeHubBlurb?: T;
-  everythingTiles?:
-    | T
-    | {
-        group?: T;
-        label?: T;
-        line?: T;
-        image?: T;
-        id?: T;
-      };
-  fleetDetail?: T;
-  clubMenu?:
-    | T
-    | {
-        category?: T;
-        items?:
+        hero?:
           | T
           | {
-              item?: T;
+              heroVideoUrl?: T;
+              eyebrow?: T;
+              heroPunch?: T;
+              verseLines?:
+                | T
+                | {
+                    line?: T;
+                    id?: T;
+                  };
+              heroBlurb?: T;
+              heroNote?: T;
+              scrollHint?: T;
               id?: T;
+              blockName?: T;
             };
-        id?: T;
-      };
-  networkHeadline?: T;
-  networkSubhead?: T;
-  networkParas?:
-    | T
-    | {
-        paragraph?: T;
-        id?: T;
-      };
-  networkBlurb?: T;
-  planningMarkets?:
-    | T
-    | {
-        market?: T;
-        id?: T;
-      };
-  hubAddress?: T;
-  hubAddressSub?: T;
-  hubBody?: T;
-  faqItems?:
-    | T
-    | {
-        question?: T;
-        answer?: T;
-        id?: T;
+        welcome?:
+          | T
+          | {
+              coinImage?: T;
+              storyEyebrow?: T;
+              storyHeadline?: T;
+              storyParas?:
+                | T
+                | {
+                    paragraph?: T;
+                    id?: T;
+                  };
+              webinarBody?: T;
+              webinarVideoUrl?: T;
+              founderName?: T;
+              founderTitle?: T;
+              joinHeadline?: T;
+              id?: T;
+              blockName?: T;
+            };
+        membershipSteps?:
+          | T
+          | {
+              membershipSteps?:
+                | T
+                | {
+                    title?: T;
+                    line?: T;
+                    image?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        joinFree?:
+          | T
+          | {
+              joinFreeHeadline?: T;
+              joinFreeBody?: T;
+              joinFreeBullets?:
+                | T
+                | {
+                    bullet?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        core?:
+          | T
+          | {
+              coreKicker?: T;
+              coreHeadline?: T;
+              coreSubhead?: T;
+              coreParas?:
+                | T
+                | {
+                    paragraph?: T;
+                    id?: T;
+                  };
+              coreBlurb?: T;
+              id?: T;
+              blockName?: T;
+            };
+        amenities?:
+          | T
+          | {
+              amenitiesHeadline?: T;
+              amenitiesIntro?: T;
+              amenitySlides?:
+                | T
+                | {
+                    image?: T;
+                    name?: T;
+                    spec?: T;
+                    id?: T;
+                  };
+              amenitiesFootnote?: T;
+              id?: T;
+              blockName?: T;
+            };
+        value?:
+          | T
+          | {
+              valueHeadline?: T;
+              valueSubhead?: T;
+              valuePrompt?: T;
+              valuePrompts?:
+                | T
+                | {
+                    question?: T;
+                    id?: T;
+                  };
+              valueBlurb?: T;
+              comparisonRows?:
+                | T
+                | {
+                    traditional?: T;
+                    oneHome?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        space?:
+          | T
+          | {
+              spaceHeadline?: T;
+              spaceSteps?:
+                | T
+                | {
+                    title?: T;
+                    line?: T;
+                    image?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        homeHub?:
+          | T
+          | {
+              homeHubHeadline?: T;
+              homeHubBlurb?: T;
+              everythingTiles?:
+                | T
+                | {
+                    group?: T;
+                    label?: T;
+                    line?: T;
+                    image?: T;
+                    id?: T;
+                  };
+              fleetDetail?: T;
+              clubMenu?:
+                | T
+                | {
+                    category?: T;
+                    items?:
+                      | T
+                      | {
+                          item?: T;
+                          id?: T;
+                        };
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        network?:
+          | T
+          | {
+              networkHeadline?: T;
+              networkSubhead?: T;
+              networkParas?:
+                | T
+                | {
+                    paragraph?: T;
+                    id?: T;
+                  };
+              networkBlurb?: T;
+              planningMarkets?:
+                | T
+                | {
+                    market?: T;
+                    id?: T;
+                  };
+              hubAddress?: T;
+              hubAddressSub?: T;
+              hubBody?: T;
+              id?: T;
+              blockName?: T;
+            };
+        faq?:
+          | T
+          | {
+              faqItems?:
+                | T
+                | {
+                    question?: T;
+                    answer?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
       };
   updatedAt?: T;
   createdAt?: T;

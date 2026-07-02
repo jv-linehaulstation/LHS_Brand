@@ -5,7 +5,7 @@
 import config from "@payload-config";
 import { getPayload } from "payload";
 
-import { resolveDriversDoc, SEED, type DriversPageContent } from "./driversPageShape";
+import { resolveDriversDoc, type ResolvedDriversPage } from "./driversPageShape";
 
 // Re-export the shape so existing `@/lib/driversPage` imports keep working.
 export * from "./driversPageShape";
@@ -31,8 +31,7 @@ export async function getDriversPageDoc(): Promise<Record<string, unknown>> {
   }
 }
 
-/** Render-ready /drivers content, with a full fallback to the current copy. */
-export async function getDriversPage(): Promise<DriversPageContent> {
-  if (!payloadConfigured()) return SEED;
+/** Render-ready /drivers page ({ order, content }), full fallback to current copy. */
+export async function getDriversPage(): Promise<ResolvedDriversPage> {
   return resolveDriversDoc(await getDriversPageDoc());
 }

@@ -33,6 +33,6 @@ export default function DriversPageLiveWrapper({
     depth: 1,
   });
 
-  const content = resolveDriversDoc(data);
-  return <OneHomePageCmsTest content={content} voices={voices} />;
+  const { order, content } = resolveDriversDoc(data);
+  return <OneHomePageCmsTest order={order} content={content} voices={voices} />;
 }

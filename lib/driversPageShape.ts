@@ -222,12 +222,12 @@ function pickArr<T>(v: unknown, f: (row: Dict, i: number) => T, fallback: T[]): 
   return rows.length ? rows.map(f) : fallback;
 }
 
-/**
- * Turn a raw DriversPage global doc (as stored by Payload, or as posted live by
- * the admin Live Preview iframe) into render-ready content. Missing/empty fields
- * fall back to SEED, so a partially-filled global — or {} — still renders fully.
- */
-export function resolveDriversDoc(g: Dict): DriversPageContent {
+// Per-field flattener: given a flat dict of field values (the union of the
+// present blocks' fields — field names are unique across blocks), fill every
+// content field, falling back to SEED for anything missing/empty. Called with
+// {} it returns the full SEED. resolveDriversDoc (below) feeds it the merged
+// blocks and separately tracks which sections exist and in what order.
+function resolveFlat(g: Dict): DriversPageContent {
   return {
     // 1 Hero
     heroVideoUrl: pickStr(g.heroVideoUrl, SEED.heroVideoUrl),
@@ -317,4 +317,65 @@ export function resolveDriversDoc(g: Dict): DriversPageContent {
     // 11 FAQ
     faqItems: pickArr(g.faqItems, (r) => ({ q: str(r.question), a: str(r.answer) }), SEED.faqItems),
   };
+}
+
+// ---- blocks: order + presence -----------------------------------------------
+// The DriversPage global stores its sections as a `blocks` array; each block's
+// `blockType` is one of these slugs. The renderer uses `order` to draw only the
+// present sections, in the admin's chosen order.
+export type SectionType =
+  | "hero"
+  | "welcome"
+  | "membershipSteps"
+  | "joinFree"
+  | "core"
+  | "amenities"
+  | "value"
+  | "space"
+  | "homeHub"
+  | "network"
+  | "faq";
+
+// Default order + the full-page fallback when the global has no sections yet.
+export const CANONICAL_ORDER: SectionType[] = [
+  "hero", "welcome", "membershipSteps", "joinFree", "core", "amenities",
+  "value", "space", "homeHub", "network", "faq",
+];
+const KNOWN = new Set<SectionType>(CANONICAL_ORDER);
+
+export type ResolvedDriversPage = {
+  order: SectionType[]; // sections to render, in order (excludes deleted blocks)
+  content: DriversPageContent; // resolved copy for every field (seed for absent)
+};
+
+/**
+ * Resolve a raw DriversPage global doc (as stored by Payload, or posted live by
+ * the admin Live Preview iframe) into { order, content }.
+ *
+ * - `order` reflects the blocks the editor kept, in their chosen order. A deleted
+ *   block is simply absent from `order`, so that section is not rendered.
+ * - `content` is flat with per-field SEED fallback. Because block field names are
+ *   unique across blocks, we merge the present blocks into one dict and reuse
+ *   resolveFlat. Fields of absent sections stay at their seed value but are unused.
+ * - When the global has no sections (unconfigured / never seeded), we fall back to
+ *   the full CANONICAL_ORDER + full SEED so the page still renders completely.
+ */
+export function resolveDriversDoc(g: Dict): ResolvedDriversPage {
+  const sections = arr(g.sections);
+  if (!sections.length) return { order: [...CANONICAL_ORDER], content: resolveFlat({}) };
+
+  const order: SectionType[] = [];
+  const merged: Dict = {};
+  for (const b of sections) {
+    const type = str(b.blockType) as SectionType;
+    if (!KNOWN.has(type)) continue;
+    order.push(type);
+    for (const [k, v] of Object.entries(b)) {
+      if (k === "blockType" || k === "id") continue;
+      merged[k] = v; // field names are unique across blocks — no collisions
+    }
+  }
+
+  if (!order.length) return { order: [...CANONICAL_ORDER], content: resolveFlat({}) };
+  return { order, content: resolveFlat(merged) };
 }
