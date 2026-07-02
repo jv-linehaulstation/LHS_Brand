@@ -26,7 +26,13 @@ export default buildConfig({
       beforeLogin: ["/components/payload/LoginArt.tsx#LoginArt"],
       afterLogin: ["/components/payload/LoginFooter.tsx#LoginFooter"],
       beforeNavLinks: ["/components/payload/NavHub.tsx#NavHub"],
-      beforeDashboard: ["/components/payload/DashboardConsole.tsx#DashboardConsole"],
+      // Fully replace the default dashboard view (Payload's ModularDashboard
+      // widget system) with our console — avoids its notFound() on this setup.
+      views: {
+        dashboard: {
+          Component: "/components/payload/DashboardConsole.tsx#DashboardConsole",
+        },
+      },
     },
   },
   collections: [Posts, Users],

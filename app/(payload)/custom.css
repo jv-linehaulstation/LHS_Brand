@@ -452,14 +452,6 @@ html[data-theme="dark"] .lhs-navhub {
    DASHBOARD — Operations console (DashboardConsole, beforeDashboard)
    Hide Payload's default dashboard widgets; our console is the landing.
    ========================================================================= */
-html[data-theme="dark"] .dashboard {
-  padding: 0 !important;
-  max-width: none !important;
-}
-html[data-theme="dark"] .dashboard > *:not(.lhs-console) {
-  display: none !important;
-}
-
 .lhs-console__head {
   position: sticky;
   top: 0;
