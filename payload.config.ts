@@ -23,6 +23,8 @@ export default buildConfig({
         Logo: "/components/payload/Logo.tsx#Logo",
         Icon: "/components/payload/Icon.tsx#Icon",
       },
+      beforeLogin: ["/components/payload/LoginArt.tsx#LoginArt"],
+      afterLogin: ["/components/payload/LoginFooter.tsx#LoginFooter"],
     },
   },
   collections: [Posts, Users],
