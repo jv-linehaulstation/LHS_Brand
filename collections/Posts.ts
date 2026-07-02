@@ -17,8 +17,11 @@ export const Posts: CollectionConfig = {
   labels: { singular: "Post", plural: "Blog" },
   admin: {
     useAsTitle: "title",
-    defaultColumns: ["title", "slug", "published", "date"],
+    defaultColumns: ["title", "byline", "date", "published"],
     group: "Content",
+    components: {
+      beforeListTable: ["/components/payload/BlogStats.tsx#BlogStats"],
+    },
   },
   access: {
     read: () => true, // published-only filtering happens in lib/blog.ts
@@ -53,6 +56,9 @@ export const Posts: CollectionConfig = {
       admin: {
         position: "sidebar",
         description: "Unpublish to hide from /blog without deleting.",
+        components: {
+          Cell: "/components/payload/StatusCell.tsx#StatusCell",
+        },
       },
     },
     {

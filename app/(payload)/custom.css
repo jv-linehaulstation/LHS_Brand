@@ -515,3 +515,147 @@ html[data-theme="dark"] .dashboard > *:not(.lhs-console) {
     grid-template-columns: 1fr;
   }
 }
+
+/* =========================================================================
+   BLOG LIST — WordPress-style posts table
+   ========================================================================= */
+/* Stats strip (BlogStats, beforeListTable) */
+.lhs-blogstats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 16px;
+  margin-bottom: 22px;
+}
+.lhs-blogstats__card {
+  background: #141414;
+  border: 1px solid rgba(176, 176, 176, 0.14);
+  border-radius: 7px;
+  padding: 18px 20px;
+}
+.lhs-blogstats__label {
+  font-family: "Michroma", sans-serif;
+  font-size: 8px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #9a9a9a;
+}
+.lhs-blogstats__value {
+  font-family: "Archivo", sans-serif;
+  font-weight: 900;
+  font-size: 28px;
+  color: #fff;
+  margin-top: 8px;
+  line-height: 1;
+}
+
+/* Status pills (StatusCell) */
+.lhs-pill {
+  display: inline-block;
+  font-family: "Michroma", sans-serif;
+  font-size: 8px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 3px;
+  padding: 4px 8px;
+  white-space: nowrap;
+}
+.lhs-pill--pub {
+  color: #18a848;
+  background: rgba(24, 168, 72, 0.12);
+}
+.lhs-pill--draft {
+  color: #f07820;
+  background: rgba(240, 120, 32, 0.12);
+}
+
+/* List header + Add-New button */
+html[data-theme="dark"] .list-header__title {
+  font-family: "Archivo", sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+}
+html[data-theme="dark"] .list-header__create-new-button {
+  background: linear-gradient(135deg, #fbb04a, #c85a12);
+  color: #0b0b0b;
+  border: none;
+  border-radius: 4px;
+  font-family: "Michroma", sans-serif;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 0;
+  padding: 10px 16px;
+}
+html[data-theme="dark"] .list-header__create-new-button::after {
+  content: "+ Add New Post";
+  font-size: 9px;
+}
+html[data-theme="dark"] .list-header__create-new-button:hover {
+  filter: brightness(1.08);
+}
+
+/* Table head + rows */
+html[data-theme="dark"] .collection-list .table thead th {
+  font-family: "Michroma", sans-serif;
+  font-size: 8px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #8a8a8a;
+  background: #1a1a1a;
+  padding: 12px 16px;
+}
+html[data-theme="dark"] .collection-list .table tbody td {
+  border-bottom: 1px solid rgba(176, 176, 176, 0.07);
+  padding: 13px 16px;
+}
+html[data-theme="dark"] .collection-list .table tbody tr:hover td {
+  background: #181818;
+}
+/* Title cell → bold Archivo, orange on hover (echoes the design) */
+html[data-theme="dark"] .collection-list .table tbody td.cell-title a,
+html[data-theme="dark"] .collection-list .table tbody td.cell-title {
+  font-family: "Archivo", sans-serif;
+  font-weight: 700;
+  color: #fff;
+}
+html[data-theme="dark"] .collection-list .table tbody td.cell-title a:hover {
+  color: #f07820;
+}
+
+/* =========================================================================
+   POST EDITOR — echo the design's editor cards
+   ========================================================================= */
+/* Sidebar (slug / published / date) as a carbon card */
+html[data-theme="dark"] .document-fields__sidebar {
+  background: #141414;
+  border: 1px solid rgba(176, 176, 176, 0.14);
+  border-radius: 7px;
+  padding: 20px;
+}
+/* Prominent title field */
+html[data-theme="dark"] input#field-title {
+  font-family: "Archivo", sans-serif;
+  font-weight: 900;
+  font-size: 24px;
+  color: #fff;
+  padding: 16px 18px;
+}
+/* Roomy Markdown body in the reading serif */
+html[data-theme="dark"] textarea#field-body {
+  min-height: 340px;
+  font-family: "Newsreader", serif;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #d8d8d8;
+}
+/* Publish / Save controls → Fuel Orange (design's publish button) */
+html[data-theme="dark"] .doc-controls .btn--style-primary {
+  --bg-color: #f07820;
+  --color: #0b0b0b;
+  --hover-bg: #ff8a33;
+  background: linear-gradient(135deg, #fbb04a, #c85a12);
+  border-radius: 6px;
+  font-family: "Michroma", sans-serif;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
