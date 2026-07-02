@@ -47,6 +47,16 @@ export const DriversPage: GlobalConfig = {
         {
           slug: "hero",
           labels: { singular: "Hero", plural: "Hero" },
+          admin: {
+            images: { thumbnail: "/assets/admin-previews/hero.png" },
+            components: {
+              Label: {
+                path: "/components/payload/SectionRowLabel.tsx",
+                exportName: "SectionRowLabel",
+                clientProps: { blockType: "hero", label: "Hero" },
+              },
+            },
+          },
           fields: [
             { name: "heroVideoUrl", type: "text", admin: { description: "The full-bleed top section (H1, verse, video). Background video mp4 URL." } },
             { name: "eyebrow", type: "text" },
@@ -68,6 +78,16 @@ export const DriversPage: GlobalConfig = {
         {
           slug: "welcome",
           labels: { singular: "Welcome / Story", plural: "Welcome / Story" },
+          admin: {
+            images: { thumbnail: "/assets/admin-previews/welcome.png" },
+            components: {
+              Label: {
+                path: "/components/payload/SectionRowLabel.tsx",
+                exportName: "SectionRowLabel",
+                clientProps: { blockType: "welcome", label: "Welcome / Story" },
+              },
+            },
+          },
           fields: [
             { name: "coinImage", type: "upload", relationTo: "media", admin: { description: "The story + webinar section. Outriders coin (optional); falls back to /assets/coin-outriders.png." } },
             { name: "storyEyebrow", type: "text" },
@@ -93,13 +113,23 @@ export const DriversPage: GlobalConfig = {
         {
           slug: "membershipSteps",
           labels: { singular: "Membership Steps", plural: "Membership Steps" },
+          admin: {
+            images: { thumbnail: "/assets/admin-previews/membershipSteps.png" },
+            components: {
+              Label: {
+                path: "/components/payload/SectionRowLabel.tsx",
+                exportName: "SectionRowLabel",
+                clientProps: { blockType: "membershipSteps", label: "Membership Steps" },
+              },
+            },
+          },
           fields: [
             {
               name: "membershipSteps",
               type: "array",
               minRows: 3,
               maxRows: 3,
-              admin: { description: "The 3 free-membership steps (image boxes)." },
+              admin: { description: "The 3 free-membership steps (image boxes).", components: { RowLabel: "/components/payload/ImageRowLabel.tsx#ImageRowLabel" } },
               fields: [
                 { name: "title", type: "text", required: true },
                 { name: "line", type: "text", required: true },
@@ -112,6 +142,16 @@ export const DriversPage: GlobalConfig = {
         {
           slug: "joinFree",
           labels: { singular: "Join Free band", plural: "Join Free band" },
+          admin: {
+            images: { thumbnail: "/assets/admin-previews/joinFree.png" },
+            components: {
+              Label: {
+                path: "/components/payload/SectionRowLabel.tsx",
+                exportName: "SectionRowLabel",
+                clientProps: { blockType: "joinFree", label: "Join Free band" },
+              },
+            },
+          },
           fields: [
             {
               name: "joinFreeHeadline",
@@ -132,6 +172,16 @@ export const DriversPage: GlobalConfig = {
         {
           slug: "core",
           labels: { singular: "Core / The Math", plural: "Core / The Math" },
+          admin: {
+            images: { thumbnail: "/assets/admin-previews/core.png" },
+            components: {
+              Label: {
+                path: "/components/payload/SectionRowLabel.tsx",
+                exportName: "SectionRowLabel",
+                clientProps: { blockType: "core", label: "Core / The Math" },
+              },
+            },
+          },
           fields: [
             { name: "coreKicker", type: "text", admin: { description: "The hook + savings calculator section (calculator math stays in code)." } },
             {
@@ -152,6 +202,16 @@ export const DriversPage: GlobalConfig = {
         {
           slug: "amenities",
           labels: { singular: "Amenities", plural: "Amenities" },
+          admin: {
+            images: { thumbnail: "/assets/admin-previews/amenities.png" },
+            components: {
+              Label: {
+                path: "/components/payload/SectionRowLabel.tsx",
+                exportName: "SectionRowLabel",
+                clientProps: { blockType: "amenities", label: "Amenities" },
+              },
+            },
+          },
           fields: [
             { name: "amenitiesHeadline", type: "text", admin: { description: "The Outriders Club amenities carousel." } },
             { name: "amenitiesIntro", type: "textarea" },
@@ -160,7 +220,7 @@ export const DriversPage: GlobalConfig = {
               type: "array",
               minRows: 8,
               maxRows: 8,
-              admin: { description: "The 8 club amenities carousel slides." },
+              admin: { description: "The 8 club amenities carousel slides.", components: { RowLabel: "/components/payload/ImageRowLabel.tsx#ImageRowLabel" } },
               fields: [
                 { name: "image", type: "upload", relationTo: "media" },
                 { name: "name", type: "text", required: true },
@@ -174,6 +234,16 @@ export const DriversPage: GlobalConfig = {
         {
           slug: "value",
           labels: { singular: "Value Comparison", plural: "Value Comparison" },
+          admin: {
+            images: { thumbnail: "/assets/admin-previews/value.png" },
+            components: {
+              Label: {
+                path: "/components/payload/SectionRowLabel.tsx",
+                exportName: "SectionRowLabel",
+                clientProps: { blockType: "value", label: "Value Comparison" },
+              },
+            },
+          },
           fields: [
             { name: "valueHeadline", type: "text", admin: { description: "Prompts + Traditional-vs-OneHome comparison." } },
             { name: "valueSubhead", type: "text" },
@@ -203,6 +273,16 @@ export const DriversPage: GlobalConfig = {
         {
           slug: "space",
           labels: { singular: "Space (3 ways)", plural: "Space (3 ways)" },
+          admin: {
+            images: { thumbnail: "/assets/admin-previews/space.png" },
+            components: {
+              Label: {
+                path: "/components/payload/SectionRowLabel.tsx",
+                exportName: "SectionRowLabel",
+                clientProps: { blockType: "space", label: "Space (3 ways)" },
+              },
+            },
+          },
           fields: [
             {
               name: "spaceHeadline",
@@ -214,7 +294,7 @@ export const DriversPage: GlobalConfig = {
               type: "array",
               minRows: 3,
               maxRows: 3,
-              admin: { description: "The 3 ways to get Space." },
+              admin: { description: "The 3 ways to get Space.", components: { RowLabel: "/components/payload/ImageRowLabel.tsx#ImageRowLabel" } },
               fields: [
                 { name: "title", type: "text", required: true },
                 { name: "line", type: "text", required: true },
@@ -227,6 +307,16 @@ export const DriversPage: GlobalConfig = {
         {
           slug: "homeHub",
           labels: { singular: "Home Hub + Fleet", plural: "Home Hub + Fleet" },
+          admin: {
+            images: { thumbnail: "/assets/admin-previews/homeHub.png" },
+            components: {
+              Label: {
+                path: "/components/payload/SectionRowLabel.tsx",
+                exportName: "SectionRowLabel",
+                clientProps: { blockType: "homeHub", label: "Home Hub + Fleet" },
+              },
+            },
+          },
           fields: [
             { name: "homeHubHeadline", type: "text", admin: { description: "Home Hub + Fleet Services tiles + the included menu." } },
             { name: "homeHubBlurb", type: "text" },
@@ -235,7 +325,7 @@ export const DriversPage: GlobalConfig = {
               type: "array",
               minRows: 8,
               maxRows: 8,
-              admin: { description: "Home Hub + Fleet Services image tiles." },
+              admin: { description: "Home Hub + Fleet Services image tiles.", components: { RowLabel: "/components/payload/ImageRowLabel.tsx#ImageRowLabel" } },
               fields: [
                 { name: "group", type: "select", required: true, options: ["Home Hub", "Fleet Services"] },
                 { name: "label", type: "text", required: true },
@@ -261,6 +351,16 @@ export const DriversPage: GlobalConfig = {
         {
           slug: "network",
           labels: { singular: "Network / Map", plural: "Network / Map" },
+          admin: {
+            images: { thumbnail: "/assets/admin-previews/network.png" },
+            components: {
+              Label: {
+                path: "/components/payload/SectionRowLabel.tsx",
+                exportName: "SectionRowLabel",
+                clientProps: { blockType: "network", label: "Network / Map" },
+              },
+            },
+          },
           fields: [
             { name: "networkHeadline", type: "text", admin: { description: "Network copy + Memphis map (map rendering stays in code)." } },
             { name: "networkSubhead", type: "text" },
@@ -285,6 +385,16 @@ export const DriversPage: GlobalConfig = {
         {
           slug: "faq",
           labels: { singular: "FAQ", plural: "FAQ" },
+          admin: {
+            images: { thumbnail: "/assets/admin-previews/faq.png" },
+            components: {
+              Label: {
+                path: "/components/payload/SectionRowLabel.tsx",
+                exportName: "SectionRowLabel",
+                clientProps: { blockType: "faq", label: "FAQ" },
+              },
+            },
+          },
           fields: [
             {
               name: "faqItems",

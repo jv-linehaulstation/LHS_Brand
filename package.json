@@ -12,6 +12,7 @@
     "lint": "next lint",
     "blog:seed": "node node_modules/payload/bin.js run scripts/seed-blog.ts",
     "drivers:seed-blocks": "node node_modules/payload/bin.js run scripts/seed-drivers-blocks.ts",
+    "drivers:capture-previews": "tsx scripts/capture-section-previews.ts",
     "payload": "node node_modules/payload/bin.js",
     "payload:types": "node node_modules/payload/bin.js generate:types",
     "payload:migrate": "node node_modules/payload/bin.js migrate"
