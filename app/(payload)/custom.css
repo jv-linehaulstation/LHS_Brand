@@ -385,6 +385,14 @@ html[data-theme="dark"] .lhs-login-foot {
   color: #6b6b6b;
 }
 
+/* Match the design's login button gradient + input radius */
+html[data-theme="dark"] .login__form .form-submit button {
+  background: linear-gradient(135deg, #fbb04a, #f07820 60%, #c85a12);
+}
+html[data-theme="dark"] .login__form input {
+  border-radius: 4px;
+}
+
 /* ---- Responsive: stack on small screens ------------------------------- */
 @media (max-width: 900px) {
   html[data-theme="dark"] .lhs-login-art {
@@ -398,5 +406,112 @@ html[data-theme="dark"] .lhs-login-foot {
   }
   html[data-theme="dark"] .login__brand {
     display: flex;
+  }
+}
+
+/* =========================================================================
+   SIDEBAR — Hub status block (NavHub, beforeNavLinks)
+   ========================================================================= */
+@keyframes lhsPulseDot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+html[data-theme="dark"] .lhs-navhub {
+  padding: 4px 4px 14px;
+  border-bottom: 1px solid rgba(176, 176, 176, 0.12);
+  margin-bottom: 8px;
+}
+.lhs-navhub__label {
+  font-family: "Michroma", sans-serif;
+  font-size: 8px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #5a5a5a;
+  margin-bottom: 8px;
+}
+.lhs-navhub__row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.lhs-navhub__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #18a848;
+  animation: lhsPulseDot 2s ease-in-out infinite;
+}
+.lhs-navhub__name {
+  font-family: "Archivo", sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: #fff;
+}
+
+/* =========================================================================
+   DASHBOARD — Operations console (DashboardConsole, beforeDashboard)
+   Hide Payload's default dashboard widgets; our console is the landing.
+   ========================================================================= */
+html[data-theme="dark"] .dashboard {
+  padding: 0 !important;
+  max-width: none !important;
+}
+html[data-theme="dark"] .dashboard > *:not(.lhs-console) {
+  display: none !important;
+}
+
+.lhs-console__head {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 16px 28px;
+  background: rgba(11, 11, 11, 0.9);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(176, 176, 176, 0.16);
+}
+.lhs-console__cta {
+  font-family: "Michroma", sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #0b0b0b;
+  background: linear-gradient(135deg, #fbb04a, #c85a12);
+  border-radius: 4px;
+  padding: 11px 18px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.lhs-console__cta:hover {
+  filter: brightness(1.08);
+}
+.lhs-console__body {
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.lhs-kpis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+.lhs-row-2 {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 16px;
+}
+.lhs-row-3 {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 16px;
+}
+@media (max-width: 1100px) {
+  .lhs-row-2,
+  .lhs-row-3 {
+    grid-template-columns: 1fr;
   }
 }
