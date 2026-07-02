@@ -12,6 +12,11 @@ import { Users } from "./collections/Users";
 import { DriversPage } from "./globals/DriversPage";
 import { SiteSettings } from "./globals/SiteSettings";
 
+// Site origin allowed for Live Preview (the admin iframe's postMessage target and
+// the populate fetch). localhost in dev; set NEXT_PUBLIC_SERVER_URL to the
+// deployed Vercel domain in production.
+const SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL || "http://localhost:3000";
+
 export default buildConfig({
   admin: {
     user: Users.slug,
@@ -42,6 +47,9 @@ export default buildConfig({
   collections: [Posts, Testimonials, Media, Users],
   globals: [SiteSettings, DriversPage],
   editor: lexicalEditor(),
+  // Allow the site origin for Live Preview (iframe postMessage + populate fetch).
+  cors: [SERVER_URL],
+  csrf: [SERVER_URL],
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {
     outputFile: path.resolve(process.cwd(), "payload-types.ts"),

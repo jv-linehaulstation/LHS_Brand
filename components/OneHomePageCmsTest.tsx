@@ -19,8 +19,8 @@ import LuxeFooter from "@/components/LuxeFooter";
 import FAQ from "@/components/FAQ";
 import { CoinImage, ChromeFrame, StatusChip } from "@/components/Bits";
 import { audiences } from "@/lib/audiences";
-import { getTestimonials } from "@/lib/testimonials";
-import { getDriversPage } from "@/lib/driversPage";
+import type { DriversPageContent } from "@/lib/driversPageShape";
+import type { Voice } from "@/components/onehome/TestimonialCarousel";
 
 /* ============ "Luxe" dark-luxury skin ============ */
 const PAD = "gutter";
@@ -36,14 +36,20 @@ const PILL = "inline-flex items-center gap-2.5 rounded-full px-8 py-[15px] font-
 // CMS-backed copy of OneHomePage for /drivers-cms-test. Markup, styling, and
 // motion are identical to components/OneHomePage.tsx — only the data source is
 // swapped: every ONEHOME.* / audiences.drivers copy field and the old module
-// consts now come from `content` (lib/driversPage.ts). Accent tokens (ac/ad)
-// and the stories background image stay code-sourced (brand tokens, not copy).
-export default async function OneHomePageCmsTest() {
+// consts now come from the `content` prop. Presentational only (no data fetch)
+// so it can render both server-side and inside the client Live Preview wrapper
+// (components/DriversPageLiveWrapper.tsx). Accent tokens (ac/ad) and the stories
+// background image stay code-sourced (brand tokens, not copy).
+export default function OneHomePageCmsTest({
+  content,
+  voices,
+}: {
+  content: DriversPageContent;
+  voices: Voice[];
+}) {
   const a = audiences.drivers;
   const ac = a.accent;
   const ad = a.accentDark;
-  const voices = await getTestimonials(); // driver testimonials from /admin (CMS), with a seed fallback
-  const content = await getDriversPage(); // full page copy from /admin → Drivers Page, with a seed fallback
 
   return (
     <main className="min-h-screen bg-ink font-sans text-white">

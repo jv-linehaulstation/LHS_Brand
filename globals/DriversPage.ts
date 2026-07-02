@@ -1,5 +1,9 @@
 import type { GlobalConfig } from "payload";
 
+// Site origin for the Live Preview iframe. localhost in dev; set
+// NEXT_PUBLIC_SERVER_URL to the deployed Vercel domain in production.
+const SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL || "http://localhost:3000";
+
 // Full editable copy of the /drivers page, one tab per rendered section
 // (mirrors the numbered section comments in components/OneHomePage.tsx).
 // Read via lib/driversPage.ts (Local API + fallback to the current hardcoded
@@ -13,7 +17,20 @@ import type { GlobalConfig } from "payload";
 export const DriversPage: GlobalConfig = {
   slug: "drivers-page",
   label: "Drivers Page",
-  admin: { group: "Drivers Page" },
+  admin: {
+    group: "Drivers Page",
+    // Live Preview: render /drivers-cms-test in an iframe next to the form and
+    // update it in real time as fields change (no save). This global is a single
+    // instance, so the URL is static — no dynamic slug needed.
+    livePreview: {
+      url: () => `${SERVER_URL}/drivers-cms-test`,
+      breakpoints: [
+        { name: "mobile", label: "Mobile", width: 375, height: 667 },
+        { name: "tablet", label: "Tablet", width: 768, height: 1024 },
+        { name: "desktop", label: "Desktop", width: 1440, height: 900 },
+      ],
+    },
+  },
   access: { read: () => true },
   fields: [
     {

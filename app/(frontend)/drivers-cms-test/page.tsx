@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
-import OneHomePageCmsTest from "@/components/OneHomePageCmsTest";
+import DriversPageLiveWrapper from "@/components/DriversPageLiveWrapper";
+import { getDriversPageDoc } from "@/lib/driversPage";
+import { getTestimonials } from "@/lib/testimonials";
 
 // Review-only duplicate of /drivers where every section reads from Payload
-// (/admin → Drivers Page). The live /drivers route is untouched. Not linked in
-// nav and kept out of search until we approve the swap.
+// (/admin → Drivers Page), with Live Preview: editing a field in the admin
+// updates this page in real time via postMessage, no save required. The live
+// /drivers route is untouched. Not linked in nav and kept out of search.
 export const revalidate = 60;
 
 export const metadata: Metadata = {
@@ -13,6 +16,9 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-export default function Page() {
-  return <OneHomePageCmsTest />;
+export default async function Page() {
+  // Fetch the raw global doc (Live Preview initialData) + testimonials server-side,
+  // then hand off to the client wrapper that subscribes to live edits.
+  const [initialDoc, voices] = await Promise.all([getDriversPageDoc(), getTestimonials()]);
+  return <DriversPageLiveWrapper initialDoc={initialDoc} voices={voices} />;
 }
