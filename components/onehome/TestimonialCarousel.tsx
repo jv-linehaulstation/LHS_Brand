@@ -10,7 +10,8 @@ import { useEffect, useRef, useState } from "react";
  * NOTE(JJ): the OneHome program is pre-launch, so there are no real founding-
  * member testimonials yet. These slots are seeded with the program promise and
  * a "founding member" framing — NOT fabricated named drivers with stock faces.
- * Replace `items` with real driver quotes + photos before launch.
+ * Add real driver quotes + photos in /admin (Testimonials) before launch; the
+ * live data comes from lib/testimonials.ts.
  */
 export type Voice = {
   quote: string;
@@ -18,6 +19,7 @@ export type Voice = {
   role: string;
   initials: string;
   badge?: string;
+  photo?: string; // optional headshot url; the initials avatar is the fallback
 };
 
 export default function TestimonialCarousel({
@@ -83,13 +85,23 @@ export default function TestimonialCarousel({
           “{active.quote}”
         </blockquote>
         <div className="mt-7 flex items-center gap-4">
-          <span
-            className="flex h-12 w-12 flex-none items-center justify-center rounded-full font-display text-[17px] font-black text-ink"
-            style={{ background: `linear-gradient(135deg, ${accent}, ${accent}bb)` }}
-            aria-hidden
-          >
-            {active.initials}
-          </span>
+          {active.photo ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={active.photo}
+              alt={active.name}
+              className="h-12 w-12 flex-none rounded-full object-cover"
+              style={{ boxShadow: `0 0 0 1px ${accent}55` }}
+            />
+          ) : (
+            <span
+              className="flex h-12 w-12 flex-none items-center justify-center rounded-full font-display text-[17px] font-black text-ink"
+              style={{ background: `linear-gradient(135deg, ${accent}, ${accent}bb)` }}
+              aria-hidden
+            >
+              {active.initials}
+            </span>
+          )}
           <div>
             <div className="font-display text-[17px] font-black uppercase tracking-[0.02em] text-white">
               {active.name}

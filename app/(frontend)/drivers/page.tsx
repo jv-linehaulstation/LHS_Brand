@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import OneHomePage from "@/components/OneHomePage";
 
+// ISR: re-render at most once a minute so /admin testimonial edits go live
+// without a redeploy (same cadence as the blog + lib/testimonials.ts).
+export const revalidate = 60;
+
 export const metadata: Metadata = {
   title: "OneHome by LineHaul Station | For Drivers",
   description:

@@ -28,3 +28,7 @@ dev.log
 .claude/skills/graphic-overlays/
 .claude/skills/slideshow/
 .claude/skills/general-video/
+
+# Payload local media uploads (keep the dir, ignore files)
+public/assets/uploads/*
+!public/assets/uploads/.gitkeep

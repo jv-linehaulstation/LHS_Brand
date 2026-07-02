@@ -68,6 +68,8 @@ export interface Config {
   blocks: {};
   collections: {
     posts: Post;
+    testimonials: Testimonial;
+    media: Media;
     users: User;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
@@ -77,6 +79,8 @@ export interface Config {
   collectionsJoins: {};
   collectionsSelect: {
     posts: PostsSelect<false> | PostsSelect<true>;
+    testimonials: TestimonialsSelect<false> | TestimonialsSelect<true>;
+    media: MediaSelect<false> | MediaSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -87,8 +91,12 @@ export interface Config {
     defaultIDType: number;
   };
   fallbackLocale: null;
-  globals: {};
-  globalsSelect: {};
+  globals: {
+    'site-settings': SiteSetting;
+  };
+  globalsSelect: {
+    'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
+  };
   locale: null;
   widgets: {
     collections: CollectionsWidget;
@@ -164,6 +172,87 @@ export interface Post {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "testimonials".
+ */
+export interface Testimonial {
+  id: number;
+  /**
+   * The testimonial itself. Keep it honest and specific.
+   */
+  quote: string;
+  /**
+   * Attribution, e.g. a driver name or "Founding Member".
+   */
+  name: string;
+  /**
+   * Small line under the name, e.g. "OneHome Driver Program".
+   */
+  role: string;
+  /**
+   * Avatar initials. Auto-filled from the name; override if needed.
+   */
+  initials?: string | null;
+  /**
+   * Optional pill, e.g. "Founding Member" or "Illustrative".
+   */
+  badge?: string | null;
+  /**
+   * Optional headshot. The initials avatar is the fallback when empty.
+   */
+  photo?: (number | null) | Media;
+  /**
+   * Unpublish to hide from /drivers without deleting.
+   */
+  published?: boolean | null;
+  /**
+   * Manual sort — lower shows first. Defaults to creation order if unset.
+   */
+  order?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media".
+ */
+export interface Media {
+  id: number;
+  /**
+   * Alt text for accessibility and SEO.
+   */
+  alt?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+  sizes?: {
+    thumbnail?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    card?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+  };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
 export interface User {
@@ -215,6 +304,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'posts';
         value: number | Post;
+      } | null)
+    | ({
+        relationTo: 'testimonials';
+        value: number | Testimonial;
+      } | null)
+    | ({
+        relationTo: 'media';
+        value: number | Media;
       } | null)
     | ({
         relationTo: 'users';
@@ -284,6 +381,64 @@ export interface PostsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "testimonials_select".
+ */
+export interface TestimonialsSelect<T extends boolean = true> {
+  quote?: T;
+  name?: T;
+  role?: T;
+  initials?: T;
+  badge?: T;
+  photo?: T;
+  published?: T;
+  order?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media_select".
+ */
+export interface MediaSelect<T extends boolean = true> {
+  alt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
+  sizes?:
+    | T
+    | {
+        thumbnail?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+        card?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+      };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
@@ -344,6 +499,97 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "site-settings".
+ */
+export interface SiteSetting {
+  id: number;
+  /**
+   * The count-up ribbon directly under the homepage hero.
+   */
+  heroStats?:
+    | {
+        /**
+         * e.g. "Spaces · West Memphis".
+         */
+        label: string;
+        /**
+         * The number that counts up, e.g. 1800.
+         */
+        value: number;
+        /**
+         * Optional, shown before the number, e.g. "$".
+         */
+        prefix?: string | null;
+        /**
+         * Optional, shown after the number, e.g. "+" or "K".
+         */
+        suffix?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * The five lanes on the homepage. Only the card title, blurb, and link live here, not the full per-audience page.
+   */
+  audienceCards?:
+    | {
+        title: string;
+        /**
+         * Short one-line description under the title.
+         */
+        blurb: string;
+        /**
+         * Internal path, e.g. /drivers.
+         */
+        href: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Canonical contact details. The one source of truth going forward.
+   */
+  contact?: {
+    phone?: string | null;
+    email?: string | null;
+    address?: string | null;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "site-settings_select".
+ */
+export interface SiteSettingsSelect<T extends boolean = true> {
+  heroStats?:
+    | T
+    | {
+        label?: T;
+        value?: T;
+        prefix?: T;
+        suffix?: T;
+        id?: T;
+      };
+  audienceCards?:
+    | T
+    | {
+        title?: T;
+        blurb?: T;
+        href?: T;
+        id?: T;
+      };
+  contact?:
+    | T
+    | {
+        phone?: T;
+        email?: T;
+        address?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

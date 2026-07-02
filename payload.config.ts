@@ -5,8 +5,11 @@ import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import { buildConfig } from "payload";
 import sharp from "sharp";
 
+import { Media } from "./collections/Media";
 import { Posts } from "./collections/Posts";
+import { Testimonials } from "./collections/Testimonials";
 import { Users } from "./collections/Users";
+import { SiteSettings } from "./globals/SiteSettings";
 
 export default buildConfig({
   admin: {
@@ -35,7 +38,8 @@ export default buildConfig({
       },
     },
   },
-  collections: [Posts, Users],
+  collections: [Posts, Testimonials, Media, Users],
+  globals: [SiteSettings],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {

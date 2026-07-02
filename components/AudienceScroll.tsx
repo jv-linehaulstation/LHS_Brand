@@ -56,7 +56,20 @@ const LANES: Lane[] = [
 ];
 const N = LANES.length;
 
-export default function AudienceScroll() {
+export default function AudienceScroll({
+  cards,
+}: {
+  // Editable homepage copy from the CMS (lib/siteSettings.ts). Only the title,
+  // blurb, and link are overridden per lane; the media, paragraphs, and accent
+  // stay code-managed so the full per-audience content is untouched.
+  cards?: { title: string; blurb: string; href: string }[];
+} = {}) {
+  const lanes: Lane[] = cards?.length
+    ? LANES.map((lane, i) => {
+        const c = cards[i];
+        return c ? { ...lane, label: c.title, sub: c.blurb, href: c.href } : lane;
+      })
+    : LANES;
   const [active, setActive] = useState(0);
   const [isStatic, setIsStatic] = useState(false);
   const blocks = useRef<(HTMLDivElement | null)[]>([]);
@@ -88,7 +101,7 @@ export default function AudienceScroll() {
     return () => io.disconnect();
   }, [isStatic]);
 
-  const a = LANES[active];
+  const a = lanes[active];
 
   const Block = (lane: Lane, i: number) => (
     <>
@@ -120,7 +133,7 @@ export default function AudienceScroll() {
   if (isStatic) {
     return (
       <div className="mt-9 grid gap-5">
-        {LANES.map((lane, i) => (
+        {lanes.map((lane, i) => (
           <ChromeFrame key={lane.key} variant="steel">
             <div className="overflow-hidden bg-panel">
               <div className="relative aspect-[16/9]">
@@ -142,14 +155,14 @@ export default function AudienceScroll() {
       <div className="lg:sticky lg:top-0 lg:h-[100svh] lg:self-start lg:py-[6vh]">
         <ChromeFrame variant="steel" className="h-full min-h-[60vh]">
         <div className="relative h-full min-h-[60vh] overflow-hidden bg-carbon">
-          {LANES.map((lane, i) => (
+          {lanes.map((lane, i) => (
             <div key={lane.key} className="absolute inset-0 transition-[opacity,transform] duration-700 ease-out" style={{ opacity: i === active ? 1 : 0, transform: i === active ? "scale(1)" : "scale(1.05)" }}>
               <Image src={lane.img} alt={i === active ? `${lane.label} — LineHaul Station` : ""} fill priority={i === 0} className="img-grade object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
             </div>
           ))}
           <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,transparent_62%,rgba(11,11,11,0.5))]" />
           <div className="absolute inset-x-5 bottom-5 flex gap-2">
-            {LANES.map((lane, i) => (
+            {lanes.map((lane, i) => (
               <span key={lane.key} className="h-[3px] flex-1 rounded-full transition-colors duration-300" style={{ background: i === active ? a.accent : "rgba(176,176,176,0.25)" }} aria-hidden />
             ))}
           </div>
@@ -159,7 +172,7 @@ export default function AudienceScroll() {
 
       {/* scrolling content — one block per lane */}
       <div>
-        {LANES.map((lane, i) => (
+        {lanes.map((lane, i) => (
           <div
             key={lane.key}
             ref={(el) => { blocks.current[i] = el; }}

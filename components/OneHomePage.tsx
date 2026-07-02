@@ -11,7 +11,7 @@ import JoinForm from "@/components/JoinForm";
 import NetworkMap from "@/components/NetworkMap";
 import FloatingVimeo from "@/components/onehome/FloatingVimeo";
 import BuildingCarousel from "@/components/onehome/BuildingCarousel";
-import QuoteCarousel from "@/components/onehome/QuoteCarousel";
+import TestimonialCarousel from "@/components/onehome/TestimonialCarousel";
 import ComparisonTable from "@/components/onehome/ComparisonTable";
 import StepGrid from "@/components/onehome/StepGrid";
 import Spotlight from "@/components/onehome/Spotlight";
@@ -21,6 +21,7 @@ import { CoinImage, ChromeFrame, StatusChip } from "@/components/Bits";
 import { ONEHOME } from "@/lib/onehome";
 import { audiences, PHOTOS } from "@/lib/audiences";
 import { site } from "@/lib/site";
+import { getTestimonials } from "@/lib/testimonials";
 
 /* ============ "Luxe" dark-luxury skin ============ */
 const PAD = "gutter";
@@ -79,13 +80,6 @@ const CLUB_MENU = [
 ];
 
 // Founding-member quote cards — honest framing (pre-launch). TODO(JJ): real testimonials.
-const QUOTES = [
-  { quote: "Stop paying for a home you rarely use. Pay only for the days you need.", name: "The financial case", role: "Founding-member program" },
-  { quote: "It's like giving yourself a $15,000–$20,000 raise without an extra mile.", name: "Annual savings", role: "Founding-member program" },
-  { quote: "Choose your Home Hub — then the whole network is your home.", name: "How it works", role: "Founding-member program" },
-  { quote: "Most drivers use their home under 100 days a year, but pay for all 365.", name: "The 365 vs 100 problem", role: "Founding-member program" },
-  { quote: "From truck stops to something far better — club-level living for drivers.", name: "The lifestyle", role: "Founding-member program" },
-];
 
 // FAQ — money-first, OneHome-specific. TODO(JJ): confirm final answers.
 const FAQ_ITEMS: QA[] = [
@@ -99,9 +93,10 @@ const FAQ_ITEMS: QA[] = [
 // Luxe pill CTAs.
 const PILL = "inline-flex items-center gap-2.5 rounded-full px-8 py-[15px] font-label text-[14px] uppercase tracking-[0.14em] transition duration-300 active:scale-[0.97]";
 
-export default function OneHomePage() {
+export default async function OneHomePage() {
   const a = audiences.drivers;
   const ac = a.accent;
+  const voices = await getTestimonials(); // driver testimonials from /admin (CMS), with a seed fallback
   const ad = a.accentDark;
 
   return (
@@ -453,7 +448,7 @@ export default function OneHomePage() {
         </div>
         <div className={`bg-ink ${PAD} pb-[clamp(70px,11vh,140px)] pt-[clamp(28px,5vw,64px)]`}>
           <Reveal>
-            <QuoteCarousel items={QUOTES} accent={ac} />
+            <TestimonialCarousel items={voices} accent={ac} />
           </Reveal>
         </div>
       </section>

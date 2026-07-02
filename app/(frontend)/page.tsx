@@ -15,6 +15,11 @@ import JoinForm from "@/components/JoinForm";
 import { ChromeFrame, Coin, CoinImage, StatusChip } from "@/components/Bits";
 import { PHOTOS } from "@/lib/audiences";
 import { site } from "@/lib/site";
+import { getSiteSettings } from "@/lib/siteSettings";
+
+// ISR: re-render at most once a minute so /admin → Site Settings edits go live
+// without a redeploy (same cadence as the blog + the data layers).
+export const revalidate = 60;
 
 // Golden-hour "Outriders" cowboy clip — remote, ~23 MB; poster shows instantly.
 const HERO_VIDEO =
@@ -61,13 +66,6 @@ const ADVISORS = [
   { name: "Craig Hughes", cred: "Transportation Operations", bio: "40-year veteran. Founder & Chairman of Total Transit; founder of Veyo.", img: "https://static.wixstatic.com/media/84a10c_f2fb54a6c15643b4b6ea3577a56eb4f9~mv2.png/v1/fill/w_240,h_240,al_c,q_85/Hughes_HEADSHOT.png" },
 ];
 
-const STATS = [
-  { big: "133", label: "Spaces · West Memphis" },
-  { big: "600", label: "Spaces · future Hubs" },
-  { big: "$1,800", label: "Saved per month vs. the old way" },
-  { big: "50+", label: "Hubs planned" },
-];
-
 function Kick({ children, accent = "#F07820", center = false }: { children: React.ReactNode; accent?: string; center?: boolean }) {
   return (
     <div className={`flex items-center gap-3 font-label text-[11px] uppercase tracking-[0.22em] ${center ? "justify-center" : ""}`} style={{ color: accent }}>
@@ -76,7 +74,8 @@ function Kick({ children, accent = "#F07820", center = false }: { children: Reac
   );
 }
 
-export default function Home() {
+export default async function Home() {
+  const settings = await getSiteSettings(); // editable in /admin → Site Settings, with a fallback
   return (
     <main className="min-h-screen bg-ink font-sans text-white">
       <GlassNav sectionLinks={[]} cta={{ href: "/join", label: "Join Free" }} />
@@ -119,9 +118,9 @@ export default function Home() {
       {/* ============ 1.5 STATS RIBBON [B] — quiet count-up ribbon directly under the hero (R8) ============ */}
       <section className={`bg-ink ${PAD} pb-[clamp(8px,2vh,28px)] pt-[clamp(20px,4vh,44px)]`}>
         <div className="grid grid-cols-2 gap-x-[clamp(20px,4vw,56px)] gap-y-8 lg:grid-cols-4">
-          {STATS.map((s, i) => (
+          {settings.heroStats.map((s, i) => (
             <Reveal key={i} delay={i * 70} className="flex min-h-[120px] flex-col justify-between py-[clamp(12px,2vw,24px)]">
-              <CountUp value={s.big} className="tnum font-display text-[clamp(30px,3.8vw,52px)] font-black leading-none text-white" />
+              <CountUp value={s.display} className="tnum font-display text-[clamp(30px,3.8vw,52px)] font-black leading-none text-white" />
               <div className="mt-5 font-mono text-[12px] uppercase leading-relaxed tracking-[0.08em] text-chrome">{s.label}</div>
             </Reveal>
           ))}
@@ -134,7 +133,7 @@ export default function Home() {
         <Reveal as="h2" className="mt-3 font-display text-[clamp(36px,6vw,92px)] font-black uppercase leading-[0.9] tracking-[-0.025em] text-white">
           One Network. Every Lane.
         </Reveal>
-        <AudienceScroll />
+        <AudienceScroll cards={settings.audienceCards} />
       </section>
 
       {/* ============ 3. WHO WE ARE [W] — 3 columns: narrative · Jeff · board ============ */}
@@ -328,17 +327,17 @@ export default function Home() {
             <Reveal delay={140}>
               <ChromeFrame className="mt-9">
                 <div className="grid grid-cols-1 gap-px overflow-hidden bg-chrome/10 sm:grid-cols-3 lg:grid-cols-1">
-                  <a href={site.phoneHref} className="bg-ink/80 p-5 backdrop-blur transition-colors hover:bg-ink/95">
+                  <a href={settings.contact.phoneHref} className="bg-ink/80 p-5 backdrop-blur transition-colors hover:bg-ink/95">
                     <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-steel">Call</div>
-                    <div className="tnum mt-2 font-mono text-[15px] text-white">{site.phone}</div>
+                    <div className="tnum mt-2 font-mono text-[15px] text-white">{settings.contact.phone}</div>
                   </a>
-                  <a href={site.emailHref} className="bg-ink/80 p-5 backdrop-blur transition-colors hover:bg-ink/95">
+                  <a href={settings.contact.emailHref} className="bg-ink/80 p-5 backdrop-blur transition-colors hover:bg-ink/95">
                     <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-steel">Email</div>
-                    <div className="mt-2 break-words font-mono text-[15px] text-white">{site.email}</div>
+                    <div className="mt-2 break-words font-mono text-[15px] text-white">{settings.contact.email}</div>
                   </a>
                   <div className="bg-ink/80 p-5 backdrop-blur">
                     <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-steel">Visit</div>
-                    <div className="mt-2 font-mono text-[15px] text-white">West Memphis, AR</div>
+                    <div className="mt-2 font-mono text-[15px] text-white">{settings.contact.address}</div>
                     <div className="mt-1 font-mono text-[12px] text-chrome">{site.domainLabel}</div>
                   </div>
                 </div>
